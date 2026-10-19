@@ -136,7 +136,7 @@
         <h2>Contact form</h2>
         <form name="enquiry" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="enquiry">
-          <p class="honeypot"><label>Don’t fill this out <input name="bot-field"></label></p>
+          <p class="honeypot"><label>Don’t fill this out <input name="bot-field" type="text" tabindex="-1" autocomplete="off"></label></p>
           <label>Name <input name="name" autocomplete="name" placeholder="Name"></label>
           <label>Email <input type="email" name="email" autocomplete="email" placeholder="Email" required></label>
           <label>Phone number <input type="tel" name="phone" autocomplete="tel" placeholder="Phone number"></label>

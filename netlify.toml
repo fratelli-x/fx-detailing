@@ -1,6 +1,11 @@
 [build]
   publish = "site"
 
+# The Netlify UI can leave form scanning off. This overrides that so the next
+# deploy registers the static forms. Without it, Send returns a 404 page.
+[build.processing]
+  ignore_html_forms = false
+
 [[redirects]]
   from = "/pages/luxury-car-detailing-surrey"
   to = "/detailing/"

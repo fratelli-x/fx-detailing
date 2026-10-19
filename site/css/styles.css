@@ -381,7 +381,9 @@ input, textarea, select {
   width: 100%;
 }
 textarea { min-height: 140px; resize: vertical; }
-.honeypot { position: absolute; left: -9999px; }
+.honeypot {
+  display: none;
+}
 
 .site-footer {
   background: var(--black);

@@ -164,7 +164,7 @@
         <h2>Subscribe to our emails</h2>
         <form name="newsletter" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="newsletter">
-          <p class="honeypot"><label>Don’t fill this out <input name="bot-field"></label></p>
+          <p class="honeypot"><label>Don’t fill this out <input name="bot-field" type="text" tabindex="-1" autocomplete="off"></label></p>
           <label>Email <input type="email" name="email" required autocomplete="email"></label>
           <button class="btn" type="submit">Subscribe</button>
         </form>
