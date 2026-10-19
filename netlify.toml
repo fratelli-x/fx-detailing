@@ -190,3 +190,18 @@
   from = "/blogs/luxury-car-detailing-projects/fx-detailing-luxury-car-detailing-surrey-london"
   to = "/projects/fx-detailing-luxury-car-detailing-surrey-london/"
   status = 301
+
+# Old ceramic offer landers. Send them to the current ceramic page.
+# Do not redirect /ceramic/ itself, and do not send any new URL back to /pages/.
+[[redirects]]
+  from = "/pages/premium-ceramic-offer"
+  to = "/ceramic/"
+  status = 301
+
+[[redirects]]
+  from = "/pages/new-car-ceramic-offer"
+  to = "/ceramic/"
+  status = 301
+
+# http and apex to https://www.fxdetailing.co.uk are a Netlify primary-domain
+# dashboard setting. Do not add host-level redirects here; they can loop.
