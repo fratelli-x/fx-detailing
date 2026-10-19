@@ -1,0 +1,56 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "text_9gPeBE": {
+          "type": "text",
+          "settings": {
+            "heading": "Business Info",
+            "subtext": "<p>​The Barn, Westcoats Farm, Stan Hill, Charlwood, Surrey, <br/>RH6 0ES.<br/>Mobile: <a href=\"tel:07548703902\">07548 703902</a><br/>Landline: <a href=\"tel:07548703902\">01293 703902</a><br/><a href=\"mailto:enquiries@fxdetailing.co.uk\" target=\"_self\">enquiries@fxdetailing.co.uk</a> </p><p>Opening hours: Monday - Friday<br/>9am- 5pm</p>"
+          }
+        },
+        "link_list_nbFV3q": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Policies",
+            "menu": "footer"
+          }
+        }
+      },
+      "block_order": [
+        "text_9gPeBE",
+        "link_list_nbFV3q"
+      ],
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "newsletter_enable": true,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": false,
+        "show_social": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": false,
+        "show_policy": false,
+        "margin_top": 0,
+        "padding_top": 16,
+        "padding_bottom": 4
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

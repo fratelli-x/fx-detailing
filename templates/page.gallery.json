@@ -1,0 +1,109 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "rich_text_Mc8MwN": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_tkA7gp": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Portfolio of Excellence</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_TGpqBp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We believe that a luxury vehicle should spend its lifetime in showroom condition - not just the day you buy it. Explore our portfolio to witness the optical clarity and mirror-like depth that define the FX Standard.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_tkA7gp",
+        "text_TGpqBp"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "blocks_JQqnie": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_80ae512_YNfEjt": {
+          "type": "ai_gen_block_80ae512",
+          "settings": {
+            "border_color": "#000000",
+            "border_width": 8,
+            "border_style": "double",
+            "desktop_width_percent": 100,
+            "background_color": "#ffffff",
+            "gallery_padding": 8,
+            "columns_desktop": 4,
+            "columns_mobile": "2",
+            "gap": 8,
+            "image_aspect_ratio": "4 / 3",
+            "image_border_radius": 16,
+            "image_1": "shopify://shop_images/copy_6EDA48C5-CCD8-4D6E-8E39-BC7A37E392BE.jpg",
+            "image_2": "shopify://shop_images/image00004.jpg",
+            "image_3": "shopify://shop_images/luxury-car-detailing-singer-porsche-surrey-london_jpg.jpg",
+            "image_4": "shopify://shop_images/Lamborghini_Urus_Ceramic_Coating.jpg",
+            "image_5": "shopify://shop_images/Black_Porsche_1950s_311c266c-cfb0-4085-8699-4d8c8983ef08.png",
+            "image_6": "shopify://shop_images/FX_Detailing_Ceramic_Coating_On_Luxury_Cars.jpg",
+            "image_7": "shopify://shop_images/fx-detailing-luxury-car-detailing-surrey_jpg.jpg",
+            "image_8": "shopify://shop_images/Purple_SVJ_FX_Detailing.jpg",
+            "image_9": "shopify://shop_images/Black_Lamborghini_Revuelto.jpg",
+            "image_10": "shopify://shop_images/FX_Detailing_BMW_CERAMIC_BODY_KIT.jpg",
+            "image_11": "shopify://shop_images/fx-detailing-paint-correction-london-surrey.jpg",
+            "image_12": "shopify://shop_images/FX_Detailing_Black_Porsche_Carrrera_GT_Luxury_Car_Detailing_8254b4f6-3c2b-47e7-93ea-17394241e03c.jpg"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_80ae512_YNfEjt"
+      ],
+      "name": "Gallery",
+      "settings": {}
+    },
+    "rich_text_Vga4L6": {
+      "type": "rich-text",
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_Mc8MwN",
+    "blocks_JQqnie",
+    "rich_text_Vga4L6"
+  ]
+}

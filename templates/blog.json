@@ -1,0 +1,60 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_bGxYMK": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_rAT7i4": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Luxury Car Detailing & Bodykit Installation - Projects and Articles</strong>",
+            "heading_size": "h0"
+          }
+        },
+        "text_N6WV9m": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At FX DETAILING we work with one guiding principle: We continue until the vehicle is flawless - until every surface and reflection meets the standard that luxury and supercar owners demand. There is no timer that stops us short, no arbitrary endpoint. We keep refining, correcting and elevating the finish until nothing more can be done to enhance the end result. Because for the cars we touch, perfection isn't an option - it's the only acceptable outcome. Each project documented here represents a bespoke journey of restoration, protection, and precision fitment. From hypercar paint correction to factory-standard bodykit integration, explore the standards that have earned us a decade of 100% exceptional feedback across Surrey and London.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rAT7i4",
+        "text_N6WV9m"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "layout": "grid",
+        "show_image": true,
+        "image_height": "medium",
+        "show_date": true,
+        "show_author": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "rich_text_bGxYMK",
+    "main"
+  ]
+}

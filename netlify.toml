@@ -1,0 +1,187 @@
+[build]
+  publish = "site"
+
+[[redirects]]
+  from = "/pages/luxury-car-detailing-surrey"
+  to = "/detailing/"
+  status = 301
+
+[[redirects]]
+  from = "/pages/bodykit-installation-london-surrey"
+  to = "/bodykits/"
+  status = 301
+
+[[redirects]]
+  from = "/pages/gallery"
+  to = "/gallery/"
+  status = 301
+
+[[redirects]]
+  from = "/pages/about"
+  to = "/about/"
+  status = 301
+
+[[redirects]]
+  from = "/pages/reviews"
+  to = "/reviews/"
+  status = 301
+
+[[redirects]]
+  from = "/pages/contact"
+  to = "/contact/"
+  status = 301
+
+[[redirects]]
+  from = "/pages/booking-cancellation-refund-policy"
+  to = "/booking-policy/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects"
+  to = "/projects/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/porsche-cayman-gt4-wing-installation"
+  to = "/projects/porsche-cayman-gt4-wing/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/porsche-911-sport-classic-paint-correction-ceramic-coating"
+  to = "/projects/porsche-911-sport-classic/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/ford-ranger-wide-arch-flare-installation"
+  to = "/projects/ford-ranger-wide-arch-flares/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/lamborghini-urus-restoration-case-study"
+  to = "/projects/lamborghini-urus-restoration-case-study/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/new-car-ceramic-coating-surrey"
+  to = "/projects/new-car-ceramic-coating-surrey/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/why-oem-styling-is-the-gold-standard"
+  to = "/projects/why-oem-styling-is-the-gold-standard/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/mercedes-a-class-ct-carbon-body-kit-installation"
+  to = "/projects/mercedes-a-class-ct-carbon-body-kit-installation/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/ceramic-coating-surrey-luxury-vehicle-protection-at-fx-detailing"
+  to = "/projects/ceramic-coating-surrey-luxury-vehicle-protection-at-fx-detailing/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/the-fx-masterclass-total-vehicle-reset-and-protection"
+  to = "/projects/the-fx-masterclass-total-vehicle-reset-and-protection/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/how-much-should-a-full-car-detail-cost-fx-detailings-complete-price-guide-for-surrey-london"
+  to = "/projects/how-much-should-a-full-car-detail-cost-fx-detailings-complete-price-guide-for-surrey-london/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/porsche-carrera-gt-detailing-surrey-fx-detailing"
+  to = "/projects/porsche-carrera-gt-detailing-surrey-fx-detailing/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/mclaren-570s-full-detail-ceramic-coating-surrey"
+  to = "/projects/mclaren-570s-full-detail-ceramic-coating-surrey/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/audi-r8-body-kit-installation-ceramic-coating-surrey"
+  to = "/projects/audi-r8-body-kit-installation-ceramic-coating-surrey/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/bmw-m4-competition-bodykit-installation-surrey"
+  to = "/projects/bmw-m4-competition-bodykit-installation-surrey/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/bmw-bodykit-ceramic-coating-surrey-fx-detailing"
+  to = "/projects/bmw-bodykit-ceramic-coating-surrey-fx-detailing/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/supercar-detailing-investment-london-surrey"
+  to = "/projects/supercar-detailing-investment-london-surrey/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/luxury-car-detailing-london-surrey-defined"
+  to = "/projects/luxury-car-detailing-london-surrey-defined/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/machine-polishing-surrey-porsche-911-singer-restoration-paint-correction"
+  to = "/projects/machine-polishing-surrey-porsche-911-singer-restoration-paint-correction/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/bmw-detailing-bodykit-installation-surrey"
+  to = "/projects/bmw-detailing-bodykit-installation-surrey/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/ct-carbon-authorised-bodykit-installer-surrey"
+  to = "/projects/ct-carbon-authorised-bodykit-installer-surrey/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/new-car-ceramic-coating-vs-dealer-sealant-surrey"
+  to = "/projects/new-car-ceramic-coating-vs-dealer-sealant-surrey/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/ph-neutral-car-detailing-products-surrey"
+  to = "/projects/ph-neutral-car-detailing-products-surrey/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/machine-polishing-luxury-cars-surrey-london"
+  to = "/projects/machine-polishing-luxury-cars-surrey-london/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/luxury-car-interior-detailing-surrey-london"
+  to = "/projects/luxury-car-interior-detailing-surrey-london/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/1961-jaguar-e-type-detailing-ceramic-coating-surrey"
+  to = "/projects/1961-jaguar-e-type-detailing-ceramic-coating-surrey/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/bmw-bodykit-installation-surrey"
+  to = "/projects/bmw-bodykit-installation-surrey/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/vehicle-machine-polishing"
+  to = "/projects/vehicle-machine-polishing/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/zak-brown-mclaren-f1-ceo-fx-detailing-review"
+  to = "/projects/zak-brown-mclaren-f1-ceo-fx-detailing-review/"
+  status = 301
+
+[[redirects]]
+  from = "/blogs/luxury-car-detailing-projects/fx-detailing-luxury-car-detailing-surrey-london"
+  to = "/projects/fx-detailing-luxury-car-detailing-surrey-london/"
+  status = 301

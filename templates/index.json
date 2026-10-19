@@ -1,0 +1,494 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1777546309fe745aa8": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d4842b7_EP7xwp": {
+          "type": "ai_gen_block_d4842b7",
+          "settings": {
+            "background_image": "shopify://shop_images/Homepage_Hero_Image_FX_Detailing.jpg",
+            "overlay_color": "#ffffff",
+            "overlay_opacity": 0,
+            "min_height_desktop": 900,
+            "min_height_mobile": 600,
+            "vertical_alignment": "center",
+            "horizontal_alignment": "center",
+            "content_max_width": 1200,
+            "heading": "Luxury Car Detailing & Bodykit Installation",
+            "heading_size": 40,
+            "heading_transform": "uppercase",
+            "heading_letter_spacing": 2,
+            "heading_spacing": 20,
+            "subheading": "",
+            "subheading_size": 20,
+            "subheading_spacing": 32,
+            "text_color": "#ffffff",
+            "text_alignment": "center",
+            "enable_text_stroke": true,
+            "text_stroke_width": 2,
+            "text_stroke_color": "#000000",
+            "enable_text_shadow": true,
+            "text_shadow_x": 3,
+            "text_shadow_y": 0,
+            "text_shadow_blur": 2,
+            "text_shadow_color": "#000000",
+            "show_button": true,
+            "button_text": "Learn more",
+            "button_link": "shopify://pages/luxury-car-detailing-surrey",
+            "button_font_size": 16,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 8,
+            "button_padding_horizontal": 16,
+            "button_border_radius": 8,
+            "button_border_width": 2,
+            "button_bg_color": "#ffffff",
+            "button_text_color": "#000000",
+            "button_border_color": "#ffffff",
+            "button_hover_bg_color": "#000000",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_d4842b7_EP7xwp"
+      ],
+      "settings": {}
+    },
+    "rich_text_T7G7yp": {
+      "type": "rich-text",
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 12
+      }
+    },
+    "image_with_text_ere4Ew": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_zEtiDE": {
+          "type": "heading",
+          "settings": {
+            "heading": "PROTECT YOUR VEHICLE BEFORE THE DAMAGE BEGINS",
+            "heading_size": "h1"
+          }
+        },
+        "text_mzgiEe": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Your vehicle will never be newer than it is today.</strong></p><p>✓ 5-Year Gtechniq Crystal Serum Ceramic Coating</p><p>✓ Enhanced gloss, scratch resistance &  easier maintenance</p><p>✓ Preserve that \"showroom\" condition for years</p><h1><strong>TOTAL VALUE: £799<br/>TODAY: £500</strong></h1>",
+            "text_style": "body"
+          }
+        },
+        "button_deH8kn": {
+          "type": "button",
+          "settings": {
+            "button_label": "Learn more",
+            "button_link": "shopify://pages/premium-ceramic-offer",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_zEtiDE",
+        "text_mzgiEe",
+        "button_deH8kn"
+      ],
+      "disabled": true,
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_Jun_17_2026_at_01_40_43_PM.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "bottom",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-4",
+        "color_scheme": "scheme-2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_6Xj4xK": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_9xytmj": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong> A Decade at the Pinnacle of Automotive Excellence</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_GL6anb": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We've spent the last 12 years working on some of the world's most exceptional cars - not learning the craft, but refining the standard.</p><p>That environment defined everything.</p><p>At FX Detailing, we work with clients who expect precision without compromise - where \"finished\" means flawless, not just acceptable.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_9xytmj",
+        "text_GL6anb"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "rich_text_ypCNzc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_PAQLyQ": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>LUXURY DETAILING: The Fine Art of Preservation</strong>",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_PAQLyQ"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 12,
+        "padding_bottom": 20
+      }
+    },
+    "image_banner_nYGewz": {
+      "type": "image-banner",
+      "blocks": {
+        "text_EVAQkJ": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>We return your cars looking \"showroom-ready\" because after a decade working on the world's most extraordinary vehicles, we know exactly what that standard looks like.</strong>",
+            "text_style": "body"
+          }
+        },
+        "buttons_NTHBYy": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Learn more",
+            "button_link_1": "shopify://pages/luxury-car-detailing-surrey",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "text_EVAQkJ",
+        "buttons_NTHBYy"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/FX_Detailing_Black_Porsche_Carrrera_GT_Luxury_Car_Detailing_8254b4f6-3c2b-47e7-93ea-17394241e03c.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_dUqXTg": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_caVGdt": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>One Standard - No Exceptions</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_tA6QyV": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Most detailers talk about care.</strong><br/>We built our reputation on it.</p><p>Every car we take on receives the same obsessive, undivided attention - whether it’s a correction detail or a full bodykit installation.</p><p>We don’t rush. We don’t cut corners. And we don’t hand a car back until it meets our standard.</p><p><strong>Over 10 years. Not a single exception.</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_caVGdt",
+        "text_tA6QyV"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "rich_text_g7b8Aq": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_CyPhnj": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>CERAMIC COATING: Armour for Your Paintwork</strong>",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CyPhnj"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 12,
+        "padding_bottom": 20
+      }
+    },
+    "image_banner_kC8QpL": {
+      "type": "image-banner",
+      "blocks": {
+        "text_3J4Dx3": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>You've invested in something remarkable - it deserves protection that's equally serious. Ceramic coating reduces new swirl marks, prevents paint bubbling & rusting, and locks in a deep, dramatic colour pop and mirror-like saturation.</strong>",
+            "text_style": "body"
+          }
+        },
+        "buttons_3fVYHV": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Learn more",
+            "button_link_1": "shopify://pages/luxury-car-detailing-surrey",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "text_3J4Dx3",
+        "buttons_3fVYHV"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Orange_Revuelto_FX_Detailing.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_i9DbF9": {
+      "type": "rich-text",
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 8,
+        "padding_bottom": 0
+      }
+    },
+    "17722043033e03811e": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "rich_text_AReJdc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_HqEif6": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>BODYKIT INSTALLATION: Fitted Once. Fitted Right.</strong>",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_HqEif6"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 12,
+        "padding_bottom": 20
+      }
+    },
+    "image_banner_ktz4jc": {
+      "type": "image-banner",
+      "blocks": {
+        "text_xfYg4D": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Carbon lips, splitters, diffusers, full conversions - installed with the kind of precision that means zero panel gaps, zero excuses, and a finish that looks like it came straight from the manufacturer.</strong>",
+            "text_style": "body"
+          }
+        },
+        "buttons_yTwpbt": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Learn more",
+            "button_link_1": "shopify://pages/bodykit-installation-london-surrey",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "text_xfYg4D",
+        "buttons_yTwpbt"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Bodykits_Cover_Image_FX_Detailing.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_xUVFEF": {
+      "type": "rich-text",
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 8,
+        "padding_bottom": 0
+      }
+    },
+    "featured_blog_8nj9wg": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "luxury-car-detailing-projects",
+        "post_limit": 3,
+        "heading": "<strong>LUXURY CAR DETAILING & BODYKIT INSTALLATION: PROJECTS AND ARTICLES</strong>",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 16
+      }
+    },
+    "rich_text_QC6cza": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_tMYLXz": {
+          "type": "heading",
+          "settings": {
+            "heading": "5 MINUTES FROM GATWICK AIRPORT",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_tMYLXz"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "1778236047ff718858": {
+      "type": "apps",
+      "blocks": {
+        "mappy_store_locator_page_embed_block_iURePF": {
+          "type": "shopify://apps/ta-mappy-store-locator-maps/blocks/page-embed-block/edfca2bd-82ad-413c-b32c-580d239b17ab",
+          "settings": {
+            "is_show_heading_map": true,
+            "is_show_description_map": false
+          }
+        }
+      },
+      "block_order": [
+        "mappy_store_locator_page_embed_block_iURePF"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "1777546309fe745aa8",
+    "rich_text_T7G7yp",
+    "image_with_text_ere4Ew",
+    "rich_text_6Xj4xK",
+    "rich_text_ypCNzc",
+    "image_banner_nYGewz",
+    "rich_text_dUqXTg",
+    "rich_text_g7b8Aq",
+    "image_banner_kC8QpL",
+    "rich_text_i9DbF9",
+    "17722043033e03811e",
+    "rich_text_AReJdc",
+    "image_banner_ktz4jc",
+    "rich_text_xUVFEF",
+    "featured_blog_8nj9wg",
+    "rich_text_QC6cza",
+    "1778236047ff718858"
+  ]
+}

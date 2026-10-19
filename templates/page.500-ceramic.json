@@ -1,0 +1,1027 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "blocks_y3cUm4": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7df23dd_z3gkJ8": {
+          "type": "ai_gen_block_7df23dd",
+          "settings": {
+            "heading": "YOUR CAR WILL NEVER BE NEWER THAN IT IS TODAY",
+            "heading_font": "oswald_n7",
+            "heading_size": 56,
+            "heading_line_height": 1,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "none",
+            "heading_color": "#000000",
+            "heading_spacing": 24,
+            "subtext": "<p>Protect it with a <strong>5-Year Gtechniq Ceramic Coating</strong> and receive a <strong>Full Interior Detail</strong>, so your vehicle is fully protected and leaves looking flawless inside and out.</p><p><strong>All for just £500 (Normally £1000).</strong></p><p>Preserve that factory-fresh finish before swirl marks, water spots, tree sap, bird droppings and UV damage begin taking their toll.</p>",
+            "subtext_size": 26,
+            "subtext_line_height": 1.2,
+            "subtext_color": "#000000",
+            "subtext_spacing": 16,
+            "show_button": false,
+            "button_text": "Book Now",
+            "button_link": "",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 16,
+            "padding_bottom": 8,
+            "padding_horizontal": 32,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_7df23dd_Ux9P76": {
+          "type": "ai_gen_block_7df23dd",
+          "name": "Rich text with H1",
+          "settings": {
+            "heading": "",
+            "heading_font": "oswald_n7",
+            "heading_size": 56,
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "uppercase",
+            "heading_color": "#000000",
+            "heading_spacing": 24,
+            "subtext": "",
+            "subtext_size": 18,
+            "subtext_line_height": 1.6,
+            "subtext_color": "#333333",
+            "subtext_spacing": 32,
+            "show_button": false,
+            "button_text": "Book Now",
+            "button_link": "",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 48,
+            "padding_bottom": 0,
+            "padding_horizontal": 24,
+            "background_color": "#000000"
+          },
+          "blocks": {}
+        },
+        "forms_inline_RdjpK9": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "976061",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 12,
+            "padding_bottom": 24,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7df23dd_z3gkJ8",
+        "ai_gen_block_7df23dd_Ux9P76",
+        "forms_inline_RdjpK9"
+      ],
+      "name": "Rich text with H1",
+      "settings": {}
+    },
+    "image_banner_cEmedX": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_at_10_19_35_AM.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "image_banner_AERfH7": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Luxury_Car_Detailing_Banner_FX_Detailing_1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "blocks_eF6LCR": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7df23dd_8gHrti": {
+          "type": "ai_gen_block_7df23dd",
+          "settings": {
+            "heading": "Why Most Cars Lose Their Showroom Finish",
+            "heading_font": "oswald_n7",
+            "heading_size": 56,
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "uppercase",
+            "heading_color": "#ffffff",
+            "heading_spacing": 20,
+            "subtext": "<p>Your vehicle was in perfect condition the day you collected it.</p><p>Unprotected vehicles are quickly ruined by swirl marks, dirt, UV damage, bird droppings, permanent water spots, paint bubbling, rust and stains.</p><p><strong>CERAMIC COATING CHANGES THAT</strong></p>",
+            "subtext_size": 26,
+            "subtext_line_height": 1.6,
+            "subtext_color": "#ffffff",
+            "subtext_spacing": 0,
+            "show_button": false,
+            "button_text": "",
+            "button_link": "",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 24,
+            "padding_bottom": 32,
+            "padding_horizontal": 24,
+            "background_color": "#000000"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7df23dd_8gHrti"
+      ],
+      "name": "Rich text with H1",
+      "settings": {}
+    },
+    "image_banner_hJdhCg": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Pearl_White_Porsche_Singer.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "blocks_BW38Gr": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7df23dd_h6HN84": {
+          "type": "ai_gen_block_7df23dd",
+          "settings": {
+            "heading": "THE GOOD NEWS",
+            "heading_font": "oswald_n7",
+            "heading_size": 56,
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "uppercase",
+            "heading_color": "#000000",
+            "heading_spacing": 24,
+            "subtext": "<p>If you've just purchased or you're about to buy a brand new vehicle, we're making it super easy (and affordable) to keep it in <strong>showroom condition</strong> for the next 5 years. </p>",
+            "subtext_size": 26,
+            "subtext_line_height": 1.6,
+            "subtext_color": "#000000",
+            "subtext_spacing": 0,
+            "show_button": false,
+            "button_text": "Book Now",
+            "button_link": "",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 24,
+            "padding_bottom": 24,
+            "padding_horizontal": 24,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7df23dd_h6HN84"
+      ],
+      "name": "Rich text with H1",
+      "settings": {}
+    },
+    "image_banner_Gb79af": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/copy_6EDA48C5-CCD8-4D6E-8E39-BC7A37E392BE.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "blocks_gQrzYQ": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7df23dd_jPdMdh": {
+          "type": "ai_gen_block_7df23dd",
+          "settings": {
+            "heading": "WHY YOU SHOULD AVOID DEALERSHIP COATINGS",
+            "heading_font": "oswald_n7",
+            "heading_size": 56,
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "uppercase",
+            "heading_color": "#000000",
+            "heading_spacing": 24,
+            "subtext": "<p>When you pick up your brand new car, the salesperson will always try to sell you their \"premium ceramic coating package\". Most dealerships will in fact use a spray-on ceramic which will only last a few weeks and still <strong>charge you £800-£1500</strong>.</p>",
+            "subtext_size": 26,
+            "subtext_line_height": 1.6,
+            "subtext_color": "#333333",
+            "subtext_spacing": 24,
+            "show_button": false,
+            "button_text": "Book Now",
+            "button_link": "",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 32,
+            "padding_bottom": 8,
+            "padding_horizontal": 24,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7df23dd_jPdMdh"
+      ],
+      "name": "Rich text with H1",
+      "settings": {}
+    },
+    "image_banner_bcKQ7e": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/FX_Detailing_Black_Porsche_Carrrera_GT_Luxury_Car_Detailing.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "blocks_fXDbK8": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7df23dd_mXLRhB": {
+          "type": "ai_gen_block_7df23dd",
+          "settings": {
+            "heading": "FULL BREAKDOWN OF everything INCLUDED below:",
+            "heading_font": "oswald_n7",
+            "heading_size": 56,
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "uppercase",
+            "heading_color": "#000000",
+            "heading_spacing": 20,
+            "subtext": "<h1>✅ <strong> 5-YEAR GTECHNIQ CRYSTAL SERUM CERAMIC COATING<br/>£800 VALUE</strong></h1><p>✓ Full exterior detail</p><p>✓ Full decontamination</p><p>✓ Paintwork ceramic coated</p><p>✓ Headlights ceramic coated</p><p>✓ Trims ceramic coated</p><p>✓ Bumpers ceramic coated</p><p>✓ Wheels, arches and calipers detailed</p><p>✓ Glass done inside & out</p><p>✓ Tyres dressed</p><p>✓ Every exterior surface detailed, ceramic coated and finished with premium dressings</p><h1>✅  <strong>FULL INTERIOR DETAIL<br/>£200 VALUE</strong></h1><p>✓ Full interior detail</p><p>✓ Seats detailed</p><p>✓ Carpets detailed</p><p>✓ Doors detailed</p><p>✓ Dashboard detailed</p><p>✓ Headliner detailed</p><p>✓ Vents detailed</p><p>✓ Boot detailed</p><p>✓ You will collect your car flawless inside & out</p><h1>TOTAL REAL WORLD VALUE: £1000<br/>YOUR INVESTMENT TODAY: ONLY £500</h1>",
+            "subtext_size": 26,
+            "subtext_line_height": 1.6,
+            "subtext_color": "#000000",
+            "subtext_spacing": 0,
+            "show_button": false,
+            "button_text": "Book Now",
+            "button_link": "",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 24,
+            "padding_bottom": 32,
+            "padding_horizontal": 24,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "google_reviews_rocket_app_block_G7MekC": {
+          "type": "shopify://apps/google-reviews-rocket/blocks/app-block/d11c8893-a181-4aff-a280-7446d42cec3b",
+          "settings": {
+            "widget_layout": "default"
+          }
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7df23dd_mXLRhB",
+        "google_reviews_rocket_app_block_G7MekC"
+      ],
+      "name": "Rich text with H1",
+      "settings": {}
+    },
+    "image_banner_PYHd43": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Black_Porsche_1950s_311c266c-cfb0-4085-8699-4d8c8983ef08.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "blocks_6QidjX": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7df23dd_KVtmqq": {
+          "type": "ai_gen_block_7df23dd",
+          "settings": {
+            "heading": "WHY THIS DEAL IS INSANE",
+            "heading_font": "oswald_n7",
+            "heading_size": 56,
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "uppercase",
+            "heading_color": "#000000",
+            "heading_spacing": 24,
+            "subtext": "<p>You're getting the <strong>full £800 \"5-year ceramic\"</strong> (the most important long term protection) plus a proper <strong>£200 interior</strong> detail <strong>for £500 less</strong> than what this package normally costs.</p><p>Perfect for anyone who just bought (or is about to buy) a new car and wants to keep it looking brand new for years.</p>",
+            "subtext_size": 24,
+            "subtext_line_height": 1.6,
+            "subtext_color": "#000000",
+            "subtext_spacing": 32,
+            "show_button": false,
+            "button_text": "Book Now",
+            "button_link": "",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 48,
+            "padding_bottom": 16,
+            "padding_horizontal": 24,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7df23dd_KVtmqq"
+      ],
+      "name": "Rich text with H1",
+      "settings": {}
+    },
+    "image_banner_BJcaqT": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/fx-detailing-paint-correction-london-surrey.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "blocks_BiTDLJ": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7df23dd_3Bd6eE": {
+          "type": "ai_gen_block_7df23dd",
+          "settings": {
+            "heading": "THE TRANSFORMATION YOU GET",
+            "heading_font": "oswald_n7",
+            "heading_size": 56,
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "uppercase",
+            "heading_color": "#000000",
+            "heading_spacing": 20,
+            "subtext": "<p>Your car will keep looking <strong>like the day you bought it - </strong>ceramic coating minimises new swirl marks, water spots & UV damage, and locks in a deep, dramatic colour pop and mirror-like saturation.</p><p><strong>The result is a vehicle that:</strong></p><p>✓ Looks as though it belongs in a showroom every time you open the garage</p><p>✓ Washes cleaner, faster and with minimal risk of damaging the paintwork</p><p>✓ Maintains exceptional gloss and clarity year after year</p><p>✓ Is protected from the harsh realities of the British climate</p><p>✓ Requires less effort to keep in pristine condition</p><p>✓ Retains the finish, presence and prestige that a new vehicle deserves</p>",
+            "subtext_size": 26,
+            "subtext_line_height": 1.6,
+            "subtext_color": "#333333",
+            "subtext_spacing": 32,
+            "show_button": false,
+            "button_text": "Book Now",
+            "button_link": "",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 8,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 40,
+            "padding_bottom": 8,
+            "padding_horizontal": 24,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7df23dd_3Bd6eE"
+      ],
+      "name": "Rich text with H1",
+      "settings": {}
+    },
+    "image_banner_W3i8Yr": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Ferrari_812_gts_FX_Detailing.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "blocks_DeEqhE": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7df23dd_necKLz": {
+          "type": "ai_gen_block_7df23dd",
+          "settings": {
+            "heading": "\"Love it or we make it right\" Guarantee",
+            "heading_font": "oswald_n7",
+            "heading_size": 56,
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "uppercase",
+            "heading_color": "#ffffff",
+            "heading_spacing": 20,
+            "subtext": "<p>If you don't think we've held up our end of the bargain and you're not 100% blown away by the final result, we'll either:<br/>Re-do the entire service at our expense, or give you a full refund.</p><p>We stand fully behind our quality and business.</p><p><strong>NO RISK FOR YOU<br/>WE TAKE ALL THE RISK</strong></p>",
+            "subtext_size": 26,
+            "subtext_line_height": 1.6,
+            "subtext_color": "#ffffff",
+            "subtext_spacing": 32,
+            "show_button": false,
+            "button_text": "Book Now",
+            "button_link": "",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 40,
+            "padding_bottom": 8,
+            "padding_horizontal": 24,
+            "background_color": "#000000"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7df23dd_necKLz"
+      ],
+      "name": "Rich text with H1",
+      "settings": {}
+    },
+    "image_banner_azYFDb": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Orange_McLaren_720s_FX_Detailing.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "blocks_mxMgTe": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_324027b_Hi799C": {
+          "type": "ai_gen_block_324027b",
+          "settings": {
+            "section_title": "INCLUDED IN THIS LIMITED OFFER: TOTAL VALUE £1000 —  TODAY: ONLY £500",
+            "section_subtitle": "",
+            "section_background": "#0a0a0a",
+            "title_size": 42,
+            "title_color": "#ffffff",
+            "subtitle_size": 18,
+            "subtitle_color": "#b0b0b0",
+            "columns_desktop": 3,
+            "card_gap": 30,
+            "card_background": "#1a1a1a",
+            "card_border_color": "#333333",
+            "card_border_width": 1,
+            "card_border_radius": 8,
+            "card_accent_color": "#ff6b00",
+            "card_divider_color": "#2a2a2a",
+            "package_name_size": 24,
+            "package_name_color": "#ffffff",
+            "price_size": 36,
+            "price_color": "#ff6b00",
+            "description_size": 14,
+            "description_color": "#b0b0b0",
+            "item_size": 14,
+            "item_color": "#e0e0e0",
+            "button_background": "#ff6b00",
+            "button_hover_background": "#e65c00",
+            "button_text_color": "#ffffff",
+            "button_size": 14,
+            "button_border_radius": 4,
+            "package_1_enabled": true,
+            "package_1_name": "✅ 5-YEAR GTECHNNIQ CERAMIC COATING",
+            "package_1_price": "£800 VALUE",
+            "package_1_description": "",
+            "package_1_items": "Full exterior detail, Full decontamination, Paintwork ceramic coated, Headlights ceramic coated, Trims ceramic coated, Bumpers ceramic coated, Wheels arches and calipers detailed, Glass done inside & out, Tyres dressed, Every exterior surface detailed ceramic coated and finished with premium dressings",
+            "package_1_button_label": "",
+            "package_1_button_link": "",
+            "package_2_enabled": true,
+            "package_2_name": "✅ FULL INTERIOR DETAIL",
+            "package_2_price": "£200 VALUE",
+            "package_2_description": "",
+            "package_2_items": "Full interior detail, Seats detailed,Carpets detailed, Doors detailed, Dashboard detailed, Headliner detailed, Vents detailed, Boot detailed, You will collect your car flawless inside & out",
+            "package_2_button_label": "",
+            "package_2_button_link": "",
+            "package_3_enabled": true,
+            "package_3_name": "✅ WHAT YOU DRIVE AWAY WITH",
+            "package_3_price": "£1000 VALUE - FOR ONLY £500",
+            "package_3_description": "",
+            "package_3_items": "Extreme gloss, Interior detail, Exterior detail, Full decontamination, Exterior protection,Sun damage protection, Hydrophobic protection, Swirl mark protection, Water spot protection, Rust & paint bubbling protection, Every surface dressed & protected, Showroom finish, Easy maintenance, 5-Year ceramic protection",
+            "package_3_button_label": "",
+            "package_3_button_link": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_324027b_Hi799C"
+      ],
+      "name": "Body kit pricing",
+      "settings": {}
+    },
+    "collapsible_content_PVGJrU": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_fMQrk9": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "DO YOU WORK ON EVERY CAR?",
+            "icon": "check_mark",
+            "row_content": "<p>Yes.</p><p>For this promotion we're welcoming all types of vehicles.</p><p>Although, FX Detailing works primarily with luxury, classic, performance and exotic vehicles. This offer has been opened to owners who genuinely want to protect and preserve their vehicle properly.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_bEcXqV": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "HOW DO I SECURE MY BOOKING?",
+            "icon": "check_mark",
+            "row_content": "<p>Simply submit an enquiry through the form below and we will contact you to discuss your vehicle and availability.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_BgxKrH": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "HOW LONG DOES IT TAKE?",
+            "icon": "check_mark",
+            "row_content": "<p>Job can be completed within 1-2 days and we insist on keeping the vehicle in our indoor facility overnight after the ceramic application for best results.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_UJiKg3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "HOW LONG DOES CERAMIC COATING LAST?",
+            "icon": "check_mark",
+            "row_content": "<p>Up to 5 years whether it's garage kept or used for normal daily driving.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Wrg66m": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "IS PAINT CORRECTION INCLUDED?",
+            "icon": "check_mark",
+            "row_content": "<p>Paint correction is a separate full vehicle restoration service which can be applied only if needed and in most cases takes about 7 days when combined with this offer.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_AhxEkR": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "HOW IS CERAMIC DIFFERENT FROM WAX?",
+            "icon": "check_mark",
+            "row_content": "<p>Waxes sit temporarily on the surface and degrade quickly.<br/><br/>Professional ceramic coatings bond directly to the paintwork, delivering significantly greater durability, better gloss and multi-year-long protection.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_AzzRia": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "WILL MY VEHICLE STAY CLEANER?",
+            "icon": "check_mark",
+            "row_content": "<p>Yes.<br/><br/>Protected surfaces become significantly more hydrophobic, meaning water, grime and contaminants struggle to bond to the paintwork.<br/><br/>Your vehicle becomes easier to clean and stays cleaner for longer.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_3nAbrV": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "DOES CERAMIC COATING STOP SCRATCHES?",
+            "icon": "check_mark",
+            "row_content": "<p>The ceramic coating we're using has scratch resistant quality. <br/><br/>Ceramic coating helps reduce scratches, swirl marks and wash-induced marring.<br/><br/>However, it is not a substitute for Paint Protection Film (PPF) and cannot prevent direct impact deep scratches or stone chips.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_tQpLKB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "WHY IS CERAMIC COATING IMPORTANT?",
+            "icon": "check_mark",
+            "row_content": "<p>Without proper protection - moisture, road contamination and environmental fallout continuously sit against the paintwork.<br/><br/>Over time, this contributes to:<br/>- dullness<br/>- sun damage<br/>- swirl marks<br/>- corrosion/rust<br/>- premature ageing<br/>- water spots<br/><br/>Ceramic coating helps create a long-term barrier between your vehicle and the environment.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_bCnRGV": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "WHY DO YOU USE GTECHNIQUE",
+            "icon": "check_mark",
+            "row_content": "<p>Gtechniq is globally recognised for producing arguably the best professional-grade ceramic protection systems trusted by high-end detailers worldwide.<br/><br/>We selected Gtechniq for:<br/>- durability<br/>- gloss enhancement<br/>- hydrophobic performance<br/>- long-term reliability<br/>- best product on the market today</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_fMQrk9",
+        "collapsible_row_bEcXqV",
+        "collapsible_row_BgxKrH",
+        "collapsible_row_UJiKg3",
+        "collapsible_row_Wrg66m",
+        "collapsible_row_AhxEkR",
+        "collapsible_row_AzzRia",
+        "collapsible_row_3nAbrV",
+        "collapsible_row_tQpLKB",
+        "collapsible_row_bCnRGV"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "TOP 10 FAQ's",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-4",
+        "color_scheme": "scheme-4",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_CFXf8i": {
+      "type": "rich-text",
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 12
+      }
+    },
+    "blocks_QixeRF": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7df23dd_BdE7ef": {
+          "type": "ai_gen_block_7df23dd",
+          "settings": {
+            "heading": "NEXT STEP",
+            "heading_font": "oswald_n7",
+            "heading_size": 56,
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "uppercase",
+            "heading_color": "#ffffff",
+            "heading_spacing": 12,
+            "subtext": "<p><strong>Complete The Form Below<br/>Each Vehicle Requires 1-2 Days of Intensive Work<br/>Availability Limited Due To Studio Capacity</strong></p><p><strong>✓ Courtesy Car Available<br/>✓ Vehicle Collection Available<br/>✓ Enclosed Vehicle Transportation Available<br/>✓ Keysafe Drop-off Box Available<br/>✓ Located 5 Minutes From Gatwick Airport</strong></p>",
+            "subtext_size": 26,
+            "subtext_line_height": 1.6,
+            "subtext_color": "#ffffff",
+            "subtext_spacing": 20,
+            "show_button": false,
+            "button_text": "Book Now",
+            "button_link": "",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#334fb4",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 32,
+            "padding_bottom": 8,
+            "padding_horizontal": 24,
+            "background_color": "#334fb4"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7df23dd_BdE7ef"
+      ],
+      "name": "Rich text with H1",
+      "settings": {}
+    },
+    "17778067515f5106fc": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_YBfFnh": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "976061",
+            "text_color": "#000000",
+            "button_background_color": "#202020",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 12,
+            "padding_bottom": 24,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_YBfFnh"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "rich_text_KPfhBA": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_AdLFFx": {
+          "type": "heading",
+          "settings": {
+            "heading": "5 MINUTES AWAY FROM GATWICK AIRPORT",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_AdLFFx"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "17782340081080c3ad": {
+      "type": "apps",
+      "blocks": {
+        "mappy_store_locator_page_embed_block_KHKGhf": {
+          "type": "shopify://apps/ta-mappy-store-locator-maps/blocks/page-embed-block/edfca2bd-82ad-413c-b32c-580d239b17ab",
+          "settings": {
+            "is_show_heading_map": true,
+            "is_show_description_map": false
+          }
+        }
+      },
+      "block_order": [
+        "mappy_store_locator_page_embed_block_KHKGhf"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_cEmedX",
+    "blocks_y3cUm4",
+    "image_banner_AERfH7",
+    "blocks_eF6LCR",
+    "image_banner_hJdhCg",
+    "blocks_BW38Gr",
+    "image_banner_Gb79af",
+    "blocks_gQrzYQ",
+    "image_banner_bcKQ7e",
+    "blocks_fXDbK8",
+    "image_banner_PYHd43",
+    "blocks_6QidjX",
+    "image_banner_BJcaqT",
+    "blocks_BiTDLJ",
+    "image_banner_W3i8Yr",
+    "blocks_DeEqhE",
+    "image_banner_azYFDb",
+    "blocks_mxMgTe",
+    "collapsible_content_PVGJrU",
+    "rich_text_CFXf8i",
+    "blocks_QixeRF",
+    "17778067515f5106fc",
+    "rich_text_KPfhBA",
+    "17782340081080c3ad"
+  ]
+}

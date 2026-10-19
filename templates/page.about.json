@@ -1,0 +1,296 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_xThT6t": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_Jul_27_2026_05_51_32_PM.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_rAxD4E": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_ancHmr": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Our Philosophy: A Lifetime of Excellence</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_CgMHfg": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Led by Reece Baughan the person who has been responsible for millions of pounds worth of inventory to be restored and maintained in showroom condition for over 10 years.</p><p>Our company values are simple: We are looking to align with clients who want their vehicles returned to and maintained in showroom condition. To achieve this, we have developed a strategic maintenance cycle that ensures your vehicle never degrades, while making world-class care surprisingly affordable. By trusting us as the long-term guardians of your car, we make sure that \"new car\"<strong> </strong>feeling never fades away.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ancHmr",
+        "text_CgMHfg"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_text_tYMNPc": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_W8kPHY": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>A Decade Spent at the Pinnacle of Automotive Excellence. </strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_nDLYga": {
+          "type": "text",
+          "settings": {
+            "text": "<p>For 10+ years our hands have touched the paintwork of the world’s most extraordinary vehicles - from the raw performance of Ferrari, McLaren and Lamborghini to the timeless elegance of Rolls-Royce and Porsche.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_W8kPHY",
+        "text_nDLYga"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Pearl_White_Porsche_Singer.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 12
+      }
+    },
+    "multicolumn_hpVK7f": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_DdyWrV": {
+          "type": "column",
+          "settings": {
+            "title": "<strong>Protection & Maintenance</strong>",
+            "text": "<p>Premium ceramic protection designed for the UK climate and monthly maintenance detailing.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_QinDEJ": {
+          "type": "column",
+          "settings": {
+            "title": "<strong>Vehicle Correction</strong>",
+            "text": "<p>Paint correcting over 95%+ of imperfections and factory-grade bodykit installations.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_nGbPta": {
+          "type": "column",
+          "settings": {
+            "title": "<strong>Heritage</strong>",
+            "text": "<p>10+ years of luxury dealership expertise dealing with some of the most incredible cars in the world. </p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_DdyWrV",
+        "column_QinDEJ",
+        "column_nGbPta"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "<strong>Our Core Pillars</strong>",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_pgtajA": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_cFkQmX": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>The Full Fratelli X Ecosystem</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_MC4fAy": {
+          "type": "text",
+          "settings": {
+            "text": "<ul><li><strong>Luxury Car Detailing</strong> — From the 7-day Total Reset to Ceramic Protection, we set the paint correction standard for Surrey.</li></ul><p></p><ul><li><strong>Maintenance Detailing </strong>— A specialised service designed exclusively for vehicles we have already detailed. This ensures your car maintains its showroom condition all-year-round.</li></ul><p></p><ul><li><strong>Bodykit Installations</strong> — Precision fitment of high-end aerodynamic components and custom carbon fibre styling.</li></ul><p></p><ul><li><strong>Wheel Refurbishment</strong> — Complete restoration of alloy wheels to factory-fresh or custom bespoke finishes.</li></ul><p></p><ul><li><strong>Servicing & Repair</strong> — Expert mechanical care to ensure your vehicle performs as perfectly as it looks.</li></ul><p></p><ul><li><strong>Buy/Sell a Luxury Vehicle</strong> — Get in touch to buy or sell your next vehicle with total transparency.</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_cFkQmX",
+        "text_MC4fAy"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_8RnDmF": {
+      "type": "rich-text",
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 8
+      }
+    },
+    "image_banner_kAD8Qc": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_TQGpkb": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_d7KUHW": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_TQGpkb",
+        "text_d7KUHW"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Rollsroyce-black-surrey-fxdetailing.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "rich_text_UQcjRP": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_rVhLc9": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>The FX Studio: Charlwood, Surrey</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_U8FkrL": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Located on the borders of London and Surrey, our facility is designed for the secure care of high-net-worth investments. Whether you are here for a \"<strong>Total Reset\"</strong> or to sell your vehicle, your car is housed in a climate-controlled, secure environment.</p>"
+          }
+        },
+        "button_yDFCgH": {
+          "type": "button",
+          "settings": {
+            "button_label": "Learn More",
+            "button_link": "shopify://pages/luxury-car-detailing-surrey",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_rVhLc9",
+        "text_U8FkrL",
+        "button_yDFCgH"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "image_banner_xThT6t",
+    "rich_text_rAxD4E",
+    "main",
+    "image_with_text_tYMNPc",
+    "multicolumn_hpVK7f",
+    "rich_text_pgtajA",
+    "rich_text_8RnDmF",
+    "image_banner_kAD8Qc",
+    "rich_text_UQcjRP"
+  ]
+}

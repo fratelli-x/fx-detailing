@@ -1,0 +1,642 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_banner_xkUwNV": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Red_La_Ferrari_FX_Detailing.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_8mzeeY": {
+      "type": "rich-text",
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 12,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_CrXQyx": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_bLwFCG": {
+          "type": "heading",
+          "settings": {
+            "heading": "PROTECT YOUR NEW VEHICLE BEFORE THE DAMAGE BEGINS",
+            "heading_size": "h1"
+          }
+        },
+        "text_rWTqJK": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Your vehicle will never be newer than it is today.</strong></p><p>The moment you leave the dealership, your vehicle is exposed to contamination, swirl marks and environmental damage.</p><p>Protect it with 5-Year Gtechniq Ceramic Coating and we'll complete a full interior detail for free, leaving it flawless inside and out.</p><p>✓ 5-Year Gtechniq Crystal Serum Ceramic Coating</p><p>✓ Enhanced gloss, Scratch Resistance &  Easier Maintenance</p><p>✓ Complete Interior Detail Included Free</p><h1><strong>TOTAL VALUE: £1000<br/>TODAY: £500</strong></h1>",
+            "text_style": "body"
+          }
+        },
+        "button_ikBJMG": {
+          "type": "button",
+          "settings": {
+            "button_label": "Learn more",
+            "button_link": "shopify://pages/new-car-ceramic-offer",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_bLwFCG",
+        "text_rWTqJK",
+        "button_ikBJMG"
+      ],
+      "disabled": true,
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_at_10_28_44_AM.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-4",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "blocks_7F9mfc": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7df23dd_iM3jnd": {
+          "type": "ai_gen_block_7df23dd",
+          "settings": {
+            "heading": "<strong>BRING YOUR CAR BACK TO SHOWROOM CONDITION:</strong> <strong>LUXURY CAR DETAILING & PAINT CORRECTION</strong>",
+            "heading_font": "oswald_n7",
+            "heading_size": 60,
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "none",
+            "heading_color": "#000000",
+            "heading_spacing": 24,
+            "subtext": "<p>We align with clients who expect their vehicles to be returned to and maintained in - true showroom condition.</p><p><strong>You didn’t choose exceptional to settle for average.</strong></p>",
+            "subtext_size": 22,
+            "subtext_line_height": 1.6,
+            "subtext_color": "#000000",
+            "subtext_spacing": 32,
+            "show_button": true,
+            "button_text": "Discover The FX TOTAL RESET",
+            "button_link": "https://www.fxdetailing.co.uk/blogs/luxury-car-detailing-projects/the-fx-masterclass-total-vehicle-reset-and-protection",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "none",
+            "button_padding_vertical": 8,
+            "button_padding_horizontal": 16,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 8,
+            "padding_bottom": 24,
+            "padding_horizontal": 24,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7df23dd_iM3jnd"
+      ],
+      "name": "Rich text with H1",
+      "settings": {}
+    },
+    "collapsible_content_BpPbAc": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_GzNAPn": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "DETAILING - FROM £299",
+            "icon": "check_mark",
+            "row_content": "<p><strong>The Showroom Reset. </strong>This service returns your vehicle to its original factory condition. It is a comprehensive top-to-bottom cleanse that includes a deep interior and exterior detail, engine bay detail, premium dressings for trims, plastics and tyres.</p><p><strong>Breakdown: </strong>Exterior Detail + Interior Detail + Engine Bay Detail + Premium Dressings</p><p><strong>Note: </strong>This is a cleansing service - consider adding ceramic protection or machine polishing.</p><p><strong>Custom & Partial Service: </strong>If you are looking for a specific, isolated treatment - like individual stain removal or an interior only detail - get in touch with us today for a custom quote.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_nxJ8MG": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "PAINT ENHANCEMENT - FROM £299",
+            "icon": "check_mark",
+            "row_content": "<p><strong>Instant Gloss Recovery. </strong>Designed for vehicles with light swirl marks or dull paint. This single-stage machine polish removes the \"dull\" layer of the clear coat, restoring optical clarity and brings the paint back to life. It’s the perfect entry-level service for those seeking a dramatic improvement in gloss without the full correction timeframe.</p><p><strong>Breakdown: </strong>Exterior Detail + Decontamination + Single Stage Machine Polishing</p><p><strong>Note: </strong>Add an interior detail for an extra £100</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_RFLMPa": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "PAINT CORRECTION - FROM £1699",
+            "icon": "check_mark",
+            "row_content": "<p><strong>Ultimate Paint Restoration.</strong> This is our highest level of paint correction, designed for vehicles with heavy swirl marks, scratches, oxidation, holograms, and significant paint defects. Using a meticulous three-stage machine polishing process, we restore depth, clarity, and gloss, achieving a <strong>90%+ correction factor.</strong></p><p><strong>Breakdown:</strong> Exterior Detail + Decontamination + Three-Stage Machine Polishing</p><p><strong>Note:</strong> Paint correction removes defects within the clear coat, but some deeper scratches and stone chips may remain if they have penetrated beyond the safe polishing limit.</p><p><strong>Ideal For:</strong> Enthusiasts, collectors, and owners who want their vehicle returned to the best possible condition.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_VAEVCQ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "CERAMIC PROTECTION - FROM £799",
+            "icon": "check_mark",
+            "row_content": "<p><strong>The Shield. </strong>Ceramic coating creates a molecular bond with the paint, adds gloss, reduces new swirl marks, repels dirt, contaminants and water.</p><p><strong>Breakdown: </strong>Exterior Detail + Decontamination + Premium Exterior Ceramic Coating</p><p><em><strong>Note: </strong></em><em>Investment may vary if you require interior ceramic protection as well as if you have larger vehicles such as SUVs.</em></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_HaNeAq": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "DETAILING + CERAMIC - FROM £999",
+            "icon": "check_mark",
+            "row_content": "<p><strong>The Essential Duo. </strong>Your car is reset back to showroom condition and immediately protected with premium ceramic coating. This is the recommended baseline for vehicles that don't require paint correction.</p><p><strong>Breakdown: </strong>Exterior Detail + Interior Detail + Engine Bay Detail + Decontamination + Premium Dressings + Premium Exterior Ceramic Coating</p><p><strong>Note: </strong>If your vehicle needs it - consider adding a \"Single Stage Machine Polishing\" and/or \"Interior Ceramic Protection\".</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_V4tEfW": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "DETAILING + CORRECTION - FROM £1699",
+            "icon": "check_mark",
+            "row_content": "<p><strong>The FX Total Reset.</strong> Over a full  week, we meticulously reset every part of your vehicle and correct the paintwork.</p><p><strong>Correction Factor: 95%+</strong></p><p><strong>Breakdown: </strong>Exterior Detail + Interior Detail + Engine Bay Detail + Decontamination + 3 Stage Machine Polish + Premium Dressings</p><p><strong>The Result:</strong> Your vehicle is completely corrected and \"fully reset\"<strong> </strong>to the best condition possible.</p><p><strong>Note: \"The FX Total Reset\"</strong> focuses exclusively on the vehicle's bodywork, glass, and interior. For undercarriage detailing please contact us.</p><p><a href=\"https://www.fxdetailing.co.uk/blogs/luxury-car-detailing-projects/the-fx-masterclass-total-vehicle-reset-and-protection\" title=\"https://www.fxdetailing.co.uk/blogs/luxury-car-detailing-projects/the-fx-masterclass-total-vehicle-reset-and-protection\">Click here to see a full breakdown of <strong>The FX Total Reset.</strong></a></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_qQLYE8": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "DETAILING + CORRECTION + CERAMIC  - FROM £1999",
+            "icon": "check_mark",
+            "row_content": "<p><strong>The FX Total Reset & Protection.</strong> Over a full week, we meticulously reset and correct your vehicle to its peak condition and then seal it with premium ceramic protection.</p><p><strong>Correction Factor: 95%+</strong></p><p><strong>Breakdown:</strong> Exterior Detail + Interior Detail + Engine Bay Detail + Decontamination + 3-Stage Machine Polish + Premium Dressings + Premium Ceramic Coating.</p><p><strong>The Result:</strong> Your vehicle is not only \"fully reset\" to its best possible condition but is now better armoured against new swirl marks, dirt, contaminants and water.</p><p><strong>Direct Comparison: </strong>The £1,695 package is the same flagship service with an added layer of premium ceramic protection to the exterior of the car.</p><p><strong>Note:</strong> <strong>\"The FX Total Reset & Protection\" </strong>focuses exclusively on the vehicle's bodywork, glass, interior and protection. For undercarriage detailing please contact us.</p><p><a href=\"https://www.fxdetailing.co.uk/blogs/luxury-car-detailing-projects/the-fx-masterclass-total-vehicle-reset-and-protection\" title=\"https://www.fxdetailing.co.uk/blogs/luxury-car-detailing-projects/the-fx-masterclass-total-vehicle-reset-and-protection\">Click here to see a full breakdown of <strong>The FX Total Reset & Protection.</strong></a></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_8pLfa4": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "VEHICLE PRE-SALE DETAIL - FROM £499",
+            "icon": "check_mark",
+            "row_content": "<p><strong>Maximise Your Asset’s Value.</strong> Drawing on our decade of experience selling hundreds of luxury vehicles through Fratelli X, we provide a complete vehicle pre-sale rejuvenation service designed to secure the highest possible sale price. </p><p><strong>Breakdown: </strong>Exterior Detail + Interior Detail + Engine Bay Detail + Decontamination + Premium Dressings</p><ul><li><strong>Enhancement Add-on:</strong> Add a Single-Stage Machine Polish to remove fine swirl marks and dull looking paint - by doing that you rejuvenate optical clarity and deep colour saturation -  <strong>£300</strong></li></ul><p></p><ul><li><strong>Media Add-on:</strong> Professional studio photography and video service - <strong>£250</strong></li></ul><p></p><ul><li><strong>Commission-Based Sale:</strong> If we sell the vehicle on your behalf via Fratelli X, the detailing, media services and more are included <strong>completely free</strong>. <a href=\"https://fratelli-x.com/sale-or-return\" target=\"_blank\">Submit an enquiry here.</a></li></ul>",
+            "page": ""
+          }
+        },
+        "collapsible_row_pkjQW3": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "NEW CAR DETAIL - FROM £999",
+            "icon": "check_mark",
+            "row_content": "<p><strong>Correcting Imperfections & Adding Protection.</strong> Mass-manufacturing means cars leave the factory with light swirl marks, sanding haze, and transit defects. We address these immediately with a Single-Stage Machine Polish to refine the clear coat and ensure the paint \"pops\" with more depth than the day it was delivered and then applying a 360° Ceramic Shield.</p><p><strong>Breakdown: </strong>Exterior Detail + Interior Detail + Engine Bay Detail + Decontamination + Single Stage Machine Polish + Premium Dressings + Ceramic Coating</p><p><strong>Note: Total Ceramic Protection</strong> - We apply premium ceramic coatings to both the exterior and interior of the vehicle that adds gloss, reduces new swirl marks, repels dirt, contaminants and water.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_e9dTeB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "MAINTENANCE DETAILING - FROM £100",
+            "icon": "check_mark",
+            "row_content": "<p><strong>Preserve the Perfection. </strong>A specialised service designed exclusively for vehicles we have already detailed. This ensures your car maintains its showroom condition all-year-round.</p><p><strong>Breakdown: </strong>Exterior Detail + Interior Detail</p><p>Available at our Charlwood studio or via our secure mobile service covering Oxshott, Cobham, Dorking, Reigate and surrounding areas.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Meqw3y": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "SPECIALIST SERVICES & ADD-ONS",
+            "icon": "check_mark",
+            "row_content": "<p><strong>Bespoke Finishing Touches.</strong> Beyond our primary packages, we offer specialised treatments to address specific areas of concern. These services can be booked individually or added to any detailing package for a total vehicle transformation.</p><ul><li><strong>New Car Detail From £999</strong> - A comprehensive new vehicle preparation service including a single-stage machine polish to refine factory paintwork, followed by premium ceramic protection for long-term gloss, clarity, and durability.</li></ul><p></p><ul><li><strong>Vehicle Pre-Sale Detail From £499</strong> - A complete presentation package designed to maximise resale value with a full interior and exterior detail, engine bay cleaning, decontamination, and premium dressings. Optional enhancement polishing available for improved gloss and presentation.</li></ul><p></p><ul><li><strong>Interior Ceramic Protection  £300 </strong>- Protects surfaces by repelling spills, resisting stains, and reducing wear and tear, typically maintaining an OEM matte look without being greasy.</li></ul><p></p><ul><li><strong>Headlight Restoration £80</strong> - We remove oxidation, yellowing, and light pitting from UV-damaged lenses. This multi-stage wet-sanding and polishing process restores crystal-clear optical clarity and improves nighttime visibility.</li></ul><p></p><ul><li><strong>Engine Bay Detailing From £80</strong> - A deep-clean of the heart of your vehicle. We safely remove grease and grime before applying heat-resistant, non-sticky dressings to all plastics and hoses for a factory-fresh appearance.</li></ul><p></p><ul><li><strong>Full Paint Decontamination from £200</strong> – A three-stage chemical and mechanical process (Iron/Tar/Clay Bar) to remove embedded road grime and fallout.<br/><em><strong>Note:</strong></em><em> </em>Once decontaminated, we recommend a single-stage machine polish and ceramic coating to lock in the finish.</li></ul><p></p><ul><li><strong>Paintless Dent Removal / PDR From £80</strong> - We eliminate small dings and \"trolley dents\" without the need for fillers or paint. This specialist technique preserves your original factory paintwork and structural integrity.</li></ul><p></p><ul><li><strong>Convertible Roof Restoration & Protection £400 -</strong> Fabric roofs are magnets for moss, algae, and industrial fallout. Our process begins with a multi-stage deep clean to lift ingrained contaminants from the fibres. To restore a factory-fresh appearance, we repaint<strong> </strong>the fabric to bring back deep, uniform colour to faded tops. Finally, we apply a dedicated <strong>Ceramic Fabric Protection </strong>to create an impenetrable hydrophobic barrier that repels water, reduces UV degradation, and prevents. future moss/algae growth.</li></ul><p></p><ul><li><strong>Sell Your Vehicle via Fratelli X</strong> - Leverage our decade of luxury automotive sales experience. We can manage the entire sale of your vehicle on a commission basis, including all detailing, professional media and advertising at no upfront cost to you. <a href=\"https://fratelli-x.com/sale-or-return\" target=\"_blank\">Submit your sales enquiry here.</a></li></ul>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_GzNAPn",
+        "collapsible_row_nxJ8MG",
+        "collapsible_row_RFLMPa",
+        "collapsible_row_VAEVCQ",
+        "collapsible_row_HaNeAq",
+        "collapsible_row_V4tEfW",
+        "collapsible_row_qQLYE8",
+        "collapsible_row_8pLfa4",
+        "collapsible_row_pkjQW3",
+        "collapsible_row_e9dTeB",
+        "collapsible_row_Meqw3y"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "<strong>The FX Standard: A Level of Care Beyond the Ordinary</strong>",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "row",
+        "container_color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
+        "open_first_collapsible_row": false,
+        "image": "shopify://shop_images/SP3_Daytona_FX_Detailing.jpg",
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_tCYbAe": {
+      "type": "rich-text",
+      "blocks": {
+        "text_3KkqRk": {
+          "type": "text",
+          "settings": {
+            "text": "<h2><strong>For bookings or quotes, please fill out form below or call/WhatsApp 07548703902</strong></h2>"
+          }
+        }
+      },
+      "block_order": [
+        "text_3KkqRk"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 24
+      }
+    },
+    "1770718742019bc3b9": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_YWTVVH": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "866157",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 20,
+            "padding_bottom": 20,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_YWTVVH"
+      ],
+      "name": "Detailing Lead Form",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "rich_text_JQiJ6H": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_XtQrHM": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Why London & Surrey's Most Discerning Owners Choose FX Detailing</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_GJhiVc": {
+          "type": "text",
+          "settings": {
+            "text": "<ul><li><strong>Low-volume on purpose</strong> — Your car is never a slot in a schedule. It receives our full, undivided attention from collection to return.</li></ul><p></p><ul><li><strong>Different options, one standard</strong> — We don't believe in tiered service levels. Every car we accept is treated to the highest standard.</li></ul><p></p><ul><li><strong>Rooted in a decade of dealership experience</strong> — FX Detailing was built inside Fratelli X. Our standards weren't made up - they were demanded by years of working on some of the finest cars in the world.</li></ul><p></p><ul><li><strong>Door-to-door collection and return</strong> — Secure, professional, and entirely stress-free.</li></ul><p></p><ul><li><strong>A flawless track record</strong> — Ten years. Not a single unhappy client.</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_XtQrHM",
+        "text_GJhiVc"
+      ],
+      "custom_css": [],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 16
+      }
+    },
+    "image_banner_Jw9fUJ": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Blue_Revuelto_Banner_FX_Detailing.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_RyqCzK": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_f4t8hT": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Trusted  by Those Who Demand Excellence</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "caption_Kqmbn3": {
+          "type": "caption",
+          "settings": {
+            "caption": "",
+            "text_style": "subtitle",
+            "text_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "heading_f4t8hT",
+        "caption_Kqmbn3"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 8
+      }
+    },
+    "image_with_text_VwNccJ": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_NnUbCz": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Zak Brown (McLaren F1 CEO)</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_faPkWd": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>\"I have been trusting FX Detailing with my vehicles for a number of years now, and I couldn't be happier with the results. Their attention to detail is second to none, and they consistently go above and beyond to ensure the cars look showroom-ready every time. It’s so rare to find someone so dedicated and reliable - I wouldn't use anyone else.\"</strong></p><p><strong>Zak Brown — CEO, McLaren Formula 1 </strong><em>(As shared on social media)</em></p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_NnUbCz",
+        "text_faPkWd"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/fx-detailing-zak-brown-mclaren-endorsement.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "center",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-3",
+        "color_scheme": "scheme-3",
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_bcEhWc": {
+      "type": "rich-text",
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 8
+      }
+    },
+    "blocks_gzczxD": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3546b64_QLjwtP": {
+          "type": "ai_gen_block_3546b64",
+          "settings": {
+            "video_file": "https://cdn.shopify.com/videos/c/o/v/8a71fc6722e2462fb38db318b9f0cf38.mov",
+            "poster_image": "shopify://shop_images/DETAILING-2.png"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3546b64_QLjwtP"
+      ],
+      "disabled": true,
+      "name": "Custom video player",
+      "settings": {}
+    },
+    "rich_text_NERDQ4": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_4xC8jy": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Ready to Begin?</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_zAHtcB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>If you are ready to experience a level of care that genuinely matches the value of your vehicle, we'd love to hear from you.</p><p>Whether you have a specific project in mind, want to discuss a long-term maintenance plan, or simply want to understand what's possible - get in touch. We'll give you an honest assessment and a transparent quote, with no pressure and no obligation.</p><p>We inspect properly, quote transparently, collect securely, and return your car in a condition that isn't just showroom-ready, it's technically better than the day it left the factory. Availability is deliberately limited, because this level of attention simply isn't scalable.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_4xC8jy",
+        "text_zAHtcB"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 16
+      }
+    },
+    "rich_text_P47gy6": {
+      "type": "rich-text",
+      "blocks": {
+        "text_T486bf": {
+          "type": "text",
+          "settings": {
+            "text": "<h2><strong>For bookings or quotes, please fill out form below or call/WhatsApp 07548703902</strong></h2>"
+          }
+        }
+      },
+      "block_order": [
+        "text_T486bf"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 24
+      }
+    },
+    "apps_WQErQq": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_Wz96C4": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "866157",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 20,
+            "padding_bottom": 20,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_Wz96C4"
+      ],
+      "name": "Detailing Lead Form",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "rich_text_bL8RHz": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_LTbKfG": {
+          "type": "heading",
+          "settings": {
+            "heading": "5 MINUTES FROM GATWICK AIRPORT",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_LTbKfG"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "1778236016c9fbe27c": {
+      "type": "apps",
+      "blocks": {
+        "mappy_store_locator_page_embed_block_YcxQLM": {
+          "type": "shopify://apps/ta-mappy-store-locator-maps/blocks/page-embed-block/edfca2bd-82ad-413c-b32c-580d239b17ab",
+          "settings": {
+            "is_show_heading_map": true,
+            "is_show_description_map": false
+          }
+        }
+      },
+      "block_order": [
+        "mappy_store_locator_page_embed_block_YcxQLM"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_xkUwNV",
+    "rich_text_8mzeeY",
+    "image_with_text_CrXQyx",
+    "blocks_7F9mfc",
+    "collapsible_content_BpPbAc",
+    "rich_text_tCYbAe",
+    "1770718742019bc3b9",
+    "rich_text_JQiJ6H",
+    "image_banner_Jw9fUJ",
+    "rich_text_RyqCzK",
+    "image_with_text_VwNccJ",
+    "rich_text_bcEhWc",
+    "blocks_gzczxD",
+    "rich_text_NERDQ4",
+    "rich_text_P47gy6",
+    "apps_WQErQq",
+    "rich_text_bL8RHz",
+    "1778236016c9fbe27c"
+  ]
+}

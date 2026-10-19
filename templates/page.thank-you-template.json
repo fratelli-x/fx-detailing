@@ -1,0 +1,97 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "blocks_AyagYE": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7df23dd_6VmDWD": {
+          "type": "ai_gen_block_7df23dd",
+          "settings": {
+            "heading": "<strong>THANK YOU!</strong>",
+            "heading_font": "oswald_n7",
+            "heading_size": 56,
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "uppercase",
+            "heading_color": "#000000",
+            "heading_spacing": 24,
+            "subtext": "<p>Your enquiry has landed safely with us.<br/>Whether it's a world-class detail or a precision bodykit installation - we're genuinely excited to help you bring your vision to life. In the meantime, feel free to browse our \"website\" or drop us a WhatsApp on 07548703902 if anything urgent comes up.</p>",
+            "subtext_size": 20,
+            "subtext_line_height": 1.6,
+            "subtext_color": "#333333",
+            "subtext_spacing": 32,
+            "show_button": true,
+            "button_text": "Back to website",
+            "button_link": "https://www.fxdetailing.co.uk/",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 24,
+            "padding_bottom": 40,
+            "padding_horizontal": 24,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7df23dd_6VmDWD"
+      ],
+      "name": "Rich text with H1",
+      "settings": {}
+    },
+    "image_banner_ghmBmq": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Ferrari_812_gts_FX_Detailing.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "top-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "blocks_AyagYE",
+    "image_banner_ghmBmq"
+  ]
+}

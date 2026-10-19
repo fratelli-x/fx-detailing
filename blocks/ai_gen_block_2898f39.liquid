@@ -1,0 +1,575 @@
+{% doc %}
+  @prompt
+    I'd like a gallery section to upload all of my photos into here on this page. 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-gallery-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.section_padding }}px 0;
+  }
+
+  .ai-gallery-container-{{ ai_gen_id }} {
+    width: 100%;
+  }
+
+  .ai-gallery-heading-{{ ai_gen_id }} {
+    text-align: {{ block.settings.heading_alignment }};
+    margin-bottom: {{ block.settings.heading_spacing }}px;
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+  }
+
+  .ai-gallery-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.image_spacing }}px;
+    width: 100%;
+  }
+
+  .ai-gallery-item-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    aspect-ratio: {{ block.settings.image_aspect_ratio }};
+    background-color: #f4f4f4;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-gallery-item-{{ ai_gen_id }}:hover {
+    transform: scale(1.02);
+  }
+
+  .ai-gallery-item-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-gallery-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+  }
+
+  .ai-gallery-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-gallery-empty-state-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+  }
+
+  .ai-gallery-empty-state-{{ ai_gen_id }} h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .ai-gallery-empty-state-{{ ai_gen_id }} p {
+    font-size: 14px;
+  }
+
+  .ai-gallery-lightbox-{{ ai_gen_id }} {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-gallery-lightbox-{{ ai_gen_id }}.active {
+    display: flex;
+  }
+
+  .ai-gallery-lightbox-content-{{ ai_gen_id }} {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+  }
+
+  .ai-gallery-lightbox-content-{{ ai_gen_id }} img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+  }
+
+  .ai-gallery-lightbox-close-{{ ai_gen_id }} {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+  }
+
+  .ai-gallery-lightbox-close-{{ ai_gen_id }}:hover {
+    background: #ffffff;
+  }
+
+  .ai-gallery-lightbox-nav-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-gallery-lightbox-nav-{{ ai_gen_id }}:hover {
+    background: #ffffff;
+  }
+
+  .ai-gallery-lightbox-prev-{{ ai_gen_id }} {
+    left: 20px;
+  }
+
+  .ai-gallery-lightbox-next-{{ ai_gen_id }} {
+    right: 20px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-gallery-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+    }
+
+    .ai-gallery-heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.8);
+    }
+
+    .ai-gallery-lightbox-nav-{{ ai_gen_id }} {
+      width: 40px;
+      height: 40px;
+    }
+
+    .ai-gallery-lightbox-prev-{{ ai_gen_id }} {
+      left: 10px;
+    }
+
+    .ai-gallery-lightbox-next-{{ ai_gen_id }} {
+      right: 10px;
+    }
+  }
+{% endstyle %}
+
+<gallery-block-{{ ai_gen_id }} class="ai-gallery-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-gallery-container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-gallery-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {% endif %}
+
+    {% assign has_images = false %}
+    {% for i in (1..12) %}
+      {% assign image_key = 'image_' | append: i %}
+      {% if block.settings[image_key] != blank %}
+        {% assign has_images = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+    {% if has_images %}
+      <div class="ai-gallery-grid-{{ ai_gen_id }}">
+        {% for i in (1..12) %}
+          {% assign image_key = 'image_' | append: i %}
+          {% assign image = block.settings[image_key] %}
+          {% if image != blank %}
+            <div class="ai-gallery-item-{{ ai_gen_id }}" data-index="{{ forloop.index0 }}">
+              <img
+                src="{{ image | image_url: width: 800 }}"
+                alt="{{ image.alt | escape }}"
+                loading="lazy"
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+              >
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="ai-gallery-empty-state-{{ ai_gen_id }}">
+        <h3>Your gallery is empty</h3>
+        <p>Add images using the settings panel to create your gallery</p>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if has_images %}
+    <div class="ai-gallery-lightbox-{{ ai_gen_id }}">
+      <button class="ai-gallery-lightbox-close-{{ ai_gen_id }}" aria-label="Close lightbox">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <button class="ai-gallery-lightbox-nav-{{ ai_gen_id }} ai-gallery-lightbox-prev-{{ ai_gen_id }}" aria-label="Previous image">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <div class="ai-gallery-lightbox-content-{{ ai_gen_id }}">
+        <img src="" alt="">
+      </div>
+      <button class="ai-gallery-lightbox-nav-{{ ai_gen_id }} ai-gallery-lightbox-next-{{ ai_gen_id }}" aria-label="Next image">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  {% endif %}
+</gallery-block-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class GalleryBlock{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.images = [];
+        this.currentIndex = 0;
+      }
+
+      connectedCallback() {
+        this.setupGallery();
+      }
+
+      setupGallery() {
+        const items = this.querySelectorAll('.ai-gallery-item-{{ ai_gen_id }}');
+        const lightbox = this.querySelector('.ai-gallery-lightbox-{{ ai_gen_id }}');
+        
+        if (!lightbox) return;
+
+        const lightboxImg = lightbox.querySelector('.ai-gallery-lightbox-content-{{ ai_gen_id }} img');
+        const closeBtn = lightbox.querySelector('.ai-gallery-lightbox-close-{{ ai_gen_id }}');
+        const prevBtn = lightbox.querySelector('.ai-gallery-lightbox-prev-{{ ai_gen_id }}');
+        const nextBtn = lightbox.querySelector('.ai-gallery-lightbox-next-{{ ai_gen_id }}');
+
+        items.forEach((item) => {
+          const img = item.querySelector('img');
+          if (img) {
+            this.images.push({
+              src: img.src.replace(/width=\d+/, 'width=2000'),
+              alt: img.alt
+            });
+          }
+        });
+
+        items.forEach((item, index) => {
+          item.addEventListener('click', () => {
+            this.currentIndex = index;
+            this.showLightbox(lightbox, lightboxImg);
+          });
+        });
+
+        closeBtn.addEventListener('click', () => {
+          this.closeLightbox(lightbox);
+        });
+
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            this.closeLightbox(lightbox);
+          }
+        });
+
+        prevBtn.addEventListener('click', () => {
+          this.currentIndex = this.currentIndex === 0 ? this.images.length - 1 : this.currentIndex - 1;
+          this.updateLightboxImage(lightboxImg);
+        });
+
+        nextBtn.addEventListener('click', () => {
+          this.currentIndex = this.currentIndex === this.images.length - 1 ? 0 : this.currentIndex + 1;
+          this.updateLightboxImage(lightboxImg);
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (!lightbox.classList.contains('active')) return;
+          
+          if (e.key === 'Escape') {
+            this.closeLightbox(lightbox);
+          } else if (e.key === 'ArrowLeft') {
+            this.currentIndex = this.currentIndex === 0 ? this.images.length - 1 : this.currentIndex - 1;
+            this.updateLightboxImage(lightboxImg);
+          } else if (e.key === 'ArrowRight') {
+            this.currentIndex = this.currentIndex === this.images.length - 1 ? 0 : this.currentIndex + 1;
+            this.updateLightboxImage(lightboxImg);
+          }
+        });
+      }
+
+      showLightbox(lightbox, lightboxImg) {
+        this.updateLightboxImage(lightboxImg);
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      closeLightbox(lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      updateLightboxImage(lightboxImg) {
+        const image = this.images[this.currentIndex];
+        lightboxImg.src = image.src;
+        lightboxImg.alt = image.alt;
+      }
+    }
+
+    customElements.define('gallery-block-{{ ai_gen_id }}', GalleryBlock{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Photo gallery",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Heading spacing",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "image_spacing",
+      "label": "Image spacing",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Image style"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        {
+          "value": "1 / 1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "4 / 3",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "3 / 4",
+          "label": "Portrait (3:4)"
+        },
+        {
+          "value": "16 / 9",
+          "label": "Widescreen (16:9)"
+        }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_7",
+      "label": "Image 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_8",
+      "label": "Image 8"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_9",
+      "label": "Image 9"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_10",
+      "label": "Image 10"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_11",
+      "label": "Image 11"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_12",
+      "label": "Image 12"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Photo gallery"
+    }
+  ]
+}
+{% endschema %}

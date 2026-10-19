@@ -1,0 +1,260 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "rich_text_Mc8MwN": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_tkA7gp": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Luxury and Supercar Detailer</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_TGpqBp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>12 years of experience specialising on the most expensive and rare cars in the world</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_tkA7gp",
+        "text_TGpqBp"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "collapsible_content_BpPbAc": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_e9dTeB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Valet",
+            "icon": "check_mark",
+            "row_content": "<p><strong>from £100</strong></p><p>Car is worked on until completely clean inside and out. Returning your car as close as possible to its showroom-pure essence.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_GzNAPn": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Detailing",
+            "icon": "check_mark",
+            "row_content": "<p><strong>Price on inspection</strong></p><p>Forget the industry-standard 'Stage 1, 2, or 3.' At this level, there is only one acceptable outcome. We work until the standard is met, ensuring your luxury/supercar returns to you in its absolute purest form based on what's physically achievable.</p><p></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_VAEVCQ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Ceramic Paint Protection",
+            "icon": "check_mark",
+            "row_content": "<p><strong>from £500</strong></p><p>Protection is only as good as the preparation. It’s not just a coating - it’s the final seal on a perfect finish.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_e9dTeB",
+        "collapsible_row_GzNAPn",
+        "collapsible_row_VAEVCQ"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "<strong>Treatments</strong>",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-1",
+        "color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image": "shopify://shop_images/McLaren_c3b0e127-e7aa-4688-8ed4-ab4dbe605895.webp",
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_banner_Jw9fUJ": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Untitled_design.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_RyqCzK": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_Kqmbn3": {
+          "type": "caption",
+          "settings": {
+            "caption": "We run a low-volume, high-quality boutique operation. This is to ensure your vehicle receives the obsessive attention to detail that mass-volume shops simply cannot provide.",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "caption_Kqmbn3"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "image_with_text_VwNccJ": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_NnUbCz": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Zak Brown (McLaren F1 CEO)</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_faPkWd": {
+          "type": "text",
+          "settings": {
+            "text": "<p>\"I have been trusting Reece with my vehicles for a number of years now, and I couldn't be happier with the results. His attention to detail is second to none, and he consistently goes above and beyond to ensure the cars look showroom-ready every time. It’s rare to find someone so dedicated and reliable - I wouldn't use anyone else.\"</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_NnUbCz",
+        "text_faPkWd"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/ZakBrown.jpg",
+        "height": "small",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-3",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "rich_text_tCYbAe": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_BPLMEr": {
+          "type": "heading",
+          "settings": {
+            "heading": "For bookings or quotes, please fill out form below or call/WhatsApp 07548703902",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_BPLMEr"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "contact_form_VXwRwH": {
+      "type": "contact-form",
+      "name": "t:sections.contact-form.presets.name",
+      "settings": {
+        "heading": "Contact form",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "image_banner_ghmBmq": {
+      "type": "image-banner",
+      "blocks": {
+        "text_WcWpRi": {
+          "type": "text",
+          "settings": {
+            "text": "Check our Facebook and Instagram pages below for more content.",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "text_WcWpRi"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "top-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_Mc8MwN",
+    "collapsible_content_BpPbAc",
+    "image_banner_Jw9fUJ",
+    "rich_text_RyqCzK",
+    "image_with_text_VwNccJ",
+    "rich_text_tCYbAe",
+    "contact_form_VXwRwH",
+    "image_banner_ghmBmq"
+  ]
+}

@@ -1,0 +1,425 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_banner_xkUwNV": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Gemini_Generated_Image_m0njktm0njktm0nj.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_Mc8MwN": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_tkA7gp": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Tired of Handing Your £100K - £5M+ Luxury Car to Detailers Who Treat it Like a Toyota Corolla?</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_TGpqBp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Listen… you didn’t drop insane money on a McLaren, Ferrari, Lamborghini or Rolls just to watch some “mobile valeter” swirl a dirty microfibre over it, leave holograms, miss the crevices, and call it “premium detailing.”<br/>You know the feeling.<br/>You collect your pride and joy…<br/>It looks “okay” from 10 feet away…<br/>But up close? Swirls. Water spots. Dull paint that doesn’t pop under lights.<br/>Inside? Dust in vents, leather not supple, screens fingerprint city.<br/>And the worst part?<br/>They charged you top money for mediocre.<br/>Most detailers work to a checklist and a timer.<br/>They stop when the clock says so - not when the car is actually flawless.<br/>That stops right now - if you choose the company trusted by actual supercar clientele.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_tkA7gp",
+        "text_TGpqBp"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 16,
+        "padding_bottom": 12
+      }
+    },
+    "collapsible_content_BpPbAc": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_e9dTeB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Maintenance Detailing",
+            "icon": "check_mark",
+            "row_content": "<p><strong>from £100<br/></strong><br/>We don’t just “clean”.<br/>We resurrect every inch - inside & out - until it looks better than the day it rolled out of the factory.<br/>Bespoke. In-house or our secure mobile service hits <strong>Oxshott, Cobham, Dorking, Reigate & surrounds.</strong><br/>Your car comes back showroom elevated - not just tidy.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_GzNAPn": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Full Car Detailing",
+            "icon": "check_mark",
+            "row_content": "<p><strong>Price on serious inspection (because every supercar is different)<br/></strong><br/>Forget the rigid “stage 1, stage 2” nonsense.<br/>We let your paint dictate the process.<br/>We keep going - compounding, polishing, jeweling - until the finish is technically flawless and breathtaking.<br/>Swirls? Gone. Depth? Insane. Reflections? Like staring into infinity.<br/>This is the level most owners of real exotics quietly upgrade to… and never go back.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_VAEVCQ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Ceramic Paint Protection",
+            "icon": "check_mark",
+            "row_content": "<p><strong>£500 (higher for big SUVs - because physics)</strong></p><p>Here’s the brutal truth:<br/>The best coating in the world fails if the prep underneath is rubbish.<br/>We don’t slap ceramic on mediocre paint.<br/>We lock in a flawless base first… then apply elite protection that makes bird droppings, tree sap, UV, acid rain and washing swirls basically irrelevant.<br/>Result?<br/>You stop stressing.<br/>You just enjoy the car again.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_e9dTeB",
+        "collapsible_row_GzNAPn",
+        "collapsible_row_VAEVCQ"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "<strong>Here's Exactly What We Do (And Why Most Shops Can't Touch It)</strong>",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-2",
+        "color_scheme": "scheme-2",
+        "open_first_collapsible_row": false,
+        "image": "shopify://shop_images/att.Y2ZLMwMuxD03vDu0-tMiHWxHahF9I9hjiVjkUDwXAcU_2_5e6d922e-a0e8-4b5e-a44b-b4489d4500f6.jpg",
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_tCYbAe": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_BPLMEr": {
+          "type": "heading",
+          "settings": {
+            "heading": "For bookings or quotes, please fill out form below or call/WhatsApp 07548703902",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_BPLMEr"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "1770718742019bc3b9": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_YWTVVH": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "866157",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 20,
+            "padding_bottom": 20,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_YWTVVH"
+      ],
+      "name": "Detailing Lead Form",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "rich_text_JQiJ6H": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_XtQrHM": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Meet FX Detailing - The No-BS, Obsessive Luxury and Supercar Detailer London & Surrey Owners Are Secretly Obsessed With</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_GJhiVc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Low-volume on purpose (so your car isn’t just another job in a production line).<br/>We don’t do “tiers”, “packages” or “good enough”.<br/>We have one standard:<br/>Mirror-perfect, technically flawless, jaw-dropping perfection… or we don’t stop.<br/>No rushed shortcuts.<br/>No arbitrary endpoints.<br/>We keep correcting, refining, polishing and elevating until nothing more can be improved.<br/>Because for the cars we touch - perfection isn’t optional. It’s the only acceptable outcome.<br/>So simple - it's a <strong>\"no-brainer\"</strong>:<strong><br/></strong>Secure door-to-door collection & return.<br/>100% success guarantee.<br/>No effort and no risk on your side.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_XtQrHM",
+        "text_GJhiVc"
+      ],
+      "custom_css": [],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 16
+      }
+    },
+    "image_banner_Jw9fUJ": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/IMG_2432_2.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_RyqCzK": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_f4t8hT": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Social Proof Bomb From Someone Who Could Use Literally Anyone...</strong>",
+            "heading_size": "h2"
+          }
+        },
+        "caption_Kqmbn3": {
+          "type": "caption",
+          "settings": {
+            "caption": "",
+            "text_style": "subtitle",
+            "text_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "heading_f4t8hT",
+        "caption_Kqmbn3"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_VwNccJ": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_NnUbCz": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Zak Brown (McLaren F1 CEO)</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_faPkWd": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>\"I have been trusting FX Detailing with my vehicles for a number of years now, and I couldn't be happier with the results. His attention to detail is second to none, and he consistently goes above and beyond to ensure the cars look showroom-ready every time. It’s rare to find someone so dedicated and reliable - I wouldn't use anyone else.\"</strong></p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_NnUbCz",
+        "text_faPkWd"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/616987888_122174129114874368_4308375123270094624_n.jpg",
+        "height": "small",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "center",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-3",
+        "color_scheme": "scheme-3",
+        "padding_top": 20,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_NERDQ4": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_4xC8jy": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>So Here's Your Move</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_zAHtcB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>If you’re done settling for “pretty good” on a car worth more than most people’s houses…<br/>If you want the obsessive, no-compromise finish your luxury car actually deserves…<br/><strong>Stop scrolling. </strong><br/>Get in touch using the form below and let’s talk.<br/>We’ll inspect properly, quote transparently, collect securely, and return your car looking like it just broke the internet.<br/>Spots are deliberately limited - because elite attention <strong>isn’t scalable.</strong><br/>Your move..<br/>Don’t let another half-baked detailer ruin the mirror finish your car was born to have.<br/><strong>FX Detailing</strong><br/><strong>London & Surrey’s Hidden Luxury Car Weapon</strong><br/>(Trusted by the people who actually own the cars you drool over)</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_4xC8jy",
+        "text_zAHtcB"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 16
+      }
+    },
+    "rich_text_P47gy6": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Mg4qX9": {
+          "type": "heading",
+          "settings": {
+            "heading": "For bookings or quotes, please fill out form below or call/WhatsApp 07548703902",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Mg4qX9"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "apps_WQErQq": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_Wz96C4": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "866157",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 20,
+            "padding_bottom": 20,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_Wz96C4"
+      ],
+      "name": "Detailing Lead Form",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "image_banner_ghmBmq": {
+      "type": "image-banner",
+      "blocks": {
+        "text_WcWpRi": {
+          "type": "text",
+          "settings": {
+            "text": "Check our Facebook and Instagram pages below for more content.",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "text_WcWpRi"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/att.M3MU78NzFHAXsVH2NPH0R7f5L8wd0oDtRLe0oezrSTg_f3a942ed-8470-42e7-b483-22f053069a9a.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "top-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_xkUwNV",
+    "rich_text_Mc8MwN",
+    "collapsible_content_BpPbAc",
+    "rich_text_tCYbAe",
+    "1770718742019bc3b9",
+    "rich_text_JQiJ6H",
+    "image_banner_Jw9fUJ",
+    "rich_text_RyqCzK",
+    "image_with_text_VwNccJ",
+    "rich_text_NERDQ4",
+    "rich_text_P47gy6",
+    "apps_WQErQq",
+    "image_banner_ghmBmq"
+  ]
+}

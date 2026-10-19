@@ -1,0 +1,629 @@
+{% doc %}
+  @prompt
+    Create a thumbnail gallery section that displays small preview images in a grid. When clicked, the images should open in a larger view or lightbox. Include options to customize the number of columns, image spacing, and thumbnail size.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-thumbnail-gallery-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: 20px 0;
+  }
+
+  .ai-thumbnail-gallery__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.image_spacing }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-thumbnail-gallery__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+    }
+  }
+
+  .ai-thumbnail-gallery__item-{{ ai_gen_id }} {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: {{ block.settings.thumbnail_border_radius }}px;
+    aspect-ratio: 1;
+  }
+
+  .ai-thumbnail-gallery__item-{{ ai_gen_id }}:hover .ai-thumbnail-gallery__overlay-{{ ai_gen_id }} {
+    opacity: 1;
+  }
+
+  .ai-thumbnail-gallery__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ai-thumbnail-gallery__placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-thumbnail-gallery__placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-thumbnail-gallery__overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.overlay_color }};
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-thumbnail-gallery__icon-{{ ai_gen_id }} {
+    width: 40px;
+    height: 40px;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-thumbnail-gallery__lightbox-{{ ai_gen_id }} {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.lightbox_bg_color }};
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-thumbnail-gallery__lightbox-{{ ai_gen_id }}.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .ai-thumbnail-gallery__lightbox-content-{{ ai_gen_id }} {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-thumbnail-gallery__lightbox-image-{{ ai_gen_id }} {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: {{ block.settings.lightbox_border_radius }}px;
+  }
+
+  .ai-thumbnail-gallery__close-{{ ai_gen_id }} {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    background-color: {{ block.settings.close_button_bg }};
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: transform 0.2s ease;
+  }
+
+  .ai-thumbnail-gallery__close-{{ ai_gen_id }}:hover {
+    transform: scale(1.1);
+  }
+
+  .ai-thumbnail-gallery__close-icon-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    color: {{ block.settings.close_button_color }};
+  }
+
+  .ai-thumbnail-gallery__nav-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background-color: {{ block.settings.nav_button_bg }};
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    z-index: 10000;
+  }
+
+  .ai-thumbnail-gallery__nav-{{ ai_gen_id }}:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .ai-thumbnail-gallery__nav-{{ ai_gen_id }}--prev {
+    left: 20px;
+  }
+
+  .ai-thumbnail-gallery__nav-{{ ai_gen_id }}--next {
+    right: 20px;
+  }
+
+  .ai-thumbnail-gallery__nav-icon-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    color: {{ block.settings.nav_button_color }};
+  }
+
+  .ai-thumbnail-gallery__counter-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: {{ block.settings.counter_bg }};
+    color: {{ block.settings.counter_color }};
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    z-index: 10000;
+  }
+
+  .ai-thumbnail-gallery__empty-state-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-thumbnail-gallery__close-{{ ai_gen_id }},
+    .ai-thumbnail-gallery__nav-{{ ai_gen_id }} {
+      width: 36px;
+      height: 36px;
+    }
+
+    .ai-thumbnail-gallery__close-icon-{{ ai_gen_id }},
+    .ai-thumbnail-gallery__nav-icon-{{ ai_gen_id }} {
+      width: 20px;
+      height: 20px;
+    }
+
+    .ai-thumbnail-gallery__close-{{ ai_gen_id }} {
+      top: 10px;
+      right: 10px;
+    }
+
+    .ai-thumbnail-gallery__nav-{{ ai_gen_id }}--prev {
+      left: 10px;
+    }
+
+    .ai-thumbnail-gallery__nav-{{ ai_gen_id }}--next {
+      right: 10px;
+    }
+  }
+{% endstyle %}
+
+<thumbnail-gallery-{{ ai_gen_id }} class="ai-thumbnail-gallery-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% assign has_images = false %}
+  {% for i in (1..12) %}
+    {% assign image_key = 'image_' | append: i %}
+    {% if block.settings[image_key] != blank %}
+      {% assign has_images = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% if has_images %}
+    <div class="ai-thumbnail-gallery__grid-{{ ai_gen_id }}">
+      {% for i in (1..12) %}
+        {% assign image_key = 'image_' | append: i %}
+        {% assign image = block.settings[image_key] %}
+        
+        {% if image != blank %}
+          <div class="ai-thumbnail-gallery__item-{{ ai_gen_id }}" data-index="{{ forloop.index0 }}">
+            <img
+              src="{{ image | image_url: width: 600 }}"
+              alt="{{ image.alt | escape }}"
+              class="ai-thumbnail-gallery__image-{{ ai_gen_id }}"
+              loading="lazy"
+              width="600"
+              height="600"
+            >
+            <div class="ai-thumbnail-gallery__overlay-{{ ai_gen_id }}">
+              <svg class="ai-thumbnail-gallery__icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+              </svg>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="ai-thumbnail-gallery__lightbox-{{ ai_gen_id }}">
+      <button class="ai-thumbnail-gallery__close-{{ ai_gen_id }}" aria-label="Close lightbox">
+        <svg class="ai-thumbnail-gallery__close-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <button class="ai-thumbnail-gallery__nav-{{ ai_gen_id }} ai-thumbnail-gallery__nav-{{ ai_gen_id }}--prev" aria-label="Previous image">
+        <svg class="ai-thumbnail-gallery__nav-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <div class="ai-thumbnail-gallery__lightbox-content-{{ ai_gen_id }}">
+        <img
+          src=""
+          alt=""
+          class="ai-thumbnail-gallery__lightbox-image-{{ ai_gen_id }}"
+        >
+      </div>
+
+      <button class="ai-thumbnail-gallery__nav-{{ ai_gen_id }} ai-thumbnail-gallery__nav-{{ ai_gen_id }}--next" aria-label="Next image">
+        <svg class="ai-thumbnail-gallery__nav-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <div class="ai-thumbnail-gallery__counter-{{ ai_gen_id }}">
+        <span class="ai-thumbnail-gallery__current-{{ ai_gen_id }}">1</span> / <span class="ai-thumbnail-gallery__total-{{ ai_gen_id }}">1</span>
+      </div>
+    </div>
+  {% else %}
+    <div class="ai-thumbnail-gallery__empty-state-{{ ai_gen_id }}">
+      <div class="ai-thumbnail-gallery__placeholder-{{ ai_gen_id }}" style="max-width: 300px; margin: 0 auto; aspect-ratio: 1;">
+        {{ 'image' | placeholder_svg_tag }}
+      </div>
+      <p style="margin-top: 16px;">Add images to create your gallery</p>
+    </div>
+  {% endif %}
+</thumbnail-gallery-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ThumbnailGallery{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.images = [];
+        this.currentIndex = 0;
+      }
+
+      connectedCallback() {
+        this.lightbox = this.querySelector('.ai-thumbnail-gallery__lightbox-{{ ai_gen_id }}');
+        this.lightboxImage = this.querySelector('.ai-thumbnail-gallery__lightbox-image-{{ ai_gen_id }}');
+        this.closeButton = this.querySelector('.ai-thumbnail-gallery__close-{{ ai_gen_id }}');
+        this.prevButton = this.querySelector('.ai-thumbnail-gallery__nav-{{ ai_gen_id }}--prev');
+        this.nextButton = this.querySelector('.ai-thumbnail-gallery__nav-{{ ai_gen_id }}--next');
+        this.currentCounter = this.querySelector('.ai-thumbnail-gallery__current-{{ ai_gen_id }}');
+        this.totalCounter = this.querySelector('.ai-thumbnail-gallery__total-{{ ai_gen_id }}');
+        this.thumbnails = this.querySelectorAll('.ai-thumbnail-gallery__item-{{ ai_gen_id }}');
+
+        this.collectImages();
+        this.setupEventListeners();
+      }
+
+      collectImages() {
+        this.thumbnails.forEach((thumbnail) => {
+          const img = thumbnail.querySelector('.ai-thumbnail-gallery__image-{{ ai_gen_id }}');
+          if (img) {
+            this.images.push({
+              src: img.src.replace('width=600', 'width=2000'),
+              alt: img.alt
+            });
+          }
+        });
+
+        if (this.totalCounter) {
+          this.totalCounter.textContent = this.images.length;
+        }
+      }
+
+      setupEventListeners() {
+        this.thumbnails.forEach((thumbnail, index) => {
+          thumbnail.addEventListener('click', () => {
+            this.openLightbox(index);
+          });
+        });
+
+        if (this.closeButton) {
+          this.closeButton.addEventListener('click', () => {
+            this.closeLightbox();
+          });
+        }
+
+        if (this.prevButton) {
+          this.prevButton.addEventListener('click', () => {
+            this.showPrevious();
+          });
+        }
+
+        if (this.nextButton) {
+          this.nextButton.addEventListener('click', () => {
+            this.showNext();
+          });
+        }
+
+        if (this.lightbox) {
+          this.lightbox.addEventListener('click', (e) => {
+            if (e.target === this.lightbox) {
+              this.closeLightbox();
+            }
+          });
+        }
+
+        document.addEventListener('keydown', (e) => {
+          if (!this.lightbox.classList.contains('active')) return;
+
+          if (e.key === 'Escape') {
+            this.closeLightbox();
+          } else if (e.key === 'ArrowLeft') {
+            this.showPrevious();
+          } else if (e.key === 'ArrowRight') {
+            this.showNext();
+          }
+        });
+      }
+
+      openLightbox(index) {
+        this.currentIndex = index;
+        this.updateLightboxImage();
+        this.lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      closeLightbox() {
+        this.lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      showPrevious() {
+        this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+        this.updateLightboxImage();
+      }
+
+      showNext() {
+        this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        this.updateLightboxImage();
+      }
+
+      updateLightboxImage() {
+        const image = this.images[this.currentIndex];
+        this.lightboxImage.src = image.src;
+        this.lightboxImage.alt = image.alt;
+        this.currentCounter.textContent = this.currentIndex + 1;
+      }
+    }
+
+    customElements.define('thumbnail-gallery-{{ ai_gen_id }}', ThumbnailGallery{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Thumbnail gallery",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "image_spacing",
+      "label": "Image spacing",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Thumbnail style"
+    },
+    {
+      "type": "range",
+      "id": "thumbnail_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "rgba(0, 0, 0, 0.5)"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Lightbox style"
+    },
+    {
+      "type": "color",
+      "id": "lightbox_bg_color",
+      "label": "Background color",
+      "default": "rgba(0, 0, 0, 0.9)"
+    },
+    {
+      "type": "range",
+      "id": "lightbox_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "close_button_bg",
+      "label": "Close button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "close_button_color",
+      "label": "Close button icon color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_bg",
+      "label": "Navigation button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_color",
+      "label": "Navigation button icon color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "counter_bg",
+      "label": "Counter background",
+      "default": "rgba(255, 255, 255, 0.9)"
+    },
+    {
+      "type": "color",
+      "id": "counter_color",
+      "label": "Counter text color",
+      "default": "#121212"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_7",
+      "label": "Image 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_8",
+      "label": "Image 8"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_9",
+      "label": "Image 9"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_10",
+      "label": "Image 10"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_11",
+      "label": "Image 11"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_12",
+      "label": "Image 12"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Thumbnail gallery"
+    }
+  ]
+}
+{% endschema %}

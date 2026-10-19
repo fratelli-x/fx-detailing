@@ -1,0 +1,935 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "image_banner_iNBJAD": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Bodykits_Cover_Image_FX_Detailing.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "blocks_hKBpMU": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7df23dd_nLbR3F": {
+          "type": "ai_gen_block_7df23dd",
+          "settings": {
+            "heading": "<strong>FACTORY-LEVEL BODYKIT INSTALLATION</strong>",
+            "heading_font": "oswald_n7",
+            "heading_size": 60,
+            "heading_line_height": 1.2,
+            "heading_letter_spacing": 0.5,
+            "heading_text_transform": "none",
+            "heading_color": "#000000",
+            "heading_spacing": 24,
+            "subtext": "<p>Every bodykit we install is executed with the precision required to look completely original.</p><p><strong>For those who expect nothing less.</strong></p>",
+            "subtext_size": 24,
+            "subtext_line_height": 1.6,
+            "subtext_color": "#000000",
+            "subtext_spacing": 24,
+            "show_button": false,
+            "button_text": "",
+            "button_link": "",
+            "button_font_size": 16,
+            "button_font_weight": 600,
+            "button_letter_spacing": 1,
+            "button_text_transform": "uppercase",
+            "button_padding_vertical": 16,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 8,
+            "button_border_thickness": 1,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_spacing": 0,
+            "text_alignment": "center",
+            "content_max_width": 800,
+            "desktop_width_percent": 100,
+            "padding_top": 16,
+            "padding_bottom": 0,
+            "padding_horizontal": 24,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7df23dd_nLbR3F"
+      ],
+      "name": "Rich text with H1",
+      "settings": {}
+    },
+    "rich_text_kgHPqf": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_683w9i": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Bodykit Installation Projects</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_CpWkjP": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every project below was completed in-house, by the same hands that will work on your car. No subcontractors. No shortcuts. No regrets.</p>"
+          }
+        },
+        "button_YbtqcX": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_683w9i",
+        "text_CpWkjP",
+        "button_YbtqcX"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "slideshow_iCbmgi": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_98AKND": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/M4_Bodykit_FX_Detailing.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_ETWcQx": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/R8_No_Spoiler_FX_Detailing.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_JGLHeg": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/R8_With_Spoiler_FX_Detailing.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_VLrYdp": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/R8_Black_No_Bodykit_FX_Detailing.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_7KjQBc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/R8_Black_With_Bodykit_FX_Detailing.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_NqPzcg": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/M3_No_Bodykit_FX_Detailing.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_mWVgCU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/M3_With_Bodykit_FX_Detailing.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_fgGPpR": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/M8_No_Bodykit_FX_Detailing.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_VFBQn3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/M8_With_Bodykit_FX_Detailing.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_c4fDgU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Red_Cayman_No_Bodykit_FX_Detailing.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_rJBKmp": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Red_Cayman_With_Bodykit_FX_Detailing.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        }
+      },
+      "block_order": [
+        "slide_98AKND",
+        "slide_ETWcQx",
+        "slide_JGLHeg",
+        "slide_VLrYdp",
+        "slide_7KjQBc",
+        "slide_NqPzcg",
+        "slide_mWVgCU",
+        "slide_fgGPpR",
+        "slide_VFBQn3",
+        "slide_c4fDgU",
+        "slide_rJBKmp"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "adapt_image",
+        "slider_visual": "numbers",
+        "auto_rotate": false,
+        "change_slides_speed": 3,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "rich_text_7MCqnY": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_JbfLHq": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Automotive Brands We Work With</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_3CpH7U": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>From hot hatches and performance saloons to SUVs and track-bred sports cars, our bodykit installations cover the full spectrum of enthusiast vehicles - all finished to the same standard.</strong></p><p><em><strong>BMW · Audi · Mercedes · Volkswagen · Seat · Honda · Toyota · Nissan · Ford · Hyundai · Lexus · Porsche · and more</strong></em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_JbfLHq",
+        "text_3CpH7U"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "image_banner_KbGN6E": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Bodykit_Banner_Cover_Image_FX_Detailing.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_4DFFpe": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_wAKHmG": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Authorised Dealer & Installer</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_ExnzAa": {
+          "type": "text",
+          "settings": {
+            "text": "<p>As an authorised installer for two of the industry's most respected bodykit manufacturers, we handle everything from sourcing to fitment. You deal with one team, start to finish, with full accountability for the result.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_wAKHmG",
+        "text_ExnzAa"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "multicolumn_MmYTfQ": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_7xrAej": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/ctcarbonlogo.png",
+            "title": "<strong>CT Carbon</strong>",
+            "text": "",
+            "link_label": "www.ctcarbon.co",
+            "link": "https://www.ctcarbon.co/"
+          }
+        },
+        "column_igBkYt": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/xclusiveCustomz.png",
+            "title": "<strong>Xclusive Customz</strong>",
+            "text": "",
+            "link_label": "www.xclusivecustomz.com",
+            "link": "https://xclusivecustomz.com/"
+          }
+        }
+      },
+      "block_order": [
+        "column_7xrAej",
+        "column_igBkYt"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 2,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "scheme-4",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collapsible_content_BpPbAc": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_dahCbF": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Entire Car",
+            "icon": "check_mark",
+            "row_content": "<p><strong>£550</strong></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_e9dTeB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Front Splitter",
+            "icon": "check_mark",
+            "row_content": "<p><strong>£120</strong></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_GzNAPn": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Rear Diffuser",
+            "icon": "check_mark",
+            "row_content": "<p><strong>£120</strong></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_VAEVCQ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Side Skirts",
+            "icon": "check_mark",
+            "row_content": "<p><strong>£150 </strong>per pair</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_9bUKWY": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Boot Sploiler",
+            "icon": "check_mark",
+            "row_content": "<p><strong>£120</strong></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_NpAtPD": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Grilles",
+            "icon": "check_mark",
+            "row_content": "<p><strong>£100</strong></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_eLPk34": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Badges / Wheel Center Caps",
+            "icon": "check_mark",
+            "row_content": "<p><strong>£25</strong></p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_dahCbF",
+        "collapsible_row_e9dTeB",
+        "collapsible_row_GzNAPn",
+        "collapsible_row_VAEVCQ",
+        "collapsible_row_9bUKWY",
+        "collapsible_row_NpAtPD",
+        "collapsible_row_eLPk34"
+      ],
+      "disabled": true,
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "Bodykits priced separately",
+        "heading": "<strong>Fitting Price Guide</strong>",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "image": "shopify://shop_images/IMG_2512.jpg",
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "1771937673ce57299c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "blocks_UVLDxf": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_3bce16c_PwTKXB": {
+          "type": "ai_gen_block_3bce16c",
+          "settings": {
+            "desktop_width_percent": 100,
+            "columns_desktop": 6,
+            "columns_mobile": "2",
+            "image_spacing": 8,
+            "thumbnail_border_radius": 16,
+            "background_color": "#202020",
+            "lightbox_overlay_color": "#000000e6",
+            "lightbox_button_color": "#ffffff",
+            "lightbox_button_text_color": "#121212",
+            "lightbox_border_radius": 0,
+            "image_1": "shopify://shop_images/2_7e2208a9-9402-4adc-b656-6e49aee57716.png",
+            "image_2": "shopify://shop_images/2A_aa90db4b-9367-4077-8fde-94b310abeb4b.jpg",
+            "image_3": "shopify://shop_images/1.png",
+            "image_4": "shopify://shop_images/1A.jpg",
+            "image_5": "shopify://shop_images/4_c76eb644-8d44-488b-aeb2-4267d73cbd75.png",
+            "image_6": "shopify://shop_images/4A_bdbcdf16-1202-4240-b54d-9e6a6ef7ed39.jpg",
+            "image_7": "shopify://shop_images/1A.png",
+            "image_8": "shopify://shop_images/1.jpg",
+            "image_9": "shopify://shop_images/4.png",
+            "image_10": "shopify://shop_images/4A.jpg"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_3bce16c_PwTKXB"
+      ],
+      "disabled": true,
+      "name": "Thumbnail gallery",
+      "settings": {}
+    },
+    "blocks_4amaQR": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_324027b_eiJFYY": {
+          "type": "ai_gen_block_324027b",
+          "settings": {
+            "section_title": "Fitting price guide",
+            "section_subtitle": "Bodykits Priced Separately",
+            "section_background": "#ffffff",
+            "title_size": 44,
+            "title_color": "#000000",
+            "subtitle_size": 18,
+            "subtitle_color": "#000000",
+            "columns_desktop": 1,
+            "card_gap": 10,
+            "card_background": "#1a1a1a",
+            "card_border_color": "#333333",
+            "card_border_width": 5,
+            "card_border_radius": 18,
+            "card_accent_color": "#ff6b00",
+            "card_divider_color": "#2a2a2a",
+            "package_name_size": 24,
+            "package_name_color": "#ffffff",
+            "price_size": 36,
+            "price_color": "#ff6b00",
+            "description_size": 16,
+            "description_color": "#ff6b00",
+            "item_size": 14,
+            "item_color": "#e0e0e0",
+            "button_background": "#ff6b00",
+            "button_hover_background": "#e65c00",
+            "button_text_color": "#ffffff",
+            "button_size": 14,
+            "button_border_radius": 4,
+            "package_1_enabled": true,
+            "package_1_name": "",
+            "package_1_price": "",
+            "package_1_description": "Note: Performance parts and carbon fibre vary by manufacturer. We ensure a factory-level fit, which occasionally requires additional labour for the most intricate kits. The pricing below covers most installations. For rare cases involving complex aero-geometry or additional preparation, we will provide a transparent quote before any work begins.*",
+            "package_1_items": "Entire Car - From £550, Front Splitter - From £120, Rear Diffuser - From £120, Wheel Arches - From £120, Side Skirts - From £150, Boot Spoiler - From £120, Grilles - From £100, Badges - From £50, Wheel Centre Caps - From £10 per set",
+            "package_1_button_label": "",
+            "package_1_button_link": "",
+            "package_2_enabled": false,
+            "package_2_name": "Performance Kit",
+            "package_2_price": "£2,499",
+            "package_2_description": "Complete aerodynamic upgrade for enhanced performance",
+            "package_2_items": "Front bumper, Rear bumper, Side skirts, Rear spoiler, Carbon fibre mirrors, Installation kit",
+            "package_2_button_label": "Get Quote",
+            "package_2_button_link": "",
+            "package_3_enabled": false,
+            "package_3_name": "Ultimate Kit",
+            "package_3_price": "£4,999",
+            "package_3_description": "Full carbon fibre transformation with premium components",
+            "package_3_items": "Front bumper, Rear bumper, Side skirts, Bonnet, Boot lid, Rear spoiler, Carbon mirrors, Splitter, Diffuser, Professional installation",
+            "package_3_button_label": "Get Quote",
+            "package_3_button_link": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_324027b_eiJFYY"
+      ],
+      "name": "Body kit pricing",
+      "settings": {}
+    },
+    "rich_text_eMa4ek": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_KYf4tk": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Why Discerning Owners Trust FX Detailing for Bodykit Installation</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_arLtrL": {
+          "type": "text",
+          "settings": {
+            "text": "<ul><li><strong>Brand Agnostic Expertise</strong> - We install bodykits from every bodykit manufacturer - whether it is Maxton Design, CT Carbon, Xclusive Customz, or any other, we install components with uncompromising precision.</li></ul><p></p><ul><li><strong>Any Vehicle, One Standard</strong> - From hatchbacks to full sportscar aero transformations, we apply the same \"dry-fit\" methodology to ensure proper alignment before fixing.</li></ul><p></p><ul><li><strong>Preserving Original Integrity</strong> - We specialise in non-destructive installations. We utilise factory mounting points and automotive-grade adhesives to ensure your car’s original body panels remain intact.</li></ul><p></p><ul><li><strong>The \"No-Cut\" Policy -</strong> To preserve your vehicle’s structural integrity and resale value, we do not undertake installations that require cutting or permanent destruction of factory metalwork.</li></ul><p></p><ul><li><strong>Reversible Precision</strong> - Our fitment process prioritises reversibility. If you ever decide to return your car to its factory state, our installation methods ensure the original bodywork is preserved beneath the kit.</li></ul>"
+          }
+        },
+        "button_FJd6cT": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_KYf4tk",
+        "text_arLtrL",
+        "button_FJd6cT"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_LQH68m": {
+      "type": "rich-text",
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 4
+      }
+    },
+    "rich_text_tCYbAe": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_BPLMEr": {
+          "type": "heading",
+          "settings": {
+            "heading": "For bookings or quotes, please fill out form below or call/WhatsApp 07548703902",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_BPLMEr"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "17707192584aee21b9": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_6XFAxH": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "866171",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 8,
+            "padding_bottom": 20,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_6XFAxH"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "blocks_7B7nyL": {
+      "type": "_blocks",
+      "name": "Thumbnail gallery",
+      "settings": {}
+    },
+    "slideshow_nNn99x": {
+      "type": "slideshow",
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "image_banner_w7YDmw": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_EeNVNH": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>EXPLORE LUXURY CAR DETAILING</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "buttons_VwAqFA": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Learn More",
+            "button_link_1": "shopify://pages/luxury-car-detailing-surrey",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_EeNVNH",
+        "buttons_VwAqFA"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Revuelto_Interior_FX_Detailing.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_HApFQi": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_VEDV9q": {
+          "type": "heading",
+          "settings": {
+            "heading": "5 MINUTES FROM GATWICK AIRPORT",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_VEDV9q"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "rich_text_dTKxKB": {
+      "type": "rich-text",
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 4
+      }
+    },
+    "17782359765da12f64": {
+      "type": "apps",
+      "blocks": {
+        "mappy_store_locator_page_embed_block_nbWdc8": {
+          "type": "shopify://apps/ta-mappy-store-locator-maps/blocks/page-embed-block/edfca2bd-82ad-413c-b32c-580d239b17ab",
+          "settings": {
+            "is_show_heading_map": true,
+            "is_show_description_map": false
+          }
+        }
+      },
+      "block_order": [
+        "mappy_store_locator_page_embed_block_nbWdc8"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_banner_iNBJAD",
+    "blocks_hKBpMU",
+    "rich_text_kgHPqf",
+    "slideshow_iCbmgi",
+    "rich_text_7MCqnY",
+    "image_banner_KbGN6E",
+    "rich_text_4DFFpe",
+    "multicolumn_MmYTfQ",
+    "collapsible_content_BpPbAc",
+    "1771937673ce57299c",
+    "blocks_UVLDxf",
+    "blocks_4amaQR",
+    "rich_text_eMa4ek",
+    "rich_text_LQH68m",
+    "rich_text_tCYbAe",
+    "17707192584aee21b9",
+    "blocks_7B7nyL",
+    "slideshow_nNn99x",
+    "image_banner_w7YDmw",
+    "rich_text_HApFQi",
+    "rich_text_dTKxKB",
+    "17782359765da12f64"
+  ]
+}
