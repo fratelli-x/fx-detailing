@@ -203,5 +203,38 @@
   to = "/ceramic/"
   status = 301
 
-# http and apex to https://www.fxdetailing.co.uk are a Netlify primary-domain
-# dashboard setting. Do not add host-level redirects here; they can loop.
+# Force HTTPS and the www canonical host. These match only the apex host.
+# Do not add a rule that sends https://www.fxdetailing.co.uk back to the apex.
+[[redirects]]
+  from = "http://fxdetailing.co.uk/*"
+  to = "https://www.fxdetailing.co.uk/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://fxdetailing.co.uk/*"
+  to = "https://www.fxdetailing.co.uk/:splat"
+  status = 301
+  force = true
+
+# Asset filenames are not content-hashed, so cache for a week and then revalidate.
+# HTML stays fresh. Put the asset rules before /* so the catch-all does not win first.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
