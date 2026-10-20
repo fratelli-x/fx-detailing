@@ -203,19 +203,8 @@
   to = "/ceramic/"
   status = 301
 
-# Force HTTPS and the www canonical host. These match only the apex host.
-# Do not add a rule that sends https://www.fxdetailing.co.uk back to the apex.
-[[redirects]]
-  from = "http://fxdetailing.co.uk/*"
-  to = "https://www.fxdetailing.co.uk/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://fxdetailing.co.uk/*"
-  to = "https://www.fxdetailing.co.uk/:splat"
-  status = 301
-  force = true
+# Canonical host is set in the Netlify dashboard, not in the repo.
+# Repo host rules loop with that setting.
 
 # Asset filenames are not content-hashed, so cache for a week and then revalidate.
 # HTML stays fresh. Put the asset rules before /* so the catch-all does not win first.
