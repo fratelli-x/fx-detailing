@@ -224,6 +224,12 @@ button { font: inherit; cursor: pointer; }
 .section.dark { background: var(--black); color: var(--white); }
 .wrap { max-width: min(var(--max), 100%); margin: 0 auto; }
 .center { text-align: center; }
+.section.mist .wrap:has(.products) .subheading {
+  margin: -0.15em auto 0.85em;
+  max-width: 40em;
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
 .narrow { max-width: 760px; margin-left: auto; margin-right: auto; }
 .eyebrow {
   text-transform: uppercase;
