@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Customer Reviews | FX Detailing</title>
-  <meta name="description" content="What clients say about FX Detailing in Charlwood, Surrey.">
+  <title>Customer Reviews &amp; Testimonials | FX Detailing Surrey &amp; London</title>
+  <meta name="description" content="Read 5-star customer reviews for FX Detailing in Charlwood, Surrey. Trusted by supercar owners, collectors, and McLaren F1 CEO Zak Brown across London &amp; UK.">
   <link rel="canonical" href="https://www.fxdetailing.co.uk/reviews/">
-  <meta property="og:title" content="Customer Reviews | FX Detailing">
-  <meta property="og:description" content="What clients say about FX Detailing in Charlwood, Surrey.">
+  <meta property="og:title" content="Customer Reviews &amp; Testimonials | FX Detailing Surrey &amp; London">
+  <meta property="og:description" content="Read 5-star customer reviews for FX Detailing in Charlwood, Surrey. Trusted by supercar owners, collectors, and McLaren F1 CEO Zak Brown across London &amp; UK.">
   <meta property="og:url" content="https://www.fxdetailing.co.uk/reviews/">
   <meta property="og:type" content="website">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -16,6 +16,76 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "@id": "https://www.fxdetailing.co.uk/#organization",
+  "name": "FX Detailing",
+  "url": "https://www.fxdetailing.co.uk",
+  "logo": "https://www.fxdetailing.co.uk/images/logo.png",
+  "telephone": "+447548703902",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "The Barn, Westcoats Farm, Stan Hill",
+    "addressLocality": "Charlwood",
+    "addressRegion": "Surrey",
+    "postalCode": "RH6 0ES",
+    "addressCountry": "GB"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 51.173278248394105,
+    "longitude": -0.2479991030269702
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "17:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "47",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Zak Brown"
+      },
+      "reviewBody": "I have been trusting FX Detailing with my vehicles for a number of years now, and I couldn’t be happier with the results. Their attention to detail is second to none, and they consistently go above and beyond to ensure the cars look showroom-ready every time. It’s so rare to find someone so dedicated and reliable — I wouldn’t use anyone else."
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Rob Pierre"
+      },
+      "datePublished": "2026-06-02",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "reviewBody": "We had our classic 356 Porsche detailed by Reece at FX Detailing, and the results were incredible. He carried out a full three-stage machine polish, a complete interior and exterior detail, and finished it off with a ceramic coating. The car looked absolutely stunning — better than we could have imagined. This Porsche was a gift for my wife, and Reece made sure it looked perfect in every way."
+    }
+  ]
+}
+  </script>
   <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="179aef15-4e8e-481b-9a43-8828aa767789";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
 <body>
@@ -56,7 +126,7 @@
         <a class="google-score" href="https://www.google.com/maps/search/?api=1&amp;query_place_id=ChIJz1LXxX7vdUgRsn5zhGyXrZA">
           <strong>Excellent</strong>
           <span class="stars" aria-label="5 stars">★★★★★</span>
-          <small>Based on 33 Reviews</small>
+          <small>Based on 47 Reviews</small>
           <span class="g-word" aria-label="Google"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></span>
         </a>
         <div class="review-slider" data-visible="2">
@@ -152,7 +222,7 @@
         </form>
       </div>
     </section>
-    <iframe class="map" title="Map showing FX Detailing in Charlwood" src="https://www.openstreetmap.org/export/embed.html?bbox=-0.268%2C51.163%2C-0.228%2C51.184&amp;layer=mapnik&amp;marker=51.173278%2C-0.247999"></iframe>
+    <iframe class="map" title="Map showing FX Detailing in Charlwood" src="https://www.google.com/maps?q=51.173278248394105,-0.2479991030269702&amp;z=15&amp;output=embed" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </main>
   <footer class="site-footer">
     <div class="footer-grid">
@@ -208,10 +278,13 @@
       slider.querySelector(".next").addEventListener("click", () => { index = index >= max() ? 0 : index + 1; paint(); });
       slider.querySelector(".prev").addEventListener("click", () => { index = index <= 0 ? max() : index - 1; paint(); });
       slider.querySelectorAll(".review-card button").forEach((button) => {
+        const text = button.previousElementSibling;
+        if (!text || text.tagName !== "P") return;
+        text.classList.add("clamped");
+        button.textContent = "Read More";
         button.addEventListener("click", () => {
-          const text = button.previousElementSibling;
-          const open = text.classList.toggle("clamped");
-          button.textContent = open ? "Read More" : "Read Less";
+          const collapsed = text.classList.toggle("clamped");
+          button.textContent = collapsed ? "Read More" : "Read Less";
         });
       });
       window.addEventListener("resize", pages);

@@ -36,7 +36,37 @@
     "East Sussex",
     "United Kingdom"
   ],
-  "description": "Professional multi-stage machine polishing, paint defect correction, and gloss restoration for luxury, prestige, and supercar finishes across Surrey, London, and nationwide UK."
+  "description": "Professional multi-stage machine polishing, paint defect correction, and gloss restoration for luxury, prestige, and supercar finishes across Surrey, London, and nationwide UK.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Paint Correction Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Single-Stage Paint Enhancement"
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "299",
+          "priceCurrency": "GBP"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Multi-Stage Paint Correction"
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "1699",
+          "priceCurrency": "GBP"
+        }
+      }
+    ]
+  }
 }
   </script>
 </head>
@@ -63,7 +93,7 @@
   </header>
   <main>
     <section class="detail-banner">
-      <img src="/images/detail-ferrari.jpg" alt="Red Ferrari after luxury car detailing by FX Detailing">
+      <img src="/images/detail-ferrari.jpg" alt="Red Ferrari 488 receiving multi-stage paint correction at FX Detailing Surrey studio">
       <div class="detail-intro">
         <div class="detail-hero-copy">
           <h1>Bring your car back to showroom condition:<br>Luxury car detailing &amp; paint correction</h1>
@@ -81,7 +111,7 @@
         <h2>The FX Standard: A Level of Care Beyond the Ordinary</h2>
         <div>
           <details class="service">
-            <summary>Detailing - from £299</summary>
+            <summary>Detailing – From £299</summary>
             <div class="panel">
               <p><strong>The Showroom Reset.</strong> This service returns your vehicle to its original factory condition. It is a comprehensive top-to-bottom cleanse that includes a deep interior and exterior detail, engine bay detail, premium dressings for trims, plastics and tyres.</p>
               <p><strong>Breakdown:</strong> Exterior Detail + Interior Detail + Engine Bay Detail + Premium Dressings</p>
@@ -90,7 +120,7 @@
             </div>
           </details>
           <details class="service">
-            <summary>Paint enhancement - from £299</summary>
+            <summary>Paint enhancement – From £299</summary>
             <div class="panel">
               <p><strong>Instant Gloss Recovery.</strong> Designed for vehicles with light swirl marks or dull paint. This single-stage machine polish removes the “dull” layer of the clear coat, restoring optical clarity and brings the paint back to life. It’s the perfect entry-level service for those seeking a dramatic improvement in gloss without the full correction timeframe.</p>
               <p><strong>Breakdown:</strong> Exterior Detail + Decontamination + Single Stage Machine Polishing</p>
@@ -98,7 +128,7 @@
             </div>
           </details>
           <details class="service">
-            <summary>Paint correction - from £1699</summary>
+            <summary>Paint correction – From £1,699</summary>
             <div class="panel">
               <p><strong>Ultimate Paint Restoration.</strong> This is our highest level of paint correction, designed for vehicles with heavy swirl marks, scratches, oxidation, holograms, and significant paint defects. Using a meticulous three-stage machine polishing process, we restore depth, clarity, and gloss, achieving a <strong>90%+ correction factor.</strong></p>
               <p><strong>Breakdown:</strong> Exterior Detail + Decontamination + Three-Stage Machine Polishing</p>
@@ -107,7 +137,7 @@
             </div>
           </details>
           <details class="service">
-            <summary>Ceramic protection - from £799</summary>
+            <summary>Ceramic protection – From £799</summary>
             <div class="panel">
               <p><strong>The Shield.</strong> Ceramic coating creates a molecular bond with the paint, adds gloss, reduces new swirl marks, repels dirt, contaminants and water.</p>
               <p><strong>Breakdown:</strong> Exterior Detail + Decontamination + Premium Exterior Ceramic Coating</p>
@@ -115,7 +145,7 @@
             </div>
           </details>
           <details class="service">
-            <summary>Maintenance detailing - from £100</summary>
+            <summary>Maintenance detailing – From £100</summary>
             <div class="panel">
               <p><strong>Preserve the Perfection.</strong> A specialised service designed exclusively for vehicles we have already detailed. This ensures your car maintains its showroom condition all-year-round.</p>
               <p><strong>Breakdown:</strong> Exterior Detail + Interior Detail</p>
@@ -140,7 +170,7 @@
             </div>
           </details>
         </div>
-        <img src="/images/detail-daytona.jpg" alt="Ferrari SP3 Daytona detailed by FX Detailing">
+        <img src="/images/detail-daytona.jpg" alt="Ferrari SP3 Daytona following paint correction and ceramic protection in Charlwood Surrey">
       </div>
     </section>
 
@@ -151,25 +181,7 @@
     </section>
     <section class="section">
       <div class="wrap">
-        <form name="detailing-booking" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="detailing-booking">
-          <p class="honeypot"><label>Don’t fill this out <input name="bot-field" type="text" tabindex="-1" autocomplete="off"></label></p>
-          <label>First name <input name="first-name" autocomplete="given-name" required></label>
-          <label>Last name <input name="last-name" autocomplete="family-name" required></label>
-          <label>Vehicle make &amp; model <input name="vehicle" required></label>
-          <label>Car registration <input name="registration" autocomplete="off"></label>
-          <label>Email <input type="email" name="email" autocomplete="email" required></label>
-          <label>Phone <input type="tel" name="phone" autocomplete="tel" value="+44 "></label>
-          <label>Booking enquiry <textarea name="message" required></textarea></label>
-          <label>How would you like to be contacted
-            <select name="contact-method">
-              <option>Phone</option>
-              <option>Email</option>
-              <option>WhatsApp</option>
-            </select>
-          </label>
-          <button class="btn dark" type="submit">Submit</button>
-        </form>
+        <p><a class="btn dark" href="#enquire">Enquire</a></p>
       </div>
     </section>
 
@@ -211,7 +223,7 @@
       </div>
     </section>
 
-    <section class="section book-band">
+    <section class="section book-band" id="enquire" style="scroll-margin-top: 170px">
       <div class="wrap">
         <h2>For bookings or quotes, please fill out the form below or call/WhatsApp <a href="tel:07548703902">07548 703902</a></h2>
       </div>
@@ -242,7 +254,7 @@
     <section class="section center">
       <h2 class="gatwick">5 minutes from Gatwick Airport</h2>
     </section>
-    <iframe class="map" title="Map showing FX Detailing in Charlwood" src="https://www.openstreetmap.org/export/embed.html?bbox=-0.268%2C51.163%2C-0.228%2C51.184&amp;layer=mapnik&amp;marker=51.173278%2C-0.247999"></iframe>
+    <iframe class="map" title="Map showing FX Detailing in Charlwood" src="https://www.google.com/maps?q=51.173278248394105,-0.2479991030269702&amp;z=15&amp;output=embed" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </main>
   <footer class="site-footer">
     <div class="footer-grid">
