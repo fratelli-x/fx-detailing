@@ -203,6 +203,12 @@
   to = "/ceramic/"
   status = 301
 
+# Suggested hub URL. The real ceramic page stays at /ceramic/.
+[[redirects]]
+  from = "/services/ceramic-coating"
+  to = "/ceramic/"
+  status = 301
+
 # Canonical host is set in the Netlify dashboard, not in the repo.
 # Repo host rules loop with that setting.
 
