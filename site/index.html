@@ -14,6 +14,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="preload" as="image" href="/images/hero.jpg" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/css/styles.css">
   <script type="application/ld+json">
 {
@@ -243,6 +246,45 @@
         </div>
       </div>
     </section>
+    <section class="dx-enquire" id="enquire">
+      <svg class="dx-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <symbol id="dx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+      </svg>
+      <div class="dx-enquire-card">
+        <div class="dx-enquire-head">
+          <span class="dx-enquire-rule"></span>
+          <h2>Get started</h2>
+          <p>Complete the form to send your request.</p>
+        </div>
+        <div class="dx-steps" aria-hidden="true">
+          <span class="dx-step is-active"><b>1</b><span>Your details</span></span>
+          <i></i>
+          <span class="dx-step"><b>2</b><span>Vehicle</span></span>
+          <i></i>
+          <span class="dx-step"><b>3</b><span>Enquiry</span></span>
+        </div>
+        <form name="enquiry" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="enquiry">
+          <p class="honeypot"><label>Don’t fill this out <input name="bot-field" type="text" tabindex="-1" autocomplete="off"></label></p>
+          <label>First name<input required name="first-name" autocomplete="given-name" placeholder="First name"></label>
+          <label>Last name<input required name="last-name" autocomplete="family-name" placeholder="Last name"></label>
+          <label>Vehicle make &amp; model<input required name="vehicle" autocomplete="off" placeholder="e.g. Porsche 911 GT3"></label>
+          <label>Car registration<input name="registration" autocomplete="off" placeholder="e.g. AB12 CDE"></label>
+          <label>Email<input required type="email" name="email" autocomplete="email" placeholder="you@example.com"></label>
+          <label>Phone<span class="dx-phone"><span>+44</span><input required type="tel" name="phone" autocomplete="tel" placeholder="e.g. 7123 456789"></span></label>
+          <label class="dx-span">Booking enquiry<textarea required name="message" placeholder="Tell us about your enquiry..."></textarea></label>
+          <label class="dx-span">How would you like to be contacted?
+            <select name="contact-method">
+              <option>Phone</option>
+              <option>Email</option>
+              <option>Either</option>
+            </select>
+          </label>
+          <button class="dx-btn dx-span" type="submit">Submit request <svg class="dx-ico" aria-hidden="true"><use href="#dx-arrow"></use></svg></button>
+          <p class="dx-form-note">We’ll review your request and get back to you.</p>
+        </form>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -261,13 +303,8 @@
         <p><a href="https://www.facebook.com/profile.php?id=61576231057715">Facebook</a><br><a href="https://www.instagram.com/fx_detailing__">Instagram</a></p>
       </div>
       <div>
-        <h2>Subscribe to our emails</h2>
-        <form name="newsletter" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="newsletter">
-          <p class="honeypot"><label>Don’t fill this out <input name="bot-field" type="text" tabindex="-1" autocomplete="off"></label></p>
-          <label>Email <input type="email" name="email" required autocomplete="email"></label>
-          <button class="btn" type="submit">Subscribe</button>
-        </form>
+        <h2>Enquire</h2>
+        <p><a class="btn" href="#enquire">Request a quote</a></p>
       </div>
     </div>
     <p class="fine">FX Detailing LTD · Charlwood, Surrey</p>
