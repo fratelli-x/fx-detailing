@@ -60,7 +60,7 @@ body {
   font-size: 1.05rem;
   line-height: 1.65;
 }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 h1, h2, h3, .logo, .nav a, .btn, .eyebrow {
   font-family: Oswald, "Arial Narrow", sans-serif;
