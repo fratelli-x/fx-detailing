@@ -1189,12 +1189,12 @@ body.lightbox-open { overflow: hidden; }
 }
 .page-detailing .site-header {
   height: 62px;
-  background: #080909;
-  color: #fff;
+  background: #000;
+  color: #ffffff;
   padding: 0 8px;
   display: flex;
   align-items: stretch;
-  border-bottom: 1px solid #3b3c3d;
+  border-bottom: 1px solid #000;
   position: sticky;
   top: 0;
   z-index: 20;
@@ -1214,8 +1214,8 @@ body.lightbox-open { overflow: hidden; }
   display: flex;
   align-items: stretch;
   height: auto;
-  margin-left: clamp(58px, 7vw, 94px);
-  background: transparent;
+  margin-left: clamp(24px, 3vw, 48px);
+  background: #000;
   border: 0;
   max-width: none;
 }
@@ -1223,20 +1223,23 @@ body.lightbox-open { overflow: hidden; }
   display: flex;
   align-items: stretch;
   height: 100%;
-  gap: clamp(18px, 2vw, 31px);
+  gap: 12px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .page-detailing .nav li { display: flex; align-items: stretch; }
 .page-detailing .nav a {
-  color: #e6e6e6;
+  color: #ffffff;
+  opacity: 1;
+  text-shadow: none;
+  -webkit-text-stroke: 0;
   text-decoration: none;
   text-transform: uppercase;
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: Oswald, "Arial Narrow", sans-serif;
   font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.15px;
+  font-size: 16px;
+  letter-spacing: 0.02em;
   line-height: 1;
   height: auto;
   display: flex;
@@ -1248,7 +1251,10 @@ body.lightbox-open { overflow: hidden; }
 .page-detailing .nav a[aria-current="page"],
 .page-detailing .nav a:hover {
   border-bottom-color: #ec1e25;
-  color: #fff;
+  color: #ffffff;
+  opacity: 1;
+  text-shadow: none;
+  -webkit-text-stroke: 0;
 }
 .page-detailing .dx-header-actions {
   display: flex;
@@ -1920,9 +1926,17 @@ body.lightbox-open { overflow: hidden; }
 }
 
 @media (max-width: 1100px) {
-  .page-detailing .nav { margin-left: 18px; }
-  .page-detailing .nav ul { gap: 13px; }
-  .page-detailing .nav a { font-size: 10px; }
+  .page-detailing .nav { margin-left: 16px; }
+  .page-detailing .nav ul { gap: 10px; }
+  .page-detailing .nav a {
+    color: #ffffff;
+    opacity: 1;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: none;
+    -webkit-text-stroke: 0;
+  }
   .page-detailing .dx-header-enquire { padding: 11px 13px; font-size: 11px; }
   .page-detailing .logo { width: 168px; flex-basis: 168px; }
   .page-detailing .logo img { width: 160px; }
@@ -1942,7 +1956,7 @@ body.lightbox-open { overflow: hidden; }
     left: 0;
     height: auto;
     margin-left: 0;
-    background: #111;
+    background: #000;
     display: none;
     padding: 6px 17px 10px;
   }
@@ -1959,10 +1973,19 @@ body.lightbox-open { overflow: hidden; }
     padding: 11px 0;
     height: auto;
     border-bottom: 1px solid #333;
-    font-size: 14px;
+    color: #ffffff;
+    opacity: 1;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: none;
+    -webkit-text-stroke: 0;
   }
   .page-detailing .nav a[aria-current="page"],
-  .page-detailing .nav a:hover { border-bottom-color: #ec1e25; }
+  .page-detailing .nav a:hover {
+    border-bottom-color: #ec1e25;
+    color: #ffffff;
+  }
   .page-detailing .dx-header-enquire { display: none; }
   .page-detailing .menu-toggle { display: block; }
   .page-detailing .dx-hero {
