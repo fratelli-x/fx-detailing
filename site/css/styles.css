@@ -2492,12 +2492,15 @@ body.lightbox-open { overflow: hidden; }
   font-size: 14px;
   margin: 13px 0 10px;
 }
-.ceramic-page .ceramic-hero-copy > p:last-of-type {
+.ceramic-page .ceramic-hero-copy > p:not(.kicker):not(.ceramic-tagline) {
   max-width: 490px;
   color: #e1e1e1;
   font-size: 16px;
   line-height: 1.45;
   margin: 0;
+}
+.ceramic-page .ceramic-hero-copy > p:not(.kicker):not(.ceramic-tagline) + p:not(.kicker):not(.ceramic-tagline) {
+  margin-top: 8px;
 }
 .ceramic-page .ceramic-brand {
   display: block;
@@ -2508,7 +2511,8 @@ body.lightbox-open { overflow: hidden; }
 .ceramic-page .ceramic-highlights {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  max-width: 1200px;
+  width: min(1280px, calc(100% - 48px));
+  max-width: 1280px;
   margin: 0 auto;
   padding: 16px 0;
   color: #fff;
@@ -2577,7 +2581,8 @@ body.lightbox-open { overflow: hidden; }
   border: 0;
 }
 .ceramic-page .ceramic-tabs {
-  max-width: 1200px;
+  width: min(1280px, calc(100% - 48px));
+  max-width: 1280px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
@@ -2644,7 +2649,8 @@ body.lightbox-open { overflow: hidden; }
 .ceramic-page #cx-fabric:checked ~ .ceramic-detail.cx-fabric,
 .ceramic-page #cx-trim:checked ~ .ceramic-detail.cx-trim,
 .ceramic-page #cx-glass:checked ~ .ceramic-detail.cx-glass {
-  max-width: 1200px;
+  width: min(1280px, calc(100% - 48px));
+  max-width: 1280px;
   margin: 0 auto;
   padding: 9px 0 20px;
   display: grid;
@@ -2748,7 +2754,8 @@ body.lightbox-open { overflow: hidden; }
 .ceramic-page .ceramic-proof {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  max-width: 1200px;
+  width: min(1280px, calc(100% - 48px));
+  max-width: 1280px;
   min-height: 80px;
   margin: 0 auto;
   padding: 12px 0;
@@ -2802,8 +2809,10 @@ body.lightbox-open { overflow: hidden; }
   .ceramic-page .ceramic-hero-copy { padding: 27px 21px 20px; }
   .ceramic-page .ceramic-hero h1 { font-size: 37px; }
   .ceramic-page .ceramic-tagline { font-size: 14px; letter-spacing: 1.6px; }
-  .ceramic-page .ceramic-hero-copy > p:last-of-type { font-size: 16px; max-width: none; }
+  .ceramic-page .ceramic-hero-copy > p:not(.kicker):not(.ceramic-tagline) { font-size: 16px; max-width: none; }
   .ceramic-page .ceramic-highlights {
+    width: auto;
+    max-width: none;
     grid-template-columns: 1fr;
     gap: 0;
     padding: 6px 0;
@@ -2829,7 +2838,7 @@ body.lightbox-open { overflow: hidden; }
     white-space: nowrap;
   }
   .ceramic-page .ceramic-highlights .cx-ico { width: 22px; height: 22px; }
-  .ceramic-page .ceramic-tabs { display: flex; flex-direction: column; }
+  .ceramic-page .ceramic-tabs { display: flex; flex-direction: column; width: auto; max-width: none; }
   .ceramic-page .ceramic-tab {
     min-height: 48px;
     padding: 8px 13px;
@@ -2866,6 +2875,8 @@ body.lightbox-open { overflow: hidden; }
   .ceramic-page #cx-glass:checked ~ .ceramic-detail.cx-glass {
     display: flex;
     flex-direction: column;
+    width: auto;
+    max-width: none;
     gap: 12px;
     padding: 9px 10px 20px;
   }
@@ -2881,6 +2892,8 @@ body.lightbox-open { overflow: hidden; }
   .ceramic-page .ceramic-footer .primary-button { padding: 11px 10px; font-size: 14px; gap: 6px; }
   .ceramic-page .ceramic-note { font-size: 14px; }
   .ceramic-page .ceramic-proof {
+    width: auto;
+    max-width: none;
     grid-template-columns: 1fr 1fr;
     gap: 14px 0;
     padding: 16px 8px;
