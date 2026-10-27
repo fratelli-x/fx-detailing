@@ -885,6 +885,8 @@ textarea { min-height: 140px; resize: vertical; }
 }
 .slider-dots button[aria-current="true"] { background: #333; }
 .gatwick { font-size: clamp(1.8rem, 4vw, 2.6rem); text-transform: uppercase; letter-spacing: 0.04em; }
+.section:has(h2.gatwick):has(+ iframe.map) { padding-bottom: 24px; }
+.section:has(+ iframe.map) h2.gatwick { margin-bottom: 0; }
 @media (max-width: 700px) {
   .google-row { grid-template-columns: 1fr; }
   .review-card { flex-basis: 100%; }
@@ -1448,7 +1450,7 @@ body.lightbox-open { overflow: hidden; }
   text-transform: uppercase;
   font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 1px;
   line-height: 1.1;
 }
@@ -1526,11 +1528,11 @@ body.lightbox-open { overflow: hidden; }
   line-height: 1.05;
 }
 .page-detailing .dx-tabs strong {
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.4px;
 }
 .page-detailing .dx-tabs small {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.4px;
   margin-top: 3px;
   opacity: 0.75;
@@ -3273,6 +3275,21 @@ body.lightbox-open { overflow: hidden; }
     margin-right: auto;
     box-sizing: border-box;
   }
+  .home-intro,
+  .home-standard,
+  .home-visit {
+    padding-left: calc(max(24px, (100% - 1200px) / 2) + 24px);
+    padding-right: calc(max(24px, (100% - 1200px) / 2) + 24px);
+  }
+  .home-projects {
+    width: min(1200px, calc(100% - 48px));
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+  }
 }
 
 @media (min-width: 721px) and (max-width: 999px) {
@@ -3329,7 +3346,7 @@ body.lightbox-open { overflow: hidden; }
   margin: 0;
   padding: 28px 22px 26px;
 }
-.testimonial-section .testimonial-plain img {
+.testimonial-section .testimonial-plain img:not(.testimonial-mclaren) {
   width: 96px;
   max-width: 96px;
   height: 96px;
@@ -3364,4 +3381,72 @@ body.lightbox-open { overflow: hidden; }
   .testimonial-section .testimonial-artwork { border-width: 1px; }
   .testimonial-section .testimonial-artwork > img { display: none; }
   .testimonial-section .testimonial-plain { display: block; }
+  .testimonial-section .testimonial-plain img:not(.testimonial-mclaren) {
+    width: 144px;
+    max-width: 144px;
+    height: 144px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .testimonial-section .testimonial-plain p { font-size: calc(1.05rem - 1px); }
+  .testimonial-section .testimonial-plain footer { font-size: calc(1.2rem - 1px); }
+  .testimonial-section .testimonial-plain .testimonial-mclaren {
+    width: 156px;
+    max-width: 70%;
+    height: auto;
+    margin: 20px auto 0;
+    border-radius: 0;
+    object-fit: contain;
+  }
+}
+
+/* Wide screens: dark grey only in the gutters outside the centred column. */
+@media (min-width: 721px) {
+  html,
+  body {
+    background: #2a2a2a;
+  }
+
+  .section:not(.dark),
+  .page-hero,
+  .page-title,
+  .contact-intro,
+  .about-intro,
+  .about-split,
+  .blog-intro,
+  .blog-grid {
+    background-color: transparent;
+    background-image: linear-gradient(#fff, #fff);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: min(1200px, calc(100% - 48px)) 100%;
+  }
+
+  .section.mist {
+    background-color: transparent;
+    background-image: linear-gradient(#f3f3f3, #f3f3f3);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: min(1200px, calc(100% - 48px)) 100%;
+  }
+
+  .ceramic-faq {
+    background-color: transparent;
+    background-image: linear-gradient(#f5f5f4, #f5f5f4);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: min(1200px, calc(100% - 48px)) 100%;
+  }
+
+  .ceramic-page {
+    background-color: transparent;
+  }
+
+  body.page-detailing {
+    background: #2a2a2a;
+  }
+
+  .page-detailing .dx-services {
+    background: #f5f5f4;
+  }
 }
