@@ -1589,6 +1589,17 @@ body.lightbox-open { overflow: hidden; }
   object-fit: cover;
   object-position: center;
 }
+.page-detailing .dx-panel-detail .dx-photo {
+  height: auto;
+  overflow: visible;
+  background: transparent;
+}
+.page-detailing .dx-panel-detail .dx-photo img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
 .page-detailing .dx-copy { padding-top: 5px; min-width: 0; }
 .page-detailing .dx-index {
   display: flex;
