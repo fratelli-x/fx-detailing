@@ -13,6 +13,9 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap">
   <link rel="stylesheet" href="/css/styles.css">
   <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="179aef15-4e8e-481b-9a43-8828aa767789";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
   <!-- Meta Pixel Code -->
@@ -35,12 +38,15 @@
   <!-- End Meta Pixel Code -->
 </head>
 <body>
+  <svg class="dx-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="dx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="dx-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M4 6h16"/><path d="M4 18h16"/></symbol>
+    <symbol id="dx-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  </svg>
   <header class="site-header">
-    <div class="header-inner">
-      <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span></button>
-      <a class="logo" href="/"><img src="/images/logo.png" alt="FX Detailing" width="560" height="77"></a>
-      <span></span>
-    </div>
+    <a class="logo" href="/">
+      <img src="/images/logo.png" alt="FX Detailing" width="560" height="77">
+    </a>
     <nav class="nav" id="site-nav" aria-label="Primary">
       <ul>
         <li><a href="/">Home</a></li>
@@ -54,6 +60,13 @@
         <li><a href="/contact/">Contact</a></li>
       </ul>
     </nav>
+    <div class="dx-header-actions">
+      <a class="dx-header-enquire" href="/contact/#enquire">Enquire now <svg class="dx-ico" aria-hidden="true"><use href="#dx-arrow"></use></svg></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg class="dx-ico icon-menu" aria-hidden="true"><use href="#dx-menu"></use></svg>
+        <svg class="dx-ico icon-close" aria-hidden="true"><use href="#dx-close"></use></svg>
+      </button>
+    </div>
   </header>
   <main>
     <img class="article-hero" src="/images/projects/new-car-ceramic-coating-vs-dealer-sealant-surrey.jpg" alt="Professional new car ceramic coating vs dealership sealant at FX Detailing Surrey. Image shows machine polishing a new vehicle to remove transit defects in our Charlwood studio." width="1400" height="700">

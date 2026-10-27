@@ -13,6 +13,9 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap">
   <link rel="stylesheet" href="/css/styles.css">
   <script type="application/ld+json">
 {
@@ -70,12 +73,15 @@
   <!-- End Meta Pixel Code -->
 </head>
 <body class="page-bodykits">
+  <svg class="dx-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="dx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="dx-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M4 6h16"/><path d="M4 18h16"/></symbol>
+    <symbol id="dx-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  </svg>
   <header class="site-header">
-    <div class="header-inner">
-      <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span></button>
-      <a class="logo" href="/"><img src="/images/logo.png" alt="FX Detailing" width="560" height="77"></a>
-      <span></span>
-    </div>
+    <a class="logo" href="/">
+      <img src="/images/logo.png" alt="FX Detailing" width="560" height="77">
+    </a>
     <nav class="nav" id="site-nav" aria-label="Primary">
       <ul>
         <li><a href="/">Home</a></li>
@@ -89,6 +95,13 @@
         <li><a href="/contact/">Contact</a></li>
       </ul>
     </nav>
+    <div class="dx-header-actions">
+      <a class="dx-header-enquire" href="/contact/#enquire">Enquire now <svg class="dx-ico" aria-hidden="true"><use href="#dx-arrow"></use></svg></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg class="dx-ico icon-menu" aria-hidden="true"><use href="#dx-menu"></use></svg>
+        <svg class="dx-ico icon-close" aria-hidden="true"><use href="#dx-close"></use></svg>
+      </button>
+    </div>
   </header>
   <main>
 
@@ -113,21 +126,55 @@
         <p>From hot hatches and performance saloons to SUVs and track-bred sports cars. BMW, Audi, Mercedes, Volkswagen, Seat, Honda, Toyota, Nissan, Ford, Hyundai, Lexus, Porsche, and more.</p>
         <h2>Authorised dealer &amp; installer</h2>
         <p>As an authorised installer for CT Carbon and Xclusive Customz, we handle sourcing through to fitment. You deal with one team, start to finish.</p>
-        <h2>Fitting price guide</h2>
-        <p>Bodykits are priced separately. Performance parts and carbon fibre vary by manufacturer. The prices below cover most installations. Complex aero or extra preparation is quoted before any work begins.</p>
-        <table class="price-table">
-          <tbody>
-            <tr><td>Entire car</td><td>From £550</td></tr>
-            <tr><td>Front splitter</td><td>From £120</td></tr>
-            <tr><td>Rear diffuser</td><td>From £120</td></tr>
-            <tr><td>Wheel arches</td><td>From £120</td></tr>
-            <tr><td>Side skirts</td><td>From £150</td></tr>
-            <tr><td>Boot spoiler</td><td>From £120</td></tr>
-            <tr><td>Grilles</td><td>From £100</td></tr>
-            <tr><td>Badges</td><td>From £50</td></tr>
-            <tr><td>Wheel centre caps</td><td>From £10 per set</td></tr>
-          </tbody>
-        </table>
+      </div>
+    </section>
+
+    <section class="bodykit-page" id="bodykits">
+      <svg class="bk-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <symbol id="bk-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
+        <symbol id="bk-dot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="1"/></symbol>
+        <symbol id="bk-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+        <symbol id="bk-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></symbol>
+        <symbol id="bk-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></symbol>
+        <symbol id="bk-gem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></symbol>
+        <symbol id="bk-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+      </svg>
+      <div class="bodykit-intro">
+        <p class="kicker">Bodykit installation <span></span></p>
+        <h2>Fitting <strong>price</strong> guide</h2>
+        <p class="bodykit-tagline">Professional fitment. Factory-level finish.</p>
+        <p>Expert installation for premium bodykits, with precision fitment and an OEM-quality finish.<br>All bodykits are priced separately - the guide below covers fitting costs for most installations.</p>
+      </div>
+      <div class="bodykit-card">
+        <div class="bodykit-pricing">
+          <div class="bodykit-note">
+            <span class="note-mark">i</span>
+            <div>
+              <p class="kicker">Please note</p>
+              <p>Performance parts and carbon fibre vary by manufacturer. We ensure a factory-level fit, which occasionally requires additional labour for the most intricate kits. The pricing below covers most installations. For rare cases involving complex aero-geometry or additional preparation, we will provide a transparent quote before any work begins.</p>
+            </div>
+          </div>
+          <div class="bodykit-list">
+            <div class="bodykit-row"><svg width="28" height="28" aria-hidden="true"><use href="#bk-car"></use></svg><strong>Entire car</strong><span class="bodykit-divider"></span><small>From</small><b>£550</b><svg width="20" height="20" aria-hidden="true"><use href="#bk-arrow"></use></svg></div>
+            <div class="bodykit-row"><svg width="28" height="28" aria-hidden="true"><use href="#bk-dot"></use></svg><strong>Front splitter</strong><span class="bodykit-divider"></span><small>From</small><b>£120</b><svg width="20" height="20" aria-hidden="true"><use href="#bk-arrow"></use></svg></div>
+            <div class="bodykit-row"><svg width="28" height="28" aria-hidden="true"><use href="#bk-wrench"></use></svg><strong>Rear diffuser</strong><span class="bodykit-divider"></span><small>From</small><b>£120</b><svg width="20" height="20" aria-hidden="true"><use href="#bk-arrow"></use></svg></div>
+            <div class="bodykit-row"><svg width="28" height="28" aria-hidden="true"><use href="#bk-dot"></use></svg><strong>Wheel arches</strong><span class="bodykit-divider"></span><small>From</small><b>£120</b><svg width="20" height="20" aria-hidden="true"><use href="#bk-arrow"></use></svg></div>
+            <div class="bodykit-row"><svg width="28" height="28" aria-hidden="true"><use href="#bk-sparkles"></use></svg><strong>Side skirts</strong><span class="bodykit-divider"></span><small>From</small><b>£150</b><svg width="20" height="20" aria-hidden="true"><use href="#bk-arrow"></use></svg></div>
+            <div class="bodykit-row"><svg width="28" height="28" aria-hidden="true"><use href="#bk-shield"></use></svg><strong>Boot spoiler</strong><span class="bodykit-divider"></span><small>From</small><b>£120</b><svg width="20" height="20" aria-hidden="true"><use href="#bk-arrow"></use></svg></div>
+            <div class="bodykit-row"><svg width="28" height="28" aria-hidden="true"><use href="#bk-gem"></use></svg><strong>Grilles</strong><span class="bodykit-divider"></span><small>From</small><b>£100</b><svg width="20" height="20" aria-hidden="true"><use href="#bk-arrow"></use></svg></div>
+            <div class="bodykit-row"><svg width="28" height="28" aria-hidden="true"><use href="#bk-shield"></use></svg><strong>Badges</strong><span class="bodykit-divider"></span><small>From</small><b>£50</b><svg width="20" height="20" aria-hidden="true"><use href="#bk-arrow"></use></svg></div>
+            <div class="bodykit-row"><svg width="28" height="28" aria-hidden="true"><use href="#bk-dot"></use></svg><strong>Wheel centre caps</strong><span class="bodykit-divider"></span><small>From</small><b>£10 per set</b><svg width="20" height="20" aria-hidden="true"><use href="#bk-arrow"></use></svg></div>
+          </div>
+        </div>
+        <div class="bodykit-visual">
+          <img src="/images/bodykits.jpg" alt="Blue BMW 8 Series convertible after bodykit installation by FX Detailing" width="1400" height="822">
+        </div>
+        <div class="bodykit-features">
+          <div><svg width="34" height="34" aria-hidden="true"><use href="#bk-gem"></use></svg><span><strong>Luxury &amp; supercar specialists</strong><small>Porsche, Ferrari, Lamborghini &amp; more</small></span></div>
+          <div><svg width="34" height="34" aria-hidden="true"><use href="#bk-wrench"></use></svg><span><strong>Factory-level fitment</strong><small>Precision installation &amp; alignment</small></span></div>
+          <div><svg width="34" height="34" aria-hidden="true"><use href="#bk-shield"></use></svg><span><strong>Transparent pricing</strong><small>No hidden costs</small></span></div>
+          <div><svg width="34" height="34" aria-hidden="true"><use href="#bk-wrench"></use></svg><span><strong>Complex kits welcome</strong><small>Get a custom quote for specialist work</small></span></div>
+        </div>
       </div>
     </section>
     <section class="section mist work-section">

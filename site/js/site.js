@@ -5,6 +5,12 @@ if (toggle && nav) {
     const open = nav.classList.toggle("open");
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
   });
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    });
+  });
 }
 
 const workGalleries = document.querySelectorAll("[data-work-gallery]");
