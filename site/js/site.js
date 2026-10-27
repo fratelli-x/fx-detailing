@@ -122,3 +122,19 @@ if (workGalleries.length) {
     }
   });
 }
+
+const ceramicFaq = document.querySelector(".ceramic-faq");
+if (ceramicFaq) {
+  ceramicFaq.querySelectorAll(".faq-question").forEach((button) => {
+    button.addEventListener("click", () => {
+      const item = button.closest(".faq-item");
+      const willOpen = !item.classList.contains("open");
+      ceramicFaq.querySelectorAll(".faq-item").forEach((other) => {
+        const open = other === item && willOpen;
+        other.classList.toggle("open", open);
+        const question = other.querySelector(".faq-question");
+        if (question) question.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    });
+  });
+}
