@@ -123,6 +123,76 @@ if (workGalleries.length) {
   });
 }
 
+const galleryCards = document.querySelectorAll(".page-gallery .fx-gallery-card");
+if (galleryCards.length) {
+  const overlay = document.createElement("div");
+  overlay.className = "lightbox";
+  overlay.hidden = true;
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-label", "Enlarged photo");
+
+  const closeBtn = document.createElement("button");
+  closeBtn.type = "button";
+  closeBtn.className = "lightbox-close";
+  closeBtn.setAttribute("aria-label", "Close");
+  closeBtn.textContent = "\u00d7";
+
+  const picture = document.createElement("img");
+  picture.alt = "";
+
+  overlay.append(closeBtn, picture);
+  document.body.append(overlay);
+
+  let openCard = null;
+
+  function closeGallery() {
+    overlay.hidden = true;
+    picture.removeAttribute("src");
+    picture.alt = "";
+    document.body.classList.remove("lightbox-open");
+    const card = openCard;
+    openCard = null;
+    if (card) card.focus();
+  }
+
+  function openGallery(card) {
+    const source = card.querySelector("img");
+    if (!source) return;
+    picture.src = source.currentSrc || source.src;
+    picture.alt = source.alt || "";
+    openCard = card;
+    overlay.hidden = false;
+    document.body.classList.add("lightbox-open");
+  }
+
+  galleryCards.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (!overlay.hidden && openCard === card) closeGallery();
+      else openGallery(card);
+    });
+  });
+
+  picture.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    closeGallery();
+  });
+  closeBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    closeGallery();
+  });
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) closeGallery();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (overlay.hidden || event.key !== "Escape") return;
+    event.preventDefault();
+    closeGallery();
+  });
+}
+
 const ceramicFaq = document.querySelector(".ceramic-faq");
 if (ceramicFaq) {
   ceramicFaq.querySelectorAll(".faq-question").forEach((button) => {
