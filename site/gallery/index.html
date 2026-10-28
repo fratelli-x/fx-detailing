@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="/css/styles.css">
   <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="179aef15-4e8e-481b-9a43-8828aa767789";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
   <!-- Meta Pixel Code -->
@@ -42,6 +42,7 @@
     <symbol id="dx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
     <symbol id="dx-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M4 6h16"/><path d="M4 18h16"/></symbol>
     <symbol id="dx-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="dx-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></symbol>
   </svg>
   <header class="site-header">
     <a class="logo" href="/">
@@ -69,25 +70,72 @@
     </div>
   </header>
   <main>
+    <section class="fx-gallery" id="gallery">
+      <div class="fx-gallery-heading">
+        <div>
+          <p class="kicker">The FX gallery</p>
+          <h1>Portfolio of <strong>excellence.</strong></h1>
+        </div>
+        <div class="fx-gallery-intro">
+          <p>Luxury vehicles, considered finishes and the detail behind the FX standard. Every project is completed in-house by the same hands from start to finish.</p>
+          <span class="fx-gallery-count">12 <small>featured projects</small></span>
+        </div>
+      </div>
 
-    <header class="page-hero wrap center">
-      <h1>Portfolio of excellence</h1>
-      <p class="gallery-lead">We believe a luxury vehicle should spend its lifetime in showroom condition — not just the day you buy it.</p>
-    </header>
-    <section class="section">
-      <div class="wrap gallery">
-        <img src="/images/gallery/05.jpg" alt="FX Detailing portfolio" width="1200" height="900">
-        <img src="/images/gallery/06.jpg" alt="FX Detailing portfolio" width="1200" height="900">
-        <img src="/images/gallery/07.jpg" alt="FX Detailing portfolio" width="1200" height="900">
-        <img src="/images/gallery/08.jpg" alt="FX Detailing portfolio" width="1200" height="862">
-        <img src="/images/gallery/09.jpg" alt="FX Detailing portfolio" width="1200" height="805">
-        <img src="/images/gallery/10.jpg" alt="FX Detailing portfolio" width="1200" height="533">
-        <img src="/images/gallery/11.jpg" alt="FX Detailing portfolio" width="1200" height="600">
-        <img src="/images/gallery/12.jpg" alt="FX Detailing portfolio" width="1200" height="894">
-        <img src="/images/porsche.jpg" alt="Porsche Carrera GT detailed by FX Detailing" width="1400" height="1227">
-        <img src="/images/revuelto.jpg" alt="Lamborghini Revuelto detailed by FX Detailing" width="1100" height="825">
-        <img src="/images/cayman.jpg" alt="Porsche Cayman with GT4-style wing" width="920" height="518">
-        <img src="/images/sport-classic.jpg" alt="Porsche 911 Sport Classic after ceramic coating" width="920" height="518">
+      <div class="fx-gallery-grid">
+        <a class="fx-gallery-card fx-gallery-card--large" href="/images/gallery/05.jpg">
+          <img src="/images/gallery/05.jpg" alt="FX Detailing portfolio" width="1200" height="900" loading="eager">
+          <span class="fx-gallery-overlay"><small>Portfolio</small><strong>Showroom finish</strong><span class="fx-gallery-arrow" aria-hidden="true"><svg class="fx-ico"><use href="#dx-up"></use></svg></span></span>
+        </a>
+        <a class="fx-gallery-card" href="/images/gallery/06.jpg">
+          <img src="/images/gallery/06.jpg" alt="FX Detailing portfolio" width="1200" height="900" loading="eager">
+          <span class="fx-gallery-overlay"><small>Detailing</small><strong>Precision in every panel</strong><span class="fx-gallery-arrow" aria-hidden="true"><svg class="fx-ico"><use href="#dx-up"></use></svg></span></span>
+        </a>
+        <a class="fx-gallery-card" href="/images/gallery/07.jpg">
+          <img src="/images/gallery/07.jpg" alt="FX Detailing portfolio" width="1200" height="900" loading="eager">
+          <span class="fx-gallery-overlay"><small>Detailing</small><strong>The FX standard</strong><span class="fx-gallery-arrow" aria-hidden="true"><svg class="fx-ico"><use href="#dx-up"></use></svg></span></span>
+        </a>
+        <a class="fx-gallery-card fx-gallery-card--wide" href="/images/gallery/08.jpg">
+          <img src="/images/gallery/08.jpg" alt="FX Detailing portfolio" width="1200" height="862" loading="eager">
+          <span class="fx-gallery-overlay"><small>Protection</small><strong>Finished without compromise</strong><span class="fx-gallery-arrow" aria-hidden="true"><svg class="fx-ico"><use href="#dx-up"></use></svg></span></span>
+        </a>
+        <a class="fx-gallery-card" href="/images/gallery/09.jpg">
+          <img src="/images/gallery/09.jpg" alt="FX Detailing portfolio" width="1200" height="805" loading="lazy">
+          <span class="fx-gallery-overlay"><small>Bodykits</small><strong>Built for the road</strong><span class="fx-gallery-arrow" aria-hidden="true"><svg class="fx-ico"><use href="#dx-up"></use></svg></span></span>
+        </a>
+        <a class="fx-gallery-card" href="/images/porsche.jpg">
+          <img src="/images/porsche.jpg" alt="Porsche Carrera GT detailed by FX Detailing" width="1400" height="1227" loading="lazy">
+          <span class="fx-gallery-overlay"><small>Supercars</small><strong>Porsche Carrera GT</strong><span class="fx-gallery-arrow" aria-hidden="true"><svg class="fx-ico"><use href="#dx-up"></use></svg></span></span>
+        </a>
+        <a class="fx-gallery-card fx-gallery-card--wide" href="/images/revuelto.jpg">
+          <img src="/images/revuelto.jpg" alt="Lamborghini Revuelto detailed by FX Detailing" width="1100" height="825" loading="lazy">
+          <span class="fx-gallery-overlay"><small>Supercars</small><strong>Lamborghini Revuelto</strong><span class="fx-gallery-arrow" aria-hidden="true"><svg class="fx-ico"><use href="#dx-up"></use></svg></span></span>
+        </a>
+        <a class="fx-gallery-card" href="/images/sport-classic.jpg">
+          <img src="/images/sport-classic.jpg" alt="Porsche 911 Sport Classic after ceramic coating" width="920" height="518" loading="lazy">
+          <span class="fx-gallery-overlay"><small>Ceramic protection</small><strong>Porsche 911 Sport Classic</strong><span class="fx-gallery-arrow" aria-hidden="true"><svg class="fx-ico"><use href="#dx-up"></use></svg></span></span>
+        </a>
+        <a class="fx-gallery-card" href="/images/gallery/10.jpg">
+          <img src="/images/gallery/10.jpg" alt="FX Detailing portfolio" width="1200" height="533" loading="lazy">
+          <span class="fx-gallery-overlay"><small>Paint correction</small><strong>A considered finish</strong><span class="fx-gallery-arrow" aria-hidden="true"><svg class="fx-ico"><use href="#dx-up"></use></svg></span></span>
+        </a>
+        <a class="fx-gallery-card fx-gallery-card--wide" href="/images/cayman.jpg">
+          <img src="/images/cayman.jpg" alt="Porsche Cayman with GT4-style wing" width="920" height="518" loading="lazy">
+          <span class="fx-gallery-overlay"><small>Bodykits</small><strong>Cayman GT4 wing</strong><span class="fx-gallery-arrow" aria-hidden="true"><svg class="fx-ico"><use href="#dx-up"></use></svg></span></span>
+        </a>
+        <a class="fx-gallery-card" href="/images/gallery/11.jpg">
+          <img src="/images/gallery/11.jpg" alt="FX Detailing portfolio" width="1200" height="600" loading="lazy">
+          <span class="fx-gallery-overlay"><small>Detailing</small><strong>Attention to detail</strong><span class="fx-gallery-arrow" aria-hidden="true"><svg class="fx-ico"><use href="#dx-up"></use></svg></span></span>
+        </a>
+        <a class="fx-gallery-card" href="/images/gallery/12.jpg">
+          <img src="/images/gallery/12.jpg" alt="FX Detailing portfolio" width="1200" height="894" loading="lazy">
+          <span class="fx-gallery-overlay"><small>Protection</small><strong>Made to last</strong><span class="fx-gallery-arrow" aria-hidden="true"><svg class="fx-ico"><use href="#dx-up"></use></svg></span></span>
+        </a>
+      </div>
+
+      <div class="fx-gallery-footer">
+        <span>Every project is completed in-house. No subcontractors. No shortcuts.</span>
+        <a href="/contact/#enquire">Start your project <svg class="fx-ico" aria-hidden="true"><use href="#dx-up"></use></svg></a>
       </div>
     </section>
   </main>
