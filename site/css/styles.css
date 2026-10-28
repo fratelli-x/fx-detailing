@@ -3288,7 +3288,8 @@ body.lightbox-open { overflow: hidden; }
   }
   .home-intro,
   .home-standard,
-  .home-visit {
+  .home-visit,
+  .page-bodykits .kit-banner + .section + .section {
     padding-left: calc(max(24px, (100% - 1200px) / 2) + 24px);
     padding-right: calc(max(24px, (100% - 1200px) / 2) + 24px);
   }
@@ -3300,6 +3301,12 @@ body.lightbox-open { overflow: hidden; }
     padding-left: 0;
     padding-right: 0;
     box-sizing: border-box;
+  }
+  .home-projects .project span,
+  .home-projects .project h3,
+  .home-projects .project p {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 }
 
