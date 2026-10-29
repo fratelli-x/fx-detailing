@@ -13,7 +13,8 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-  <link rel="preload" as="image" href="/images/hero.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="/images/hero-960.jpg" media="(max-width: 720px)" fetchpriority="high">
+  <link rel="preload" as="image" href="/images/hero.jpg" media="(min-width: 721px)" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
@@ -118,6 +119,7 @@
   <svg class="dx-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <symbol id="dx-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M4 6h16"/><path d="M4 18h16"/></symbol>
     <symbol id="dx-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="dx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
   </svg>
   <header class="site-header">
     <a class="logo" href="/">
@@ -146,10 +148,10 @@
   </header>
 
   <main>
-    <section class="hero" style="background-image: url('/images/hero.jpg')">
+    <section class="hero">
       <div>
         <div class="hero-copy">
-          <h1>Luxury Car Detailing &amp;<br>Bodykit Installation</h1>
+          <h1>Luxury Car Detailing &amp;<br>Bodykit Installation<span class="hero-location">Surrey &amp; London</span></h1>
           <p class="hero-lead">Professional detailing for Luxury vehicle owners in Surrey, West Sussex, London, Kent, Essex, East Sussex and UK nationwide.</p>
         </div>
         <a class="btn" href="/detailing/">Learn more about luxury car detailing</a>
@@ -230,19 +232,19 @@
         <div class="project-grid">
           <a class="project" href="/projects/porsche-cayman-gt4-wing/">
             <img src="/images/cayman.jpg" alt="Guards Red Porsche Cayman with a GT4-style rear wing fitted by FX Detailing" width="920" height="518">
-            <span>4 August 2026</span>
+            <time datetime="2026-08-04">4 August 2026</time>
             <h3>Porsche Cayman GT4 wing installation</h3>
             <p>A smarter colour-coded wing, fitted so it looks like it belonged on the car from day one.</p>
           </a>
           <a class="project" href="/projects/porsche-911-sport-classic/">
             <img src="/images/sport-classic.jpg" alt="Porsche 911 Sport Classic after paint correction and ceramic coating" width="920" height="518">
-            <span>30 July 2026</span>
+            <time datetime="2026-07-30">30 July 2026</time>
             <h3>Porsche 911 Sport Classic paint correction</h3>
             <p>Three-stage correction and a five-year Gtechniq ceramic coating for a collector car.</p>
           </a>
           <a class="project" href="/projects/ford-ranger-wide-arch-flares/">
             <img src="/images/ranger.jpg" alt="Ford Ranger fitted with premium wide arch flares" width="920" height="518">
-            <span>22 July 2026</span>
+            <time datetime="2026-07-22">22 July 2026</time>
             <h3>Ford Ranger wide arch flare installation</h3>
             <p>A wider stance with factory-inspired fitment, prepared and aligned before it was fixed.</p>
           </a>
@@ -264,9 +266,6 @@
       </div>
     </section>
     <section class="dx-enquire" id="enquire">
-      <svg class="dx-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <symbol id="dx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
-      </svg>
       <div class="dx-enquire-card">
         <div class="dx-enquire-head">
           <span class="dx-enquire-rule"></span>
