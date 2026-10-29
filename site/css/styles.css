@@ -4420,3 +4420,853 @@ body.lightbox-open { overflow: hidden; }
     margin-right: auto;
   }
 }
+
+/* Contact page studio section. Scoped under .contact-page so other pages keep their own styles. */
+.contact-page .contact-studio {
+  min-width: 0;
+  padding: 0;
+  color: #fff;
+  background: #0b0c0c;
+  font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+.contact-page .contact-layout {
+  width: 100%;
+  min-height: min(730px, calc(100vh - 132px));
+  display: grid;
+  grid-template-columns: minmax(0, 51%) minmax(0, 49%);
+  background: #111313;
+  overflow: hidden;
+}
+.contact-page .contact-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  padding: clamp(28px, 4vw, 64px);
+  background: #111313;
+  position: relative;
+  z-index: 1;
+}
+.contact-page .contact-panel-top,
+.contact-page .contact-panel-bottom {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: #777b7b;
+  font: 600 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+.contact-page .contact-index { color: #ed1c25; }
+.contact-page .contact-line { width: 42px; height: 1px; background: #444747; flex: 0 0 auto; }
+.contact-page .contact-heading { padding: 52px 0 38px; min-width: 0; }
+.contact-page .contact-kicker {
+  margin: 0 0 16px;
+  color: #ed1c25;
+  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.contact-page .contact-heading h1 {
+  margin: 0;
+  color: #fff;
+  font: 700 clamp(72px, 8vw, 132px) / 0.78 "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+.contact-page .contact-heading h1 em { color: #ed1c25; font-style: normal; }
+.contact-page .contact-lead {
+  max-width: 350px;
+  margin: 28px 0 0;
+  color: #aeb1b1;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.contact-page .contact-info-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1px;
+  border: 1px solid #303333;
+  background: #303333;
+}
+.contact-page .contact-info-card {
+  min-width: 0;
+  min-height: 104px;
+  padding: 17px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #fff;
+  background: #171919;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.contact-page a.contact-info-card:hover { background: #ed1c25; }
+.contact-page .contact-info-card > svg {
+  display: block;
+  flex: 0 0 auto;
+  max-width: none;
+}
+.contact-page .contact-info-card > svg:first-child { color: #ed1c25; }
+.contact-page a.contact-info-card:hover > svg:first-child { color: #fff; }
+.contact-page .contact-info-card > svg:last-child:not(:first-child) {
+  margin-left: auto;
+  color: #777;
+}
+.contact-page .contact-info-card span {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.contact-page .contact-info-card b {
+  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.contact-page .contact-info-card small {
+  color: #999e9e;
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.contact-page .contact-info-card small a { color: #d8dada; text-decoration: none; transition: color 0.2s; }
+.contact-page .contact-info-card small a:hover { color: #fff; text-decoration: underline; }
+.contact-page a.contact-info-card:hover small,
+.contact-page a.contact-info-card:hover > svg:last-child { color: #fff; }
+.contact-page .contact-dot { width: 4px; height: 4px; border-radius: 50%; background: #ed1c25; flex: 0 0 auto; }
+.contact-page .contact-visual {
+  min-width: 0;
+  min-height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #171919;
+}
+.contact-page .contact-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center 62%;
+  filter: saturate(0.92);
+  transition: transform 0.7s ease;
+}
+.contact-page .contact-visual:hover img { transform: scale(1.035); }
+.contact-page .contact-visual-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 45%, rgba(0, 0, 0, 0.78));
+  pointer-events: none;
+}
+.contact-page .contact-visual-caption {
+  position: absolute;
+  right: 28px;
+  bottom: 25px;
+  left: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+  color: #fff;
+  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+.contact-page .contact-visual-caption strong { color: #ed1c25; font-size: 19px; }
+
+@media (max-width: 1000px) {
+  .contact-page .contact-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .contact-page .contact-panel { padding: 32px; }
+  .contact-page .contact-heading { padding: 42px 0 30px; }
+  .contact-page .contact-heading h1 { font-size: clamp(68px, 9vw, 100px); }
+}
+
+@media (max-width: 720px) {
+  .contact-page .contact-studio { min-height: auto; padding: 0; }
+  .contact-page .contact-layout { display: flex; flex-direction: column; min-height: auto; }
+  .contact-page .contact-panel { padding: 28px 20px 24px; }
+  .contact-page .contact-heading { padding: 64px 0 38px; }
+  .contact-page .contact-heading h1 { font-size: 82px; }
+  .contact-page .contact-lead { font-size: 13px; }
+  .contact-page .contact-info-grid { grid-template-columns: minmax(0, 1fr); }
+  .contact-page .contact-info-card { min-height: 88px; }
+  .contact-page .contact-panel-bottom { padding-top: 30px; }
+  .contact-page .contact-visual { height: 390px; min-height: 390px; }
+}
+
+@media (min-width: 721px) {
+  .contact-page .contact-studio {
+    width: min(1200px, calc(100% - 48px));
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 32px 0;
+    box-sizing: border-box;
+  }
+}
+
+/* About page. Scoped under .page-about so other pages keep their own styles. */
+body.page-about { background: #0b0c0c; overflow-x: clip; }
+.page-about .about-main {
+  background: #0b0c0c;
+  color: #fff;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  min-width: 0;
+  overflow-x: clip;
+}
+.page-about .about-main h1,
+.page-about .about-main h2,
+.page-about .about-main h3 {
+  margin: 0;
+  color: #fff;
+  font-family: "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 0.9;
+  text-align: left;
+  text-transform: uppercase;
+}
+.page-about .about-main h3 {
+  font-size: 22px;
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+.page-about .about-main p {
+  margin: 0;
+  color: #aeb1b1;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.page-about .about-main em { color: #ed1c25; font-style: normal; }
+.page-about .about-main strong { font-weight: 700; }
+.page-about .about-kicker {
+  margin: 0 0 16px;
+  color: #ed1c25;
+  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 3px;
+  line-height: 1.2;
+  text-align: left;
+  text-transform: uppercase;
+}
+.page-about .about-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 32px;
+  padding: 14px 20px;
+  color: #fff;
+  background: #ed1c25;
+  text-decoration: none;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.2s;
+}
+.page-about .about-cta:hover { background: #c91018; color: #fff; transform: translateY(-2px); }
+.page-about .about-ico { width: 18px; height: 18px; flex: 0 0 auto; display: block; }
+.page-about .about-cta .about-ico { width: 16px; height: 16px; }
+
+.page-about .about-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  padding: clamp(24px, 3.5vw, 48px) 24px;
+}
+.page-about .about-hero-copy { min-width: 0; }
+.page-about .about-hero h1 {
+  max-width: 100%;
+  font-size: clamp(64px, 6.8vw, 100px);
+  overflow-wrap: break-word;
+}
+.page-about .about-main .about-lead {
+  margin-top: 28px;
+  max-width: 480px;
+  font-size: 17px;
+  color: #d8dada;
+}
+.page-about .about-hero-figure {
+  position: relative;
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  background: #111313;
+}
+.page-about .about-main img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.page-about .about-feature-image { justify-content: center; }
+.page-about .about-feature-image img {
+  width: 66.67%;
+  max-width: 100%;
+  height: auto;
+}
+.page-about .about-hero-figure img,
+.page-about .about-feature-image img,
+.page-about .about-studio-image img {
+  transition: transform 0.7s ease;
+}
+.page-about .about-hero-figure:hover img,
+.page-about .about-feature-image:hover img,
+.page-about .about-studio-image:hover img { transform: scale(1.03); }
+.page-about .about-hero-figure figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px 24px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  color: #fff;
+  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+.page-about .about-hero-figure figcaption span:last-child { color: #ed1c25; }
+
+.page-about .about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid #2a2d2d;
+  border-bottom: 1px solid #2a2d2d;
+}
+.page-about .about-stat {
+  min-width: 0;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-right: 1px solid #2a2d2d;
+}
+.page-about .about-stat:last-child { border-right: 0; }
+.page-about .about-stat strong {
+  color: #fff;
+  font-family: "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.5px;
+  flex: 0 0 auto;
+}
+.page-about .about-stat span { color: #8d9191; font-size: 16px; line-height: 1.5; }
+
+.page-about .about-philosophy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  padding: clamp(32px, 4vw, 56px) 24px;
+}
+.page-about .about-section-head { min-width: 0; }
+.page-about .about-section-head h2,
+.page-about .about-feature-copy h2,
+.page-about .about-studio-copy h2 { overflow-wrap: break-word; }
+.page-about .about-section-head h2 { font-size: clamp(48px, 5.5vw, 84px); }
+.page-about .about-philosophy-body {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+  padding-top: 8px;
+}
+.page-about .about-main .about-philosophy-body p:first-child {
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.page-about .about-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: stretch;
+  background: #111313;
+}
+.page-about .about-feature-image,
+.page-about .about-studio-image {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: #111313;
+}
+.page-about .about-feature-copy,
+.page-about .about-studio-copy {
+  min-width: 0;
+  padding: clamp(20px, 2.5vw, 40px) clamp(24px, 4vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.page-about .about-feature-copy h2 { font-size: clamp(40px, 4.2vw, 64px); margin-bottom: 24px; }
+.page-about .about-feature-copy p:last-child { max-width: 440px; }
+
+.page-about .about-pillars { padding: clamp(32px, 4vw, 56px) 24px; }
+.page-about .about-pillars > h2.about-kicker {
+  margin: 0 0 16px;
+  color: #aeb1b1;
+  font-family: "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 1.7;
+  text-align: left;
+  text-transform: uppercase;
+}
+.page-about .about-pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 20px;
+  background: #2a2d2d;
+  border: 1px solid #2a2d2d;
+}
+.page-about .about-pillar {
+  min-width: 0;
+  padding: 40px 32px;
+  background: #0b0c0c;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: background 0.25s;
+}
+.page-about .about-pillar:hover { background: #151717; }
+.page-about .about-pillar-number {
+  color: #ed1c25;
+  font: 700 14px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 2px;
+}
+.page-about .about-pillar h3 { font-size: 26px; }
+
+.page-about .about-services { padding: 0 24px clamp(32px, 4vw, 56px); }
+.page-about .about-service-list {
+  list-style: none;
+  margin: 48px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: #2a2d2d;
+  border: 1px solid #2a2d2d;
+}
+.page-about .about-service-list li {
+  min-width: 0;
+  padding: 16px;
+  background: #0b0c0c;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.25s;
+}
+.page-about .about-service-list li:hover { background: #151717; }
+.page-about .about-service-list h3 { font-size: 20px; }
+
+.page-about .about-studio {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: stretch;
+  background: #111313;
+  padding: 0;
+}
+.page-about .about-studio-copy { gap: 6px; }
+.page-about .about-studio-copy h2 { font-size: clamp(44px, 4.5vw, 72px); margin-bottom: 24px; }
+.page-about .about-studio-copy > p { max-width: 460px; }
+.page-about .about-studio-details {
+  list-style: none;
+  margin: 36px 0 0;
+  padding: 24px 0 0;
+  border-top: 1px solid #2a2d2d;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: none;
+}
+.page-about .about-studio-details li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #d8dada;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.page-about .about-studio-details .about-ico { color: #ed1c25; margin-top: 2px; }
+.page-about .about-studio-details a { color: #d8dada; text-decoration: none; transition: color 0.2s; }
+.page-about .about-studio-details a:hover { color: #ed1c25; }
+
+@media (max-width: 1000px) {
+  .page-about .about-hero,
+  .page-about .about-philosophy { grid-template-columns: minmax(0, 1fr); }
+  .page-about .about-pillar-grid,
+  .page-about .about-service-list { grid-template-columns: minmax(0, 1fr); }
+  .page-about .about-feature,
+  .page-about .about-studio { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .page-about .about-stats { grid-template-columns: minmax(0, 1fr); }
+  .page-about .about-stat {
+    border-right: 0;
+    border-bottom: 1px solid #2a2d2d;
+    padding: 28px 20px;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .page-about .about-stat:last-child { border-bottom: 0; }
+  .page-about .about-hero { padding: 24px 20px; }
+  .page-about .about-philosophy,
+  .page-about .about-pillars { padding-left: 20px; padding-right: 20px; }
+  .page-about .about-services { padding-left: 20px; padding-right: 20px; }
+  .page-about .about-hero h1 { font-size: clamp(56px, 17vw, 68px); }
+  .page-about .about-feature-copy,
+  .page-about .about-studio-copy { padding: 18px 20px; }
+}
+
+@media (min-width: 721px) {
+  body.page-about { background: #2a2a2a; }
+  .page-about .about-main {
+    width: min(1200px, calc(100% - 48px));
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-about .about-pillar {
+    padding: 20px 32px;
+    gap: 9px;
+  }
+}
+
+/* Reviews page. Scoped under .page-reviews so other pages keep their own styles. */
+body.page-reviews { background: #0b0c0c; overflow-x: clip; }
+.page-reviews .reviews-main {
+  background: #0b0c0c;
+  color: #fff;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  min-width: 0;
+  overflow-x: clip;
+}
+.page-reviews .reviews-main h1,
+.page-reviews .reviews-main h2,
+.page-reviews .reviews-main strong {
+  margin: 0;
+  color: #fff;
+  font-family: "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1.02;
+  text-align: left;
+  text-transform: uppercase;
+}
+.page-reviews .reviews-main p {
+  margin: 0;
+  color: #aeb1b1;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.page-reviews .reviews-main em { color: #ed1c25; font-style: normal; }
+.page-reviews .reviews-kicker {
+  margin: 0 0 16px;
+  color: #ed1c25;
+  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 3px;
+  line-height: 1.2;
+  text-align: left;
+  text-transform: uppercase;
+}
+.page-reviews .reviews-hero,
+.page-reviews .reviews-featured,
+.page-reviews .reviews-grid-section,
+.page-reviews .reviews-contact {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+.page-reviews .reviews-hero { padding: clamp(28px, 4vw, 52px) 24px clamp(20px, 2.5vw, 32px); }
+.page-reviews .reviews-hero h1 {
+  font-size: clamp(56px, 7vw, 104px);
+  overflow-wrap: break-word;
+}
+.page-reviews .reviews-main .reviews-lead {
+  max-width: 520px;
+  margin-top: 12px;
+  color: #d8dada;
+  font-size: 17px;
+}
+.page-reviews .reviews-featured { padding: clamp(20px, 2.5vw, 32px) 24px; }
+.page-reviews .reviews-featured h2 {
+  margin-bottom: 20px;
+  font-size: clamp(40px, 5vw, 72px);
+  overflow-wrap: break-word;
+}
+.page-reviews .reviews-featured-frame { overflow: hidden; }
+.page-reviews .reviews-featured-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #2a2d2d;
+  transition: transform 0.6s ease;
+}
+.page-reviews .reviews-featured-shot:hover { transform: scale(1.01); }
+.page-reviews .reviews-featured-plain { display: none; margin: 0; }
+.page-reviews .reviews-grid-section { padding: clamp(20px, 2.5vw, 32px) 24px; min-width: 0; }
+.page-reviews .reviews-scroll-nav { display: flex; gap: 8px; margin: 0 0 16px; }
+.page-reviews .reviews-scroll-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #2a2d2d;
+  background: #151717;
+  color: #fff;
+  cursor: pointer;
+  font: 700 24px/1 "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+}
+.page-reviews .reviews-scroll-btn:hover { background: #ed1c25; border-color: #ed1c25; }
+.page-reviews .reviews-scroll-btn:focus-visible { outline: 2px solid #ed1c25; outline-offset: 3px; }
+.page-reviews .reviews-scroller {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+}
+.page-reviews .reviews-scroller:focus-visible { outline: 2px solid #ed1c25; outline-offset: 4px; }
+.page-reviews .reviews-card {
+  flex: 0 0 min(340px, 82%);
+  width: min(340px, 82%);
+  height: auto;
+  min-height: 0;
+  align-self: flex-start;
+  min-width: 0;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #0b0c0c;
+  border: 1px solid #2a2d2d;
+  transition: background 0.25s;
+}
+.page-reviews .reviews-card:hover { background: #151717; }
+.page-reviews .reviews-stars { display: flex; gap: 3px; color: #ed1c25; }
+.page-reviews .reviews-stars svg { width: 14px; height: 14px; display: block; flex: 0 0 auto; }
+.page-reviews .reviews-main .reviews-card-text {
+  flex: 0 0 auto;
+  color: #aeb1b1;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+.page-reviews .reviews-card-text.is-clamped {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+}
+.page-reviews .reviews-toggle {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  min-height: 28px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #ed1c25;
+  cursor: pointer;
+  font: 700 22px/1 "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.page-reviews .reviews-toggle:hover { color: #fff; }
+.page-reviews .reviews-toggle:focus-visible { outline: 2px solid #ed1c25; outline-offset: 4px; }
+.page-reviews .reviews-card-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 0;
+  padding-top: 12px;
+  border-top: 1px solid #2a2d2d;
+}
+.page-reviews .reviews-card-author strong {
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+.page-reviews .reviews-avatar {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  object-fit: cover;
+  border-radius: 50%;
+  color: #fff;
+  background: #ed1c25;
+  font: 700 14px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 1px;
+}
+.page-reviews .reviews-card-source { color: #8d9191; font-size: 12px; line-height: 1.4; }
+.page-reviews .reviews-card-author > div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.page-reviews .reviews-card-time { color: #8d9191; font-size: 12px; line-height: 1.4; }
+.page-reviews .reviews-grid-heading { margin-bottom: 14px; }
+.page-reviews .reviews-grid-heading h2 {
+  font-size: clamp(36px, 4.5vw, 60px);
+  overflow-wrap: break-word;
+}
+.page-reviews .google-score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 16px;
+  text-align: left;
+  color: #fff;
+  text-decoration: none;
+}
+.page-reviews .google-score strong {
+  display: block;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+}
+.page-reviews .google-score .stars { color: #f5b400; letter-spacing: 2px; font-size: 1.15rem; }
+.page-reviews .google-score small { display: block; color: #d8dada; font-size: 14px; }
+.page-reviews .reviews-write-row { margin: 14px 0 0; }
+.page-reviews .reviews-write {
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  background: #ed1c25;
+  text-decoration: none;
+  padding: 14px 20px;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+.page-reviews .reviews-write:hover { background: #c91018; color: #fff; }
+.page-reviews .reviews-contact {
+  padding: clamp(28px, 3.5vw, 48px) 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  border-top: 1px solid #2a2d2d;
+}
+.page-reviews .reviews-contact h2 {
+  font-size: clamp(40px, 4.5vw, 64px);
+  overflow-wrap: break-word;
+}
+.page-reviews .reviews-contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.page-reviews .reviews-contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  color: #d8dada;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.page-reviews .reviews-contact-list svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  display: block;
+  color: #ed1c25;
+  margin-top: 2px;
+}
+.page-reviews .reviews-contact-list a { color: #d8dada; text-decoration: none; transition: color 0.2s; }
+.page-reviews .reviews-contact-list a:hover { color: #ed1c25; }
+
+@media (max-width: 720px) {
+  .page-reviews .reviews-hero,
+  .page-reviews .reviews-featured,
+  .page-reviews .reviews-grid-section,
+  .page-reviews .reviews-contact { padding-left: 20px; padding-right: 20px; }
+  .page-reviews .reviews-card { padding: 24px; flex-basis: 86%; width: 86%; height: auto; min-height: 0; }
+  .page-reviews .reviews-contact { grid-template-columns: minmax(0, 1fr); }
+  .page-reviews .reviews-featured-shot { display: none; }
+  .page-reviews .reviews-featured-plain { display: block; margin: 0; padding: 0; }
+  .page-reviews .reviews-featured-plain img {
+    width: 144px;
+    max-width: 144px;
+    height: 144px;
+    object-fit: cover;
+    object-position: center 30%;
+    border: 0;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+  }
+  .page-reviews .reviews-featured-plain .reviews-mclaren {
+    width: 156px;
+    max-width: 70%;
+    height: auto;
+    margin: 20px auto 0;
+    border: 0;
+    border-radius: 0;
+    object-fit: contain;
+  }
+  .page-reviews .reviews-main .reviews-featured-plain p {
+    margin: 0 0 16px;
+    color: #fff;
+    font-size: calc(1.05rem - 1px);
+    line-height: 1.55;
+  }
+  .page-reviews .reviews-featured-plain footer {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: #fff;
+    background: transparent;
+    font-family: "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+    font-weight: 700;
+    font-size: calc(1.2rem - 1px);
+    line-height: 1.2;
+    letter-spacing: 0.03em;
+  }
+}
+
+@media (min-width: 721px) {
+  body.page-reviews { background: #2a2a2a; }
+  .page-reviews .reviews-main {
+    width: 100%;
+    max-width: min(1200px, calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.page-reviews .dx-enquire {
+  min-height: auto;
+  padding-top: 15px;
+  padding-bottom: 12px;
+}

@@ -208,3 +208,62 @@ if (ceramicFaq) {
     });
   });
 }
+
+const reviewTexts = document.querySelectorAll(".page-reviews .reviews-card-text");
+if (reviewTexts.length) {
+  const reviewToggles = new WeakMap();
+
+  function longerThanFourLines(text) {
+    const wasClamped = text.classList.contains("is-clamped");
+    if (wasClamped) text.classList.remove("is-clamped");
+    const lineHeight = parseFloat(getComputedStyle(text).lineHeight);
+    const height = text.scrollHeight;
+    if (wasClamped) text.classList.add("is-clamped");
+    return lineHeight > 0 && height > lineHeight * 4 + 1;
+  }
+
+  function setReviewOpen(text, button, open) {
+    text.classList.toggle("is-clamped", !open);
+    button.setAttribute("aria-expanded", open ? "true" : "false");
+    button.textContent = open ? "\u2212" : "+";
+    button.setAttribute("aria-label", open ? "Collapse review" : "Expand review");
+  }
+
+  function syncReview(text, keepOpen) {
+    const long = longerThanFourLines(text);
+    let button = reviewToggles.get(text);
+    if (!long) {
+      text.classList.remove("is-clamped");
+      if (button) {
+        button.remove();
+        reviewToggles.delete(text);
+      }
+      return;
+    }
+    if (!button) {
+      button = document.createElement("button");
+      button.type = "button";
+      button.className = "reviews-toggle";
+      button.addEventListener("click", () => {
+        setReviewOpen(text, button, button.getAttribute("aria-expanded") !== "true");
+      });
+      text.after(button);
+      reviewToggles.set(text, button);
+    }
+    setReviewOpen(text, button, Boolean(keepOpen));
+  }
+
+  reviewTexts.forEach((text) => syncReview(text, false));
+
+  let reviewResizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(reviewResizeTimer);
+    reviewResizeTimer = setTimeout(() => {
+      reviewTexts.forEach((text) => {
+        const button = reviewToggles.get(text);
+        const open = button && button.getAttribute("aria-expanded") === "true";
+        syncReview(text, open);
+      });
+    }, 150);
+  });
+}
