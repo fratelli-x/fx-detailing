@@ -2324,21 +2324,25 @@ body.lightbox-open { overflow: hidden; }
     flex-direction: column;
     gap: 13px;
   }
-  .page-detailing .dx-photo {
+  .page-detailing .dx-photo,
+  .page-detailing .dx-panel-detail .dx-photo {
     width: 100%;
     max-width: none;
-    height: 142px;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
     align-self: stretch;
+    overflow: visible;
+    background: transparent;
   }
-  .page-detailing .dx-photo img {
+  .page-detailing .dx-photo img,
+  .page-detailing .dx-panel-detail .dx-photo img {
     width: 100%;
     max-width: none;
-    height: 100%;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
   }
   .page-detailing .dx-copy { padding: 0 3px; }
