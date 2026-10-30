@@ -267,3 +267,187 @@ if (reviewTexts.length) {
     }, 150);
   });
 }
+
+(function () {
+  const PIXEL_ID = "2042805043235208";
+  const CONSENT_KEY = "fxd-meta-consent";
+  const PENDING_KEY = "fxd-lead-pending";
+  const MAX_AGE_MS = 3 * 60 * 1000;
+
+  function isThanksPage() {
+    const path = location.pathname.replace(/\/index\.html$/, "");
+    return /\/thanks\/?$/.test(path);
+  }
+
+  function readConsent() {
+    try {
+      return localStorage.getItem(CONSENT_KEY);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeConsent(value) {
+    try {
+      localStorage.setItem(CONSENT_KEY, value);
+    } catch (error) {
+      /* Private browsing can block storage. The choice still applies to this page. */
+    }
+  }
+
+  function readPending() {
+    try {
+      const raw = sessionStorage.getItem(PENDING_KEY);
+      if (!raw) return null;
+      const data = JSON.parse(raw);
+      if (!data || typeof data.eventId !== "string" || typeof data.form !== "string" || typeof data.at !== "number") return null;
+      if (Date.now() - data.at > MAX_AGE_MS) return null;
+      return data;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function clearPending() {
+    try {
+      sessionStorage.removeItem(PENDING_KEY);
+    } catch (error) {
+      /* Ignore storage failures. A missing token simply does not count a lead. */
+    }
+  }
+
+  function navigationType() {
+    const nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+    return nav && nav.type ? nav.type : "navigate";
+  }
+
+  function createEventId() {
+    if (window.crypto && typeof crypto.randomUUID === "function") return crypto.randomUUID();
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (character) => {
+      const random = Math.random() * 16 | 0;
+      const value = character === "x" ? random : (random & 0x3) | 0x8;
+      return value.toString(16);
+    });
+  }
+
+  function savePending(record) {
+    try {
+      sessionStorage.setItem(PENDING_KEY, JSON.stringify(record));
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  // The token is written only after Netlify accepts the form, then read once on the thank-you page.
+  let pendingLead = null;
+  if (isThanksPage()) {
+    if (navigationType() === "navigate") pendingLead = readPending();
+    clearPending();
+  } else {
+    clearPending();
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted) clearPending();
+    });
+  }
+
+  function showFormError(form) {
+    const note = form.querySelector(".dx-form-note");
+    if (!note) return;
+    note.textContent = "We couldn’t send that. Please try again, or call 07548 703902.";
+  }
+
+  document.querySelectorAll("form[data-netlify='true']").forEach((form) => {
+    form.addEventListener("submit", (event) => {
+      const trap = form.querySelector("[name='bot-field']");
+      if (trap && trap.value) return;
+      if (!window.fetch || !window.FormData || !window.URLSearchParams) return;
+
+      event.preventDefault();
+      if (form.getAttribute("data-submitting") === "true") return;
+      form.setAttribute("data-submitting", "true");
+
+      const record = {
+        eventId: createEventId(),
+        form: form.getAttribute("name") || "enquiry",
+        at: Date.now()
+      };
+      const body = new URLSearchParams(new FormData(form));
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString()
+      }).then((response) => {
+        if (!response.ok) throw new Error("rejected");
+        savePending(record);
+        window.location.assign("/thanks/");
+      }).catch(() => {
+        form.removeAttribute("data-submitting");
+        showFormError(form);
+      });
+    });
+  });
+
+  let pixelStarted = false;
+
+  function startPixel() {
+    if (pixelStarted) return;
+    pixelStarted = true;
+
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = !0;
+      n.version = "2.0";
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = !0;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+
+    window.fbq("init", PIXEL_ID);
+    window.fbq("track", "PageView");
+
+    if (!pendingLead) return;
+    const lead = pendingLead;
+    pendingLead = null;
+    window.fbq("track", "Lead", { content_name: lead.form }, { eventID: lead.eventId });
+  }
+
+  function removeBanner() {
+    const banner = document.querySelector(".fx-consent");
+    if (banner) banner.remove();
+  }
+
+  function showBanner() {
+    if (document.querySelector(".fx-consent")) return;
+    const banner = document.createElement("div");
+    banner.className = "fx-consent";
+    banner.setAttribute("role", "dialog");
+    banner.setAttribute("aria-label", "Cookie choices");
+    banner.innerHTML = "<p>We use a Meta cookie to measure which adverts lead to enquiries. The site works if you reject this.</p><div class=\"fx-consent-actions\"><button type=\"button\" class=\"fx-consent-reject\">Reject</button><button type=\"button\" class=\"fx-consent-accept\">Accept</button></div>";
+    banner.querySelector(".fx-consent-reject").addEventListener("click", () => {
+      writeConsent("rejected");
+      pendingLead = null;
+      removeBanner();
+    });
+    banner.querySelector(".fx-consent-accept").addEventListener("click", () => {
+      writeConsent("accepted");
+      removeBanner();
+      startPixel();
+    });
+    document.body.appendChild(banner);
+  }
+
+  const consent = readConsent();
+  if (consent === "accepted") startPixel();
+  else if (consent === "rejected") pendingLead = null;
+  else showBanner();
+})();
