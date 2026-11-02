@@ -42,8 +42,60 @@ function json(statusCode, body) {
   };
 }
 
+const PAGE_EVENTS = {
+  LeadHomepage: { label: "Homepage", path: "/" },
+  LeadContact: { label: "Contact", path: "/contact/" },
+  LeadReviews: { label: "Reviews", path: "/reviews/" },
+  LeadCeramic: { label: "Ceramic", path: "/ceramic/" },
+  LeadDetailing: { label: "Detailing", path: "/detailing/" },
+  LeadBodykits: { label: "Bodykits", path: "/bodykits/" }
+};
+
+const FORM_NAMES = { enquiry: true, ceramic: true, "detailing-booking": true, bodykits: true };
+
+function eventSourceUrl(value) {
+  return typeof value === "string" && value.startsWith("https://www.fxdetailing.co.uk")
+    ? value.slice(0, 500)
+    : "https://www.fxdetailing.co.uk/";
+}
+
+function buildLeadEvents(payload, userData) {
+  const page = PAGE_EVENTS[payload.pageEvent];
+  const customData = {
+    content_name: page ? page.label : "Enquiry",
+    source_page: page ? page.path : "/"
+  };
+  if (FORM_NAMES[payload.contentCategory]) customData.content_category = payload.contentCategory;
+
+  const source = eventSourceUrl(payload.eventSourceUrl);
+  const eventTime = Math.floor(Date.now() / 1000);
+  const lead = {
+    event_name: "Lead",
+    event_time: eventTime,
+    event_id: payload.eventId,
+    action_source: "website",
+    event_source_url: source,
+    user_data: userData,
+    custom_data: customData
+  };
+  if (!page) return [lead];
+  return [
+    lead,
+    {
+      event_name: payload.pageEvent,
+      event_time: eventTime,
+      event_id: payload.eventId,
+      action_source: "website",
+      event_source_url: source,
+      user_data: userData,
+      custom_data: customData
+    }
+  ];
+}
+
 exports.hashData = hashData;
 exports.normalizePhone = normalizePhone;
+exports.buildLeadEvents = buildLeadEvents;
 
 exports.handler = async function (event) {
   if (event.httpMethod !== "POST") {
@@ -89,18 +141,7 @@ exports.handler = async function (event) {
   if (userAgent) userData.client_user_agent = userAgent;
 
   const capiData = {
-    data: [
-      {
-        event_name: "Lead",
-        event_time: Math.floor(Date.now() / 1000),
-        event_id: payload.eventId,
-        action_source: "website",
-        event_source_url: typeof payload.eventSourceUrl === "string" && payload.eventSourceUrl.startsWith("https://www.fxdetailing.co.uk")
-          ? payload.eventSourceUrl.slice(0, 500)
-          : "https://www.fxdetailing.co.uk/",
-        user_data: userData
-      }
-    ]
+    data: buildLeadEvents(payload, userData)
   };
 
   if (process.env.META_TEST_EVENT_CODE) {

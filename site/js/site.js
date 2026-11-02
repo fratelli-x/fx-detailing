@@ -273,6 +273,33 @@ if (reviewTexts.length) {
   const CONSENT_KEY = "fxd-meta-consent";
   const PENDING_KEY = "fxd-lead-pending";
   const MAX_AGE_MS = 3 * 60 * 1000;
+  const PAGE_EVENTS = {
+    "/": { label: "Homepage", event: "LeadHomepage" },
+    "/contact/": { label: "Contact", event: "LeadContact" },
+    "/reviews/": { label: "Reviews", event: "LeadReviews" },
+    "/ceramic/": { label: "Ceramic", event: "LeadCeramic" },
+    "/detailing/": { label: "Detailing", event: "LeadDetailing" },
+    "/bodykits/": { label: "Bodykits", event: "LeadBodykits" }
+  };
+  const FORM_NAMES = { enquiry: true, ceramic: true, "detailing-booking": true, bodykits: true };
+
+  function sourcePage() {
+    let path = location.pathname.replace(/\/index\.html$/, "/");
+    if (path !== "/" && !path.endsWith("/")) path += "/";
+    const page = PAGE_EVENTS[path];
+    if (!page) return null;
+    return { path: path, label: page.label, event: page.event };
+  }
+
+  function pageByEvent(name) {
+    const paths = Object.keys(PAGE_EVENTS);
+    for (let i = 0; i < paths.length; i++) {
+      if (PAGE_EVENTS[paths[i]].event === name) {
+        return { path: paths[i], label: PAGE_EVENTS[paths[i]].label, event: name };
+      }
+    }
+    return null;
+  }
 
   function isThanksPage() {
     const path = location.pathname.replace(/\/index\.html$/, "");
@@ -369,6 +396,8 @@ if (reviewTexts.length) {
       eventName: "Lead",
       eventId: record.eventId,
       eventSourceUrl: location.href,
+      pageEvent: record.pageEvent,
+      contentCategory: record.form,
       email: data.get("email") || "",
       phone: data.get("phone") || "",
       firstName: data.get("first-name") || "",
@@ -398,9 +427,14 @@ if (reviewTexts.length) {
       if (form.getAttribute("data-submitting") === "true") return;
       form.setAttribute("data-submitting", "true");
 
+      const source = sourcePage();
+      const formName = form.getAttribute("name") || "enquiry";
       const record = {
         eventId: createEventId(),
-        form: form.getAttribute("name") || "enquiry",
+        form: FORM_NAMES[formName] ? formName : "enquiry",
+        page: source ? source.path : "",
+        pageLabel: source ? source.label : "",
+        pageEvent: source ? source.event : "",
         at: Date.now()
       };
       const body = new URLSearchParams(new FormData(form));
@@ -451,7 +485,15 @@ if (reviewTexts.length) {
     if (!pendingLead) return;
     const lead = pendingLead;
     pendingLead = null;
-    window.fbq("track", "Lead", { content_name: lead.form }, { eventID: lead.eventId });
+    const page = pageByEvent(lead.pageEvent);
+    const formName = FORM_NAMES[lead.form] ? lead.form : "enquiry";
+    const params = {
+      content_name: page ? page.label : formName,
+      content_category: formName
+    };
+    if (page) params.source_page = page.path;
+    window.fbq("track", "Lead", params, { eventID: lead.eventId });
+    if (page) window.fbq("trackCustom", page.event, params, { eventID: lead.eventId });
   }
 
   function removeBanner() {
