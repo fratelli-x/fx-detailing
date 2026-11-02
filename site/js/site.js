@@ -357,6 +357,37 @@ if (reviewTexts.length) {
     note.textContent = "We couldn’t send that. Please try again, or call 07548 703902.";
   }
 
+  function cookieValue(name) {
+    const match = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+    return match ? decodeURIComponent(match[1]) : "";
+  }
+
+  function sendServerLead(form, record) {
+    if (readConsent() !== "accepted") return Promise.resolve();
+    const data = new FormData(form);
+    const payload = {
+      eventName: "Lead",
+      eventId: record.eventId,
+      eventSourceUrl: location.href,
+      email: data.get("email") || "",
+      phone: data.get("phone") || "",
+      firstName: data.get("first-name") || "",
+      lastName: data.get("last-name") || ""
+    };
+    const fbp = cookieValue("_fbp");
+    const fbc = cookieValue("_fbc");
+    if (fbp) payload.fbp = fbp;
+    if (fbc) payload.fbc = fbc;
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true
+    };
+    if (typeof AbortSignal !== "undefined" && AbortSignal.timeout) options.signal = AbortSignal.timeout(2500);
+    return fetch("/.netlify/functions/meta-capi", options).catch(() => {});
+  }
+
   document.querySelectorAll("form[data-netlify='true']").forEach((form) => {
     form.addEventListener("submit", (event) => {
       const trap = form.querySelector("[name='bot-field']");
@@ -381,6 +412,8 @@ if (reviewTexts.length) {
       }).then((response) => {
         if (!response.ok) throw new Error("rejected");
         savePending(record);
+        return sendServerLead(form, record);
+      }).then(() => {
         window.location.assign("/thanks/");
       }).catch(() => {
         form.removeAttribute("data-submitting");
