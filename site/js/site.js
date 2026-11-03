@@ -417,18 +417,30 @@ if (reviewTexts.length) {
     return fetch("/.netlify/functions/meta-capi", options).catch(() => {});
   }
 
-  document.querySelectorAll("form[data-netlify='true']").forEach((form) => {
+  // Netlify removes data-netlify from the published HTML and leaves the form name.
+  // Matching only data-netlify let the browser post straight to /thanks/, so the
+  // thank-you page loaded with no lead token.
+  function isEnquiryForm(form) {
+    const name = form.getAttribute("name") || "";
+    if (FORM_NAMES[name]) return true;
+    const hidden = form.querySelector("input[name='form-name']");
+    return !!(hidden && FORM_NAMES[hidden.value]);
+  }
+
+  Array.prototype.forEach.call(document.forms, (form) => {
+    if (!isEnquiryForm(form)) return;
     form.addEventListener("submit", (event) => {
-      const trap = form.querySelector("[name='bot-field']");
-      if (trap && trap.value) return;
       if (!window.fetch || !window.FormData || !window.URLSearchParams) return;
 
       event.preventDefault();
+      const trap = form.querySelector("[name='bot-field']");
+      if (trap && trap.value) return;
       if (form.getAttribute("data-submitting") === "true") return;
       form.setAttribute("data-submitting", "true");
 
       const source = sourcePage();
-      const formName = form.getAttribute("name") || "enquiry";
+      const named = form.querySelector("input[name='form-name']");
+      const formName = form.getAttribute("name") || (named && named.value) || "enquiry";
       const record = {
         eventId: createEventId(),
         form: FORM_NAMES[formName] ? formName : "enquiry",

@@ -901,9 +901,9 @@ button { font: inherit; cursor: pointer; }
   .page-gallery .fx-gallery-card--large { grid-row: span 2; }
   .page-gallery .fx-gallery-overlay { right: 10px; bottom: 10px; left: 10px; gap: 3px; }
   .page-gallery .fx-gallery-overlay strong { font-size: 19px; }
-  .page-gallery .fx-gallery-overlay small { font-size: 8px; letter-spacing: 1.2px; }
+  .page-gallery .fx-gallery-overlay small { font-size: 10px; letter-spacing: 1.2px; }
   .page-gallery .fx-gallery-arrow { width: 28px; height: 28px; }
-  .page-gallery .fx-gallery-footer { display: block; line-height: 1.5; font-size: 9px; }
+  .page-gallery .fx-gallery-footer { display: block; line-height: 1.5; font-size: 10px; }
   .page-gallery .fx-gallery-footer a { margin-top: 12px; font-size: 11px; }
 }
 
@@ -2423,7 +2423,7 @@ body.lightbox-open { overflow: hidden; }
     gap: 9px 10px;
   }
   .page-detailing .dx-highlights li {
-    font-size: 9px;
+    font-size: 10px;
     gap: 5px;
     letter-spacing: 0.55px;
   }
@@ -2434,7 +2434,7 @@ body.lightbox-open { overflow: hidden; }
   .page-detailing .dx-services-head h2 { font-size: 41px; }
   .page-detailing .dx-services-head .dx-deck {
     letter-spacing: 2px;
-    font-size: 9px;
+    font-size: 10px;
     margin-top: 5px;
   }
   .page-detailing .dx-tabs {
@@ -2464,7 +2464,7 @@ body.lightbox-open { overflow: hidden; }
   }
   .page-detailing .dx-tabs .dx-ico { width: 20px; height: 20px; }
   .page-detailing .dx-tabs strong { font-size: 11px; }
-  .page-detailing .dx-tabs small { font-size: 8px; margin-top: 0; }
+  .page-detailing .dx-tabs small { font-size: 10px; margin-top: 0; }
   .page-detailing .dx-chevron { display: block; }
   .page-detailing #dx-detail:checked ~ .dx-stage .dx-panel-detail,
   .page-detailing #dx-enhance:checked ~ .dx-stage .dx-panel-enhance,
@@ -2531,7 +2531,7 @@ body.lightbox-open { overflow: hidden; }
   .dx-enquire-card { padding: 23px 17px 18px; border-radius: 10px; }
   .dx-enquire h2 { font-size: 40px; }
   .dx-enquire-head p { font-size: 13px; margin-bottom: 18px; }
-  .dx-steps { gap: 8px; margin-bottom: 22px; font-size: 9px; }
+  .dx-steps { gap: 8px; margin-bottom: 22px; font-size: 10px; }
   .dx-step { gap: 6px; }
   .dx-step b { width: 28px; height: 28px; font-size: 12px; }
   .dx-steps i { width: 20px; }
@@ -2697,7 +2697,7 @@ body.lightbox-open { overflow: hidden; }
 }
 .page-bodykits .bodykit-stats span {
   color: #999;
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.7px;
 }
@@ -2845,7 +2845,7 @@ body.lightbox-open { overflow: hidden; }
 .page-bodykits .bodykit-row > span { height: 1px; background: #353738; }
 .page-bodykits .bodykit-row small {
   color: #999;
-  font: 500 9px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 500 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -2929,7 +2929,7 @@ body.lightbox-open { overflow: hidden; }
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-.page-bodykits .bodykit-features small { color: #999; font-size: 9px; line-height: 1.3; }
+.page-bodykits .bodykit-features small { color: #999; font-size: 10px; line-height: 1.3; }
 @media (min-width: 801px) {
   .page-bodykits .bodykit-features strong { font-size: 13px; }
   .page-bodykits .bodykit-features small { font-size: 10px; }
@@ -3124,7 +3124,7 @@ body.lightbox-open { overflow: hidden; }
   .page-bodykits .bodykit-process-grid { gap: 8px; }
   .page-bodykits .bodykit-process-card { min-height: 155px; padding: 12px; }
   .page-bodykits .bodykit-process-card h3 { font-size: 22px; margin-top: 30px; }
-  .page-bodykits .bodykit-process-card p { font-size: 9px; }
+  .page-bodykits .bodykit-process-card p { font-size: 10px; }
   .page-bodykits .bodykit-pricing-section { padding: 0 14px; }
   .page-bodykits .bodykit-pricing-heading { display: block; }
   .page-bodykits .bodykit-pricing-heading h2 { font-size: 50px; }
@@ -3137,13 +3137,14 @@ body.lightbox-open { overflow: hidden; }
   }
   .page-bodykits .bodykit-row strong { font-size: 12px; }
   .page-bodykits .bodykit-row b { font-size: 17px; }
-  .page-bodykits .bodykit-row small { font-size: 7px; }
+  .page-bodykits .bodykit-row small { font-size: 10px; }
   .page-bodykits .bodykit-row > .bk-ico { width: 18px; height: 18px; }
   .page-bodykits .bodykit-row > .bk-ico:last-child { width: 15px; height: 15px; }
   .page-bodykits .bodykit-note { padding: 15px; }
   .page-bodykits .bodykit-brands { padding: 32px 14px 0; }
   .page-bodykits .bodykit-brands h2 { font-size: 52px; }
   .page-bodykits .bodykit-features { grid-template-columns: 1fr; }
+  .page-bodykits .bodykit-features small { font-size: 10px; }
   .page-bodykits .bodykit-features > div,
   .page-bodykits .bodykit-features > div:first-child {
     min-height: 62px;
@@ -3163,14 +3164,14 @@ body.lightbox-open { overflow: hidden; }
   .page-bodykits .gallery-card.featured { grid-column: 1 / -1; grid-row: auto; }
   .page-bodykits .gallery-overlay { right: 10px; bottom: 10px; left: 10px; }
   .page-bodykits .gallery-overlay strong { font-size: 19px; }
-  .page-bodykits .gallery-overlay small { font-size: 8px; }
+  .page-bodykits .gallery-overlay small { font-size: 10px; }
   .page-bodykits .gallery-arrow { width: 27px; height: 27px; }
-  .page-bodykits .bodykit-gallery-footer { display: block; line-height: 1.5; font-size: 9px; }
+  .page-bodykits .bodykit-gallery-footer { display: block; line-height: 1.5; font-size: 10px; }
   .page-bodykits .bodykit-gallery-footer a { margin-top: 12px; font-size: 11px; }
   .page-bodykits .bodykit-examples { margin-top: 28px; }
   .page-bodykits .bodykit-gallery .bodykit-example-title { margin-top: 22px; font-size: 26px; }
   .page-bodykits .bodykit-example-grid { gap: 7px; }
-  .page-bodykits .bodykit-example-grid button span { right: 8px; bottom: 8px; left: 8px; font-size: 8px; }
+  .page-bodykits .bodykit-example-grid button span { right: 8px; bottom: 8px; left: 8px; font-size: 10px; }
 }
 
 @media (min-width: 721px) {
@@ -3922,7 +3923,7 @@ body.lightbox-open { overflow: hidden; }
   .ceramic-faq { padding: 16px 14px 62px; }
   .ceramic-faq .faq-heading { margin-bottom: 23px; }
   .ceramic-faq h2 { font-size: 48px; }
-  .ceramic-faq .faq-heading > p:last-child { font-size: 9px; line-height: 1.5; letter-spacing: 1.5px; }
+  .ceramic-faq .faq-heading > p:last-child { font-size: 10px; line-height: 1.5; letter-spacing: 1.5px; }
   .ceramic-faq .faq-question { min-height: 44px; grid-template-columns: 22px 1fr 27px; gap: 9px; padding: 0 3px; }
   .ceramic-faq .faq-question strong { font-size: 13px; letter-spacing: 0.5px; }
   .ceramic-faq .faq-check { width: 20px; height: 20px; }
@@ -4470,7 +4471,7 @@ body.lightbox-open { overflow: hidden; }
   padding: 5px 8px;
   color: #fff;
   background: #e51c24;
-  font: 700 9px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -4499,7 +4500,7 @@ body.lightbox-open { overflow: hidden; }
   align-items: center;
   gap: 5px;
   color: #888;
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.7px;
 }
@@ -4569,21 +4570,21 @@ body.lightbox-open { overflow: hidden; }
   .projects-page .projects-archive-heading h2 { font-size: 55px; }
   .projects-page .projects-archive-heading > p { margin-top: 15px; font-size: 10px; }
   .projects-page .projects-filters { gap: 19px; }
-  .projects-page .projects-filters label { font-size: 9px; }
+  .projects-page .projects-filters label { font-size: 10px; }
   .projects-page .projects-grid { padding-top: 18px; }
   .projects-page .project-card-content { padding: 11px 10px 13px; }
-  .projects-page .project-card-date { font-size: 7px; }
+  .projects-page .project-card-date { font-size: 10px; }
   .projects-page .project-card-content h3 {
     font-size: 19px;
     margin-top: 7px;
     min-height: calc(19px * 0.9 * 3);
   }
   .projects-page .project-card-content p {
-    font-size: 8px;
-    min-height: calc(8px * 1.45 * 3);
+    font-size: 10px;
+    min-height: calc(10px * 1.45 * 3);
   }
-  .projects-page .project-read { margin-top: 11px; font-size: 8px; }
-  .projects-page .project-card-type { left: 8px; bottom: 8px; padding: 4px 5px; font-size: 7px; }
+  .projects-page .project-read { margin-top: 11px; font-size: 10px; }
+  .projects-page .project-card-type { left: 8px; bottom: 8px; padding: 4px 5px; font-size: 10px; }
   .projects-page .project-card-open { top: 8px; right: 8px; width: 25px; height: 25px; }
   .projects-page .project-card-open .pj-ico { width: 14px; height: 14px; }
   .projects-page .projects-bottom { display: block; line-height: 1.5; }
