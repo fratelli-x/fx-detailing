@@ -17,36 +17,89 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Bodykit & Carbon Fibre Styling Installation",
-  "provider": {
-    "@type": "AutoRepair",
-    "name": "FX Detailing",
-    "url": "https://www.fxdetailing.co.uk"
-  },
-  "areaServed": ["Surrey", "West Sussex", "London", "Kent", "Essex", "East Sussex", "United Kingdom"],
-  "description": "Expert precision fitting of high-end carbon fibre styling parts, bodykits, splitters, diffusers, and aerodynamic upgrades for prestige and luxury vehicles across Surrey, London, and nationwide UK.",
-  "brand": [
-    { "@type": "Brand", "name": "CT Carbon" },
-    { "@type": "Brand", "name": "Xclusive Customz" },
-    { "@type": "Brand", "name": "Maxton Design" }
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Bodykit Installation Fitting Guide",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "Full Bodykit Installation" },
-        "priceSpecification": { "@type": "PriceSpecification", "price": "550", "priceCurrency": "GBP" }
+  "@graph": [
+    {
+      "@type": "AutomotiveBusiness",
+      "@id": "https://www.fxdetailing.co.uk/#organization",
+      "name": "FX Detailing",
+      "url": "https://www.fxdetailing.co.uk/",
+      "telephone": "+447548703902",
+      "email": "enquiries@fxdetailing.co.uk",
+      "logo": "https://www.fxdetailing.co.uk/images/logo.png",
+      "image": "https://www.fxdetailing.co.uk/images/contact-studio.jpeg",
+      "priceRange": "££",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Barn, Westcoats Farm, Stan Hill",
+        "addressLocality": "Charlwood",
+        "addressRegion": "Surrey",
+        "postalCode": "RH6 0ES",
+        "addressCountry": "GB"
       },
-      {
-        "@type": "Offer",
-        "itemOffered": { "@type": "Service", "name": "Front Splitter Installation" },
-        "priceSpecification": { "@type": "PriceSpecification", "price": "120", "priceCurrency": "GBP" }
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.1558,
+        "longitude": -0.2198
+      },
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Surrey" },
+        { "@type": "AdministrativeArea", "name": "London" },
+        { "@type": "AdministrativeArea", "name": "West Sussex" },
+        { "@type": "AdministrativeArea", "name": "East Sussex" },
+        { "@type": "AdministrativeArea", "name": "Kent" },
+        { "@type": "AdministrativeArea", "name": "Essex" }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.fxdetailing.co.uk/bodykits/#service",
+      "url": "https://www.fxdetailing.co.uk/bodykits/",
+      "name": "Bodykit & Carbon Fibre Installation",
+      "serviceType": "Automotive Bodykit Fitting & Carbon Fibre Installation",
+      "provider": {
+        "@id": "https://www.fxdetailing.co.uk/#organization"
+      },
+      "description": "In-house precision sourcing and dry-fitting for performance bodykits, carbon fibre front splitters, rear diffusers, spoilers, and side skirts with OEM+ factory finish.",
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Surrey" },
+        { "@type": "AdministrativeArea", "name": "London" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Bodykit Fitting Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Full Vehicle Bodykit Fitting" },
+            "priceSpecification": { "@type": "PriceSpecification", "price": "550.00", "priceCurrency": "GBP" }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Front Splitter Fitting" },
+            "priceSpecification": { "@type": "PriceSpecification", "price": "120.00", "priceCurrency": "GBP" }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Rear Diffuser Fitting" },
+            "priceSpecification": { "@type": "PriceSpecification", "price": "120.00", "priceCurrency": "GBP" }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Side Skirts Fitting" },
+            "priceSpecification": { "@type": "PriceSpecification", "price": "150.00", "priceCurrency": "GBP" }
+          }
+        ]
       }
-    ]
-  }
+    }
+  ]
 }
   </script>
   <script type="application/ld+json">
