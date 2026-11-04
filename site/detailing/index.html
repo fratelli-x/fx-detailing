@@ -18,89 +18,74 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Multi-Stage Paint Correction & Swirl Removal",
-  "provider": {
-    "@type": "AutoRepair",
-    "name": "FX Detailing",
-    "url": "https://www.fxdetailing.co.uk"
-  },
-  "areaServed": [
-    "Surrey",
-    "West Sussex",
-    "London",
-    "Kent",
-    "Essex",
-    "East Sussex",
-    "United Kingdom"
-  ],
-  "description": "Professional multi-stage machine polishing, paint defect correction, and gloss restoration for luxury, prestige, and supercar finishes across Surrey, London, and nationwide UK.",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Paint Correction Services",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "The Showroom Reset"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "299",
-          "priceCurrency": "GBP"
-        }
+  "@graph": [
+    {
+      "@type": "AutomotiveBusiness",
+      "@id": "https://www.fxdetailing.co.uk/#organization",
+      "name": "FX Detailing",
+      "url": "https://www.fxdetailing.co.uk/",
+      "telephone": "+447548703902",
+      "email": "enquiries@fxdetailing.co.uk",
+      "logo": "https://www.fxdetailing.co.uk/images/logo.png",
+      "image": "https://www.fxdetailing.co.uk/images/contact-studio.jpeg",
+      "priceRange": "££",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Barn, Westcoats Farm, Stan Hill",
+        "addressLocality": "Charlwood",
+        "addressRegion": "Surrey",
+        "postalCode": "RH6 0ES",
+        "addressCountry": "GB"
       },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Instant Gloss Recovery"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "499",
-          "priceCurrency": "GBP"
-        }
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.1558,
+        "longitude": -0.2198
       },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Ultimate Paint Restoration"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "1699",
-          "priceCurrency": "GBP"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "The Shield"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "799",
-          "priceCurrency": "GBP"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Preserve the Perfection"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "100",
-          "priceCurrency": "GBP"
-        }
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Surrey" },
+        { "@type": "AdministrativeArea", "name": "London" },
+        { "@type": "AdministrativeArea", "name": "West Sussex" },
+        { "@type": "AdministrativeArea", "name": "East Sussex" },
+        { "@type": "AdministrativeArea", "name": "Kent" },
+        { "@type": "AdministrativeArea", "name": "Essex" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.fxdetailing.co.uk/detailing/#service",
+      "url": "https://www.fxdetailing.co.uk/detailing/",
+      "name": "Car Detailing & Paint Correction",
+      "serviceType": "Automotive Detailing & Paint Correction",
+      "provider": { "@id": "https://www.fxdetailing.co.uk/#organization" },
+      "description": "Multi-stage machine polishing, paint correction, gloss restoration, and luxury detailing services in Surrey and London.",
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Surrey" },
+        { "@type": "AdministrativeArea", "name": "London" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Detailing & Paint Correction Packages",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "The Showroom Reset Detailing" },
+            "priceSpecification": { "@type": "PriceSpecification", "price": "299.00", "priceCurrency": "GBP" }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Paint Enhancement Polishing" },
+            "priceSpecification": { "@type": "PriceSpecification", "price": "499.00", "priceCurrency": "GBP" }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Ultimate Paint Restoration & Correction" },
+            "priceSpecification": { "@type": "PriceSpecification", "price": "1699.00", "priceCurrency": "GBP" }
+          }
+        ]
       }
-    ]
-  }
+    }
+  ]
 }
   </script>
 </head>
