@@ -707,7 +707,7 @@ button { font: inherit; cursor: pointer; }
 .page-gallery .fx-gallery-heading > div { min-width: 0; }
 .page-gallery .fx-gallery .kicker {
   color: #ed1c25;
-  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 3px;
   text-transform: uppercase;
   margin: 0 0 12px;
@@ -731,7 +731,7 @@ button { font: inherit; cursor: pointer; }
 }
 .page-gallery .fx-gallery-intro > p {
   color: #aaa;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.65;
   margin: 0;
 }
@@ -744,7 +744,7 @@ button { font: inherit; cursor: pointer; }
 }
 .page-gallery .fx-gallery-count small {
   color: #777;
-  font: 500 10px Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+  font: 500 13px Inter, "Segoe UI", Helvetica, Arial, sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -803,7 +803,7 @@ button { font: inherit; cursor: pointer; }
 }
 .page-gallery .fx-gallery-overlay small {
   color: #ed1c25;
-  font: 700 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1.7px;
   text-transform: uppercase;
 }
@@ -847,7 +847,7 @@ button { font: inherit; cursor: pointer; }
   padding-top: 18px;
   border-top: 1px solid #353637;
   color: #999;
-  font: 500 11px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 500 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -895,16 +895,18 @@ button { font: inherit; cursor: pointer; }
   .page-gallery .fx-gallery-heading { margin-bottom: 24px; gap: 16px; }
   .page-gallery .fx-gallery h1 { font-size: 54px; }
   .page-gallery .fx-gallery-intro { display: block; max-width: none; }
-  .page-gallery .fx-gallery-intro > p { font-size: 10px; }
+  .page-gallery .fx-gallery-intro > p { font-size: 12px; }
   .page-gallery .fx-gallery-count { margin-top: 16px; font-size: 25px; }
   .page-gallery .fx-gallery-grid { grid-auto-rows: 160px; gap: 7px; }
   .page-gallery .fx-gallery-card--large { grid-row: span 2; }
   .page-gallery .fx-gallery-overlay { right: 10px; bottom: 10px; left: 10px; gap: 3px; }
   .page-gallery .fx-gallery-overlay strong { font-size: 19px; }
-  .page-gallery .fx-gallery-overlay small { font-size: 10px; letter-spacing: 1.2px; }
+  .page-gallery .fx-gallery-overlay small { font-size: 12px; letter-spacing: 1.2px; }
   .page-gallery .fx-gallery-arrow { width: 28px; height: 28px; }
-  .page-gallery .fx-gallery-footer { display: block; line-height: 1.5; font-size: 10px; }
-  .page-gallery .fx-gallery-footer a { margin-top: 12px; font-size: 11px; }
+  .page-gallery .fx-gallery-footer { display: block; line-height: 1.5; font-size: 12px; }
+  .page-gallery .fx-gallery-footer a { margin-top: 12px; font-size: 12px; }
+  .page-gallery .fx-gallery .kicker,
+  .page-gallery .fx-gallery-count small { font-size: 12px; }
 }
 
 @media (min-width: 721px) {
@@ -1519,7 +1521,7 @@ textarea { min-height: 140px; resize: vertical; }
 .blog-card time {
   display: block;
   font-family: Oswald, sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 0.45rem;
@@ -1728,7 +1730,7 @@ body.lightbox-open { overflow: hidden; }
   color: #e51c24;
   font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 3px;
   text-transform: uppercase;
   line-height: 1;
@@ -1783,7 +1785,7 @@ body.lightbox-open { overflow: hidden; }
   text-transform: uppercase;
   font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 1px;
   line-height: 1.1;
 }
@@ -1811,7 +1813,7 @@ body.lightbox-open { overflow: hidden; }
   text-transform: uppercase;
   color: #505050;
   letter-spacing: 4px;
-  font-size: 11px;
+  font-size: 13px;
   margin: 7px 0 0;
 }
 .page-detailing .dx-picker { position: relative; }
@@ -1845,7 +1847,7 @@ body.lightbox-open { overflow: hidden; }
   color: #171717;
   position: relative;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 13px;
 }
 .page-detailing .dx-tabs label:last-child { border-right: 0; }
 .page-detailing .dx-tabs label span {
@@ -1865,7 +1867,7 @@ body.lightbox-open { overflow: hidden; }
   letter-spacing: 0.4px;
 }
 .page-detailing .dx-tabs small {
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.4px;
   margin-top: 3px;
   opacity: 0.75;
@@ -1975,7 +1977,7 @@ body.lightbox-open { overflow: hidden; }
   line-height: 1.43;
   margin: 0 0 10px;
 }
-.page-detailing .dx-copy > p.dx-index { font-size: 12px; }
+.page-detailing .dx-copy > p.dx-index { font-size: 13px; }
 .page-detailing .dx-info { border-bottom: 1px solid #d8d8d8; }
 .page-detailing .dx-info > div {
   display: flex;
@@ -2010,7 +2012,7 @@ body.lightbox-open { overflow: hidden; }
   color: #111;
 }
 .page-detailing .dx-info small {
-  font-size: 12px;
+  font-size: 13px;
   color: #515151;
   line-height: 1.3;
 }
@@ -2025,7 +2027,7 @@ body.lightbox-open { overflow: hidden; }
   padding: 8px 0;
   border-bottom: 1px solid #ececec;
   color: #515151;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.4;
 }
 .page-detailing .dx-addons li:last-child { border-bottom: 0; }
@@ -2035,7 +2037,7 @@ body.lightbox-open { overflow: hidden; }
   letter-spacing: 0.4px;
   text-transform: uppercase;
   color: #111;
-  font-size: 12px;
+  font-size: 13px;
 }
 .page-detailing .dx-addons a { color: #e51c24; }
 .page-detailing .dx-panel-foot {
@@ -2054,7 +2056,7 @@ body.lightbox-open { overflow: hidden; }
 .page-detailing .dx-price span {
   font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 1px;
   line-height: 1;
@@ -2149,7 +2151,7 @@ body.lightbox-open { overflow: hidden; }
   gap: 13px;
   margin: 0 auto 26px;
   color: #888;
-  font-size: 11px;
+  font-size: 13px;
 }
 .dx-step {
   display: flex;
@@ -2186,7 +2188,7 @@ body.lightbox-open { overflow: hidden; }
   gap: 8px;
   margin: 0;
   color: #fff;
-  font: 700 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -2200,7 +2202,7 @@ body.lightbox-open { overflow: hidden; }
   background: rgba(9, 10, 10, 0.85);
   color: #fff;
   padding: 12px 15px;
-  font: 400 12px Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+  font: 400 13px Inter, "Segoe UI", Helvetica, Arial, sans-serif;
   letter-spacing: 0;
   text-transform: none;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -2237,7 +2239,7 @@ body.lightbox-open { overflow: hidden; }
   border: 1px solid #606263;
   border-radius: 5px 0 0 5px;
   color: #fff;
-  font: 400 12px Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+  font: 400 13px Inter, "Segoe UI", Helvetica, Arial, sans-serif;
   letter-spacing: 0;
   text-transform: none;
 }
@@ -2306,7 +2308,7 @@ body.lightbox-open { overflow: hidden; }
   margin: -4px 0 0;
   text-align: center;
   color: #8b8d8e;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.4;
 }
 
@@ -2322,7 +2324,7 @@ body.lightbox-open { overflow: hidden; }
     text-shadow: none;
     -webkit-text-stroke: 0;
   }
-  .dx-header-enquire { padding: 11px 13px; font-size: 11px; }
+  .dx-header-enquire { padding: 11px 13px; font-size: 13px; }
   .logo { width: 168px; flex-basis: 168px; }
   .logo img { width: 160px; }
   .page-detailing .dx-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -2404,16 +2406,16 @@ body.lightbox-open { overflow: hidden; }
   .page-detailing .dx-hero h1 { font-size: 36px; line-height: 0.89; }
   .page-detailing .dx-desk { display: none; }
   .page-detailing .dx-hero-copy .dx-lead {
-    font-size: 11px;
+    font-size: 12px;
     max-width: 272px;
     margin-top: 11px;
   }
   .page-detailing .dx-punch {
-    font-size: 10px;
+    font-size: 12px;
     max-width: 270px;
     margin-bottom: 15px;
   }
-  .page-detailing .dx-hero .dx-btn { padding: 11px 14px; font-size: 10px; }
+  .page-detailing .dx-hero .dx-btn { padding: 11px 14px; font-size: 12px; }
   .page-detailing .dx-highlights {
     left: 22px;
     right: 22px;
@@ -2423,7 +2425,7 @@ body.lightbox-open { overflow: hidden; }
     gap: 9px 10px;
   }
   .page-detailing .dx-highlights li {
-    font-size: 10px;
+    font-size: 12px;
     gap: 5px;
     letter-spacing: 0.55px;
   }
@@ -2434,7 +2436,7 @@ body.lightbox-open { overflow: hidden; }
   .page-detailing .dx-services-head h2 { font-size: 41px; }
   .page-detailing .dx-services-head .dx-deck {
     letter-spacing: 2px;
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 5px;
   }
   .page-detailing .dx-tabs {
@@ -2463,8 +2465,8 @@ body.lightbox-open { overflow: hidden; }
     padding-right: 10px;
   }
   .page-detailing .dx-tabs .dx-ico { width: 20px; height: 20px; }
-  .page-detailing .dx-tabs strong { font-size: 11px; }
-  .page-detailing .dx-tabs small { font-size: 10px; margin-top: 0; }
+  .page-detailing .dx-tabs strong { font-size: 12px; }
+  .page-detailing .dx-tabs small { font-size: 12px; margin-top: 0; }
   .page-detailing .dx-chevron { display: block; }
   .page-detailing #dx-detail:checked ~ .dx-stage .dx-panel-detail,
   .page-detailing #dx-enhance:checked ~ .dx-stage .dx-panel-enhance,
@@ -2499,21 +2501,21 @@ body.lightbox-open { overflow: hidden; }
   }
   .page-detailing .dx-copy { padding: 0 3px; }
   .page-detailing .dx-copy h3 { font-size: 32px; }
-  .page-detailing .dx-sub { font-size: 10px; letter-spacing: 2.2px; }
+  .page-detailing .dx-sub { font-size: 12px; letter-spacing: 2.2px; }
   .page-detailing .dx-copy > p:not(.dx-sub) { font-size: 12px; }
-  .page-detailing .dx-copy > p.dx-index { font-size: 10px; }
+  .page-detailing .dx-copy > p.dx-index { font-size: 12px; }
   .page-detailing .dx-info > div { padding: 6px 7px; gap: 10px; }
   .page-detailing .dx-info-icon .dx-ico { width: 20px; height: 20px; }
   .page-detailing .dx-info strong { font-size: 13px; }
-  .page-detailing .dx-info small { font-size: 10px; }
+  .page-detailing .dx-info small { font-size: 12px; }
   .page-detailing .dx-addons li,
-  .page-detailing .dx-addons strong { font-size: 10px; }
+  .page-detailing .dx-addons strong { font-size: 12px; }
   .page-detailing .dx-panel-foot { padding-top: 10px; }
   .page-detailing .dx-panel-foot .dx-btn {
     min-width: 0;
     flex: 1 1 auto;
     padding: 11px 10px;
-    font-size: 10px;
+    font-size: 12px;
     gap: 6px;
   }
   .page-detailing .dx-price strong { font-size: 27px; }
@@ -2531,7 +2533,7 @@ body.lightbox-open { overflow: hidden; }
   .dx-enquire-card { padding: 23px 17px 18px; border-radius: 10px; }
   .dx-enquire h2 { font-size: 40px; }
   .dx-enquire-head p { font-size: 13px; margin-bottom: 18px; }
-  .dx-steps { gap: 8px; margin-bottom: 22px; font-size: 10px; }
+  .dx-steps { gap: 8px; margin-bottom: 22px; font-size: 12px; }
   .dx-step { gap: 6px; }
   .dx-step b { width: 28px; height: 28px; font-size: 12px; }
   .dx-steps i { width: 20px; }
@@ -2540,6 +2542,15 @@ body.lightbox-open { overflow: hidden; }
   .dx-form-note { grid-column: auto; }
   .dx-enquire textarea { height: 104px; min-height: 104px; }
   .dx-form-note { line-height: 1.4; }
+  .page-detailing .dx-kicker,
+  .page-detailing .dx-tabs label,
+  .page-detailing .dx-addons li,
+  .page-detailing .dx-price span,
+  .dx-enquire label,
+  .dx-enquire select,
+  .dx-phone > span,
+  .dx-form-note,
+  .blog-card time { font-size: 12px; }
 }
 
 /* Bodykit page. Scoped so ceramic, detailing, and the homepage keep their own styles. */
@@ -2588,7 +2599,7 @@ body.lightbox-open { overflow: hidden; }
 .page-bodykits .bodykit-page .kicker,
 .page-bodykits .bodykit-gallery .kicker {
   color: #ed1c25;
-  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 3px;
   text-transform: uppercase;
   margin: 0 0 10px;
@@ -2641,7 +2652,7 @@ body.lightbox-open { overflow: hidden; }
 .page-bodykits .bodykit-hero-copy > p:not(.kicker):not(.bodykit-tagline) {
   max-width: 410px;
   color: #bbb;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.55;
 }
 .page-bodykits .bodykit-actions {
@@ -2660,7 +2671,7 @@ body.lightbox-open { overflow: hidden; }
   background: #ed1c25;
   text-decoration: none;
   text-transform: uppercase;
-  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1px;
   transition: background 0.2s, transform 0.2s;
 }
@@ -2672,7 +2683,7 @@ body.lightbox-open { overflow: hidden; }
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
-  font: 600 11px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 600 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1px;
   border-bottom: 1px solid #ed1c25;
   padding-bottom: 4px;
@@ -2697,7 +2708,7 @@ body.lightbox-open { overflow: hidden; }
 }
 .page-bodykits .bodykit-stats span {
   color: #999;
-  font-size: 10px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.7px;
 }
@@ -2727,7 +2738,7 @@ body.lightbox-open { overflow: hidden; }
   bottom: 24px;
   z-index: 2;
   color: #fff;
-  font: 700 11px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 3px;
   transform: rotate(-90deg);
   transform-origin: bottom right;
@@ -2746,7 +2757,7 @@ body.lightbox-open { overflow: hidden; }
   min-height: 54px;
   min-width: 0;
   color: #d3d3d3;
-  font: 600 11px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 600 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
   border-right: 1px solid #343638;
@@ -2792,7 +2803,7 @@ body.lightbox-open { overflow: hidden; }
 }
 .page-bodykits .bodykit-process-card p {
   color: #999;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.45;
 }
 .page-bodykits .bodykit-pricing-section { padding: 0 24px; }
@@ -2811,7 +2822,7 @@ body.lightbox-open { overflow: hidden; }
 .page-bodykits .bodykit-pricing-heading > p {
   max-width: 360px;
   color: #aaa;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.5;
   margin: 0 0 3px;
 }
@@ -2845,7 +2856,7 @@ body.lightbox-open { overflow: hidden; }
 .page-bodykits .bodykit-row > span { height: 1px; background: #353738; }
 .page-bodykits .bodykit-row small {
   color: #999;
-  font: 500 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 500 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -2876,7 +2887,7 @@ body.lightbox-open { overflow: hidden; }
 .page-bodykits .bodykit-note .kicker { margin: 0 0 8px; }
 .page-bodykits .bodykit-note p:not(.kicker) {
   color: #aaa;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.5;
 }
 .page-bodykits .bodykit-note a {
@@ -2887,7 +2898,7 @@ body.lightbox-open { overflow: hidden; }
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
-  font: 700 11px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 0.8px;
 }
 .page-bodykits .bodykit-note a:hover { color: #ed1c25; }
@@ -2899,7 +2910,7 @@ body.lightbox-open { overflow: hidden; }
 .page-bodykits .bodykit-brands > p:not(.kicker) {
   max-width: 780px;
   color: #aaa;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.55;
   margin: 13px 0 0;
 }
@@ -2925,14 +2936,14 @@ body.lightbox-open { overflow: hidden; }
 .page-bodykits .bodykit-features .bk-ico { color: #ed1c25; width: 25px; height: 25px; }
 .page-bodykits .bodykit-features span { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .page-bodykits .bodykit-features strong {
-  font: 600 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 600 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-.page-bodykits .bodykit-features small { color: #999; font-size: 10px; line-height: 1.3; }
+.page-bodykits .bodykit-features small { color: #999; font-size: 13px; line-height: 1.3; }
 @media (min-width: 801px) {
   .page-bodykits .bodykit-features strong { font-size: 13px; }
-  .page-bodykits .bodykit-features small { font-size: 10px; }
+  .page-bodykits .bodykit-features small { font-size: 13px; }
 }
 
 .page-bodykits .bodykit-gallery {
@@ -2953,7 +2964,7 @@ body.lightbox-open { overflow: hidden; }
 .page-bodykits .bodykit-gallery-heading > p {
   max-width: 380px;
   color: #aaa;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.55;
   margin: 0 0 3px;
 }
@@ -3001,7 +3012,7 @@ body.lightbox-open { overflow: hidden; }
 }
 .page-bodykits .gallery-overlay small {
   color: #ed1c25;
-  font: 700 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1.7px;
   text-transform: uppercase;
 }
@@ -3033,7 +3044,7 @@ body.lightbox-open { overflow: hidden; }
   padding-top: 18px;
   border-top: 1px solid #353637;
   color: #999;
-  font: 500 11px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 500 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -3095,7 +3106,7 @@ body.lightbox-open { overflow: hidden; }
   left: 12px;
   z-index: 1;
   color: #ed1c25;
-  font: 700 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1.7px;
   text-transform: uppercase;
 }
@@ -3124,7 +3135,7 @@ body.lightbox-open { overflow: hidden; }
   .page-bodykits .bodykit-process-grid { gap: 8px; }
   .page-bodykits .bodykit-process-card { min-height: 155px; padding: 12px; }
   .page-bodykits .bodykit-process-card h3 { font-size: 22px; margin-top: 30px; }
-  .page-bodykits .bodykit-process-card p { font-size: 10px; }
+  .page-bodykits .bodykit-process-card p { font-size: 12px; }
   .page-bodykits .bodykit-pricing-section { padding: 0 14px; }
   .page-bodykits .bodykit-pricing-heading { display: block; }
   .page-bodykits .bodykit-pricing-heading h2 { font-size: 50px; }
@@ -3137,14 +3148,14 @@ body.lightbox-open { overflow: hidden; }
   }
   .page-bodykits .bodykit-row strong { font-size: 12px; }
   .page-bodykits .bodykit-row b { font-size: 17px; }
-  .page-bodykits .bodykit-row small { font-size: 10px; }
+  .page-bodykits .bodykit-row small { font-size: 12px; }
   .page-bodykits .bodykit-row > .bk-ico { width: 18px; height: 18px; }
   .page-bodykits .bodykit-row > .bk-ico:last-child { width: 15px; height: 15px; }
   .page-bodykits .bodykit-note { padding: 15px; }
   .page-bodykits .bodykit-brands { padding: 32px 14px 0; }
   .page-bodykits .bodykit-brands h2 { font-size: 52px; }
   .page-bodykits .bodykit-features { grid-template-columns: 1fr; }
-  .page-bodykits .bodykit-features small { font-size: 10px; }
+  .page-bodykits .bodykit-features small { font-size: 12px; }
   .page-bodykits .bodykit-features > div,
   .page-bodykits .bodykit-features > div:first-child {
     min-height: 62px;
@@ -3153,25 +3164,38 @@ body.lightbox-open { overflow: hidden; }
     border-bottom: 1px solid #343638;
   }
   .page-bodykits .bodykit-features > div:last-child { border-bottom: 0; }
+  .page-bodykits .bodykit-page .kicker,
+  .page-bodykits .bodykit-hero-copy > p:not(.kicker):not(.bodykit-tagline),
+  .page-bodykits .bodykit-button,
+  .page-bodykits .bodykit-text-link,
+  .page-bodykits .bodykit-stats span,
+  .page-bodykits .bodykit-hero-image span,
+  .page-bodykits .bodykit-trust div,
+  .page-bodykits .bodykit-pricing-heading > p,
+  .page-bodykits .bodykit-note p:not(.kicker),
+  .page-bodykits .bodykit-note a,
+  .page-bodykits .bodykit-brands > p:not(.kicker),
+  .page-bodykits .bodykit-features strong { font-size: 12px; }
 }
 
 @media (max-width: 720px) {
   .page-bodykits .bodykit-gallery { padding: 32px 14px 61px; }
   .page-bodykits .bodykit-gallery-heading { display: block; margin-bottom: 22px; }
   .page-bodykits .bodykit-gallery h2 { font-size: 51px; }
-  .page-bodykits .bodykit-gallery-heading > p { margin-top: 14px; font-size: 10px; }
+  .page-bodykits .bodykit-gallery-heading > p { margin-top: 14px; font-size: 12px; }
   .page-bodykits .bodykit-gallery-grid { grid-template-columns: 1fr 1fr; gap: 7px; }
   .page-bodykits .gallery-card.featured { grid-column: 1 / -1; grid-row: auto; }
   .page-bodykits .gallery-overlay { right: 10px; bottom: 10px; left: 10px; }
   .page-bodykits .gallery-overlay strong { font-size: 19px; }
-  .page-bodykits .gallery-overlay small { font-size: 10px; }
+  .page-bodykits .gallery-overlay small { font-size: 12px; }
   .page-bodykits .gallery-arrow { width: 27px; height: 27px; }
-  .page-bodykits .bodykit-gallery-footer { display: block; line-height: 1.5; font-size: 10px; }
-  .page-bodykits .bodykit-gallery-footer a { margin-top: 12px; font-size: 11px; }
+  .page-bodykits .bodykit-gallery-footer { display: block; line-height: 1.5; font-size: 12px; }
+  .page-bodykits .bodykit-gallery-footer a { margin-top: 12px; font-size: 12px; }
   .page-bodykits .bodykit-examples { margin-top: 28px; }
   .page-bodykits .bodykit-gallery .bodykit-example-title { margin-top: 22px; font-size: 26px; }
   .page-bodykits .bodykit-example-grid { gap: 7px; }
-  .page-bodykits .bodykit-example-grid button span { right: 8px; bottom: 8px; left: 8px; font-size: 10px; }
+  .page-bodykits .bodykit-example-grid button span { right: 8px; bottom: 8px; left: 8px; font-size: 12px; }
+  .page-bodykits .bodykit-gallery .kicker { font-size: 12px; }
 }
 
 @media (min-width: 721px) {
@@ -3786,7 +3810,7 @@ body.lightbox-open { overflow: hidden; }
 .ceramic-faq .faq-heading { max-width: 1080px; margin: 0 auto 32px; text-align: center; }
 .ceramic-faq .kicker {
   color: #e51c24;
-  font: 700 12px "Barlow Condensed", "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", "Arial Narrow", sans-serif;
   letter-spacing: 3px;
   text-transform: uppercase;
   margin: 0 0 12px;
@@ -3801,7 +3825,7 @@ body.lightbox-open { overflow: hidden; }
 .ceramic-faq .faq-heading > p:last-child {
   margin: 13px 0 0;
   color: #676767;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -3910,7 +3934,7 @@ body.lightbox-open { overflow: hidden; }
   padding: 11px 16px;
   text-transform: uppercase;
   text-decoration: none;
-  font: 700 11px "Barlow Condensed", "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", "Arial Narrow", sans-serif;
   letter-spacing: 1px;
   display: inline-flex;
   align-items: center;
@@ -3923,16 +3947,17 @@ body.lightbox-open { overflow: hidden; }
   .ceramic-faq { padding: 16px 14px 62px; }
   .ceramic-faq .faq-heading { margin-bottom: 23px; }
   .ceramic-faq h2 { font-size: 48px; }
-  .ceramic-faq .faq-heading > p:last-child { font-size: 10px; line-height: 1.5; letter-spacing: 1.5px; }
+  .ceramic-faq .faq-heading > p:last-child { font-size: 12px; line-height: 1.5; letter-spacing: 1.5px; }
   .ceramic-faq .faq-question { min-height: 44px; grid-template-columns: 22px 1fr 27px; gap: 9px; padding: 0 3px; }
   .ceramic-faq .faq-question strong { font-size: 13px; letter-spacing: 0.5px; }
   .ceramic-faq .faq-check { width: 20px; height: 20px; }
   .ceramic-faq .faq-toggle { width: 27px; height: 27px; }
   .ceramic-faq .faq-answer { padding-left: 31px; padding-right: 7px; }
-  .ceramic-faq .faq-answer p { font-size: 11px; }
+  .ceramic-faq .faq-answer p { font-size: 12px; }
   .ceramic-faq .faq-cta { display: block; padding: 17px; }
   .ceramic-faq .faq-cta span { display: block; margin-bottom: 12px; }
-  .ceramic-faq .primary-button { width: 100%; justify-content: center; }
+  .ceramic-faq .primary-button { width: 100%; justify-content: center; font-size: 12px; }
+  .ceramic-faq .kicker { font-size: 12px; }
 }
 
 @media (min-width: 721px) {
@@ -4077,7 +4102,7 @@ body.lightbox-open { overflow: hidden; }
   color: #e51c24;
   font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.2;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -4140,7 +4165,7 @@ body.lightbox-open { overflow: hidden; }
 @media (max-width: 720px) {
   .testimonial-section { padding: 56px 14px 62px; }
   .testimonial-section .testimonial-heading { margin-bottom: 19px; }
-  .testimonial-section .kicker { font-size: 10px; letter-spacing: 2px; }
+  .testimonial-section .kicker { font-size: 12px; letter-spacing: 2px; }
   .testimonial-section h2 { font-size: 42px; line-height: 0.92; }
   .testimonial-section .testimonial-artwork { border-width: 1px; }
   .testimonial-section .testimonial-artwork > img { display: none; }
@@ -4264,7 +4289,7 @@ body.lightbox-open { overflow: hidden; }
 }
 .projects-page .kicker {
   color: #e51c24;
-  font: 700 11px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 2.7px;
   text-transform: uppercase;
   margin: 0 0 11px;
@@ -4293,7 +4318,7 @@ body.lightbox-open { overflow: hidden; }
 .projects-page .projects-banner-copy > p:not(.kicker) {
   max-width: 440px;
   color: #c5c5c5;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.55;
   margin: 20px 0 0;
 }
@@ -4323,7 +4348,7 @@ body.lightbox-open { overflow: hidden; }
   bottom: 120px;
   z-index: 1;
   color: #fff;
-  font: 700 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 3px;
   white-space: nowrap;
   transform: rotate(-90deg);
@@ -4351,7 +4376,7 @@ body.lightbox-open { overflow: hidden; }
 .projects-page .projects-archive-heading > p {
   max-width: 420px;
   color: #555;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.55;
   margin: 0 0 4px;
 }
@@ -4383,7 +4408,7 @@ body.lightbox-open { overflow: hidden; }
   border-bottom: 2px solid transparent;
   color: #777;
   background: transparent;
-  font: 700 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
@@ -4471,7 +4496,7 @@ body.lightbox-open { overflow: hidden; }
   padding: 5px 8px;
   color: #fff;
   background: #e51c24;
-  font: 700 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -4500,7 +4525,7 @@ body.lightbox-open { overflow: hidden; }
   align-items: center;
   gap: 5px;
   color: #888;
-  font-size: 10px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.7px;
 }
@@ -4520,9 +4545,9 @@ body.lightbox-open { overflow: hidden; }
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
-  min-height: calc(10px * 1.45 * 3);
+  min-height: calc(13px * 1.45 * 3);
   color: #626262;
-  font-size: 10px;
+  font-size: 13px;
   line-height: 1.45;
   margin: 0;
 }
@@ -4533,7 +4558,7 @@ body.lightbox-open { overflow: hidden; }
   margin-top: auto;
   padding-top: 16px;
   color: #e51c24;
-  font: 700 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -4546,7 +4571,7 @@ body.lightbox-open { overflow: hidden; }
   padding-top: 17px;
   border-top: 1px solid #d4d4d1;
   color: #777;
-  font: 600 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 600 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 0.8px;
   text-transform: uppercase;
 }
@@ -4568,27 +4593,31 @@ body.lightbox-open { overflow: hidden; }
   .projects-page .projects-archive { padding: 51px 14px 57px; }
   .projects-page .projects-archive-heading { display: block; padding-bottom: 23px; }
   .projects-page .projects-archive-heading h2 { font-size: 55px; }
-  .projects-page .projects-archive-heading > p { margin-top: 15px; font-size: 10px; }
+  .projects-page .projects-archive-heading > p { margin-top: 15px; font-size: 12px; }
   .projects-page .projects-filters { gap: 19px; }
-  .projects-page .projects-filters label { font-size: 10px; }
+  .projects-page .projects-filters label { font-size: 12px; }
   .projects-page .projects-grid { padding-top: 18px; }
   .projects-page .project-card-content { padding: 11px 10px 13px; }
-  .projects-page .project-card-date { font-size: 10px; }
+  .projects-page .project-card-date { font-size: 12px; }
   .projects-page .project-card-content h3 {
     font-size: 19px;
     margin-top: 7px;
     min-height: calc(19px * 0.9 * 3);
   }
   .projects-page .project-card-content p {
-    font-size: 10px;
-    min-height: calc(10px * 1.45 * 3);
+    font-size: 12px;
+    min-height: calc(12px * 1.45 * 3);
   }
-  .projects-page .project-read { margin-top: 11px; font-size: 10px; }
-  .projects-page .project-card-type { left: 8px; bottom: 8px; padding: 4px 5px; font-size: 10px; }
+  .projects-page .project-read { margin-top: 11px; font-size: 12px; }
+  .projects-page .project-card-type { left: 8px; bottom: 8px; padding: 4px 5px; font-size: 12px; }
   .projects-page .project-card-open { top: 8px; right: 8px; width: 25px; height: 25px; }
   .projects-page .project-card-open .pj-ico { width: 14px; height: 14px; }
   .projects-page .projects-bottom { display: block; line-height: 1.5; }
-  .projects-page .projects-bottom a { margin-top: 10px; font-size: 10px; }
+  .projects-page .projects-bottom a { margin-top: 10px; font-size: 12px; }
+  .projects-page .kicker,
+  .projects-page .projects-banner-copy > p:not(.kicker),
+  .projects-page .projects-banner-image span,
+  .projects-page .projects-bottom { font-size: 12px; }
 }
 
 @media (min-width: 600px) {
@@ -4640,7 +4669,7 @@ body.lightbox-open { overflow: hidden; }
   align-items: center;
   gap: 13px;
   color: #777b7b;
-  font: 600 10px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 600 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1.8px;
   text-transform: uppercase;
 }
@@ -4650,7 +4679,7 @@ body.lightbox-open { overflow: hidden; }
 .contact-page .contact-kicker {
   margin: 0 0 16px;
   color: #ed1c25;
-  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
@@ -4708,13 +4737,13 @@ body.lightbox-open { overflow: hidden; }
   min-width: 0;
 }
 .contact-page .contact-info-card b {
-  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1.2px;
   text-transform: uppercase;
 }
 .contact-page .contact-info-card small {
   color: #999e9e;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
@@ -4758,7 +4787,7 @@ body.lightbox-open { overflow: hidden; }
   align-items: end;
   gap: 16px;
   color: #fff;
-  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1.6px;
   text-transform: uppercase;
 }
@@ -4834,7 +4863,7 @@ body.page-about { background: #0b0c0c; overflow-x: clip; }
 .page-about .about-kicker {
   margin: 0 0 16px;
   color: #ed1c25;
-  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 3px;
   line-height: 1.2;
   text-align: left;
@@ -4915,7 +4944,7 @@ body.page-about { background: #0b0c0c; overflow-x: clip; }
   padding: 22px 24px;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
   color: #fff;
-  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1.6px;
   text-transform: uppercase;
 }
@@ -5168,7 +5197,7 @@ body.page-reviews { background: #0b0c0c; overflow-x: clip; }
 .page-reviews .reviews-kicker {
   margin: 0 0 16px;
   color: #ed1c25;
-  font: 700 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font: 700 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 3px;
   line-height: 1.2;
   text-align: left;
@@ -5316,9 +5345,9 @@ body.page-reviews { background: #0b0c0c; overflow-x: clip; }
   font: 700 14px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   letter-spacing: 1px;
 }
-.page-reviews .reviews-card-source { color: #8d9191; font-size: 12px; line-height: 1.4; }
+.page-reviews .reviews-card-source { color: #8d9191; font-size: 13px; line-height: 1.4; }
 .page-reviews .reviews-card-author > div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.page-reviews .reviews-card-time { color: #8d9191; font-size: 12px; line-height: 1.4; }
+.page-reviews .reviews-card-time { color: #8d9191; font-size: 13px; line-height: 1.4; }
 .page-reviews .reviews-grid-heading { margin-bottom: 14px; }
 .page-reviews .reviews-grid-heading h2 {
   font-size: clamp(36px, 4.5vw, 60px);
@@ -5509,4 +5538,20 @@ body.page-reviews { background: #0b0c0c; overflow-x: clip; }
     align-items: stretch;
   }
   .fx-consent-actions { justify-content: flex-end; }
+}
+@media (max-width: 720px) {
+  .contact-page .contact-panel-top,
+  .contact-page .contact-panel-bottom,
+  .contact-page .contact-kicker,
+  .contact-page .contact-info-card b,
+  .contact-page .contact-info-card small,
+  .contact-page .contact-visual-caption,
+  .page-about .about-kicker,
+  .page-about .about-hero-figure figcaption,
+  .page-reviews .reviews-kicker,
+  .page-reviews .reviews-card-source,
+  .page-reviews .reviews-card-time { font-size: 12px; }
+}
+@media (min-width: 721px) {
+  .review-top span { font-size: 13px; }
 }
