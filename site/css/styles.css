@@ -3217,13 +3217,18 @@ body.lightbox-open { overflow: hidden; }
   .page-bodykits .bodykit-trust,
   .page-bodykits .bodykit-process,
   .page-bodykits .bodykit-pricing-section,
-  .page-bodykits .bodykit-brands,
+  .page-bodykits .bodykit-brands {
+    width: min(1200px, calc(100% - 48px));
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .page-bodykits .bodykit-gallery-heading,
   .page-bodykits .bodykit-gallery-grid,
   .page-bodykits .bodykit-examples,
   .page-bodykits .bodykit-gallery-footer {
-    width: min(1200px, calc(100% - 48px));
-    max-width: 1200px;
+    width: min(1136px, calc(100% - 112px));
+    max-width: 1136px;
     margin-left: auto;
     margin-right: auto;
   }
