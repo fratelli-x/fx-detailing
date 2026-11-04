@@ -18,105 +18,112 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Gtechniq Ceramic Coating Application",
-  "provider": {
-    "@type": "AutoRepair",
-    "name": "FX Detailing",
-    "url": "https://www.fxdetailing.co.uk"
-  },
-  "areaServed": ["Surrey", "West Sussex", "London", "Kent", "Essex", "East Sussex", "United Kingdom"],
-  "description": "Professional multi-stage paint correction and independent Gtechniq ceramic coating application for luxury, prestige, and supercar owners across Surrey, London, and nationwide UK.",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Ceramic Coating Services",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Paintwork"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "799",
-          "priceCurrency": "GBP"
-        }
+  "@graph": [
+    {
+      "@type": "AutomotiveBusiness",
+      "@id": "https://www.fxdetailing.co.uk/#organization",
+      "name": "FX Detailing",
+      "url": "https://www.fxdetailing.co.uk/",
+      "telephone": "+447548703902",
+      "email": "enquiries@fxdetailing.co.uk",
+      "logo": "https://www.fxdetailing.co.uk/images/logo.png",
+      "image": "https://www.fxdetailing.co.uk/images/contact-studio.jpeg",
+      "priceRange": "££",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Barn, Westcoats Farm, Stan Hill",
+        "addressLocality": "Charlwood",
+        "addressRegion": "Surrey",
+        "postalCode": "RH6 0ES",
+        "addressCountry": "GB"
       },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Wheels"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "399",
-          "priceCurrency": "GBP"
-        }
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.1558,
+        "longitude": -0.2198
       },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "PPF & vinyl"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "499",
-          "priceCurrency": "GBP"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "L1 Leather Guard"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "199",
-          "priceCurrency": "GBP"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "I1 Smart Fabric"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "199",
-          "priceCurrency": "GBP"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Trim & plastics"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "199",
-          "priceCurrency": "GBP"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Glass"
-        },
-        "priceSpecification": {
-          "@type": "PriceSpecification",
-          "price": "199",
-          "priceCurrency": "GBP"
-        }
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Surrey" },
+        { "@type": "AdministrativeArea", "name": "London" },
+        { "@type": "AdministrativeArea", "name": "West Sussex" },
+        { "@type": "AdministrativeArea", "name": "East Sussex" },
+        { "@type": "AdministrativeArea", "name": "Kent" },
+        { "@type": "AdministrativeArea", "name": "Essex" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.fxdetailing.co.uk/ceramic/#service",
+      "url": "https://www.fxdetailing.co.uk/ceramic/",
+      "name": "Gtechniq Ceramic Coating Services",
+      "serviceType": "Automotive Ceramic Coating & Paint Protection",
+      "provider": { "@id": "https://www.fxdetailing.co.uk/#organization" },
+      "description": "Professional Gtechniq ceramic coating application for paintwork, wheels, PPF, leather, fabric, trim, and glass across Surrey and London.",
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Surrey" },
+        { "@type": "AdministrativeArea", "name": "London" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Gtechniq Ceramic Protection Packages",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Gtechniq Crystal Serum Paintwork Coating" },
+            "priceSpecification": { "@type": "PriceSpecification", "price": "799.00", "priceCurrency": "GBP" }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Gtechniq C5 Wheel Armour Coating" },
+            "priceSpecification": { "@type": "PriceSpecification", "price": "399.00", "priceCurrency": "GBP" }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Gtechniq Halo PPF & Vinyl Coating" },
+            "priceSpecification": { "@type": "PriceSpecification", "price": "499.00", "priceCurrency": "GBP" }
+          }
+        ]
       }
-    ]
-  }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.fxdetailing.co.uk/ceramic/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does a ceramic coating application take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most ceramic coating applications take between two and five days, depending on the vehicle, preparation required and the protection package selected."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does ceramic coating last?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Durability depends on the product and maintenance. Our Gtechniq coatings can provide protection for up to five years when correctly applied and maintained."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is paint correction included with ceramic coating?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Preparation is tailored to the condition of your vehicle. Paint correction can be included where needed, and we will explain any additional preparation before work begins."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is ceramic coating different from wax?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ceramic coating chemically bonds to the surface, providing stronger, longer-lasting protection and easier maintenance than traditional wax."
+          }
+        }
+      ]
+    }
+  ]
 }
   </script>
   <script type="application/ld+json">
