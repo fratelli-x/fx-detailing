@@ -20,77 +20,57 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "AutoRepair",
-  "@id": "https://www.fxdetailing.co.uk/#organization",
-  "name": "FX Detailing",
-  "url": "https://www.fxdetailing.co.uk",
-  "logo": "https://www.fxdetailing.co.uk/images/logo.png",
-  "telephone": "+447548703902",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "The Barn, Westcoats Farm, Stan Hill",
-    "addressLocality": "Charlwood",
-    "addressRegion": "Surrey",
-    "postalCode": "RH6 0ES",
-    "addressCountry": "GB"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 51.173278248394105,
-    "longitude": -0.2479991030269702
-  },
-  "openingHoursSpecification": [
+  "@graph": [
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
-      ],
-      "opens": "09:00",
-      "closes": "17:00"
-    }
-  ],
-  "areaServed": [
-    "Surrey",
-    "West Sussex",
-    "London",
-    "Kent",
-    "Essex",
-    "East Sussex",
-    "United Kingdom"
-  ],
-  "priceRange": "£££",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Vehicle Detailing & Customization",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Paint Correction & Ceramic Coating"
-        }
+      "@type": "AutomotiveBusiness",
+      "@id": "https://www.fxdetailing.co.uk/#organization",
+      "name": "FX Detailing",
+      "url": "https://www.fxdetailing.co.uk/",
+      "telephone": "+447548703902",
+      "email": "enquiries@fxdetailing.co.uk",
+      "logo": "https://www.fxdetailing.co.uk/images/logo.png",
+      "image": "https://www.fxdetailing.co.uk/images/hero.jpg",
+      "priceRange": "£££",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Barn, Westcoats Farm, Stan Hill",
+        "addressLocality": "Charlwood",
+        "addressRegion": "Surrey",
+        "postalCode": "RH6 0ES",
+        "addressCountry": "GB"
       },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Bodykit & Carbon Fibre Installation"
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.173278248394105,
+        "longitude": -0.2479991030269702
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "17:00"
         }
+      ],
+      "areaServed": [
+        "Surrey",
+        "West Sussex",
+        "London",
+        "Kent",
+        "Essex",
+        "East Sussex",
+        "United Kingdom"
+      ],
+      "review": {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Zak Brown"
+        },
+        "reviewBody": "I have been trusting FX Detailing with my vehicles for a number of years now, and I couldn’t be happier with the results. Their attention to detail is second to none, and they consistently go above and beyond to ensure the cars look showroom-ready every time. It’s so rare to find someone so dedicated and reliable — I wouldn’t use anyone else."
       }
-    ]
-  },
-  "review": {
-    "@type": "Review",
-    "author": {
-      "@type": "Person",
-      "name": "Zak Brown"
-    },
-    "reviewBody": "I have been trusting FX Detailing with my vehicles for a number of years now, and I couldn’t be happier with the results. Their attention to detail is second to none, and they consistently go above and beyond to ensure the cars look showroom-ready every time. It’s so rare to find someone so dedicated and reliable — I wouldn’t use anyone else."
-  }
+    }
+  ]
 }
   </script>
   <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="179aef15-4e8e-481b-9a43-8828aa767789";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
