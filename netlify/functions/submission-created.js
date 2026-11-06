@@ -1,16 +1,12 @@
 // Netlify runs this on every verified form submission because the file is
 // named submission-created. Built-in form notifications only email addresses
-// set in the Netlify dashboard, so this emails the enquiry to the studio.
+// set in the Netlify dashboard, so this sends two messages: an acknowledgement
+// to the address on that submission, and the enquiry details to the studio.
 //
 // Mail goes out through Resend (https://api.resend.com/emails).
 // Netlify environment variable required: RESEND_API_KEY
-// Do not put the key in the repo.
-//
-// Temporary: fxdetailing.co.uk is not verified, so From is Resend's test
-// sender. That sender can only deliver to the Resend account inbox, and a
-// send to the enquirer returns 403. Once the domain is verified, turn the
-// enquirer acknowledgement back on and switch From back to
-// FX Detailing <enquiries@fxdetailing.co.uk>.
+// Do not put the key in the repo. fxdetailing.co.uk is verified, so messages
+// are sent from enquiries@fxdetailing.co.uk.
 
 const FORM_NAMES = {
   enquiry: true,
@@ -18,7 +14,7 @@ const FORM_NAMES = {
   ceramic: true
 };
 
-const FROM = "FX Detailing <onboarding@resend.dev>";
+const FROM = "FX Detailing <enquiries@fxdetailing.co.uk>";
 const REPLY_TO = "enquiries@fxdetailing.co.uk";
 const BUSINESS_INBOX = "enquiries@fxdetailing.co.uk";
 const SUBJECT = "We have received your FX Detailing enquiry";
@@ -244,10 +240,14 @@ exports.handler = async function (event) {
     return jsonResult(500, "Missing RESEND_API_KEY");
   }
 
-  // onboarding@resend.dev can only deliver to the Resend account inbox.
-  // Do not also email the enquirer until fxdetailing.co.uk is verified.
-  // Then turn this acknowledgement back on (prepared.mail, to the enquirer)
-  // and set FROM back to FX Detailing <enquiries@fxdetailing.co.uk>.
+  const acknowledgementSent = await deliver(apiKey, {
+    to: [prepared.email],
+    replyTo: REPLY_TO,
+    subject: prepared.mail.subject,
+    text: prepared.mail.text,
+    html: prepared.mail.html
+  }, "acknowledgement");
+
   const notificationSent = await deliver(apiKey, {
     to: [BUSINESS_INBOX],
     replyTo: prepared.email,
@@ -256,7 +256,7 @@ exports.handler = async function (event) {
     html: prepared.notification.html
   }, "business notification");
 
-  if (!notificationSent) {
+  if (!acknowledgementSent || !notificationSent) {
     return jsonResult(502, "Email was not sent");
   }
   return jsonResult(200, "Sent");
