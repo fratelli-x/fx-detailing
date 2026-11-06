@@ -450,14 +450,11 @@ if (reviewTexts.length) {
         at: Date.now()
       };
       const body = new URLSearchParams(new FormData(form));
-      // Post to the page that contains this form. Posting every form to "/"
-      // only recorded the homepage enquiry, so the other pages reached
-      // /thanks/ without Netlify creating a submission.
-      let action = window.location.pathname || "/";
-      action = action.replace(/\/index\.html$/, "/") || "/";
-      if (action !== "/" && !action.endsWith("/")) action += "/";
-
-      fetch(action, {
+      if (!body.get("form-name")) body.set("form-name", formName);
+      // Netlify records the submission, and runs the email function, only for
+      // a POST to the site root. Posting to /contact/ or /ceramic/ still
+      // returns the thank-you page, so the form looks sent, but no email goes out.
+      fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: body.toString()
