@@ -450,8 +450,14 @@ if (reviewTexts.length) {
         at: Date.now()
       };
       const body = new URLSearchParams(new FormData(form));
+      // Post to the page that contains this form. Posting every form to "/"
+      // only recorded the homepage enquiry, so the other pages reached
+      // /thanks/ without Netlify creating a submission.
+      let action = window.location.pathname || "/";
+      action = action.replace(/\/index\.html$/, "/") || "/";
+      if (action !== "/" && !action.endsWith("/")) action += "/";
 
-      fetch("/", {
+      fetch(action, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: body.toString()

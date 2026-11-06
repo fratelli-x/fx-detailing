@@ -17,9 +17,7 @@ const FORM_NAMES = {
 const FROM = "FX Detailing <enquiries@fxdetailing.co.uk>";
 const REPLY_TO = "enquiries@fxdetailing.co.uk";
 const BUSINESS_INBOX = "enquiries@fxdetailing.co.uk";
-const SUBJECT = "We have received your FX Detailing enquiry";
-const NOTIFY_SUBJECT = "New FX Detailing enquiry";
-const LOGO_URL = "https://www.fxdetailing.co.uk/images/logo.png";
+const LOGO_URL = "https://www.fxdetailing.co.uk/images/logo-email.png";
 const TEL_DISPLAY = "01293 981474";
 const MOB_DISPLAY = "07548 703902";
 const WEB_DISPLAY = "www.fxdetailing.co.uk";
@@ -103,19 +101,42 @@ function prepareSend(event) {
     message: cleanMessage(fieldValue(data, "message"), 4000)
   };
 
+  const page = pageKey(data, formName);
+  const thanks = pageThanks(page);
+
   return {
     action: "send",
     email,
-    mail: buildAcknowledgement(enquiry),
-    notification: buildNotification(enquiry, email, formName)
+    mail: buildAcknowledgement(enquiry, thanks),
+    notification: buildNotification(enquiry, email, formName, page, thanks)
   };
 }
 
-function buildAcknowledgement(enquiry) {
+function pageKey(data, formName) {
+  const explicit = cleanLine(fieldValue(data, "enquiry-page"), 40).toLowerCase();
+  if (explicit === "homepage" || explicit === "contact" || explicit === "reviews" || explicit === "ceramic" || explicit === "detailing") {
+    return explicit;
+  }
+  if (formName === "detailing-booking") return "detailing";
+  if (formName === "ceramic") return "ceramic";
+  return "enquiry";
+}
+
+function pageThanks(page) {
+  if (page === "ceramic") return "Thanks for your ceramic enquiry";
+  if (page === "detailing") return "Thanks for your detailing enquiry";
+  if (page === "contact") return "Thanks for your contact enquiry";
+  if (page === "reviews") return "Thanks for your reviews enquiry";
+  return "Thanks for your enquiry";
+}
+
+function buildAcknowledgement(enquiry, thanks) {
   const greeting = enquiry.firstName ? "Hello " + enquiry.firstName + "," : "Hello,";
   const fullName = [enquiry.firstName, enquiry.lastName].filter(Boolean).join(" ");
   const lines = [
     greeting,
+    "",
+    thanks + ".",
     "",
     "We have received your message and will come back to you during opening hours, Monday to Friday, 9am to 5pm. If it is urgent, call 07548 703902.",
     "",
@@ -141,19 +162,21 @@ function buildAcknowledgement(enquiry) {
   const messageHtml = escapeHtml(enquiry.message || "").replace(/\n/g, "<br>");
   const html = [
     "<p>" + escapeHtml(greeting) + "</p>",
+    "<p>" + escapeHtml(thanks) + ".</p>",
     "<p>We have received your message and will come back to you during opening hours, Monday to Friday, 9am to 5pm. If it is urgent, call <a href=\"tel:07548703902\">07548 703902</a>.</p>",
     "<p><strong>Your enquiry</strong><br>" + details.join("<br>") + "</p>",
     "<p><strong>You wrote:</strong><br>" + messageHtml + "</p>",
     signatureHtml()
   ].join("");
 
-  return { subject: SUBJECT, text, html };
+  return { subject: thanks, text, html };
 }
 
-function buildNotification(enquiry, email, formName) {
+function buildNotification(enquiry, email, formName, page, thanks) {
   const fullName = [enquiry.firstName, enquiry.lastName].filter(Boolean).join(" ");
   const lines = [
-    "New enquiry from the website.",
+    thanks + ".",
+    "Page: " + page,
     "Form: " + formName,
     ""
   ];
@@ -177,13 +200,13 @@ function buildNotification(enquiry, email, formName) {
 
   const messageHtml = escapeHtml(enquiry.message || "").replace(/\n/g, "<br>");
   const html = [
-    "<p>New enquiry from the website.<br>Form: " + escapeHtml(formName) + "</p>",
+    "<p>" + escapeHtml(thanks) + ".<br>Page: " + escapeHtml(page) + "<br>Form: " + escapeHtml(formName) + "</p>",
     "<p>" + details.join("<br>") + "</p>",
     "<p><strong>Message:</strong><br>" + messageHtml + "</p>",
     signatureHtml()
   ].join("");
 
-  return { subject: NOTIFY_SUBJECT, text, html };
+  return { subject: thanks, text, html };
 }
 
 function signatureText() {
@@ -200,11 +223,11 @@ function signatureText() {
 
 function signatureHtml() {
   return [
-    "<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"560\" style=\"max-width:560px;width:100%;margin-top:24px;\">",
-    "<tr><td bgcolor=\"#000000\" style=\"background-color:#000000;padding:18px 20px;\">",
-    "<img src=\"" + LOGO_URL + "\" alt=\"FX Detailing\" width=\"160\" style=\"display:block;width:160px;max-width:100%;height:auto;border:0;\">",
+    "<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"560\" style=\"max-width:560px;width:100%;margin-top:24px;background-color:#ffffff;\">",
+    "<tr><td style=\"padding:0 0 12px;background-color:#ffffff;\">",
+    "<img src=\"" + LOGO_URL + "\" alt=\"FX Detailing\" width=\"200\" style=\"display:block;width:200px;max-width:100%;height:auto;border:0;background-color:#ffffff;\">",
     "</td></tr>",
-    "<tr><td style=\"padding:12px 0 0;font-family:Arial,sans-serif;font-size:14px;line-height:1.5;color:#111111;\">",
+    "<tr><td style=\"padding:0;font-family:Arial,sans-serif;font-size:14px;line-height:1.5;color:#111111;background-color:#ffffff;\">",
     "Tel: <a href=\"tel:01293981474\">" + TEL_DISPLAY + "</a><br>",
     "Mob: <a href=\"tel:07548703902\">" + MOB_DISPLAY + "</a><br>",
     "Email: <a href=\"mailto:" + REPLY_TO + "\">" + REPLY_TO + "</a><br>",
@@ -223,7 +246,6 @@ function jsonResult(statusCode, body) {
 exports.prepareSend = prepareSend;
 exports.buildAcknowledgement = buildAcknowledgement;
 exports.buildNotification = buildNotification;
-exports.SUBJECT = SUBJECT;
 exports.FROM = FROM;
 exports.REPLY_TO = REPLY_TO;
 exports.BUSINESS_INBOX = BUSINESS_INBOX;
