@@ -5560,3 +5560,15 @@ body.page-reviews { background: #0b0c0c; overflow-x: clip; }
 @media (min-width: 721px) {
   .review-top span { font-size: 13px; }
 }
+
+/* Thanks page only: keep the message 24px inside the centred column. */
+body.page-thanks .page-hero {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+@media (min-width: 721px) {
+  body.page-thanks .page-hero {
+    padding-left: calc(max(24px, (100% - 1200px) / 2) + 24px);
+    padding-right: calc(max(24px, (100% - 1200px) / 2) + 24px);
+  }
+}
