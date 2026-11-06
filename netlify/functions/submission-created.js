@@ -19,6 +19,12 @@ const REPLY_TO = "enquiries@fxdetailing.co.uk";
 const BUSINESS_INBOX = "enquiries@fxdetailing.co.uk";
 const SUBJECT = "We have received your FX Detailing enquiry";
 const NOTIFY_SUBJECT = "New FX Detailing enquiry";
+const LOGO_URL = "https://www.fxdetailing.co.uk/images/logo.png";
+const TEL_DISPLAY = "01293 981474";
+const MOB_DISPLAY = "07548 703902";
+const WEB_DISPLAY = "www.fxdetailing.co.uk";
+const ADDRESS = "The Barn, Westcoats Farm, Stan Hill, Charlwood, Surrey, RH6 0ES";
+const HOURS = "Monday to Friday, 9am to 5pm";
 
 function cleanLine(value, max) {
   return String(value == null ? "" : value)
@@ -122,7 +128,7 @@ function buildAcknowledgement(enquiry) {
   if (enquiry.registration) lines.push("Registration: " + enquiry.registration);
   if (enquiry.contactMethod) lines.push("How you would like to be contacted: " + enquiry.contactMethod);
 
-  lines.push("", "You wrote:", enquiry.message || "", "", "FX Detailing", REPLY_TO, "07548 703902", "Monday to Friday, 9am to 5pm", "The Barn, Westcoats Farm, Stan Hill, Charlwood, Surrey, RH6 0ES");
+  lines.push("", "You wrote:", enquiry.message || "", "", signatureText());
 
   const text = lines.join("\n");
   const details = [];
@@ -138,7 +144,7 @@ function buildAcknowledgement(enquiry) {
     "<p>We have received your message and will come back to you during opening hours, Monday to Friday, 9am to 5pm. If it is urgent, call <a href=\"tel:07548703902\">07548 703902</a>.</p>",
     "<p><strong>Your enquiry</strong><br>" + details.join("<br>") + "</p>",
     "<p><strong>You wrote:</strong><br>" + messageHtml + "</p>",
-    "<p>FX Detailing<br>" + REPLY_TO + "<br>07548 703902<br>Monday to Friday, 9am to 5pm<br>The Barn, Westcoats Farm, Stan Hill, Charlwood, Surrey, RH6 0ES</p>"
+    signatureHtml()
   ].join("");
 
   return { subject: SUBJECT, text, html };
@@ -158,7 +164,7 @@ function buildNotification(enquiry, email, formName) {
   if (enquiry.vehicle) lines.push("Vehicle: " + enquiry.vehicle);
   if (enquiry.registration) lines.push("Registration: " + enquiry.registration);
   if (enquiry.contactMethod) lines.push("How they would like to be contacted: " + enquiry.contactMethod);
-  lines.push("", "Message:", enquiry.message || "");
+  lines.push("", "Message:", enquiry.message || "", "", signatureText());
 
   const text = lines.join("\n");
   const details = [];
@@ -173,10 +179,41 @@ function buildNotification(enquiry, email, formName) {
   const html = [
     "<p>New enquiry from the website.<br>Form: " + escapeHtml(formName) + "</p>",
     "<p>" + details.join("<br>") + "</p>",
-    "<p><strong>Message:</strong><br>" + messageHtml + "</p>"
+    "<p><strong>Message:</strong><br>" + messageHtml + "</p>",
+    signatureHtml()
   ].join("");
 
   return { subject: NOTIFY_SUBJECT, text, html };
+}
+
+function signatureText() {
+  return [
+    "FX Detailing",
+    "Tel: " + TEL_DISPLAY,
+    "Mob: " + MOB_DISPLAY,
+    "Email: " + REPLY_TO,
+    "Web: " + WEB_DISPLAY,
+    ADDRESS,
+    HOURS
+  ].join("\n");
+}
+
+function signatureHtml() {
+  return [
+    "<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"560\" style=\"max-width:560px;width:100%;margin-top:24px;\">",
+    "<tr><td bgcolor=\"#000000\" style=\"background-color:#000000;padding:18px 20px;\">",
+    "<img src=\"" + LOGO_URL + "\" alt=\"FX Detailing\" width=\"160\" style=\"display:block;width:160px;max-width:100%;height:auto;border:0;\">",
+    "</td></tr>",
+    "<tr><td style=\"padding:12px 0 0;font-family:Arial,sans-serif;font-size:14px;line-height:1.5;color:#111111;\">",
+    "Tel: <a href=\"tel:01293981474\">" + TEL_DISPLAY + "</a><br>",
+    "Mob: <a href=\"tel:07548703902\">" + MOB_DISPLAY + "</a><br>",
+    "Email: <a href=\"mailto:" + REPLY_TO + "\">" + REPLY_TO + "</a><br>",
+    "Web: <a href=\"https://www.fxdetailing.co.uk\">" + WEB_DISPLAY + "</a><br>",
+    ADDRESS + "<br>",
+    HOURS,
+    "</td></tr>",
+    "</table>"
+  ].join("");
 }
 
 function jsonResult(statusCode, body) {
