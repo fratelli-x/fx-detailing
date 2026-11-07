@@ -1531,6 +1531,13 @@ textarea { min-height: 140px; resize: vertical; }
 .work-wrap { max-width: 1200px; }
 .page-bodykits .bodykit-gallery + .section { padding-top: 24px; }
 .page-bodykits .bodykit-gallery + .section .prose > h2:first-child { margin-top: 0; }
+.page-bodykits .bodykit-gallery + .section .prose > h2 {
+  font-size: calc(clamp(1.5rem, 3vw, 2.1rem) - 1px);
+}
+.page-bodykits .bodykit-gallery + .section .prose > .list,
+.page-bodykits .bodykit-gallery + .section .prose > p:first-of-type {
+  font-size: calc(1.05rem - 1px);
+}
 .work-car {
   margin: 16px 0 8px;
   font-size: 1.35rem;
