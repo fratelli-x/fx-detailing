@@ -45,7 +45,7 @@ function cleanMessage(value, max) {
 function kitSourcedAnswer(value) {
   const answer = cleanLine(value, 20).toLowerCase();
   if (answer === "yes") return "Yes";
-  if (answer === "no") return "No";
+  if (answer === "no") return "No/Source Me a Kit";
   return "";
 }
 
