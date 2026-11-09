@@ -42,6 +42,13 @@ function cleanMessage(value, max) {
     .slice(0, max);
 }
 
+function kitSourcedAnswer(value) {
+  const answer = cleanLine(value, 20).toLowerCase();
+  if (answer === "yes") return "Yes";
+  if (answer === "no") return "No";
+  return "";
+}
+
 function fieldValue(data, key) {
   if (!data || data[key] == null) return "";
   const value = data[key];
@@ -97,6 +104,7 @@ function prepareSend(event) {
     lastName: cleanLine(fieldValue(data, "last-name"), 80),
     vehicle: cleanLine(fieldValue(data, "vehicle"), 160),
     registration: cleanLine(fieldValue(data, "registration"), 20),
+    kitSourced: kitSourcedAnswer(fieldValue(data, "kit-sourced")),
     phone: cleanLine(fieldValue(data, "phone"), 40),
     contactMethod: cleanLine(fieldValue(data, "contact-method"), 40),
     message: cleanMessage(fieldValue(data, "message"), 4000)
@@ -150,6 +158,7 @@ function buildAcknowledgement(enquiry, thanks) {
   if (enquiry.phone) lines.push("Phone: " + enquiry.phone);
   if (enquiry.vehicle) lines.push("Vehicle: " + enquiry.vehicle);
   if (enquiry.registration) lines.push("Registration: " + enquiry.registration);
+  if (enquiry.kitSourced) lines.push("Kit already sourced: " + enquiry.kitSourced);
   if (enquiry.contactMethod) lines.push("How you would like to be contacted: " + enquiry.contactMethod);
 
   lines.push("", "You wrote:", enquiry.message || "", "", signatureText());
@@ -160,6 +169,7 @@ function buildAcknowledgement(enquiry, thanks) {
   if (enquiry.phone) details.push("Phone: " + escapeHtml(enquiry.phone));
   if (enquiry.vehicle) details.push("Vehicle: " + escapeHtml(enquiry.vehicle));
   if (enquiry.registration) details.push("Registration: " + escapeHtml(enquiry.registration));
+  if (enquiry.kitSourced) details.push("Kit already sourced: " + escapeHtml(enquiry.kitSourced));
   if (enquiry.contactMethod) details.push("How you would like to be contacted: " + escapeHtml(enquiry.contactMethod));
 
   const messageHtml = escapeHtml(enquiry.message || "").replace(/\n/g, "<br>");
@@ -189,6 +199,7 @@ function buildNotification(enquiry, email, formName, page, thanks) {
   if (enquiry.phone) lines.push("Phone: " + enquiry.phone);
   if (enquiry.vehicle) lines.push("Vehicle: " + enquiry.vehicle);
   if (enquiry.registration) lines.push("Registration: " + enquiry.registration);
+  if (enquiry.kitSourced) lines.push("Kit already sourced: " + enquiry.kitSourced);
   if (enquiry.contactMethod) lines.push("How they would like to be contacted: " + enquiry.contactMethod);
   lines.push("", "Message:", enquiry.message || "", "", signatureText());
 
@@ -199,6 +210,7 @@ function buildNotification(enquiry, email, formName, page, thanks) {
   if (enquiry.phone) details.push("Phone: " + escapeHtml(enquiry.phone));
   if (enquiry.vehicle) details.push("Vehicle: " + escapeHtml(enquiry.vehicle));
   if (enquiry.registration) details.push("Registration: " + escapeHtml(enquiry.registration));
+  if (enquiry.kitSourced) details.push("Kit already sourced: " + escapeHtml(enquiry.kitSourced));
   if (enquiry.contactMethod) details.push("How they would like to be contacted: " + escapeHtml(enquiry.contactMethod));
 
   const messageHtml = escapeHtml(enquiry.message || "").replace(/\n/g, "<br>");

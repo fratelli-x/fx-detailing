@@ -374,10 +374,18 @@
           <label>Car registration<input name="registration" autocomplete="off" placeholder="e.g. AB12 CDE"></label>
           <label>Email<input required type="email" name="email" autocomplete="email" placeholder="you@example.com"></label>
           <label>Phone<span class="dx-phone"><span>+44</span><input required type="tel" name="phone" autocomplete="tel" placeholder="e.g. 7123 456789"></span></label>
+          <fieldset class="kit-sourced dx-span">
+            <legend>Have you already sourced a kit?</legend>
+            <div class="kit-sourced-options">
+              <label><input required type="radio" name="kit-sourced" value="yes"> Yes</label>
+              <label><input type="radio" name="kit-sourced" value="no"> No</label>
+            </div>
+          </fieldset>
           <label class="dx-span">Booking enquiry<textarea required name="message" placeholder="Tell us about your enquiry..."></textarea></label>
           <label class="dx-span">How would you like to be contacted?
             <select name="contact-method">
               <option>Phone</option>
+              <option>WhatsApp</option>
               <option>Email</option>
               <option>Either</option>
             </select>
