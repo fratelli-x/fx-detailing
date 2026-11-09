@@ -11,7 +11,8 @@
 const FORM_NAMES = {
   enquiry: true,
   "detailing-booking": true,
-  ceramic: true
+  ceramic: true,
+  bodykits: true
 };
 
 const FROM = "FX Detailing <enquiries@fxdetailing.co.uk>";
@@ -114,17 +115,19 @@ function prepareSend(event) {
 
 function pageKey(data, formName) {
   const explicit = cleanLine(fieldValue(data, "enquiry-page"), 40).toLowerCase();
-  if (explicit === "homepage" || explicit === "contact" || explicit === "reviews" || explicit === "ceramic" || explicit === "detailing") {
+  if (explicit === "homepage" || explicit === "contact" || explicit === "reviews" || explicit === "ceramic" || explicit === "detailing" || explicit === "bodykits") {
     return explicit;
   }
   if (formName === "detailing-booking") return "detailing";
   if (formName === "ceramic") return "ceramic";
+  if (formName === "bodykits") return "bodykits";
   return "enquiry";
 }
 
 function pageThanks(page) {
   if (page === "ceramic") return "Thanks for your ceramic enquiry";
   if (page === "detailing") return "Thanks for your detailing enquiry";
+  if (page === "bodykits") return "Thanks for your bodykit enquiry";
   if (page === "contact") return "Thanks for your contact enquiry";
   if (page === "reviews") return "Thanks for your reviews enquiry";
   return "Thanks for your enquiry";
