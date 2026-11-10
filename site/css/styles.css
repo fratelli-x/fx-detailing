@@ -5627,3 +5627,18 @@ body.page-thanks .page-hero {
     padding-right: calc(max(24px, (100% - 1200px) / 2) + 24px);
   }
 }
+
+/* Article posts and the booking policy: 24px inset inside the content column.
+   The article hero stays a sibling, full width of the white column. */
+main > .article-hero + article.section,
+body.page-policy main > article.section {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+@media (min-width: 721px) {
+  main > .article-hero + article.section,
+  body.page-policy main > article.section {
+    padding-left: calc(max(24px, (100% - 1200px) / 2) + 24px);
+    padding-right: calc(max(24px, (100% - 1200px) / 2) + 24px);
+  }
+}
