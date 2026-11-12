@@ -1,0 +1,12 @@
+{
+  "name": "fx-detailing",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:sitemap": "node scripts/generate-sitemap.js",
+    "validate:seo": "node scripts/validate-seo.js && node scripts/validate-schema-relations.js",
+    "track:seo": "node scripts/track-seo-metrics.js",
+    "monitor:live": "node scripts/monitor-live-seo.js",
+    "backup:artifacts": "node scripts/backup-artifacts.js"
+  }
+}

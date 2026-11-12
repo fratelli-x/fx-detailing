@@ -209,8 +209,61 @@
   to = "/ceramic/"
   status = 301
 
-# Canonical host is set in the Netlify dashboard, not in the repo.
-# Repo host rules loop with that setting.
+# Apex host to the canonical www host.
+[[redirects]]
+  from = "https://fxdetailing.co.uk/*"
+  to = "https://www.fxdetailing.co.uk/:splat"
+  status = 301
+  force = true
+
+# Trailing slashes for real top-level pages. There is no /services/ tree.
+[[redirects]]
+  from = "/gallery"
+  to = "/gallery/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/detailing"
+  to = "/detailing/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ceramic"
+  to = "/ceramic/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/bodykits"
+  to = "/bodykits/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about"
+  to = "/about/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/reviews"
+  to = "/reviews/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects"
+  to = "/projects/"
+  status = 301
+  force = true
 
 # Asset filenames are not content-hashed, so cache for a week and then revalidate.
 # HTML stays fresh. Put the asset rules before /* so the catch-all does not win first.

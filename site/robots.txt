@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 
-# Direct search engine crawlers to your primary sitemap
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*?*
+
 Sitemap: https://www.fxdetailing.co.uk/sitemap.xml

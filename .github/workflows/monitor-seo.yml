@@ -1,0 +1,34 @@
+name: Daily Live SEO & Sitemap Monitor
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  monitor-live-seo:
+    name: Check live sitemaps and canonicals
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Monitor Fratelli X
+        run: node scripts/monitor-live-seo.js https://www.fratelli-x.com
+      - name: Monitor FX Detailing
+        run: node scripts/monitor-live-seo.js https://www.fxdetailing.co.uk
+      - name: Email SEO alert
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.MAIL_SERVER }}
+          server_port: ${{ secrets.MAIL_PORT }}
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "[SEO ALERT] Live SEO check failed for Fratelli X or FX Detailing"
+          body: |
+            A live page returned a non-200 status or a canonical mismatch.
+            Workflow runs: https://github.com/${{ github.repository }}/actions
+          to: ${{ secrets.MAIL_TO }}
+          from: ${{ secrets.MAIL_USERNAME }}
