@@ -1532,11 +1532,22 @@ textarea { min-height: 140px; resize: vertical; }
 .page-bodykits .bodykit-gallery + .section {
   padding-top: 12px;
   padding-bottom: 22px;
+  background: #101111;
+  color: #fff;
 }
 .page-bodykits .bodykit-gallery + .section .prose > h2:first-child { margin-top: 0; }
 .page-bodykits .bodykit-gallery + .section .prose > h2 {
   font-size: calc(clamp(1.5rem, 3vw, 2.1rem) - 3px);
   margin-bottom: 8px;
+  color: #fff;
+}
+.page-bodykits .bodykit-gallery + .section .prose a:not(.btn) {
+  color: #ed1c25;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.page-bodykits .bodykit-gallery + .section .prose a:not(.btn):hover {
+  color: #fff;
 }
 .page-bodykits .bodykit-gallery + .section .prose > .list,
 .page-bodykits .bodykit-gallery + .section .prose > p:first-of-type {
@@ -1560,6 +1571,18 @@ textarea { min-height: 140px; resize: vertical; }
 .page-bodykits .bodykit-gallery + .section .prose .btn {
   margin-top: 0;
   font-size: calc(1.05rem - 2px);
+  font-family: "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  background: #ed1c25;
+  border-color: #ed1c25;
+  border-radius: 0;
+}
+.page-bodykits .bodykit-gallery + .section .prose .btn:hover {
+  background: #c80f17;
+  color: #fff;
+  border-color: #c80f17;
 }
 .work-car {
   margin: 16px 0 8px;
