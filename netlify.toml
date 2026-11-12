@@ -209,12 +209,9 @@
   to = "/ceramic/"
   status = 301
 
-# Apex host to the canonical www host.
-[[redirects]]
-  from = "https://fxdetailing.co.uk/*"
-  to = "https://www.fxdetailing.co.uk/:splat"
-  status = 301
-  force = true
+# Canonical host is set in the Netlify dashboard, not in the repo.
+# An apex-to-www rule here is rejected as an invalid proxy destination
+# and loops with that dashboard setting.
 
 # Trailing slashes for real top-level pages. There is no /services/ tree.
 [[redirects]]
