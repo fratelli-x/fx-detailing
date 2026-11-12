@@ -1529,14 +1529,37 @@ textarea { min-height: 140px; resize: vertical; }
 .blog-card p { font-size: 0.9rem; line-height: 1.45; margin: 0; }
 
 .work-wrap { max-width: 1200px; }
-.page-bodykits .bodykit-gallery + .section { padding-top: 24px; }
+.page-bodykits .bodykit-gallery + .section {
+  padding-top: 12px;
+  padding-bottom: 22px;
+}
 .page-bodykits .bodykit-gallery + .section .prose > h2:first-child { margin-top: 0; }
 .page-bodykits .bodykit-gallery + .section .prose > h2 {
-  font-size: calc(clamp(1.5rem, 3vw, 2.1rem) - 1px);
+  font-size: calc(clamp(1.5rem, 3vw, 2.1rem) - 3px);
+  margin-bottom: 8px;
 }
 .page-bodykits .bodykit-gallery + .section .prose > .list,
 .page-bodykits .bodykit-gallery + .section .prose > p:first-of-type {
-  font-size: calc(1.05rem - 1px);
+  font-size: calc(1.05rem - 3px);
+}
+.page-bodykits .bodykit-gallery + .section .prose > .list {
+  margin: 0 0 8px;
+}
+.page-bodykits .bodykit-gallery + .section .prose > .list li {
+  margin: 0 0 0.15rem;
+}
+.page-bodykits .bodykit-gallery + .section .prose > .list li:last-child {
+  margin-bottom: 0;
+}
+.page-bodykits .bodykit-gallery + .section .prose > p {
+  margin: 0 0 8px;
+}
+.page-bodykits .bodykit-gallery + .section .prose > p:last-child {
+  margin-bottom: 0;
+}
+.page-bodykits .bodykit-gallery + .section .prose .btn {
+  margin-top: 0;
+  font-size: calc(1.05rem - 2px);
 }
 .work-car {
   margin: 16px 0 8px;
@@ -2365,6 +2388,136 @@ body.lightbox-open { overflow: hidden; }
   outline: 2px solid rgba(229, 28, 36, 0.6);
   outline-offset: 2px;
 }
+.page-bodykits .dx-enquire {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.page-bodykits .bodykit-enquire-column {
+  width: min(1080px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.page-bodykits .bodykit-enquire-column > .dx-enquire-card .dx-steps {
+  margin-bottom: 0;
+}
+.page-bodykits .bodykit-form-banner {
+  width: 100%;
+  margin: 0;
+  padding: 32px 24px;
+  border-radius: 16px;
+  border: 1px solid #2a2a30;
+  color: #f4f4f5;
+  background:
+    linear-gradient(90deg, rgba(10, 10, 11, 0.92) 0%, rgba(10, 10, 11, 0.6) 60%, rgba(10, 10, 11, 0.35) 100%),
+    url("/images/bodykit-banner-ferrari.webp") center / cover no-repeat;
+  background-color: #0a0a0b;
+  overflow: hidden;
+  position: relative;
+}
+.page-bodykits .bodykit-form-banner > * { position: relative; }
+.page-bodykits .bodykit-banner-kicker {
+  margin: 0;
+  color: #e8262d;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.page-bodykits .bodykit-form-banner .bodykit-banner-title {
+  margin: 8px 0 0;
+  color: #fff;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-weight: 700;
+  font-size: clamp(32px, 6vw, 48px);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+.page-bodykits .bodykit-banner-title span { color: #e8262d; }
+.page-bodykits .bodykit-banner-sub {
+  margin: 8px 0 0;
+  color: #9a9aa4;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.page-bodykits .bodykit-banner-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+  gap: 24px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.page-bodykits .bodykit-banner-points li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+.page-bodykits .bodykit-banner-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 2px solid #e8262d;
+  border-radius: 50%;
+  color: #fff;
+  background: transparent;
+  box-shadow: 0 0 16px rgba(232, 38, 45, 0.45);
+  flex: 0 0 56px;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+.page-bodykits .bodykit-banner-points li:hover .bodykit-banner-icon {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(232, 38, 45, 0.7);
+}
+.page-bodykits .bodykit-banner-icon svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+.page-bodykits .bodykit-form-banner h3 {
+  margin: 8px 0 0;
+  color: #fff;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.page-bodykits .bodykit-form-banner h3::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 3px;
+  margin-top: 8px;
+  background: #e8262d;
+}
+.page-bodykits .bodykit-form-banner .bodykit-banner-points p {
+  margin: 0;
+  color: #9a9aa4;
+  font-family: Inter, system-ui, "Segoe UI", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 1.5;
+  text-transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-bodykits .bodykit-banner-icon { transition: none; }
+  .page-bodykits .bodykit-banner-points li:hover .bodykit-banner-icon { transform: none; }
+}
 
 @media (max-width: 1100px) {
   .nav { margin-left: 0; }
@@ -2588,6 +2741,26 @@ body.lightbox-open { overflow: hidden; }
   .dx-enquire h2 { font-size: 40px; }
   .dx-enquire-head p { font-size: 13px; margin-bottom: 18px; }
   .dx-steps { gap: 8px; margin-bottom: 22px; font-size: 12px; }
+  .page-bodykits .bodykit-form-banner { padding: 16px 14px 14px; }
+  .page-bodykits .bodykit-form-banner .bodykit-banner-title,
+  .page-bodykits .bodykit-banner-sub { margin-top: 4px; }
+  .page-bodykits .bodykit-banner-points { gap: 10px; margin-top: 14px; }
+  .page-bodykits .bodykit-banner-points li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 10px;
+    row-gap: 2px;
+    align-items: center;
+  }
+  .page-bodykits .bodykit-form-banner .bodykit-banner-points p { grid-column: 1 / -1; }
+  .page-bodykits .bodykit-banner-icon { width: 36px; height: 36px; flex-basis: 36px; }
+  .page-bodykits .bodykit-banner-icon svg { width: 18px; height: 18px; }
+  .page-bodykits .bodykit-form-banner h3 { margin: 0; font-size: 16px; }
+  .page-bodykits .bodykit-form-banner h3::after { margin-top: 4px; }
+  .page-bodykits .bodykit-banner-kicker { font-size: 13px; }
+  .page-bodykits .bodykit-form-banner .bodykit-banner-title { font-size: 31px; }
+  .page-bodykits .bodykit-banner-sub { font-size: 15px; }
+  .page-bodykits .bodykit-form-banner .bodykit-banner-points p { font-size: 13px; }
   .dx-step { gap: 6px; }
   .dx-step b { width: 28px; height: 28px; font-size: 12px; }
   .dx-steps i { width: 20px; }
@@ -2662,15 +2835,16 @@ body.lightbox-open { overflow: hidden; }
 .page-bodykits .bodykit-hero {
   display: grid;
   grid-template-columns: 46% 54%;
-  align-items: center;
+  align-items: end;
   min-width: 0;
+  padding-bottom: 28px;
 }
 .page-bodykits .bodykit-hero-copy {
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-width: 0;
-  padding: 58px 24px 55px;
+  padding: 58px 24px 0;
   position: relative;
   z-index: 1;
 }
@@ -2826,7 +3000,7 @@ body.lightbox-open { overflow: hidden; }
   display: grid;
   grid-template-columns: 0.8fr 1.7fr;
   gap: 54px;
-  padding: 78px 24px 72px;
+  padding: 40px 24px 36px;
 }
 .page-bodykits .bodykit-section-label h2,
 .page-bodykits .bodykit-brands h2 {
@@ -2996,13 +3170,9 @@ body.lightbox-open { overflow: hidden; }
   letter-spacing: 1px;
 }
 .page-bodykits .bodykit-features small { color: #999; font-size: 13px; line-height: 1.3; }
-@media (min-width: 801px) {
-  .page-bodykits .bodykit-features strong { font-size: 13px; }
-  .page-bodykits .bodykit-features small { font-size: 13px; }
-}
 
 .page-bodykits .bodykit-gallery {
-  padding: 32px 24px 82px;
+  padding: 32px 24px 20px;
   background: #101111;
 }
 .page-bodykits .bodykit-gallery-heading {
@@ -3117,35 +3287,52 @@ body.lightbox-open { overflow: hidden; }
 .page-bodykits .bodykit-examples { margin-top: 42px; }
 .page-bodykits .bodykit-gallery .bodykit-example-title {
   margin: 32px 0 12px;
-  font-size: 32px;
+  font-size: 25px;
   line-height: 0.9;
 }
 .page-bodykits .bodykit-examples .bodykit-example-title:first-child { margin-top: 0; }
 .page-bodykits .bodykit-example-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: nowrap;
   gap: 10px;
-  align-items: start;
+  align-items: stretch;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 .page-bodykits .bodykit-example-grid button {
   position: relative;
   display: block;
-  width: 100%;
+  flex: 0 0 82%;
+  width: 82%;
   min-width: 0;
   margin: 0;
   padding: 0;
   border: 0;
+  aspect-ratio: 3 / 2;
   background: #222;
   color: #fff;
   text-align: left;
   overflow: hidden;
+  scroll-snap-align: start;
   cursor: zoom-in;
 }
 .page-bodykits .bodykit-example-grid img {
   width: 100%;
-  max-width: 100%;
-  height: auto;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
   display: block;
+}
+@media (min-width: 721px) {
+  .page-bodykits .bodykit-example-grid button {
+    flex-basis: calc((100% - 30px) / 3.25);
+    width: calc((100% - 30px) / 3.25);
+  }
 }
 .page-bodykits .bodykit-example-grid button:has(span)::after {
   content: "";
@@ -3165,16 +3352,51 @@ body.lightbox-open { overflow: hidden; }
   letter-spacing: 1.7px;
   text-transform: uppercase;
 }
-@media (min-width: 1000px) {
-  .page-bodykits .bodykit-example-grid {
-    grid-template-columns: repeat(var(--cols, 6), minmax(0, 1fr));
+@media (min-width: 801px) {
+  .page-bodykits .dx-header-enquire,
+  .page-bodykits .bodykit-page .kicker,
+  .page-bodykits .bodykit-gallery .kicker,
+  .page-bodykits .bodykit-tagline,
+  .page-bodykits .bodykit-hero-copy > p:not(.kicker):not(.bodykit-tagline),
+  .page-bodykits .bodykit-button,
+  .page-bodykits .bodykit-text-link,
+  .page-bodykits .bodykit-stats span,
+  .page-bodykits .bodykit-hero-image span,
+  .page-bodykits .bodykit-trust div,
+  .page-bodykits .bodykit-process-card p,
+  .page-bodykits .bodykit-pricing-heading > p,
+  .page-bodykits .bodykit-row small,
+  .page-bodykits .bodykit-note p:not(.kicker),
+  .page-bodykits .bodykit-note a,
+  .page-bodykits .bodykit-brands > p:not(.kicker),
+  .page-bodykits .bodykit-features strong,
+  .page-bodykits .bodykit-features small,
+  .page-bodykits .bodykit-gallery-heading > p,
+  .page-bodykits .gallery-overlay small,
+  .page-bodykits .bodykit-gallery-footer,
+  .page-bodykits .bodykit-example-grid button span,
+  .page-bodykits .dx-steps,
+  .page-bodykits .dx-enquire label,
+  .page-bodykits .dx-enquire input,
+  .page-bodykits .dx-enquire textarea,
+  .page-bodykits .dx-enquire select,
+  .page-bodykits .dx-phone > span,
+  .page-bodykits .dx-enquire fieldset.kit-sourced legend,
+  .page-bodykits .dx-enquire button.dx-btn,
+  .page-bodykits .dx-form-note {
+    font-size: 14px;
   }
 }
 
 @media (max-width: 800px) {
   .page-bodykits .bodykit-page { padding-bottom: 0; }
-  .page-bodykits .bodykit-hero { display: flex; flex-direction: column; }
-  .page-bodykits .bodykit-hero-copy { min-height: 520px; padding: 48px 22px 38px; }
+  .page-bodykits .bodykit-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding-bottom: 0;
+  }
+  .page-bodykits .bodykit-hero-copy { min-height: 520px; padding: 48px 22px 24px; }
   .page-bodykits .bodykit-hero h1 { font-size: 70px; }
   .page-bodykits .bodykit-trust { grid-template-columns: 1fr; margin: 0 14px; }
   .page-bodykits .bodykit-trust div {
@@ -3185,21 +3407,21 @@ body.lightbox-open { overflow: hidden; }
     padding-left: 15px;
   }
   .page-bodykits .bodykit-trust div:last-child { border-bottom: 0; }
-  .page-bodykits .bodykit-process { display: block; padding: 57px 14px 54px; }
+  .page-bodykits .bodykit-process { display: block; padding: 32px 14px 28px; }
   .page-bodykits .bodykit-section-label { margin-bottom: 25px; }
   .page-bodykits .bodykit-process-grid { gap: 8px; }
   .page-bodykits .bodykit-process-card { min-height: 155px; padding: 12px; }
   .page-bodykits .bodykit-process-card h3 { font-size: 22px; margin-top: 30px; }
   .page-bodykits .bodykit-process-card p { font-size: 12px; }
   .page-bodykits .bodykit-pricing-section { padding: 0 14px; }
-  .page-bodykits .bodykit-pricing-heading { display: block; }
+  .page-bodykits .bodykit-pricing-heading { display: block; padding-bottom: 8px; }
   .page-bodykits .bodykit-pricing-heading h2 { font-size: 50px; }
-  .page-bodykits .bodykit-pricing-heading > p { margin-top: 13px; }
-  .page-bodykits .bodykit-price-layout { display: flex; flex-direction: column; gap: 22px; }
+  .page-bodykits .bodykit-pricing-heading > p { margin-top: 6px; margin-bottom: 0; }
+  .page-bodykits .bodykit-price-layout { display: flex; flex-direction: column; gap: 22px; padding-top: 8px; }
   .page-bodykits .bodykit-row {
     grid-template-columns: 24px minmax(0, 1fr) minmax(8px, 0.4fr) max-content max-content 15px;
     gap: 6px;
-    min-height: 45px;
+    min-height: 36px;
   }
   .page-bodykits .bodykit-row strong { font-size: 12px; }
   .page-bodykits .bodykit-row b { font-size: 17px; }
@@ -3234,7 +3456,7 @@ body.lightbox-open { overflow: hidden; }
 }
 
 @media (max-width: 720px) {
-  .page-bodykits .bodykit-gallery { padding: 32px 14px 61px; }
+  .page-bodykits .bodykit-gallery { padding: 32px 14px 16px; }
   .page-bodykits .bodykit-gallery-heading { display: block; margin-bottom: 22px; }
   .page-bodykits .bodykit-gallery h2 { font-size: 51px; }
   .page-bodykits .bodykit-gallery-heading > p { margin-top: 14px; font-size: 12px; }
@@ -3247,8 +3469,12 @@ body.lightbox-open { overflow: hidden; }
   .page-bodykits .bodykit-gallery-footer { display: block; line-height: 1.5; font-size: 12px; }
   .page-bodykits .bodykit-gallery-footer a { margin-top: 12px; font-size: 12px; }
   .page-bodykits .bodykit-examples { margin-top: 28px; }
-  .page-bodykits .bodykit-gallery .bodykit-example-title { margin-top: 22px; font-size: 26px; }
+  .page-bodykits .bodykit-gallery .bodykit-example-title { margin-top: 22px; font-size: 19px; }
   .page-bodykits .bodykit-example-grid { gap: 7px; }
+  .page-bodykits .bodykit-example-grid button {
+    flex: 0 0 calc((100% - 7px) / 2);
+    width: calc((100% - 7px) / 2);
+  }
   .page-bodykits .bodykit-example-grid button span { right: 8px; bottom: 8px; left: 8px; font-size: 12px; }
   .page-bodykits .bodykit-gallery .kicker { font-size: 12px; }
 }
