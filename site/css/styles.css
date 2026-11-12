@@ -1537,9 +1537,14 @@ textarea { min-height: 140px; resize: vertical; }
 }
 .page-bodykits .bodykit-gallery + .section .prose > h2:first-child { margin-top: 0; }
 .page-bodykits .bodykit-gallery + .section .prose > h2 {
-  font-size: calc(clamp(1.5rem, 3vw, 2.1rem) - 3px);
   margin-bottom: 8px;
   color: #fff;
+  font-family: "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 0.8;
 }
 .page-bodykits .bodykit-gallery + .section .prose a:not(.btn) {
   color: #ed1c25;
@@ -1630,18 +1635,18 @@ textarea { min-height: 140px; resize: vertical; }
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 40;
+  z-index: 80;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.92);
-  padding: 72px 64px 48px;
+  background: rgba(0, 0, 0, 0.94);
+  padding: 56px 12px 44px;
 }
 .lightbox[hidden] { display: none; }
 .lightbox img {
   max-width: 100%;
-  max-height: calc(100vh - 110px);
-  max-height: calc(100dvh - 110px);
+  max-height: calc(100vh - 72px);
+  max-height: calc(100dvh - 72px);
   width: auto;
   height: auto;
   object-fit: contain;
@@ -1689,6 +1694,13 @@ textarea { min-height: 140px; resize: vertical; }
 }
 .lightbox-caption:empty { display: none; }
 body.lightbox-open { overflow: hidden; }
+@media (max-width: 720px) {
+  .lightbox { padding: 48px 0 36px; }
+  .lightbox img {
+    width: 100%;
+    max-height: calc(100dvh - 52px);
+  }
+}
 
 /* Detailing page content. Header styles live with the shared site header. */
 .page-detailing {
@@ -2885,20 +2897,23 @@ body.lightbox-open { overflow: hidden; }
   flex: 0 0 44px;
 }
 .page-bodykits .bodykit-hero h1 {
-  font-size: clamp(60px, 7vw, 105px);
-  line-height: 0.78;
-  letter-spacing: -0.5px;
+  font-size: clamp(32px, 4.2vw, 58px);
+  line-height: 0.9;
+  letter-spacing: 0;
+  max-width: 100%;
 }
 .page-bodykits .bodykit-hero h1 strong,
 .page-bodykits .bodykit-pricing-heading h2 strong,
 .page-bodykits .bodykit-section-label h2 strong,
 .page-bodykits .bodykit-brands h2 strong,
-.page-bodykits .bodykit-gallery h2 strong { color: #ed1c25; font-weight: 700; }
+.page-bodykits .bodykit-gallery h2 strong,
+.page-bodykits .bodykit-gallery + .section .prose > h2 strong { color: #ed1c25; font-weight: 700; }
 .page-bodykits .bodykit-tagline {
   margin: 21px 0 10px;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 0.14em;
+  max-width: 100%;
   font: 500 13px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
 }
 .page-bodykits .bodykit-hero-copy > p:not(.kicker):not(.bodykit-tagline) {
@@ -3314,6 +3329,29 @@ body.lightbox-open { overflow: hidden; }
   line-height: 0.9;
 }
 .page-bodykits .bodykit-examples .bodykit-example-title:first-child { margin-top: 0; }
+.page-bodykits .bodykit-example-scroller { position: relative; }
+.page-bodykits .bodykit-scroll-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #ed1c25;
+  color: #fff;
+  font: 700 16px/1 "Barlow Condensed", Oswald, sans-serif;
+  cursor: pointer;
+}
+.page-bodykits .bodykit-scroll-arrow.is-prev { left: 6px; }
+.page-bodykits .bodykit-scroll-arrow.is-next { right: 6px; }
+.page-bodykits .bodykit-scroll-arrow:hover { background: #c80f17; }
+.page-bodykits .bodykit-scroll-arrow[disabled] {
+  opacity: 0;
+  pointer-events: none;
+}
 .page-bodykits .bodykit-example-grid {
   display: flex;
   flex-wrap: nowrap;
@@ -3420,7 +3458,7 @@ body.lightbox-open { overflow: hidden; }
     padding-bottom: 0;
   }
   .page-bodykits .bodykit-hero-copy { min-height: 520px; padding: 48px 22px 24px; }
-  .page-bodykits .bodykit-hero h1 { font-size: 70px; }
+  .page-bodykits .bodykit-hero h1 { font-size: clamp(28px, 8.6vw, 40px); }
   .page-bodykits .bodykit-trust { grid-template-columns: 1fr; margin: 0 14px; }
   .page-bodykits .bodykit-trust div {
     min-height: 43px;
@@ -3438,7 +3476,8 @@ body.lightbox-open { overflow: hidden; }
   .page-bodykits .bodykit-process-card p { font-size: 12px; }
   .page-bodykits .bodykit-pricing-section { padding: 0 14px; }
   .page-bodykits .bodykit-pricing-heading { display: block; padding-bottom: 8px; }
-  .page-bodykits .bodykit-pricing-heading h2 { font-size: 50px; }
+  .page-bodykits .bodykit-pricing-heading h2,
+  .page-bodykits .bodykit-gallery + .section .prose > h2 { font-size: 50px; }
   .page-bodykits .bodykit-pricing-heading > p { margin-top: 6px; margin-bottom: 0; }
   .page-bodykits .bodykit-price-layout { display: flex; flex-direction: column; gap: 22px; padding-top: 8px; }
   .page-bodykits .bodykit-row {

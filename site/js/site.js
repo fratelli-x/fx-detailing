@@ -123,6 +123,35 @@ if (workGalleries.length) {
   });
 }
 
+document.querySelectorAll(".bodykit-example-scroller").forEach((scroller) => {
+  const grid = scroller.querySelector(".bodykit-example-grid");
+  const prev = scroller.querySelector(".is-prev");
+  const next = scroller.querySelector(".is-next");
+  if (!grid || !prev || !next) return;
+
+  function step() {
+    const item = grid.querySelector("button");
+    const gap = parseFloat(getComputedStyle(grid).columnGap) || 0;
+    return item ? item.getBoundingClientRect().width + gap : grid.clientWidth;
+  }
+
+  function update() {
+    const max = grid.scrollWidth - grid.clientWidth;
+    prev.disabled = grid.scrollLeft <= 2;
+    next.disabled = grid.scrollLeft >= max - 2;
+  }
+
+  prev.addEventListener("click", () => {
+    grid.scrollBy({ left: -step(), behavior: "smooth" });
+  });
+  next.addEventListener("click", () => {
+    grid.scrollBy({ left: step(), behavior: "smooth" });
+  });
+  grid.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+});
+
 const galleryCards = document.querySelectorAll(".page-gallery .fx-gallery-card");
 if (galleryCards.length) {
   const overlay = document.createElement("div");
