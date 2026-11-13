@@ -6539,8 +6539,10 @@ body:has(.home-intro) .home-projects time {
 @media (min-width: 721px) {
   body:has(.home-intro) main > * ,
   body:has(.home-intro) > .site-footer {
-    margin-left: 32px;
-    margin-right: 32px;
+    width: min(1200px, calc(100% - 48px));
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
   }
   body:has(.home-intro) .home-intro,
   body:has(.home-intro) .home-standard,
@@ -6613,7 +6615,7 @@ body:has(.home-intro) .home-projects .project-grid {
 
 @media (min-width: 721px) {
   .site-header {
-    padding-left: 28px;
-    padding-right: 28px;
+    padding-left: max(48px, calc((100% - 1200px) / 2));
+    padding-right: max(48px, calc((100% - 1200px) / 2));
   }
 }
