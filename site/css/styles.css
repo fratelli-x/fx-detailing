@@ -486,9 +486,11 @@ p { margin: 0 0 1em; }
   .home-feature:has(> img[src="/images/porsche.jpg"]),
   .home-feature:has(> img[src="/images/bodykits.jpg"]) {
     grid-template-columns: auto minmax(0, 1fr);
+    padding-left: 20px;
   }
   .home-feature.reverse:has(> img[src="/images/revuelto.jpg"]) {
     grid-template-columns: minmax(0, 1fr) auto;
+    padding-right: 20px;
   }
   .home-feature > img[src="/images/porsche.jpg"] {
     width: calc(345px * 1400 / 1227);
@@ -2998,27 +3000,43 @@ body.lightbox-open { overflow: hidden; }
 }
 .page-bodykits .bodykit-stats > div {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
+  justify-content: flex-start;
+  gap: 14px;
   min-height: 78px;
-  padding: 16px 12px;
+  min-width: 0;
+  padding: 14px 22px;
   border-left: 0;
   border-right: 1px solid #343638;
-  text-align: center;
+  text-align: left;
 }
 .page-bodykits .bodykit-stats > div:last-child { border-right: 0; }
-.page-bodykits .bodykit-stats strong {
+.page-bodykits .bodykit-stats .bk-ico {
   color: #ed1c25;
-  font: 700 25px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
-  line-height: 0.9;
+  width: 28px;
+  height: 28px;
+}
+.page-bodykits .bodykit-stats p {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  margin: 0;
+}
+.page-bodykits .bodykit-stats strong {
+  color: #fff;
+  font: 700 17px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
+  letter-spacing: 0.6px;
+  line-height: 1;
+  text-transform: uppercase;
 }
 .page-bodykits .bodykit-stats span {
-  color: #999;
-  font-size: 13px;
+  color: #9a9a9a;
+  font: 600 12px "Barlow Condensed", Oswald, "Arial Narrow", sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.7px;
+  letter-spacing: 0.5px;
+  line-height: 1.25;
 }
 .page-bodykits .bodykit-hero-image {
   position: relative;
@@ -3499,20 +3517,9 @@ body.lightbox-open { overflow: hidden; }
     padding-bottom: 0;
   }
   .page-bodykits .bodykit-hero-copy { min-height: 0; padding: 48px 22px 24px; }
-  .page-bodykits .bodykit-stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px 22px 8px;
-  }
   .page-bodykits .bodykit-stats > div {
-    align-items: flex-start;
-    justify-content: flex-start;
-    min-height: 0;
-    padding: 0 0 0 12px;
-    border-right: 0;
-    border-left: 1px solid #454748;
-    text-align: left;
+    padding: 12px 16px;
+    gap: 12px;
   }
   .page-bodykits .bodykit-trust { grid-template-columns: 1fr; margin: 0 14px; }
   .page-bodykits .bodykit-trust div {
@@ -3570,20 +3577,24 @@ body.lightbox-open { overflow: hidden; }
   .page-bodykits .bodykit-note a,
   .page-bodykits .bodykit-brands > p:not(.kicker),
   .page-bodykits .bodykit-features strong { font-size: 12px; }
-  .page-bodykits .bodykit-stats {
-    gap: 10px 12px;
-    padding: 12px 22px 8px;
-  }
-  .page-bodykits .bodykit-stats > div {
-    flex: 1 1 30%;
-    gap: 2px;
-    padding-left: 8px;
-  }
   .page-bodykits .bodykit-stats strong { font-size: 16px; }
-  .page-bodykits .bodykit-stats span { font-size: 10px; letter-spacing: 0.4px; }
+  .page-bodykits .bodykit-stats span { font-size: 11px; letter-spacing: 0.4px; }
 }
 
 @media (max-width: 720px) {
+  .page-bodykits .bodykit-stats {
+    grid-template-columns: 1fr;
+  }
+  .page-bodykits .bodykit-stats > div {
+    min-height: 0;
+    padding: 12px 16px;
+    border-right: 0;
+    border-bottom: 1px solid #343638;
+  }
+  .page-bodykits .bodykit-stats > div:last-child { border-bottom: 0; }
+  .page-bodykits .bodykit-stats .bk-ico { width: 22px; height: 22px; }
+  .page-bodykits .bodykit-stats strong { font-size: 15px; }
+  .page-bodykits .bodykit-stats span { font-size: 11px; }
   .page-bodykits .bodykit-gallery { padding: 32px 14px 16px; }
   .page-bodykits .bodykit-gallery-heading { display: block; margin-bottom: 22px; }
   .page-bodykits .bodykit-gallery h2 { font-size: clamp(32px, 4.2vw, 58px); }
@@ -4487,6 +4498,10 @@ body.lightbox-open { overflow: hidden; }
     padding-left: 0;
     padding-right: 0;
     box-sizing: border-box;
+  }
+  .home-projects .project-grid {
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .home-projects .project span,
   .home-projects .project time,
@@ -6471,5 +6486,134 @@ body.page-policy main > article.section {
   .page-detailing .dx-stage {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .site-header {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+}
+
+/* Homepage only: black strips down both sides so every block sits in from the window. */
+body:has(.home-intro) {
+  background: #000;
+}
+body:has(.home-intro) main {
+  background: #000;
+}
+body:has(.home-intro) main > * ,
+body:has(.home-intro) > .site-footer {
+  width: auto;
+  max-width: none;
+  margin-left: 18px;
+  margin-right: 18px;
+  box-sizing: border-box;
+}
+body:has(.home-intro) .home-intro {
+  background-color: #fff;
+  background-image: none;
+}
+body:has(.home-intro) .home-standard,
+body:has(.home-intro) .home-visit {
+  background-color: #f3f3f3;
+  background-image: none;
+}
+body:has(.home-intro) .home-intro,
+body:has(.home-intro) .home-standard,
+body:has(.home-intro) .home-visit {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+body:has(.home-intro) .home-projects,
+body:has(.home-intro) .testimonial-section {
+  padding-left: 0;
+  padding-right: 0;
+}
+body:has(.home-intro) .home-projects .project h3 {
+  line-height: 1;
+  margin-bottom: 0.14em;
+}
+body:has(.home-intro) .home-projects time {
+  display: none;
+}
+@media (min-width: 721px) {
+  body:has(.home-intro) main > * ,
+  body:has(.home-intro) > .site-footer {
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+  body:has(.home-intro) .home-intro,
+  body:has(.home-intro) .home-standard,
+  body:has(.home-intro) .home-visit {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  body:has(.home-intro) .home-projects,
+  body:has(.home-intro) .testimonial-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* Photo rows keep the black-strip margin, so they do not hang past the column. The picture itself sits inside that edge. */
+body:has(.home-intro) .home-feature,
+body:has(.home-intro) .home-projects {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+body:has(.home-intro) .home-projects .project-grid {
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (min-width: 721px) {
+  body:has(.home-intro) .home-feature,
+  body:has(.home-intro) .home-projects {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+@media (min-width: 900px) {
+  body:has(.home-intro) .home-feature:has(> img[src="/images/porsche.jpg"]),
+  body:has(.home-intro) .home-feature:has(> img[src="/images/bodykits.jpg"]) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  body:has(.home-intro) .home-feature.reverse:has(> img[src="/images/revuelto.jpg"]) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    min-height: 0;
+    aspect-ratio: 384 / 640;
+    background-repeat: no-repeat;
+    background-size: 250% auto;
+    background-position: center center;
+    overflow: hidden;
+  }
+  .hero > div > .btn {
+    position: relative;
+    top: 104px;
+  }
+  .home-intro .home-split {
+    gap: 16px;
+  }
+  .home-intro .home-split h2 {
+    margin-bottom: 0;
+  }
+  .home-intro .home-split > div > p:first-child {
+    margin-bottom: 0.5em;
+  }
+  .home-intro .punch {
+    margin-bottom: 0.42em;
+  }
+}
+
+@media (min-width: 721px) {
+  .site-header {
+    padding-left: 28px;
+    padding-right: 28px;
   }
 }
