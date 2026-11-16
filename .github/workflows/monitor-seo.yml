@@ -31,4 +31,4 @@ jobs:
             A live page returned a non-200 status or a canonical mismatch.
             Workflow runs: https://github.com/${{ github.repository }}/actions
           to: ${{ secrets.MAIL_TO }}
-          from: ${{ secrets.MAIL_USERNAME }}
+          from: enquiries@fxdetailing.co.uk
