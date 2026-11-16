@@ -14,8 +14,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Monitor Fratelli X
-        run: node scripts/monitor-live-seo.js https://www.fratelli-x.com
       - name: Monitor FX Detailing
         run: node scripts/monitor-live-seo.js https://www.fxdetailing.co.uk
       - name: Email SEO alert
@@ -26,7 +24,7 @@ jobs:
           server_port: ${{ secrets.MAIL_PORT }}
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "[SEO ALERT] Live SEO check failed for Fratelli X or FX Detailing"
+          subject: "[SEO ALERT] Live SEO check failed for FX Detailing"
           body: |
             A live page returned a non-200 status or a canonical mismatch.
             Workflow runs: https://github.com/${{ github.repository }}/actions
