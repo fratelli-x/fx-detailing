@@ -24,8 +24,13 @@
       "@type": "AutoRepair",
       "@id": "https://www.fxdetailing.co.uk/#organization",
       "name": "FX Detailing",
-      "url": "https://www.fxdetailing.co.uk",
+      "legalName": "FX Detailing LTD",
+      "url": "https://www.fxdetailing.co.uk/",
       "logo": "https://www.fxdetailing.co.uk/images/logo.png",
+      "image": "https://www.fxdetailing.co.uk/images/hero.jpg",
+      "telephone": "+447548703902",
+      "email": "enquiries@fxdetailing.co.uk",
+      "priceRange": "££-£££",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "The Barn, Westcoats Farm, Stan Hill",
@@ -34,14 +39,48 @@
         "postalCode": "RH6 0ES",
         "addressCountry": "GB"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.173278248394105,
+        "longitude": -0.2479991030269702
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      ],
       "areaServed": [
-        "Surrey",
-        "West Sussex",
-        "London",
-        "Kent",
-        "Essex",
-        "East Sussex",
-        "United Kingdom"
+        { "@type": "AdministrativeArea", "name": "Surrey" },
+        { "@type": "AdministrativeArea", "name": "West Sussex" },
+        { "@type": "AdministrativeArea", "name": "London" },
+        { "@type": "AdministrativeArea", "name": "Kent" },
+        { "@type": "AdministrativeArea", "name": "Essex" },
+        { "@type": "AdministrativeArea", "name": "East Sussex" },
+        { "@type": "AdministrativeArea", "name": "UK Nationwide" }
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "url": "https://www.fxdetailing.co.uk/detailing/",
+          "priceCurrency": "GBP",
+          "priceSpecification": { "@type": "PriceSpecification", "minPrice": 299, "priceCurrency": "GBP" },
+          "itemOffered": { "@type": "Service", "name": "Car detailing" }
+        },
+        {
+          "@type": "Offer",
+          "url": "https://www.fxdetailing.co.uk/ceramic/",
+          "itemOffered": { "@type": "Service", "name": "Gtechniq ceramic coating" }
+        },
+        {
+          "@type": "Offer",
+          "url": "https://www.fxdetailing.co.uk/bodykits/",
+          "priceCurrency": "GBP",
+          "priceSpecification": { "@type": "PriceSpecification", "minPrice": 120, "priceCurrency": "GBP" },
+          "itemOffered": { "@type": "Service", "name": "Bodykit installation" }
+        }
       ]
     }
   }
@@ -227,6 +266,18 @@
           <li><a href="/booking-policy/">Booking, cancellation &amp; refund policy</a></li>
         </ul>
         <p><a href="https://www.facebook.com/profile.php?id=61576231057715">Facebook</a><br><a href="https://www.instagram.com/fx_detailing__">Instagram</a></p>
+      </div>
+      <div>
+        <h2>Service areas</h2>
+        <ul>
+          <li><a href="/locations/surrey/">Surrey</a></li>
+          <li><a href="/locations/west-sussex/">West Sussex</a></li>
+          <li><a href="/locations/london/">London</a></li>
+          <li><a href="/locations/kent/">Kent</a></li>
+          <li><a href="/locations/east-sussex/">East Sussex</a></li>
+          <li><a href="/locations/essex/">Essex</a></li>
+          <li><a href="/locations/uk-nationwide/">UK Nationwide</a></li>
+        </ul>
       </div>
       <div>
         <h2>Enquire</h2>
