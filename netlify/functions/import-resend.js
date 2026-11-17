@@ -8,6 +8,8 @@ const { createClient } = require("@supabase/supabase-js");
 const BUSINESS_EMAIL = "enquiries@fxdetailing.co.uk";
 const SIGNATURE = "\nFX Detailing\nTel: 01293 981474";
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+const OLD_ACK_SUBJECT = "We have received your FX Detailing enquiry";
+const OLD_NOTIFY_SUBJECT = "New FX Detailing enquiry";
 const SUBJECT_SERVICE = {
   "Thanks for your ceramic enquiry": "ceramic",
   "Thanks for your detailing enquiry": "detailing",
@@ -19,8 +21,15 @@ const SUBJECT_SERVICE = {
 const FORM_SERVICE = {
   "detailing-booking": "detailing",
   ceramic: "ceramic",
-  bodykits: "bodykits"
+  bodykits: "bodykits",
+  enquiry: "enquiry",
+  contact: "contact",
+  reviews: "reviews"
 };
+
+function enquirySubject(subject) {
+  return Boolean(SUBJECT_SERVICE[subject] || subject === OLD_ACK_SUBJECT || subject === OLD_NOTIFY_SUBJECT);
+}
 const PAGE_SERVICE = {
   homepage: true,
   contact: true,
@@ -147,27 +156,54 @@ function emailBody(detail) {
 }
 
 function field(preamble, label) {
-  const prefix = label + ": ";
-  const lines = preamble.split("\n");
+  const prefix = String(label || "").toLowerCase() + ":";
+  const lines = String(preamble || "").split("\n");
   for (let i = 0; i < lines.length; i++) {
-    if (lines[i].indexOf(prefix) === 0) return lines[i].slice(prefix.length).trim();
+    const line = lines[i].trim();
+    if (line.toLowerCase().indexOf(prefix) === 0) return line.slice(prefix.length).trim();
+  }
+  return "";
+}
+
+function fieldAny(preamble, labels) {
+  for (let i = 0; i < labels.length; i++) {
+    const value = field(preamble, labels[i]);
+    if (value) return value;
   }
   return "";
 }
 
 function cutSignature(text) {
-  const at = text.lastIndexOf(SIGNATURE);
-  if (at === -1) return text.replace(/\n+$/, "");
-  return text.slice(0, at).replace(/\n+$/, "");
+  let source = String(text || "").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  const known = source.lastIndexOf(SIGNATURE);
+  if (known !== -1) source = source.slice(0, known);
+  const at = source.lastIndexOf("\nFX Detailing");
+  if (at === -1) return source.replace(/\n+$/, "");
+  const after = source.slice(at);
+  if (/Tel:|Mob:|enquiries@fxdetailing\.co\.uk|07548\s*703902|01293\s*981474|Monday to Friday|The Barn|www\.fxdetailing/.test(after)) {
+    return source.slice(0, at).replace(/\n+$/, "");
+  }
+  return source.replace(/\n+$/, "");
 }
 
 function splitMessage(text, label) {
-  const marker = "\n" + label + "\n";
-  const at = text.indexOf(marker);
+  const source = String(text || "");
+  const newlineMarker = "\n" + label + "\n";
+  let at = source.indexOf(newlineMarker);
+  let skip = newlineMarker.length;
+  if (at === -1) {
+    const lineMarker = "\n" + label;
+    at = source.indexOf(lineMarker);
+    skip = lineMarker.length;
+  }
+  if (at === -1 && source.indexOf(label) === 0) {
+    at = 0;
+    skip = label.length;
+  }
   if (at === -1) return null;
   return {
-    preamble: text.slice(0, at),
-    message: cutSignature(text.slice(at + marker.length))
+    preamble: source.slice(0, at),
+    message: cutSignature(source.slice(at + skip).replace(/^\n/, ""))
   };
 }
 
@@ -201,52 +237,74 @@ function serviceFrom(preamble, subject) {
 
 function buildNotes(message, registration, contactMethod) {
   const notes = [];
-  if (message) notes.push(message);
+  const body = tidyMessage(message);
+  if (body) notes.push(body);
   if (registration) notes.push("Registration: " + registration);
   if (contactMethod) notes.push("Contact method: " + contactMethod);
   return notes.join("\n\n");
 }
 
 function classify(text, subject) {
-  const lines = text.split("\n");
+  const body = text || "";
+  const lines = body.split("\n");
+  const first = (lines[0] || "").trim();
+  if (subject === OLD_NOTIFY_SUBJECT || first === "New enquiry from the website.") return "notification";
   const thanks = SUBJECT_SERVICE[subject] ? subject + "." : "";
-  if (lines[0] === thanks && /^Page: /.test(lines[1] || "") && /^Form: /.test(lines[2] || "")) {
+  if (thanks && first === thanks && /^Page:\s/.test(lines[1] || "") && /^Form:\s/.test(lines[2] || "")) {
     return "notification";
   }
-  if ((/^Hello /.test(lines[0]) || lines[0] === "Hello,") && text.indexOf("\nYour enquiry\n") !== -1 && text.indexOf("\nYou wrote:\n") !== -1 && text.indexOf("We have received your message and will come back to you during opening hours") !== -1) {
-    return "acknowledgement";
-  }
+  if (subject === OLD_ACK_SUBJECT) return "acknowledgement";
+  if ((/^Hello /.test(first) || first === "Hello,") && body.indexOf("You wrote:") !== -1) return "acknowledgement";
+  if (body.indexOf("\nMessage:") !== -1 && (body.indexOf("Page:") !== -1 || body.indexOf("Form:") !== -1)) return "notification";
+  if (body.indexOf("You wrote:") !== -1 || body.indexOf("Your enquiry") !== -1) return "acknowledgement";
+  if (body.indexOf("\nMessage:") !== -1) return "notification";
+  if (enquirySubject(subject)) return "notification";
   return "";
 }
 
+function takeParts(text, labels) {
+  for (let i = 0; i < labels.length; i++) {
+    const parts = splitMessage(text, labels[i]);
+    if (parts) return parts;
+  }
+  return { preamble: text || "", message: "" };
+}
+
+function tidyMessage(value) {
+  return String(value || "").replace(/\n{3,}/g, "\n\n").trim();
+}
+
 function parseEnquiryEmail(email) {
-  const subject = cleanLine(email && email.subject, 120);
-  if (!SUBJECT_SERVICE[subject]) return null;
-  const text = emailBody(email);
-  if (!text) return null;
-  const kind = classify(text, subject);
-  if (!kind) return null;
-  const parts = splitMessage(text, kind === "notification" ? "Message:" : "You wrote:");
-  if (!parts) return null;
-  const registration = field(parts.preamble, "Registration");
-  const contactMethod = field(parts.preamble, "How they would like to be contacted") || field(parts.preamble, "How you would like to be contacted");
-  const emailAddress = kind === "notification"
-    ? (field(parts.preamble, "Email") || customerAddress(email.reply_to))
-    : customerAddress(email.to);
-  if (!isSingleEmail(emailAddress)) return null;
-  const createdAt = normalizeCreatedAt(email.created_at);
-  if (!createdAt) return null;
-  const service = serviceFrom(parts.preamble, subject);
-  if (!service) return null;
+  const subject = cleanLine(email && email.subject, 160);
+  if (!enquirySubject(subject)) return null;
+  const text = cutSignature(emailBody(email));
+  const kind = classify(text, subject) || "notification";
+  const labels = kind === "acknowledgement"
+    ? ["You wrote:", "Your message:", "Message:", "Enquiry:", "Notes:"]
+    : ["Message:", "Your message:", "You wrote:", "Enquiry:", "Notes:"];
+  const parts = takeParts(text, labels);
+  const registration = fieldAny(parts.preamble, ["Registration", "Vehicle registration", "Number plate", "Reg"]);
+  const contactMethod = fieldAny(parts.preamble, [
+    "How they would like to be contacted",
+    "How you would like to be contacted",
+    "Contact method",
+    "Preferred contact",
+    "Contact preference"
+  ]);
+  let emailAddress = kind === "notification"
+    ? (fieldAny(parts.preamble, ["Email", "E-mail"]) || customerAddress(email && email.reply_to))
+    : (customerAddress(email && email.to) || fieldAny(parts.preamble, ["Email", "E-mail"]));
+  if (!isSingleEmail(emailAddress) || emailAddress.toLowerCase() === BUSINESS_EMAIL) emailAddress = "";
+  const createdAt = normalizeCreatedAt(email && email.created_at);
   return {
     kind: kind,
-    name: cleanLine(field(parts.preamble, "Name"), 160),
-    phone: cleanLine(field(parts.preamble, "Phone"), 40),
+    name: cleanLine(fieldAny(parts.preamble, ["Name", "Full name", "Customer name", "Customer"]), 160),
+    phone: cleanLine(fieldAny(parts.preamble, ["Phone", "Telephone", "Mobile", "Contact number"]), 40),
     email: emailAddress,
-    vehicle: cleanLine(field(parts.preamble, "Vehicle"), 160),
-    service: service,
+    vehicle: cleanLine(fieldAny(parts.preamble, ["Vehicle", "Car", "Vehicle details"]), 160),
+    service: serviceFrom(parts.preamble, subject),
     source: "Website Form",
-    notes: buildNotes(parts.message, registration, contactMethod),
+    notes: buildNotes(tidyMessage(parts.message), registration, contactMethod),
     status: statusFor(createdAt),
     created_at: createdAt
   };
@@ -338,12 +396,10 @@ async function listSentEmails(apiKey) {
 }
 
 function isCandidate(email) {
-  if (!email || !email.id || !/^[A-Za-z0-9-]+$/.test(email.id)) return false;
-  const subject = cleanLine(email.subject, 120);
-  if (!SUBJECT_SERVICE[subject]) return false;
-  const from = String(email.from || "").toLowerCase();
-  if (from && from.indexOf(BUSINESS_EMAIL) === -1) return false;
-  return true;
+  if (!email || !email.id || !/^[A-Za-z0-9-]+$/.test(String(email.id))) return false;
+  const subject = cleanLine(email.subject, 160);
+  if (!subject) return true;
+  return enquirySubject(subject);
 }
 
 async function mapPool(items, limit, fn) {

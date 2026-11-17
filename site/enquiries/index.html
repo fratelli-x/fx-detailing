@@ -10,14 +10,31 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/styles.css?v=gap48">
   <style>
-    .inbox-page main { padding: 32px 20px 72px; }
-    .inbox-page h1 { text-transform: uppercase; }
+    .inbox-page main {
+      max-width: min(1200px, calc(100% - 32px));
+      margin: 20px auto 48px;
+      padding: 28px 22px 56px;
+      background: #ffffff;
+      color: #141414;
+      color-scheme: light;
+    }
+    .inbox-page main h1,
+    .inbox-page main h2,
+    .inbox-page main p,
+    .inbox-page main label,
+    .inbox-page main th,
+    .inbox-page main td,
+    .inbox-page main a,
+    .inbox-page main strong {
+      color: #141414;
+    }
+    .inbox-page main h1 { text-transform: uppercase; }
     .inbox-page .inbox-add {
       max-width: 880px;
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     .inbox-page .inbox-add .is-wide { grid-column: 1 / -1; }
-    .inbox-page button {
+    .inbox-page main button {
       font-family: Oswald, "Arial Narrow", sans-serif;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -29,30 +46,84 @@
       cursor: pointer;
       width: fit-content;
     }
-    .inbox-page button:disabled { opacity: 0.6; cursor: default; }
-    .inbox-search { max-width: 420px; margin: 8px 0 18px; }
+    .inbox-page main button:disabled { opacity: 0.6; cursor: default; }
+    .inbox-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 0 0 8px; }
+    .inbox-actions p { margin: 0; }
+    .inbox-search { max-width: 420px; margin: 8px 0 18px; color: #141414; }
+    .inbox-note { color: #141414; }
     .inbox-error { color: #8f1d1d; }
-    .inbox-table-wrap { overflow-x: auto; }
-    .inbox-table { width: 100%; border-collapse: collapse; min-width: 980px; }
+    .inbox-page main input,
+    .inbox-page main textarea,
+    .inbox-page main select {
+      color: #141414;
+      background: #ffffff;
+      border: 1px solid #b5b5b5;
+      color-scheme: light;
+      -webkit-text-fill-color: #141414;
+    }
+    .inbox-page main input::placeholder,
+    .inbox-page main textarea::placeholder {
+      color: #5c5c5c;
+      -webkit-text-fill-color: #5c5c5c;
+    }
+    .inbox-table-wrap { overflow-x: auto; background: #ffffff; }
+    .inbox-table { width: 100%; border-collapse: collapse; min-width: 980px; background: #ffffff; color: #141414; }
     .inbox-table th,
     .inbox-table td {
-      border-bottom: 1px solid #e5e5e5;
-      padding: 10px 8px;
+      border-bottom: 1px solid #c8c8c8;
+      padding: 14px 12px;
       text-align: left;
       vertical-align: top;
+      color: #141414;
+      background: #ffffff;
     }
     .inbox-table th {
       font-family: Oswald, "Arial Narrow", sans-serif;
       font-size: 0.78rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      background: #f7f7f7;
     }
-    .inbox-table a { text-decoration: underline; }
-    .inbox-table select { height: 40px; min-height: 0; }
-    .inbox-notes { white-space: pre-wrap; min-width: 180px; }
+    .inbox-table a { color: #141414; text-decoration: underline; }
+    .inbox-table select {
+      height: 42px;
+      min-height: 42px;
+      min-width: 9.5rem;
+      color: #141414;
+      background: #ffffff;
+      font-size: 1rem;
+    }
+    .inbox-notes { white-space: pre-wrap; min-width: 220px; color: #141414; }
     .inbox-when { white-space: nowrap; }
+    .inbox-status { display: flex; flex-direction: column; align-items: stretch; gap: 8px; min-width: 148px; }
+    .inbox-status-word {
+      display: inline-block;
+      box-sizing: border-box;
+      min-width: 7.25rem;
+      padding: 8px 12px;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-transform: none;
+      text-align: center;
+      color: #141414;
+      background: #ffffff;
+      border: 1px solid #bdbdbd;
+      border-radius: 6px;
+    }
+    .inbox-table tr.is-new td { background: #ffffff; color: #141414; }
+    .inbox-table tr.is-quoted td { background: #fff1cc; color: #141414; }
+    .inbox-table tr.is-booked td { background: #c8efd4; color: #141414; }
+    .inbox-table tr.is-completed td { background: #e6e6e6; color: #141414; }
+    .inbox-table tr.is-new .inbox-status-word { background: #ffffff; color: #141414; border-color: #bdbdbd; }
+    .inbox-table tr.is-quoted .inbox-status-word { background: #ffd56a; color: #141414; border-color: #e0b03a; }
+    .inbox-table tr.is-booked .inbox-status-word { background: #8ed4a3; color: #141414; border-color: #5eae78; }
+    .inbox-table tr.is-completed .inbox-status-word { background: #d0d0d0; color: #141414; border-color: #b0b0b0; }
     .inbox-page [hidden] { display: none !important; }
     @media (max-width: 720px) {
+      .inbox-page main { margin: 0; max-width: none; }
       .inbox-page .inbox-add { grid-template-columns: 1fr; }
     }
   </style>
@@ -100,8 +171,11 @@
       </form>
     </section>
     <section id="inbox" hidden>
-      <p><button type="button" id="inbox-import">Import historic emails from Resend</button></p>
-      <p id="inbox-import-result" hidden></p>
+      <div class="inbox-actions">
+        <button type="button" id="inbox-import">Import historic emails from Resend</button>
+        <button type="button" id="inbox-download">Download CSV</button>
+      </div>
+      <p id="inbox-import-result" class="inbox-note" hidden></p>
       <h2>Add an enquiry</h2>
       <form id="inbox-add" class="inbox-add">
         <label>Name<input name="name" autocomplete="name" required></label>
@@ -200,6 +274,23 @@
 
       var KEY = "fxEnquiriesPassword";
       var STATUSES = ["New", "Quoted", "Booked", "Completed"];
+
+      function statusName(value) {
+        var text = value == null ? "" : String(value);
+        return STATUSES.indexOf(text) === -1 ? (text || "New") : text;
+      }
+
+      function statusClass(value) {
+        var text = value == null ? "" : String(value);
+        if (STATUSES.indexOf(text) === -1) return "is-new";
+        return "is-" + text.toLowerCase();
+      }
+
+      function paintStatus(tr, badge, status) {
+        var name = statusName(status);
+        tr.className = statusClass(status);
+        badge.textContent = name;
+      }
       var gate = document.getElementById("inbox-gate");
       var inbox = document.getElementById("inbox");
       var error = document.getElementById("inbox-password-error");
@@ -315,8 +406,12 @@
           tr.appendChild(cell(row.notes, "inbox-notes"));
 
           var statusCell = document.createElement("td");
+          var statusWrap = document.createElement("div");
+          statusWrap.className = "inbox-status";
+          var badge = document.createElement("strong");
+          badge.className = "inbox-status-word";
           var select = document.createElement("select");
-          select.setAttribute("aria-label", "Status for " + (text(row.name) || "enquiry"));
+          select.setAttribute("aria-label", "Change status for " + (text(row.name) || "enquiry"));
           STATUSES.forEach(function (status) {
             var option = document.createElement("option");
             option.value = status;
@@ -324,11 +419,14 @@
             if (row.status === status) option.selected = true;
             select.appendChild(option);
           });
+          paintStatus(tr, badge, row.status);
           select.addEventListener("change", function () {
             var previous = row.status;
             var next = select.value;
             var statusError = document.getElementById("inbox-status-error");
             statusError.hidden = true;
+            row.status = next;
+            paintStatus(tr, badge, next);
             select.disabled = true;
             fetch("/.netlify/functions/enquiries", {
               method: "PATCH",
@@ -341,14 +439,19 @@
               }
               if (!response.ok) throw new Error("patch");
               row.status = next;
+              paintStatus(tr, badge, next);
             }).catch(function () {
-              select.value = STATUSES.indexOf(previous) === -1 ? "New" : previous;
+              row.status = STATUSES.indexOf(previous) === -1 ? "New" : previous;
+              select.value = row.status;
+              paintStatus(tr, badge, row.status);
               statusError.hidden = false;
             }).then(function () {
               select.disabled = false;
             });
           });
-          statusCell.appendChild(select);
+          statusWrap.appendChild(badge);
+          statusWrap.appendChild(select);
+          statusCell.appendChild(statusWrap);
           tr.appendChild(statusCell);
           body.appendChild(tr);
         });
@@ -389,6 +492,39 @@
 
       document.getElementById("inbox-search").addEventListener("input", render);
 
+      function csvCell(value) {
+        var cellText = value == null ? "" : String(value);
+        if (/[",\r\n]/.test(cellText)) return '"' + cellText.replace(/"/g, '""') + '"';
+        return cellText;
+      }
+
+      document.getElementById("inbox-download").addEventListener("click", function () {
+        var header = ["Date", "Source", "Name", "Phone", "Email", "Vehicle", "Service", "Notes", "Status"];
+        var lines = [header.join(",")];
+        rows.forEach(function (row) {
+          lines.push([
+            formatWhen(row.created_at),
+            row.source,
+            row.name,
+            row.phone,
+            row.email,
+            row.vehicle,
+            row.service,
+            row.notes,
+            row.status
+          ].map(csvCell).join(","));
+        });
+        var blob = new Blob(["\uFEFF" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = "fx-enquiries.csv";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      });
+
       document.getElementById("inbox-import").addEventListener("click", function () {
         var button = document.getElementById("inbox-import");
         var result = document.getElementById("inbox-import-result");
@@ -416,6 +552,7 @@
             if (counts.error) parts.push(String(counts.error));
             if (!response.ok && !counts.error) parts.push("The import did not finish. Run it again to continue. Already imported enquiries are skipped.");
             result.textContent = parts.join(" ");
+            result.className = (!response.ok || counts.error) ? "inbox-error" : "inbox-note";
             result.hidden = false;
             if (counts.imported) return loadRows().catch(function () { return null; });
             return null;
