@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Enquiries | FX Detailing</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/styles.css?v=gap48">
+  <style>
+    .inbox-page main { padding: 32px 20px 72px; }
+    .inbox-page h1 { text-transform: uppercase; }
+    .inbox-page .inbox-add {
+      max-width: 880px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .inbox-page .inbox-add .is-wide { grid-column: 1 / -1; }
+    .inbox-page button {
+      font-family: Oswald, "Arial Narrow", sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: #121212;
+      color: #fff;
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 18px;
+      cursor: pointer;
+      width: fit-content;
+    }
+    .inbox-page button:disabled { opacity: 0.6; cursor: default; }
+    .inbox-search { max-width: 420px; margin: 8px 0 18px; }
+    .inbox-error { color: #8f1d1d; }
+    .inbox-table-wrap { overflow-x: auto; }
+    .inbox-table { width: 100%; border-collapse: collapse; min-width: 980px; }
+    .inbox-table th,
+    .inbox-table td {
+      border-bottom: 1px solid #e5e5e5;
+      padding: 10px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .inbox-table th {
+      font-family: Oswald, "Arial Narrow", sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .inbox-table a { text-decoration: underline; }
+    .inbox-table select { height: 40px; min-height: 0; }
+    .inbox-notes { white-space: pre-wrap; min-width: 180px; }
+    .inbox-when { white-space: nowrap; }
+    .inbox-page [hidden] { display: none !important; }
+    @media (max-width: 720px) {
+      .inbox-page .inbox-add { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="inbox-page">
+  <svg class="dx-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="dx-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M4 6h16"/><path d="M4 18h16"/></symbol>
+    <symbol id="dx-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="dx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  </svg>
+  <header class="site-header">
+    <a class="logo" href="/">
+      <img src="/images/logo.png" alt="FX Detailing" width="560" height="77">
+    </a>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/detailing/">Detailing</a></li>
+        <li><a href="/ceramic/">Ceramic</a></li>
+        <li><a href="/bodykits/">Bodykits</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/gallery/">Gallery</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/reviews/">Reviews</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="dx-header-actions">
+      <a class="dx-header-enquire" href="#enquire">Enquire now <svg class="dx-ico" aria-hidden="true"><use href="#dx-arrow"></use></svg></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg class="dx-ico icon-menu" aria-hidden="true"><use href="#dx-menu"></use></svg>
+        <svg class="dx-ico icon-close" aria-hidden="true"><use href="#dx-close"></use></svg>
+      </button>
+    </div>
+  </header>
+  <main>
+    <h1>Enquiries</h1>
+    <section id="inbox-gate">
+      <form id="inbox-password-form">
+        <label>Password
+          <input id="inbox-password" type="password" autocomplete="current-password" required>
+        </label>
+        <button type="submit">Open inbox</button>
+        <p id="inbox-password-error" class="inbox-error" hidden>That password was not accepted.</p>
+      </form>
+    </section>
+    <section id="inbox" hidden>
+      <p><button type="button" id="inbox-import">Import historic emails from Resend</button></p>
+      <p id="inbox-import-result" hidden></p>
+      <h2>Add an enquiry</h2>
+      <form id="inbox-add" class="inbox-add">
+        <label>Name<input name="name" autocomplete="name" required></label>
+        <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+        <label>Email<input name="email" type="email" autocomplete="email"></label>
+        <label>Vehicle<input name="vehicle" autocomplete="off"></label>
+        <label>Service<input name="service" autocomplete="off"></label>
+        <label>Source
+          <select name="source">
+            <option>WhatsApp</option>
+            <option>Phone Call</option>
+            <option>Walk-in</option>
+            <option>Instagram/Social</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label class="is-wide">Notes<textarea name="notes"></textarea></label>
+        <button class="is-wide" type="submit">Add enquiry</button>
+        <p id="inbox-add-note" class="inbox-error is-wide" hidden>That enquiry was not saved.</p>
+      </form>
+      <label class="inbox-search">Search
+        <input id="inbox-search" type="search" autocomplete="off" placeholder="Filter loaded enquiries">
+      </label>
+      <p id="inbox-status-error" class="inbox-error" hidden>The status was not saved.</p>
+      <div class="inbox-table-wrap">
+        <table class="inbox-table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Source</th>
+              <th scope="col">Name</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Email</th>
+              <th scope="col">Vehicle</th>
+              <th scope="col">Service</th>
+              <th scope="col">Notes</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="inbox-rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <h2>Business info</h2>
+        <p>The Barn, Westcoats Farm, Stan Hill, Charlwood, Surrey, RH6 0ES.</p>
+        <p>Mobile: <a href="tel:07548703902">07548 703902</a><br>Landline: <a href="tel:01293981474">01293 981474</a><br><a href="mailto:enquiries@fxdetailing.co.uk">enquiries@fxdetailing.co.uk</a></p>
+                <p>Looking to buy, sell, service, or securely store a prestige vehicle? Explore <a href="https://www.fratelli-x.com/">Fratelli X Prestige Car Sales &amp; Servicing</a>.</p>
+        <p>Opening hours: Monday – Friday<br>9am – 5pm</p>
+      </div>
+      <div>
+        <h2>Policies</h2>
+        <ul>
+          <li><a href="/booking-policy/">Booking, cancellation &amp; refund policy</a></li>
+        </ul>
+        <p><a href="https://www.facebook.com/profile.php?id=61576231057715">Facebook</a><br><a href="https://www.instagram.com/fx_detailing__">Instagram</a></p>
+      </div>
+      <div>
+        <h2>Service areas</h2>
+        <ul>
+          <li><a href="/locations/surrey/">Surrey</a></li>
+          <li><a href="/locations/west-sussex/">West Sussex</a></li>
+          <li><a href="/locations/london/">London</a></li>
+          <li><a href="/locations/kent/">Kent</a></li>
+          <li><a href="/locations/east-sussex/">East Sussex</a></li>
+          <li><a href="/locations/essex/">Essex</a></li>
+          <li><a href="/locations/uk-nationwide/">UK Nationwide</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Enquire</h2>
+        <p><a class="btn" href="#enquire">Request a quote</a></p>
+      </div>
+    </div>
+    <p class="fine">FX Detailing LTD · Charlwood, Surrey</p>
+  </footer>
+  <script>
+    (function () {
+      var toggle = document.querySelector(".menu-toggle");
+      var nav = document.querySelector(".nav");
+      if (toggle && nav) {
+        toggle.addEventListener("click", function () {
+          var open = nav.classList.toggle("open");
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+        Array.prototype.forEach.call(nav.querySelectorAll("a"), function (link) {
+          link.addEventListener("click", function () {
+            nav.classList.remove("open");
+            toggle.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      var KEY = "fxEnquiriesPassword";
+      var STATUSES = ["New", "Quoted", "Booked", "Completed"];
+      var gate = document.getElementById("inbox-gate");
+      var inbox = document.getElementById("inbox");
+      var error = document.getElementById("inbox-password-error");
+      var rows = [];
+      var password = "";
+
+      function authHeaders(extra) {
+        var headers = { "x-admin-password": password };
+        if (extra) {
+          Object.keys(extra).forEach(function (key) { headers[key] = extra[key]; });
+        }
+        return headers;
+      }
+
+      function text(value) {
+        return value == null ? "" : String(value);
+      }
+
+      function formatWhen(value) {
+        var date = new Date(value);
+        if (isNaN(date.getTime())) return "";
+        return new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Europe/London",
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
+        }).format(date);
+      }
+
+      function isEmail(value) {
+        return /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value);
+      }
+
+      function matches(row, query) {
+        if (!query) return true;
+        var hay = [row.source, row.name, row.phone, row.email, row.vehicle, row.service, row.notes, row.status, formatWhen(row.created_at)].join(" ").toLowerCase();
+        return hay.indexOf(query) !== -1;
+      }
+
+      function showInbox() {
+        gate.hidden = true;
+        inbox.hidden = false;
+      }
+
+      function showGate(message) {
+        try { sessionStorage.removeItem(KEY); } catch (err) {}
+        password = "";
+        inbox.hidden = true;
+        gate.hidden = false;
+        error.hidden = false;
+        error.textContent = message;
+      }
+
+      function cell(value, className) {
+        var td = document.createElement("td");
+        if (className) td.className = className;
+        td.textContent = text(value);
+        return td;
+      }
+
+      function render() {
+        var search = document.getElementById("inbox-search");
+        var query = search.value.trim().toLowerCase();
+        var body = document.getElementById("inbox-rows");
+        var visible = rows.filter(function (row) { return matches(row, query); });
+        body.textContent = "";
+        if (!visible.length) {
+          var empty = document.createElement("tr");
+          var emptyCell = document.createElement("td");
+          emptyCell.colSpan = 9;
+          emptyCell.textContent = rows.length ? "No enquiries match that search." : "No enquiries yet.";
+          empty.appendChild(emptyCell);
+          body.appendChild(empty);
+          return;
+        }
+        visible.forEach(function (row) {
+          var tr = document.createElement("tr");
+          tr.appendChild(cell(formatWhen(row.created_at), "inbox-when"));
+          tr.appendChild(cell(row.source));
+          tr.appendChild(cell(row.name));
+
+          var phoneCell = document.createElement("td");
+          var phone = text(row.phone);
+          if (phone) {
+            var digits = phone.replace(/[^\d+]/g, "");
+            if (digits) {
+              var tel = document.createElement("a");
+              tel.href = "tel:" + digits;
+              tel.textContent = phone;
+              phoneCell.appendChild(tel);
+            } else {
+              phoneCell.textContent = phone;
+            }
+          }
+          tr.appendChild(phoneCell);
+
+          var emailCell = document.createElement("td");
+          var email = text(row.email);
+          if (isEmail(email)) {
+            var mail = document.createElement("a");
+            mail.href = "mailto:" + email;
+            mail.textContent = email;
+            emailCell.appendChild(mail);
+          } else {
+            emailCell.textContent = email;
+          }
+          tr.appendChild(emailCell);
+
+          tr.appendChild(cell(row.vehicle));
+          tr.appendChild(cell(row.service));
+          tr.appendChild(cell(row.notes, "inbox-notes"));
+
+          var statusCell = document.createElement("td");
+          var select = document.createElement("select");
+          select.setAttribute("aria-label", "Status for " + (text(row.name) || "enquiry"));
+          STATUSES.forEach(function (status) {
+            var option = document.createElement("option");
+            option.value = status;
+            option.textContent = status;
+            if (row.status === status) option.selected = true;
+            select.appendChild(option);
+          });
+          select.addEventListener("change", function () {
+            var previous = row.status;
+            var next = select.value;
+            var statusError = document.getElementById("inbox-status-error");
+            statusError.hidden = true;
+            select.disabled = true;
+            fetch("/.netlify/functions/enquiries", {
+              method: "PATCH",
+              headers: authHeaders({ "Content-Type": "application/json" }),
+              body: JSON.stringify({ id: row.id, status: next })
+            }).then(function (response) {
+              if (response.status === 401) {
+                showGate("That password was not accepted.");
+                return;
+              }
+              if (!response.ok) throw new Error("patch");
+              row.status = next;
+            }).catch(function () {
+              select.value = STATUSES.indexOf(previous) === -1 ? "New" : previous;
+              statusError.hidden = false;
+            }).then(function () {
+              select.disabled = false;
+            });
+          });
+          statusCell.appendChild(select);
+          tr.appendChild(statusCell);
+          body.appendChild(tr);
+        });
+      }
+
+      function applyRows(data) {
+        rows = Array.isArray(data) ? data : [];
+        try { sessionStorage.setItem(KEY, password); } catch (err) {}
+        showInbox();
+        render();
+      }
+
+      function loadRows() {
+        return fetch("/.netlify/functions/enquiries", {
+          method: "GET",
+          headers: authHeaders()
+        }).then(function (response) {
+          if (response.status === 401) {
+            showGate("That password was not accepted.");
+            return null;
+          }
+          if (response.status !== 200) throw new Error("load");
+          return response.json();
+        }).then(function (data) {
+          if (data) applyRows(data);
+        });
+      }
+
+      document.getElementById("inbox-password-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        error.hidden = true;
+        password = document.getElementById("inbox-password").value;
+        loadRows().catch(function () {
+          error.hidden = false;
+          error.textContent = "The inbox could not be opened.";
+        });
+      });
+
+      document.getElementById("inbox-search").addEventListener("input", render);
+
+      document.getElementById("inbox-import").addEventListener("click", function () {
+        var button = document.getElementById("inbox-import");
+        var result = document.getElementById("inbox-import-result");
+        button.disabled = true;
+        result.hidden = true;
+        fetch("/.netlify/functions/import-resend", {
+          method: "POST",
+          headers: authHeaders({ "Content-Type": "application/json" }),
+          body: "{}"
+        }).then(function (response) {
+          return response.json().catch(function () { return null; }).then(function (data) {
+            if (response.status === 401) {
+              showGate("That password was not accepted.");
+              return null;
+            }
+            var counts = data || {};
+            var parts = [
+              "Listed " + (counts.listed || 0) + ".",
+              "Imported " + (counts.imported || 0) + ".",
+              "Skipped duplicates " + (counts.skippedDuplicates || 0) + ".",
+              "Skipped not an enquiry " + (counts.skippedNotEnquiry || 0) + "."
+            ];
+            if (counts.failed) parts.push("Failed " + counts.failed + ".");
+            if (counts.resendStatus) parts.push("Resend status " + counts.resendStatus + ".");
+            if (counts.error) parts.push(String(counts.error));
+            if (!response.ok && !counts.error) parts.push("The import did not finish. Run it again to continue. Already imported enquiries are skipped.");
+            result.textContent = parts.join(" ");
+            result.hidden = false;
+            if (counts.imported) return loadRows().catch(function () { return null; });
+            return null;
+          });
+        }).catch(function () {
+          result.hidden = false;
+          result.textContent = "The import did not finish. Run it again to continue. Already imported enquiries are skipped.";
+        }).then(function () {
+          button.disabled = false;
+        });
+      });
+
+      document.getElementById("inbox-add").addEventListener("submit", function (event) {
+        event.preventDefault();
+        var form = event.currentTarget;
+        var note = document.getElementById("inbox-add-note");
+        var button = form.querySelector("button");
+        var data = new FormData(form);
+        note.hidden = true;
+        button.disabled = true;
+        fetch("/.netlify/functions/enquiries", {
+          method: "POST",
+          headers: authHeaders({ "Content-Type": "application/json" }),
+          body: JSON.stringify({
+            name: data.get("name"),
+            phone: data.get("phone"),
+            email: data.get("email"),
+            vehicle: data.get("vehicle"),
+            service: data.get("service"),
+            source: data.get("source"),
+            notes: data.get("notes")
+          })
+        }).then(function (response) {
+          if (response.status === 401) {
+            showGate("That password was not accepted.");
+            return null;
+          }
+          if (!response.ok) throw new Error("add");
+          form.reset();
+          return loadRows();
+        }).catch(function () {
+          note.hidden = false;
+        }).then(function () {
+          button.disabled = false;
+        });
+      });
+
+      try { password = sessionStorage.getItem(KEY) || ""; } catch (err) { password = ""; }
+      if (password) {
+        loadRows().catch(function () {
+          showGate("The inbox could not be opened.");
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

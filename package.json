@@ -8,5 +8,8 @@
     "track:seo": "node scripts/track-seo-metrics.js",
     "monitor:live": "node scripts/monitor-live-seo.js",
     "backup:artifacts": "node scripts/backup-artifacts.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.119.0"
   }
 }

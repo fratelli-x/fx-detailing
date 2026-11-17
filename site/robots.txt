@@ -3,6 +3,7 @@ Allow: /
 
 Disallow: /api/
 Disallow: /admin/
+Disallow: /enquiries
 Disallow: /*?*
 
 Sitemap: https://www.fxdetailing.co.uk/sitemap.xml

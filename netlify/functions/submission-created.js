@@ -7,6 +7,12 @@
 // Netlify environment variable required: RESEND_API_KEY
 // Do not put the key in the repo. fxdetailing.co.uk is verified, so messages
 // are sent from enquiries@fxdetailing.co.uk.
+//
+// Accepted enquiries are also inserted into the Supabase enquiries table
+// using SUPABASE_URL and SUPABASE_SERVICE_KEY. A database error does not
+// stop the emails, and an email error does not stop the insert.
+
+const { createClient } = require("@supabase/supabase-js");
 
 const FORM_NAMES = {
   enquiry: true,
@@ -112,10 +118,24 @@ function prepareSend(event) {
 
   const page = pageKey(data, formName);
   const thanks = pageThanks(page);
+  const notes = [];
+  if (enquiry.message) notes.push(enquiry.message);
+  if (enquiry.registration) notes.push("Registration: " + enquiry.registration);
+  if (enquiry.contactMethod) notes.push("Contact method: " + enquiry.contactMethod);
 
   return {
     action: "send",
     email,
+    record: {
+      name: [enquiry.firstName, enquiry.lastName].filter(Boolean).join(" "),
+      phone: enquiry.phone,
+      email: email,
+      vehicle: enquiry.vehicle,
+      service: page,
+      source: "Website Form",
+      notes: notes.join("\n\n"),
+      status: "New"
+    },
     mail: buildAcknowledgement(enquiry, thanks),
     notification: buildNotification(enquiry, email, formName, page, thanks)
   };
@@ -302,11 +322,31 @@ async function deliver(apiKey, message, label) {
   }
 }
 
+async function insertEnquiry(row) {
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_KEY;
+  if (!url || !key) {
+    console.error("Missing Supabase environment. Enquiry was not stored.");
+    return;
+  }
+  try {
+    const supabase = createClient(url, key, {
+      auth: { persistSession: false, autoRefreshToken: false }
+    });
+    const { error } = await supabase.from("enquiries").insert(row);
+    if (error) console.error("Supabase insert failed");
+  } catch (error) {
+    console.error("Supabase insert failed");
+  }
+}
+
 exports.handler = async function (event) {
   const prepared = prepareSend(event);
   if (prepared.action !== "send") {
     return jsonResult(prepared.statusCode, prepared.body);
   }
+
+  await insertEnquiry(prepared.record);
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
