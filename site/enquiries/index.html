@@ -84,8 +84,8 @@
     }
     .inbox-page main button#inbox-view-completed[aria-pressed="true"] {
       background: #111111;
-      color: #e10600;
-      border-color: #e10600;
+      color: #ffffff;
+      border-color: #ffffff;
     }
     .inbox-search { max-width: 420px; margin: 0; flex: 1 1 240px; color: #141414; }
     .inbox-sort,
@@ -230,11 +230,11 @@
     .inbox-table tr.is-new td { background: #ffffff; color: #141414; }
     .inbox-table tr.is-quoted td { background: #0c3d7a; color: #ffffff; }
     .inbox-table tr.is-booked td { background: #0e5c34; color: #ffffff; }
-    .inbox-table tr.is-completed td { background: #111111; color: #e10600; }
+    .inbox-table tr.is-completed td { background: #111111; color: #ffffff; }
     .inbox-table tr.is-new a { color: #141414; }
     .inbox-table tr.is-quoted a,
     .inbox-table tr.is-booked a { color: #ffffff; }
-    .inbox-table tr.is-completed a { color: #e10600; }
+    .inbox-table tr.is-completed a { color: #ffffff; }
     .inbox-table tr.is-new .inbox-status-select {
       background: #ffffff;
       color: #141414;
@@ -258,9 +258,9 @@
     }
     .inbox-table tr.is-completed .inbox-status-select {
       background: #111111;
-      color: #e10600;
-      -webkit-text-fill-color: #e10600;
-      border-color: #e10600;
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      border-color: #ffffff;
       color-scheme: dark;
     }
     .inbox-table tr.is-not-interested td { background: #e10600; color: #ffffff; }
@@ -369,7 +369,7 @@
     .inbox-popup-panel.is-new { background: #ffffff; color: #141414; }
     .inbox-popup-panel.is-quoted { background: #0c3d7a; color: #ffffff; }
     .inbox-popup-panel.is-booked { background: #0e5c34; color: #ffffff; }
-    .inbox-popup-panel.is-completed { background: #111111; color: #e10600; }
+    .inbox-popup-panel.is-completed { background: #111111; color: #ffffff; }
     .inbox-popup-panel.is-not-interested { background: #e10600; color: #ffffff; }
     .inbox-popup-panel.is-quoted h2,
     .inbox-popup-panel.is-quoted p,
@@ -394,7 +394,7 @@
     .inbox-popup-panel.is-completed dt,
     .inbox-popup-panel.is-completed dd,
     .inbox-popup-panel.is-completed label,
-    .inbox-popup-panel.is-completed a { color: #e10600; }
+    .inbox-popup-panel.is-completed a { color: #ffffff; }
     .inbox-popup-panel.is-new select {
       background: #ffffff;
       color: #141414;
@@ -418,9 +418,9 @@
     }
     .inbox-popup-panel.is-completed select {
       background: #111111;
-      color: #e10600;
-      -webkit-text-fill-color: #e10600;
-      border-color: #e10600;
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      border-color: #ffffff;
       color-scheme: dark;
     }
     .inbox-popup-panel.is-not-interested select {
@@ -432,7 +432,7 @@
     }
     .inbox-popup-panel.is-quoted .inbox-error,
     .inbox-popup-panel.is-booked .inbox-error { color: #ffd2d2; }
-    .inbox-popup-panel.is-completed .inbox-error { color: #ff9a9a; }
+    .inbox-popup-panel.is-completed .inbox-error { color: #ffffff; }
     .inbox-popup-panel.is-not-interested .inbox-error { color: #ffffff; }
     @media (max-width: 720px) {
       .inbox-page main { margin: 0; max-width: none; }
@@ -531,9 +531,12 @@
         </label>
       </div>
       <div class="inbox-views" role="group" aria-label="Enquiry folders">
-        <button type="button" class="inbox-view" id="inbox-view-main" aria-pressed="true">Inbox</button>
-        <button type="button" class="inbox-view" id="inbox-view-parked" aria-pressed="false">Not Interested</button>
-        <button type="button" class="inbox-view" id="inbox-view-completed" aria-pressed="false">Completed</button>
+        <button type="button" class="inbox-view" id="inbox-view-main" data-view="main" aria-pressed="true">Inbox</button>
+        <button type="button" class="inbox-view" id="inbox-view-new" data-view="new" aria-pressed="false">New</button>
+        <button type="button" class="inbox-view" id="inbox-view-quoted" data-view="quoted" aria-pressed="false">Quoted</button>
+        <button type="button" class="inbox-view" id="inbox-view-booked" data-view="booked" aria-pressed="false">Booked</button>
+        <button type="button" class="inbox-view" id="inbox-view-completed" data-view="completed" aria-pressed="false">Completed</button>
+        <button type="button" class="inbox-view" id="inbox-view-parked" data-view="not-interested" aria-pressed="false">Not Interested</button>
       </div>
       <p id="inbox-status-error" class="inbox-error" hidden>The status was not saved.</p>
       <p id="inbox-delete-error" class="inbox-error" hidden>That enquiry was not deleted.</p>
@@ -661,16 +664,23 @@
       }
 
       var inboxView = "main";
+      var INBOX_VIEWS = ["main", "new", "quoted", "booked", "completed", "not-interested"];
 
-      function folderForStatus(status) {
-        if (status === "Not Interested") return "not-interested";
-        if (status === "Completed") return "completed";
-        return "main";
+      function viewStatus(row) {
+        var status = text(row && row.status);
+        return STATUSES.indexOf(status) === -1 ? "New" : status;
       }
 
       function inCurrentView(row) {
         if (!row || isDeletedStatus(row)) return false;
-        return folderForStatus(text(row.status)) === inboxView;
+        var status = viewStatus(row);
+        if (inboxView === "main") return status === "New" || status === "Quoted" || status === "Booked";
+        if (inboxView === "new") return status === "New";
+        if (inboxView === "quoted") return status === "Quoted";
+        if (inboxView === "booked") return status === "Booked";
+        if (inboxView === "completed") return status === "Completed";
+        if (inboxView === "not-interested") return status === "Not Interested";
+        return false;
       }
 
       function bookingInputValue(value) {
@@ -697,14 +707,20 @@
       }
 
       function setInboxView(next) {
-        inboxView = next === "not-interested" || next === "completed" ? next : "main";
-        var mainBtn = document.getElementById("inbox-view-main");
-        var parkedBtn = document.getElementById("inbox-view-parked");
-        var completedBtn = document.getElementById("inbox-view-completed");
-        if (mainBtn) mainBtn.setAttribute("aria-pressed", inboxView === "main" ? "true" : "false");
-        if (parkedBtn) parkedBtn.setAttribute("aria-pressed", inboxView === "not-interested" ? "true" : "false");
-        if (completedBtn) completedBtn.setAttribute("aria-pressed", inboxView === "completed" ? "true" : "false");
+        inboxView = INBOX_VIEWS.indexOf(next) === -1 ? "main" : next;
+        Array.prototype.forEach.call(document.querySelectorAll(".inbox-views .inbox-view"), function (button) {
+          button.setAttribute("aria-pressed", button.getAttribute("data-view") === inboxView ? "true" : "false");
+        });
         render();
+      }
+
+      function emptyFolderMessage() {
+        if (inboxView === "new") return "No New enquiries.";
+        if (inboxView === "quoted") return "No Quoted enquiries.";
+        if (inboxView === "booked") return "No Booked enquiries.";
+        if (inboxView === "completed") return "No Completed enquiries.";
+        if (inboxView === "not-interested") return "No Not Interested enquiries.";
+        return "No enquiries yet.";
       }
 
       function paintStatus(tr, status) {
@@ -1065,11 +1081,7 @@
           emptyCell.colSpan = 11;
           emptyCell.textContent = query
             ? "No enquiries match that search."
-            : inboxView === "not-interested"
-              ? "No Not Interested enquiries."
-              : inboxView === "completed"
-                ? "No Completed enquiries."
-                : "No enquiries yet.";
+            : emptyFolderMessage();
           empty.appendChild(emptyCell);
           body.appendChild(empty);
           return;
@@ -1198,9 +1210,9 @@
         });
       });
 
-      document.getElementById("inbox-view-main").addEventListener("click", function () { setInboxView("main"); });
-      document.getElementById("inbox-view-parked").addEventListener("click", function () { setInboxView("not-interested"); });
-      document.getElementById("inbox-view-completed").addEventListener("click", function () { setInboxView("completed"); });
+      Array.prototype.forEach.call(document.querySelectorAll(".inbox-views .inbox-view"), function (button) {
+        button.addEventListener("click", function () { setInboxView(button.getAttribute("data-view")); });
+      });
       document.getElementById("inbox-search").addEventListener("input", render);
       document.getElementById("inbox-sort").addEventListener("change", function () {
         setDirectionOptions(sortField() === "date" ? "desc" : "asc");
