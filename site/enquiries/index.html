@@ -71,19 +71,37 @@
       background: #ffffff;
       color: #141414;
       border: 1px solid #bdbdbd;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      line-height: 1.15;
+      text-align: center;
+      white-space: nowrap;
     }
     .inbox-page main button.inbox-view[aria-pressed="true"] {
       background: #141414;
       color: #ffffff;
       border-color: #141414;
     }
+    .inbox-page main button.inbox-view .inbox-view-label {
+      display: block;
+      color: inherit;
+    }
     .inbox-page main button.inbox-view .inbox-view-count {
+      display: block;
       font-weight: 700;
+      line-height: 1.15;
+      color: #e10600;
     }
     .inbox-page main button#inbox-view-parked[aria-pressed="true"] {
       background: #e10600;
       color: #ffffff;
       border-color: #e10600;
+    }
+    .inbox-page main button#inbox-view-parked[aria-pressed="true"] .inbox-view-count {
+      color: #ffffff;
     }
     .inbox-page main button#inbox-view-completed[aria-pressed="true"] {
       background: #111111;
@@ -550,12 +568,12 @@
         </label>
       </div>
       <div class="inbox-views" role="group" aria-label="Enquiry folders">
-        <button type="button" class="inbox-view" id="inbox-view-main" data-view="main" aria-pressed="true">Inbox <span class="inbox-view-count">0</span></button>
-        <button type="button" class="inbox-view" id="inbox-view-new" data-view="new" aria-pressed="false">New <span class="inbox-view-count">0</span></button>
-        <button type="button" class="inbox-view" id="inbox-view-quoted" data-view="quoted" aria-pressed="false">Quoted <span class="inbox-view-count">0</span></button>
-        <button type="button" class="inbox-view" id="inbox-view-booked" data-view="booked" aria-pressed="false">Booked <span class="inbox-view-count">0</span></button>
-        <button type="button" class="inbox-view" id="inbox-view-completed" data-view="completed" aria-pressed="false">Completed <span class="inbox-view-count">0</span></button>
-        <button type="button" class="inbox-view" id="inbox-view-parked" data-view="not-interested" aria-pressed="false">Not Interested <span class="inbox-view-count">0</span></button>
+        <button type="button" class="inbox-view" id="inbox-view-main" data-view="main" aria-pressed="true"><span class="inbox-view-label">Inbox</span><span class="inbox-view-count">0</span></button>
+        <button type="button" class="inbox-view" id="inbox-view-new" data-view="new" aria-pressed="false"><span class="inbox-view-label">New</span><span class="inbox-view-count">0</span></button>
+        <button type="button" class="inbox-view" id="inbox-view-quoted" data-view="quoted" aria-pressed="false"><span class="inbox-view-label">Quoted</span><span class="inbox-view-count">0</span></button>
+        <button type="button" class="inbox-view" id="inbox-view-booked" data-view="booked" aria-pressed="false"><span class="inbox-view-label">Booked</span><span class="inbox-view-count">0</span></button>
+        <button type="button" class="inbox-view" id="inbox-view-completed" data-view="completed" aria-pressed="false"><span class="inbox-view-label">Completed</span><span class="inbox-view-count">0</span></button>
+        <button type="button" class="inbox-view" id="inbox-view-parked" data-view="not-interested" aria-pressed="false"><span class="inbox-view-label">Not Interested</span><span class="inbox-view-count">0</span></button>
       </div>
       <p id="inbox-status-error" class="inbox-error" hidden>The status was not saved.</p>
       <p id="inbox-delete-error" class="inbox-error" hidden>That enquiry was not deleted.</p>
