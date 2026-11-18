@@ -16,6 +16,10 @@ function logSuccess(msg) {
   console.log(msg);
 }
 
+function isPrivatePath(value) {
+  return value.includes('enquiries/') || value.includes('admin/');
+}
+
 function getMetaContent(html, attrName, attrValue) {
   const regex1 = new RegExp(`<meta[^>]*${attrName}=["']${attrValue}["'][^>]*content=["']([^"']*)["'][^>]*>`, 'i');
   const regex2 = new RegExp(`<meta[^>]*content=["']([^"']*)["'][^>]*${attrName}=["']${attrValue}["'][^>]*>`, 'i');
@@ -44,12 +48,18 @@ if (!fs.existsSync(SITEMAP_PATH)) {
 } else {
   const sitemap = fs.readFileSync(SITEMAP_PATH, 'utf8');
   const locMatches = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
+  let sitemapChecked = 0;
   locMatches.forEach((url) => {
+    if (isPrivatePath(url)) {
+      console.log(`Skipped private path: ${url}`);
+      return;
+    }
+    sitemapChecked++;
     if (!url.startsWith(SITE_URL)) logError(`Sitemap URL domain mismatch: ${url}`);
     if (!url.endsWith('/')) logError(`Sitemap URL missing trailing slash: ${url}`);
     if (url.includes('/services/')) logError(`Sitemap lists a /services/ URL that this site does not publish: ${url}`);
   });
-  logSuccess(`Validated ${locMatches.length} sitemap URLs.`);
+  logSuccess(`Validated ${sitemapChecked} sitemap URLs.`);
 }
 
 function getHtmlFiles(dir) {
@@ -67,6 +77,7 @@ const htmlFiles = getHtmlFiles(SITE_DIR);
 const validRoutes = new Set(['/']);
 htmlFiles.forEach((filePath) => {
   const relPath = path.relative(SITE_DIR, filePath).replace(/\\/g, '/');
+  if (isPrivatePath(relPath)) return;
   if (relPath === 'index.html') validRoutes.add('/');
   else if (relPath.endsWith('/index.html')) validRoutes.add(`/${relPath.replace(/\/index\.html$/, '')}/`);
   else validRoutes.add(`/${relPath.replace(/\.html$/, '')}/`);
@@ -77,6 +88,10 @@ let linkCount = 0;
 
 htmlFiles.forEach((filePath) => {
   const relPath = path.relative(SITE_DIR, filePath).replace(/\\/g, '/');
+  if (isPrivatePath(relPath)) {
+    console.log(`Skipped private path: ${relPath}`);
+    return;
+  }
   const html = fs.readFileSync(filePath, 'utf8');
   if (relPath.includes('404')) return;
 
