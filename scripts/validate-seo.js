@@ -17,7 +17,7 @@ function logSuccess(msg) {
 }
 
 function isPrivatePath(value) {
-  return value.includes('enquiries/') || value.includes('admin/');
+  return value.includes('enquiries/') || value.includes('admin/') || value.includes('status/');
 }
 
 function getMetaContent(html, attrName, attrValue) {
