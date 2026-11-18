@@ -157,6 +157,33 @@ exports.handler = async function (event) {
       return respond(200, data);
     }
 
+    if (method === "DELETE") {
+      let body = {};
+      if (event && event.body) {
+        try {
+          body = readJson(event);
+        } catch (error) {
+          return respond(400, { error: "Invalid JSON" });
+        }
+      }
+      const query = event && event.queryStringParameters ? event.queryStringParameters : null;
+      const queryId = query && !Array.isArray(query.id) ? query.id : "";
+      const rawId = body && Object.prototype.hasOwnProperty.call(body, "id") && body.id != null && body.id !== ""
+        ? body.id
+        : queryId;
+      if (Array.isArray(rawId)) return respond(400, { error: "Missing id" });
+      const id = cleanId(rawId);
+      if (!id) return respond(400, { error: "Missing id" });
+      const { data, error } = await supabase
+        .from("enquiries")
+        .delete()
+        .eq("id", id)
+        .select("id");
+      if (error) return respond(500, { error: "Inbox unavailable" });
+      if (!data || data.length !== 1) return respond(404, { error: "Enquiry not found" });
+      return respond(200, { id: data[0].id });
+    }
+
     return respond(405, { error: "Method not allowed" });
   } catch (error) {
     console.error("Enquiries request failed");

@@ -49,7 +49,16 @@
     .inbox-page main button:disabled { opacity: 0.6; cursor: default; }
     .inbox-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 0 0 8px; }
     .inbox-actions p { margin: 0; }
-    .inbox-search { max-width: 420px; margin: 8px 0 18px; color: #141414; }
+    .inbox-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 18px;
+      align-items: end;
+      margin: 8px 0 18px;
+    }
+    .inbox-search { max-width: 420px; margin: 0; flex: 1 1 240px; color: #141414; }
+    .inbox-sort,
+    .inbox-sort-dir { margin: 0; flex: 0 1 200px; min-width: 168px; color: #141414; }
     .inbox-note { color: #141414; }
     .inbox-error { color: #8f1d1d; }
     .inbox-page main input,
@@ -71,7 +80,14 @@
       max-height: min(70vh, calc(100dvh - 96px));
       background: #ffffff;
     }
-    .inbox-table { width: 100%; border-collapse: collapse; min-width: 980px; background: #ffffff; color: #141414; }
+    .inbox-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 980px;
+      background: #ffffff;
+      color: #141414;
+    }
     .inbox-table th,
     .inbox-table td {
       border-bottom: 1px solid #c8c8c8;
@@ -84,7 +100,7 @@
     .inbox-table th {
       position: sticky;
       top: 0;
-      z-index: 2;
+      z-index: 3;
       font-family: Oswald, "Arial Narrow", sans-serif;
       font-size: 0.78rem;
       letter-spacing: 0.04em;
@@ -101,7 +117,45 @@
       background: #ffffff;
       font-size: 1rem;
     }
-    .inbox-notes { white-space: pre-wrap; max-width: 280px; color: #141414; }
+    .inbox-table .inbox-status-col {
+      position: sticky;
+      right: 0;
+      z-index: 2;
+      width: 15rem;
+      min-width: 15rem;
+      box-sizing: border-box;
+      border-left: 2px solid #d0d0d0;
+      box-shadow: -8px 0 10px rgba(20, 20, 20, 0.16);
+    }
+    .inbox-table th.inbox-status-col {
+      top: 0;
+      z-index: 5;
+      background: #f7f7f7;
+      color: #141414;
+    }
+    .inbox-table .inbox-status-select {
+      display: block;
+      width: 100%;
+      min-width: 12.25rem;
+      max-width: 100%;
+      height: 42px;
+      min-height: 42px;
+      box-sizing: border-box;
+      padding: 6px 34px 6px 10px;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .inbox-table .inbox-status-select option {
+      background: #ffffff;
+      color: #141414;
+      -webkit-text-fill-color: #141414;
+      font-weight: 600;
+    }
+    .inbox-notes { white-space: pre-wrap; max-width: 280px; }
     .inbox-notes-text {
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -129,32 +183,53 @@
       text-transform: none;
     }
     .inbox-when { white-space: nowrap; }
-    .inbox-status { display: flex; flex-direction: column; align-items: stretch; gap: 8px; min-width: 148px; }
-    .inbox-status-word {
-      display: inline-block;
-      box-sizing: border-box;
-      min-width: 7.25rem;
-      padding: 8px 12px;
-      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: 0;
-      text-transform: none;
-      text-align: center;
-      color: #141414;
+    .inbox-page main button.inbox-delete {
+      margin-top: 8px;
       background: #ffffff;
-      border: 1px solid #bdbdbd;
+      color: #8f1d1d;
+      border: 1px solid #8f1d1d;
       border-radius: 6px;
+      min-height: 32px;
+      padding: 6px 10px;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
     }
     .inbox-table tr.is-new td { background: #ffffff; color: #141414; }
-    .inbox-table tr.is-quoted td { background: #fff1cc; color: #141414; }
-    .inbox-table tr.is-booked td { background: #c8efd4; color: #141414; }
-    .inbox-table tr.is-completed td { background: #e6e6e6; color: #141414; }
-    .inbox-table tr.is-new .inbox-status-word { background: #ffffff; color: #141414; border-color: #bdbdbd; }
-    .inbox-table tr.is-quoted .inbox-status-word { background: #ffd56a; color: #141414; border-color: #e0b03a; }
-    .inbox-table tr.is-booked .inbox-status-word { background: #8ed4a3; color: #141414; border-color: #5eae78; }
-    .inbox-table tr.is-completed .inbox-status-word { background: #d0d0d0; color: #141414; border-color: #b0b0b0; }
+    .inbox-table tr.is-quoted td { background: #0c3d7a; color: #ffffff; }
+    .inbox-table tr.is-booked td { background: #0e5c34; color: #ffffff; }
+    .inbox-table tr.is-completed td { background: #111111; color: #e10600; }
+    .inbox-table tr.is-new a { color: #141414; }
+    .inbox-table tr.is-quoted a,
+    .inbox-table tr.is-booked a { color: #ffffff; }
+    .inbox-table tr.is-completed a { color: #e10600; }
+    .inbox-table tr.is-new .inbox-status-select {
+      background: #ffffff;
+      color: #141414;
+      -webkit-text-fill-color: #141414;
+      border-color: #8a8a8a;
+      color-scheme: light;
+    }
+    .inbox-table tr.is-quoted .inbox-status-select {
+      background: #0c3d7a;
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      border-color: #d6e4f7;
+      color-scheme: dark;
+    }
+    .inbox-table tr.is-booked .inbox-status-select {
+      background: #0e5c34;
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      border-color: #d7f3e3;
+      color-scheme: dark;
+    }
+    .inbox-table tr.is-completed .inbox-status-select {
+      background: #111111;
+      color: #e10600;
+      -webkit-text-fill-color: #e10600;
+      border-color: #e10600;
+      color-scheme: dark;
+    }
     .inbox-page [hidden] { display: none !important; }
     .inbox-popup {
       position: fixed;
@@ -195,7 +270,70 @@
     .inbox-popup-panel dt { font-weight: 700; }
     .inbox-popup-panel dd { margin: 0; }
     .inbox-popup-notes { white-space: pre-wrap; }
-    .inbox-popup-panel select { min-width: 11rem; height: 42px; }
+    .inbox-popup-panel select { min-width: 11rem; height: 42px; font-weight: 700; }
+    .inbox-popup-panel select option {
+      background: #ffffff;
+      color: #141414;
+      -webkit-text-fill-color: #141414;
+    }
+    .inbox-page main button#inbox-popup-close {
+      background: #ffffff;
+      color: #141414;
+      border: 1px solid #bdbdbd;
+    }
+    .inbox-popup-panel.is-new { background: #ffffff; color: #141414; }
+    .inbox-popup-panel.is-quoted { background: #0c3d7a; color: #ffffff; }
+    .inbox-popup-panel.is-booked { background: #0e5c34; color: #ffffff; }
+    .inbox-popup-panel.is-completed { background: #111111; color: #e10600; }
+    .inbox-popup-panel.is-quoted h2,
+    .inbox-popup-panel.is-quoted p,
+    .inbox-popup-panel.is-quoted dt,
+    .inbox-popup-panel.is-quoted dd,
+    .inbox-popup-panel.is-quoted label,
+    .inbox-popup-panel.is-quoted a,
+    .inbox-popup-panel.is-booked h2,
+    .inbox-popup-panel.is-booked p,
+    .inbox-popup-panel.is-booked dt,
+    .inbox-popup-panel.is-booked dd,
+    .inbox-popup-panel.is-booked label,
+    .inbox-popup-panel.is-booked a { color: #ffffff; }
+    .inbox-popup-panel.is-completed h2,
+    .inbox-popup-panel.is-completed p,
+    .inbox-popup-panel.is-completed dt,
+    .inbox-popup-panel.is-completed dd,
+    .inbox-popup-panel.is-completed label,
+    .inbox-popup-panel.is-completed a { color: #e10600; }
+    .inbox-popup-panel.is-new select {
+      background: #ffffff;
+      color: #141414;
+      -webkit-text-fill-color: #141414;
+      border-color: #8a8a8a;
+      color-scheme: light;
+    }
+    .inbox-popup-panel.is-quoted select {
+      background: #0c3d7a;
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      border-color: #d6e4f7;
+      color-scheme: dark;
+    }
+    .inbox-popup-panel.is-booked select {
+      background: #0e5c34;
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      border-color: #d7f3e3;
+      color-scheme: dark;
+    }
+    .inbox-popup-panel.is-completed select {
+      background: #111111;
+      color: #e10600;
+      -webkit-text-fill-color: #e10600;
+      border-color: #e10600;
+      color-scheme: dark;
+    }
+    .inbox-popup-panel.is-quoted .inbox-error,
+    .inbox-popup-panel.is-booked .inbox-error { color: #ffd2d2; }
+    .inbox-popup-panel.is-completed .inbox-error { color: #ff9a9a; }
     @media (max-width: 720px) {
       .inbox-page main { margin: 0; max-width: none; }
       .inbox-page .inbox-add { grid-template-columns: 1fr; }
@@ -270,10 +408,29 @@
         <button class="is-wide" type="submit">Add enquiry</button>
         <p id="inbox-add-note" class="inbox-error is-wide" hidden>That enquiry was not saved.</p>
       </form>
-      <label class="inbox-search">Search
-        <input id="inbox-search" type="search" autocomplete="off" placeholder="Filter loaded enquiries">
-      </label>
+      <div class="inbox-toolbar">
+        <label class="inbox-search">Search
+          <input id="inbox-search" type="search" autocomplete="off" placeholder="Filter loaded enquiries">
+        </label>
+        <label class="inbox-sort">Sort by
+          <select id="inbox-sort">
+            <option value="date" selected>Date</option>
+            <option value="source">Source</option>
+            <option value="name">Name</option>
+            <option value="vehicle">Vehicle</option>
+            <option value="service">Service</option>
+            <option value="status">Status</option>
+          </select>
+        </label>
+        <label class="inbox-sort-dir">Direction
+          <select id="inbox-sort-dir">
+            <option value="desc" selected>Newest first</option>
+            <option value="asc">Oldest first</option>
+          </select>
+        </label>
+      </div>
       <p id="inbox-status-error" class="inbox-error" hidden>The status was not saved.</p>
+      <p id="inbox-delete-error" class="inbox-error" hidden>That enquiry was not deleted.</p>
       <div class="inbox-table-wrap">
         <table class="inbox-table">
           <thead>
@@ -286,7 +443,7 @@
               <th scope="col">Vehicle</th>
               <th scope="col">Service</th>
               <th scope="col">Notes</th>
-              <th scope="col">Status</th>
+              <th scope="col" class="inbox-status-col">Status</th>
             </tr>
           </thead>
           <tbody id="inbox-rows"></tbody>
@@ -301,6 +458,8 @@
           <label>Status
             <select id="inbox-popup-status" aria-label="Change enquiry status"></select>
           </label>
+          <p id="inbox-popup-delete-error" class="inbox-error" hidden>That enquiry was not deleted.</p>
+          <button type="button" id="inbox-popup-delete" class="inbox-delete">Delete</button>
         </div>
       </div>
     </section>
@@ -371,10 +530,16 @@
         return "is-" + text.toLowerCase();
       }
 
-      function paintStatus(tr, badge, status) {
-        var name = statusName(status);
+      function paintStatus(tr, status) {
+        if (!tr) return;
         tr.className = statusClass(status);
-        badge.textContent = name;
+      }
+
+      function paintPopup(row) {
+        var panel = document.querySelector(".inbox-popup-panel");
+        if (!panel) return;
+        panel.classList.remove("is-new", "is-quoted", "is-booked", "is-completed");
+        if (row) panel.classList.add(statusClass(row.status));
       }
       var gate = document.getElementById("inbox-gate");
       var inbox = document.getElementById("inbox");
@@ -417,6 +582,56 @@
         return hay.indexOf(query) !== -1;
       }
 
+      function sortField() {
+        var sort = document.getElementById("inbox-sort");
+        return sort && sort.value ? sort.value : "date";
+      }
+
+      function sortDirection() {
+        var dir = document.getElementById("inbox-sort-dir");
+        return dir && dir.value === "asc" ? "asc" : "desc";
+      }
+
+      function rowTime(row) {
+        var time = new Date(row && row.created_at).getTime();
+        return isNaN(time) ? 0 : time;
+      }
+
+      function compareRows(a, b) {
+        var field = sortField();
+        var dir = sortDirection() === "asc" ? 1 : -1;
+        if (field === "date") {
+          var at = rowTime(a);
+          var bt = rowTime(b);
+          if (at !== bt) return at < bt ? -dir : dir;
+        } else {
+          var av = field === "status" ? statusName(a.status) : text(a[field]);
+          var bv = field === "status" ? statusName(b.status) : text(b[field]);
+          var cmp = av.localeCompare(bv, "en-GB", { sensitivity: "base", numeric: true });
+          if (cmp !== 0) return cmp * dir;
+          var newer = rowTime(a) - rowTime(b);
+          if (newer !== 0) return newer > 0 ? -1 : 1;
+        }
+        return text(a.id).localeCompare(text(b.id));
+      }
+
+      function setDirectionOptions(prefer) {
+        var dir = document.getElementById("inbox-sort-dir");
+        var field = sortField();
+        var choices = field === "date"
+          ? [["desc", "Newest first"], ["asc", "Oldest first"]]
+          : [["asc", "A to Z"], ["desc", "Z to A"]];
+        var next = prefer || (field === "date" ? "desc" : "asc");
+        dir.textContent = "";
+        choices.forEach(function (choice) {
+          var option = document.createElement("option");
+          option.value = choice[0];
+          option.textContent = choice[1];
+          dir.appendChild(option);
+        });
+        dir.value = next;
+      }
+
       function showInbox() {
         gate.hidden = true;
         inbox.hidden = false;
@@ -451,12 +666,12 @@
       function saveStatus(row, next) {
         var previous = row.status;
         var tr = rowElement(row);
-        var badge = tr ? tr.querySelector(".inbox-status-word") : null;
-        var select = tr ? tr.querySelector("select") : null;
+        var select = tr ? tr.querySelector("select.inbox-status-select") : null;
         var statusError = document.getElementById("inbox-status-error");
         statusError.hidden = true;
         row.status = next;
-        if (tr && badge) paintStatus(tr, badge, next);
+        paintStatus(tr, next);
+        if (openRow === row) paintPopup(row);
         if (select) {
           select.value = next;
           select.disabled = true;
@@ -478,30 +693,37 @@
           }
           if (!response.ok) throw new Error("patch");
           row.status = next;
-          var current = rowElement(row);
-          var currentBadge = current ? current.querySelector(".inbox-status-word") : null;
-          if (current && currentBadge) paintStatus(current, currentBadge, next);
+          if (sortField() === "status") {
+            render();
+          } else {
+            var current = rowElement(row);
+            paintStatus(current, next);
+            var currentSelect = current ? current.querySelector("select.inbox-status-select") : null;
+            if (currentSelect) currentSelect.value = next;
+          }
           if (openRow === row) {
             popupStatus.value = next;
             var savedWord = popup.querySelector(".inbox-popup-status-word");
             if (savedWord) savedWord.textContent = statusName(next);
+            paintPopup(row);
           }
         }).catch(function () {
           row.status = STATUSES.indexOf(previous) === -1 ? "New" : previous;
           var current = rowElement(row);
-          var currentSelect = current ? current.querySelector("select") : null;
-          var currentBadge = current ? current.querySelector(".inbox-status-word") : null;
-          if (currentSelect) currentSelect.value = row.status;
-          if (current && currentBadge) paintStatus(current, currentBadge, row.status);
+          var currentSelect = current ? current.querySelector("select.inbox-status-select") : null;
+          var known = STATUSES.indexOf(row.status) === -1 ? "New" : row.status;
+          if (currentSelect) currentSelect.value = known;
+          paintStatus(current, row.status);
           if (openRow === row) {
-            popupStatus.value = row.status;
+            popupStatus.value = known;
             var failedWord = popup.querySelector(".inbox-popup-status-word");
             if (failedWord) failedWord.textContent = statusName(row.status);
+            paintPopup(row);
           }
           statusError.hidden = false;
         }).then(function () {
           var current = rowElement(row);
-          var currentSelect = current ? current.querySelector("select") : null;
+          var currentSelect = current ? current.querySelector("select.inbox-status-select") : null;
           if (currentSelect) currentSelect.disabled = false;
           popupStatus.disabled = false;
         });
@@ -521,6 +743,8 @@
       }
 
       function fillPopup(row) {
+        var popupDeleteError = document.getElementById("inbox-popup-delete-error");
+        if (popupDeleteError) popupDeleteError.hidden = true;
         popupTitle.textContent = text(row.name) || "Enquiry";
         popupFields.textContent = "";
         addPopupRow("Date", popupValue(formatWhen(row.created_at)));
@@ -561,6 +785,7 @@
         statusValue.className = "inbox-popup-status-word";
         addPopupRow("Status", statusValue);
         popupStatus.value = STATUSES.indexOf(row.status) === -1 ? "New" : row.status;
+        paintPopup(row);
       }
 
       function closePopup() {
@@ -593,6 +818,7 @@
         var query = search.value.trim().toLowerCase();
         var body = document.getElementById("inbox-rows");
         var visible = rows.filter(function (row) { return matches(row, query); });
+        visible.sort(compareRows);
         body.textContent = "";
         if (!visible.length) {
           var empty = document.createElement("tr");
@@ -668,28 +894,36 @@
           tr.appendChild(notesCell);
 
           var statusCell = document.createElement("td");
-          var statusWrap = document.createElement("div");
-          statusWrap.className = "inbox-status";
-          var badge = document.createElement("strong");
-          badge.className = "inbox-status-word";
+          statusCell.className = "inbox-status-col";
           var select = document.createElement("select");
+          select.className = "inbox-status-select";
           select.setAttribute("aria-label", "Change status for " + (text(row.name) || "enquiry"));
           STATUSES.forEach(function (status) {
             var option = document.createElement("option");
             option.value = status;
             option.textContent = status;
-            if (row.status === status) option.selected = true;
             select.appendChild(option);
           });
-          paintStatus(tr, badge, row.status);
+          select.value = STATUSES.indexOf(row.status) === -1 ? "New" : row.status;
+          paintStatus(tr, row.status);
           select.addEventListener("click", function (event) { event.stopPropagation(); });
           select.addEventListener("mousedown", function (event) { event.stopPropagation(); });
           select.addEventListener("change", function () {
             saveStatus(row, select.value);
           });
-          statusWrap.appendChild(badge);
-          statusWrap.appendChild(select);
-          statusCell.appendChild(statusWrap);
+          var remove = document.createElement("button");
+          remove.type = "button";
+          remove.className = "inbox-delete";
+          remove.textContent = "Delete";
+          remove.setAttribute("aria-label", "Delete enquiry for " + (text(row.name) || "this row"));
+          remove.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            deleteEnquiry(row);
+          });
+          remove.addEventListener("mousedown", function (event) { event.stopPropagation(); });
+          statusCell.appendChild(select);
+          statusCell.appendChild(remove);
           tr.appendChild(statusCell);
           tr.addEventListener("click", function () { openPopup(row); });
           body.appendChild(tr);
@@ -730,8 +964,67 @@
       });
 
       document.getElementById("inbox-search").addEventListener("input", render);
+      document.getElementById("inbox-sort").addEventListener("change", function () {
+        setDirectionOptions(sortField() === "date" ? "desc" : "asc");
+        render();
+      });
+      document.getElementById("inbox-sort-dir").addEventListener("change", render);
+
+      var deleting = false;
+
+      function clearDeleteError() {
+        var pageError = document.getElementById("inbox-delete-error");
+        var popupError = document.getElementById("inbox-popup-delete-error");
+        if (pageError) pageError.hidden = true;
+        if (popupError) popupError.hidden = true;
+      }
+
+      function showDeleteError() {
+        var pageError = document.getElementById("inbox-delete-error");
+        var popupError = document.getElementById("inbox-popup-delete-error");
+        if (pageError) pageError.hidden = false;
+        if (popupError && openRow) popupError.hidden = false;
+      }
+
+      function deleteEnquiry(row) {
+        if (!row || row.id == null || deleting) return;
+        if (!window.confirm("Delete this enquiry?")) return;
+        deleting = true;
+        clearDeleteError();
+        Array.prototype.forEach.call(document.querySelectorAll(".inbox-delete"), function (button) {
+          button.disabled = true;
+        });
+        fetch("/.netlify/functions/enquiries?id=" + encodeURIComponent(String(row.id)), {
+          method: "DELETE",
+          headers: authHeaders({ "Content-Type": "application/json" }),
+          body: JSON.stringify({ id: row.id })
+        }).then(function (response) {
+          if (response.status === 401) {
+            showGate("That password was not accepted.");
+            return;
+          }
+          if (!response.ok) throw new Error("delete");
+          rows = rows.filter(function (item) { return String(item.id) !== String(row.id); });
+          if (openRow && String(openRow.id) === String(row.id)) closePopup();
+          clearDeleteError();
+          render();
+        }).catch(function () {
+          showDeleteError();
+        }).then(function () {
+          deleting = false;
+          Array.prototype.forEach.call(document.querySelectorAll(".inbox-delete"), function (button) {
+            button.disabled = false;
+          });
+        });
+      }
 
       document.getElementById("inbox-popup-close").addEventListener("click", closePopup);
+      document.getElementById("inbox-popup-delete").addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!openRow) return;
+        deleteEnquiry(openRow);
+      });
       document.getElementById("inbox-popup-backdrop").addEventListener("click", closePopup);
       popupStatus.addEventListener("change", function () {
         if (!openRow) return;
