@@ -66,7 +66,11 @@
       color: #5c5c5c;
       -webkit-text-fill-color: #5c5c5c;
     }
-    .inbox-table-wrap { overflow-x: auto; background: #ffffff; }
+    .inbox-table-wrap {
+      overflow: auto;
+      max-height: min(70vh, calc(100dvh - 96px));
+      background: #ffffff;
+    }
     .inbox-table { width: 100%; border-collapse: collapse; min-width: 980px; background: #ffffff; color: #141414; }
     .inbox-table th,
     .inbox-table td {
@@ -78,12 +82,16 @@
       background: #ffffff;
     }
     .inbox-table th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
       font-family: Oswald, "Arial Narrow", sans-serif;
       font-size: 0.78rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       background: #f7f7f7;
     }
+    .inbox-table tbody tr { cursor: pointer; }
     .inbox-table a { color: #141414; text-decoration: underline; }
     .inbox-table select {
       height: 42px;
@@ -93,7 +101,33 @@
       background: #ffffff;
       font-size: 1rem;
     }
-    .inbox-notes { white-space: pre-wrap; min-width: 220px; color: #141414; }
+    .inbox-notes { white-space: pre-wrap; max-width: 280px; color: #141414; }
+    .inbox-notes-text {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      white-space: pre-wrap;
+    }
+    .inbox-notes.is-open .inbox-notes-text {
+      display: block;
+      -webkit-line-clamp: unset;
+      overflow: visible;
+    }
+    .inbox-page main button.inbox-notes-toggle {
+      margin-top: 8px;
+      background: #ffffff;
+      color: #141414;
+      border: 1px solid #bdbdbd;
+      border-radius: 6px;
+      min-width: 44px;
+      min-height: 32px;
+      padding: 4px 10px;
+      font-size: 1.15rem;
+      line-height: 1;
+      letter-spacing: 0;
+      text-transform: none;
+    }
     .inbox-when { white-space: nowrap; }
     .inbox-status { display: flex; flex-direction: column; align-items: stretch; gap: 8px; min-width: 148px; }
     .inbox-status-word {
@@ -122,6 +156,46 @@
     .inbox-table tr.is-booked .inbox-status-word { background: #8ed4a3; color: #141414; border-color: #5eae78; }
     .inbox-table tr.is-completed .inbox-status-word { background: #d0d0d0; color: #141414; border-color: #b0b0b0; }
     .inbox-page [hidden] { display: none !important; }
+    .inbox-popup {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: center;
+      padding: 24px 16px;
+    }
+    .inbox-popup-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(20, 20, 20, 0.45);
+    }
+    .inbox-popup-panel {
+      position: relative;
+      width: min(680px, 100%);
+      max-height: min(86vh, 820px);
+      overflow: auto;
+      background: #ffffff;
+      color: #141414;
+      border-radius: 12px;
+      padding: 22px 22px 28px;
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.28);
+    }
+    .inbox-popup-panel h2,
+    .inbox-popup-panel p,
+    .inbox-popup-panel dt,
+    .inbox-popup-panel dd,
+    .inbox-popup-panel label,
+    .inbox-popup-panel a { color: #141414; }
+    .inbox-popup-panel dl {
+      display: grid;
+      grid-template-columns: 8rem 1fr;
+      gap: 10px 14px;
+      margin: 16px 0;
+    }
+    .inbox-popup-panel dt { font-weight: 700; }
+    .inbox-popup-panel dd { margin: 0; }
+    .inbox-popup-notes { white-space: pre-wrap; }
+    .inbox-popup-panel select { min-width: 11rem; height: 42px; }
     @media (max-width: 720px) {
       .inbox-page main { margin: 0; max-width: none; }
       .inbox-page .inbox-add { grid-template-columns: 1fr; }
@@ -217,6 +291,17 @@
           </thead>
           <tbody id="inbox-rows"></tbody>
         </table>
+      </div>
+      <div id="inbox-popup" class="inbox-popup" hidden>
+        <div class="inbox-popup-backdrop" id="inbox-popup-backdrop"></div>
+        <div class="inbox-popup-panel" role="dialog" aria-modal="true" aria-labelledby="inbox-popup-title">
+          <button type="button" id="inbox-popup-close">Close</button>
+          <h2 id="inbox-popup-title">Enquiry</h2>
+          <dl id="inbox-popup-fields"></dl>
+          <label>Status
+            <select id="inbox-popup-status" aria-label="Change enquiry status"></select>
+          </label>
+        </div>
       </div>
     </section>
   </main>
@@ -346,6 +431,156 @@
         error.textContent = message;
       }
 
+      var openRow = null;
+      var popup = document.getElementById("inbox-popup");
+      var popupFields = document.getElementById("inbox-popup-fields");
+      var popupTitle = document.getElementById("inbox-popup-title");
+      var popupStatus = document.getElementById("inbox-popup-status");
+      STATUSES.forEach(function (status) {
+        var option = document.createElement("option");
+        option.value = status;
+        option.textContent = status;
+        popupStatus.appendChild(option);
+      });
+
+      function rowElement(row) {
+        if (!row || row.id == null) return null;
+        return document.querySelector('.inbox-table tbody tr[data-id="' + String(row.id).replace(/"/g, "") + '"]');
+      }
+
+      function saveStatus(row, next) {
+        var previous = row.status;
+        var tr = rowElement(row);
+        var badge = tr ? tr.querySelector(".inbox-status-word") : null;
+        var select = tr ? tr.querySelector("select") : null;
+        var statusError = document.getElementById("inbox-status-error");
+        statusError.hidden = true;
+        row.status = next;
+        if (tr && badge) paintStatus(tr, badge, next);
+        if (select) {
+          select.value = next;
+          select.disabled = true;
+        }
+        if (openRow === row) {
+          popupStatus.value = next;
+          var popupWord = popup.querySelector(".inbox-popup-status-word");
+          if (popupWord) popupWord.textContent = statusName(next);
+        }
+        popupStatus.disabled = openRow === row;
+        fetch("/.netlify/functions/enquiries", {
+          method: "PATCH",
+          headers: authHeaders({ "Content-Type": "application/json" }),
+          body: JSON.stringify({ id: row.id, status: next })
+        }).then(function (response) {
+          if (response.status === 401) {
+            showGate("That password was not accepted.");
+            return;
+          }
+          if (!response.ok) throw new Error("patch");
+          row.status = next;
+          var current = rowElement(row);
+          var currentBadge = current ? current.querySelector(".inbox-status-word") : null;
+          if (current && currentBadge) paintStatus(current, currentBadge, next);
+          if (openRow === row) {
+            popupStatus.value = next;
+            var savedWord = popup.querySelector(".inbox-popup-status-word");
+            if (savedWord) savedWord.textContent = statusName(next);
+          }
+        }).catch(function () {
+          row.status = STATUSES.indexOf(previous) === -1 ? "New" : previous;
+          var current = rowElement(row);
+          var currentSelect = current ? current.querySelector("select") : null;
+          var currentBadge = current ? current.querySelector(".inbox-status-word") : null;
+          if (currentSelect) currentSelect.value = row.status;
+          if (current && currentBadge) paintStatus(current, currentBadge, row.status);
+          if (openRow === row) {
+            popupStatus.value = row.status;
+            var failedWord = popup.querySelector(".inbox-popup-status-word");
+            if (failedWord) failedWord.textContent = statusName(row.status);
+          }
+          statusError.hidden = false;
+        }).then(function () {
+          var current = rowElement(row);
+          var currentSelect = current ? current.querySelector("select") : null;
+          if (currentSelect) currentSelect.disabled = false;
+          popupStatus.disabled = false;
+        });
+      }
+
+      function popupValue(value) {
+        var dd = document.createElement("dd");
+        dd.textContent = text(value);
+        return dd;
+      }
+
+      function addPopupRow(term, node) {
+        var dt = document.createElement("dt");
+        dt.textContent = term;
+        popupFields.appendChild(dt);
+        popupFields.appendChild(node);
+      }
+
+      function fillPopup(row) {
+        popupTitle.textContent = text(row.name) || "Enquiry";
+        popupFields.textContent = "";
+        addPopupRow("Date", popupValue(formatWhen(row.created_at)));
+        addPopupRow("Source", popupValue(row.source));
+        addPopupRow("Name", popupValue(row.name));
+        var phone = text(row.phone);
+        var phoneValue = document.createElement("dd");
+        if (phone) {
+          var digits = phone.replace(/[^\d+]/g, "");
+          if (digits) {
+            var tel = document.createElement("a");
+            tel.href = "tel:" + digits;
+            tel.textContent = phone;
+            phoneValue.appendChild(tel);
+          } else {
+            phoneValue.textContent = phone;
+          }
+        }
+        addPopupRow("Phone", phoneValue);
+        var email = text(row.email);
+        var emailValue = document.createElement("dd");
+        if (isEmail(email)) {
+          var mail = document.createElement("a");
+          mail.href = "mailto:" + email;
+          mail.textContent = email;
+          emailValue.appendChild(mail);
+        } else {
+          emailValue.textContent = email;
+        }
+        addPopupRow("Email", emailValue);
+        addPopupRow("Vehicle", popupValue(row.vehicle));
+        addPopupRow("Service", popupValue(row.service));
+        var notes = document.createElement("dd");
+        notes.className = "inbox-popup-notes";
+        notes.textContent = text(row.notes);
+        addPopupRow("Notes", notes);
+        var statusValue = popupValue(statusName(row.status));
+        statusValue.className = "inbox-popup-status-word";
+        addPopupRow("Status", statusValue);
+        popupStatus.value = STATUSES.indexOf(row.status) === -1 ? "New" : row.status;
+      }
+
+      function closePopup() {
+        openRow = null;
+        popup.hidden = true;
+      }
+
+      function openPopup(row) {
+        openRow = row;
+        fillPopup(row);
+        popup.hidden = false;
+      }
+
+      function notesNeedToggle(value) {
+        var notes = text(value);
+        if (!notes) return false;
+        if (notes.split(/\n/).length > 2) return true;
+        return notes.length > 80;
+      }
+
       function cell(value, className) {
         var td = document.createElement("td");
         if (className) td.className = className;
@@ -370,6 +605,7 @@
         }
         visible.forEach(function (row) {
           var tr = document.createElement("tr");
+          if (row.id != null) tr.dataset.id = String(row.id);
           tr.appendChild(cell(formatWhen(row.created_at), "inbox-when"));
           tr.appendChild(cell(row.source));
           tr.appendChild(cell(row.name));
@@ -382,6 +618,7 @@
               var tel = document.createElement("a");
               tel.href = "tel:" + digits;
               tel.textContent = phone;
+              tel.addEventListener("click", function (event) { event.stopPropagation(); });
               phoneCell.appendChild(tel);
             } else {
               phoneCell.textContent = phone;
@@ -395,6 +632,7 @@
             var mail = document.createElement("a");
             mail.href = "mailto:" + email;
             mail.textContent = email;
+            mail.addEventListener("click", function (event) { event.stopPropagation(); });
             emailCell.appendChild(mail);
           } else {
             emailCell.textContent = email;
@@ -403,7 +641,31 @@
 
           tr.appendChild(cell(row.vehicle));
           tr.appendChild(cell(row.service));
-          tr.appendChild(cell(row.notes, "inbox-notes"));
+
+          var notesCell = document.createElement("td");
+          notesCell.className = "inbox-notes";
+          var notesText = document.createElement("div");
+          notesText.className = "inbox-notes-text";
+          notesText.textContent = text(row.notes);
+          notesCell.appendChild(notesText);
+          if (notesNeedToggle(row.notes)) {
+            var toggle = document.createElement("button");
+            toggle.type = "button";
+            toggle.className = "inbox-notes-toggle";
+            toggle.textContent = "▾";
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.setAttribute("aria-label", "Show full notes");
+            toggle.addEventListener("click", function (event) {
+              event.preventDefault();
+              event.stopPropagation();
+              var open = notesCell.classList.toggle("is-open");
+              toggle.textContent = open ? "▴" : "▾";
+              toggle.setAttribute("aria-expanded", open ? "true" : "false");
+              toggle.setAttribute("aria-label", open ? "Hide full notes" : "Show full notes");
+            });
+            notesCell.appendChild(toggle);
+          }
+          tr.appendChild(notesCell);
 
           var statusCell = document.createElement("td");
           var statusWrap = document.createElement("div");
@@ -420,39 +682,16 @@
             select.appendChild(option);
           });
           paintStatus(tr, badge, row.status);
+          select.addEventListener("click", function (event) { event.stopPropagation(); });
+          select.addEventListener("mousedown", function (event) { event.stopPropagation(); });
           select.addEventListener("change", function () {
-            var previous = row.status;
-            var next = select.value;
-            var statusError = document.getElementById("inbox-status-error");
-            statusError.hidden = true;
-            row.status = next;
-            paintStatus(tr, badge, next);
-            select.disabled = true;
-            fetch("/.netlify/functions/enquiries", {
-              method: "PATCH",
-              headers: authHeaders({ "Content-Type": "application/json" }),
-              body: JSON.stringify({ id: row.id, status: next })
-            }).then(function (response) {
-              if (response.status === 401) {
-                showGate("That password was not accepted.");
-                return;
-              }
-              if (!response.ok) throw new Error("patch");
-              row.status = next;
-              paintStatus(tr, badge, next);
-            }).catch(function () {
-              row.status = STATUSES.indexOf(previous) === -1 ? "New" : previous;
-              select.value = row.status;
-              paintStatus(tr, badge, row.status);
-              statusError.hidden = false;
-            }).then(function () {
-              select.disabled = false;
-            });
+            saveStatus(row, select.value);
           });
           statusWrap.appendChild(badge);
           statusWrap.appendChild(select);
           statusCell.appendChild(statusWrap);
           tr.appendChild(statusCell);
+          tr.addEventListener("click", function () { openPopup(row); });
           body.appendChild(tr);
         });
       }
@@ -491,6 +730,16 @@
       });
 
       document.getElementById("inbox-search").addEventListener("input", render);
+
+      document.getElementById("inbox-popup-close").addEventListener("click", closePopup);
+      document.getElementById("inbox-popup-backdrop").addEventListener("click", closePopup);
+      popupStatus.addEventListener("change", function () {
+        if (!openRow) return;
+        saveStatus(openRow, popupStatus.value);
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !popup.hidden) closePopup();
+      });
 
       function csvCell(value) {
         var cellText = value == null ? "" : String(value);
@@ -541,15 +790,14 @@
               return null;
             }
             var counts = data || {};
-            var parts = [
-              "Listed " + (counts.listed || 0) + ".",
-              "Imported " + (counts.imported || 0) + ".",
-              "Skipped duplicates " + (counts.skippedDuplicates || 0) + ".",
-              "Skipped not an enquiry " + (counts.skippedNotEnquiry || 0) + "."
-            ];
+            var parts = [];
+            if (counts.error) parts.push(String(counts.error));
+            parts.push("Listed " + (counts.listed || 0) + ".");
+            parts.push("Imported " + (counts.imported || 0) + ".");
+            parts.push("Skipped duplicates " + (counts.skippedDuplicates || 0) + ".");
+            parts.push("Skipped not an enquiry " + (counts.skippedNotEnquiry || 0) + ".");
             if (counts.failed) parts.push("Failed " + counts.failed + ".");
             if (counts.resendStatus) parts.push("Resend status " + counts.resendStatus + ".");
-            if (counts.error) parts.push(String(counts.error));
             if (!response.ok && !counts.error) parts.push("The import did not finish. Run it again to continue. Already imported enquiries are skipped.");
             result.textContent = parts.join(" ");
             result.className = (!response.ok || counts.error) ? "inbox-error" : "inbox-note";

@@ -27,8 +27,20 @@ const FORM_SERVICE = {
   reviews: "reviews"
 };
 
+function bareSubject(subject) {
+  return String(subject || "").trim().replace(/[.!\s]+$/, "");
+}
+
 function enquirySubject(subject) {
-  return Boolean(SUBJECT_SERVICE[subject] || subject === OLD_ACK_SUBJECT || subject === OLD_NOTIFY_SUBJECT);
+  const bare = bareSubject(subject);
+  return Boolean(
+    SUBJECT_SERVICE[subject] ||
+    SUBJECT_SERVICE[bare] ||
+    subject === OLD_ACK_SUBJECT ||
+    subject === OLD_NOTIFY_SUBJECT ||
+    bare === OLD_ACK_SUBJECT ||
+    bare === OLD_NOTIFY_SUBJECT
+  );
 }
 const PAGE_SERVICE = {
   homepage: true,
@@ -147,22 +159,40 @@ function htmlToText(html) {
     .replace(/\r/g, "\n");
 }
 
-function emailBody(detail) {
-  if (detail && typeof detail.text === "string" && detail.text.trim()) {
-    return detail.text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+function labelScore(text) {
+  const body = String(text || "").toLowerCase();
+  const labels = ["name:", "email:", "phone:", "vehicle:", "message:", "you wrote:", "page:", "form:", "registration:"];
+  let score = 0;
+  for (let i = 0; i < labels.length; i++) {
+    if (body.indexOf(labels[i]) !== -1) score += 1;
   }
-  if (detail && typeof detail.html === "string" && detail.html.trim()) return htmlToText(detail.html);
-  return "";
+  return score;
+}
+
+function emailBody(detail) {
+  const text = detail && typeof detail.text === "string"
+    ? detail.text.replace(/\r\n/g, "\n").replace(/\r/g, "\n")
+    : "";
+  const html = detail && typeof detail.html === "string" && detail.html.trim() ? htmlToText(detail.html) : "";
+  if (labelScore(html) > labelScore(text)) return html;
+  if (text.trim()) return text;
+  return html;
 }
 
 function field(preamble, label) {
+  const source = String(preamble || "");
   const prefix = String(label || "").toLowerCase() + ":";
-  const lines = String(preamble || "").split("\n");
+  const lines = source.split("\n");
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
     if (line.toLowerCase().indexOf(prefix) === 0) return line.slice(prefix.length).trim();
   }
-  return "";
+  const escaped = String(label || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = source.match(new RegExp("(?:^|\\s)" + escaped + "\\s*:\\s*([^\\n]+)", "i"));
+  if (!match) return "";
+  return match[1]
+    .split(/\s+(?=(?:Name|Full name|Customer name|Customer|Email|E-mail|Phone|Telephone|Mobile|Contact number|Vehicle|Car|Vehicle details|Registration|Vehicle registration|Number plate|Reg|Page|Form|Message|You wrote|Your message|Enquiry|Notes|How they would like to be contacted|How you would like to be contacted|Contact method|Preferred contact|Contact preference|Kit already sourced)\s*:)/i)[0]
+    .trim();
 }
 
 function fieldAny(preamble, labels) {
@@ -200,7 +230,14 @@ function splitMessage(text, label) {
     at = 0;
     skip = label.length;
   }
-  if (at === -1) return null;
+  if (at === -1) {
+    const inline = source.toLowerCase().indexOf(String(label || "").toLowerCase());
+    if (inline === -1) return null;
+    return {
+      preamble: source.slice(0, inline),
+      message: cutSignature(source.slice(inline + label.length).replace(/^[\s:]+/, ""))
+    };
+  }
   return {
     preamble: source.slice(0, at),
     message: cutSignature(source.slice(at + skip).replace(/^\n/, ""))
@@ -232,7 +269,7 @@ function serviceFrom(preamble, subject) {
   if (PAGE_SERVICE[page]) return page;
   const formName = field(preamble, "Form");
   if (FORM_SERVICE[formName]) return FORM_SERVICE[formName];
-  return SUBJECT_SERVICE[subject] || "";
+  return SUBJECT_SERVICE[subject] || SUBJECT_SERVICE[bareSubject(subject)] || "";
 }
 
 function buildNotes(message, registration, contactMethod) {
@@ -339,37 +376,81 @@ function isDuplicate(existing, row) {
   return false;
 }
 
-function resendFailure(status) {
-  if (status === 403) return "The Resend key needs Full access, not Sending access only.";
+function resendFailure(status, body) {
+  const message = body && typeof body.message === "string" ? body.message : "";
+  const lowered = message.toLowerCase();
+  if (status === 403 || /full access|sending access|restricted_api_key|restricted to only send/.test(lowered)) {
+    return "The Resend key needs Full access, not Sending access only.";
+  }
+  const clean = message
+    .replace(/re_[A-Za-z0-9_-]+/g, "")
+    .replace(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (clean) return clean.slice(0, 240);
   return "Resend did not return the sent emails.";
 }
 
+function delay(ms) {
+  return new Promise(function (resolve) { setTimeout(resolve, ms); });
+}
+
 async function resendGet(apiKey, url) {
-  const response = await fetch(url, {
-    headers: {
-      Authorization: "Bearer " + apiKey,
-      Accept: "application/json"
+  let last = { ok: false, status: 0, body: null };
+  for (let attempt = 0; attempt < 4; attempt++) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Authorization: "Bearer " + apiKey,
+          Accept: "application/json"
+        }
+      });
+      let body = null;
+      try {
+        body = await response.json();
+      } catch (error) {
+        body = null;
+      }
+      last = { ok: response.ok, status: response.status, body: body };
+      if (response.ok || (response.status !== 429 && response.status < 500)) return last;
+    } catch (error) {
+      last = { ok: false, status: 0, body: null };
     }
-  });
-  let body = null;
-  try {
-    body = await response.json();
-  } catch (error) {
-    body = null;
+    await delay(300 * (attempt + 1));
   }
-  return { ok: response.ok, status: response.status, body: body };
+  return last;
+}
+
+function listPayload(body) {
+  if (Array.isArray(body)) return { data: body, hasMore: null };
+  const root = body && typeof body === "object" ? body : {};
+  if (Array.isArray(root.data)) return { data: root.data, hasMore: root.has_more };
+  if (root.data && typeof root.data === "object" && Array.isArray(root.data.data)) {
+    const nestedMore = root.data.has_more != null ? root.data.has_more : root.has_more;
+    return { data: root.data.data, hasMore: nestedMore };
+  }
+  return { data: [], hasMore: root.has_more };
+}
+
+function hasMoreFalse(value) {
+  return value === false || value === "false" || value === 0;
 }
 
 async function listSentEmails(apiKey) {
   const emails = [];
   const seen = {};
-  let url = "https://api.resend.com/emails?limit=100";
+  let after = "";
   let previousCursor = "";
   for (let page = 0; page < 200; page++) {
+    const url = "https://api.resend.com/emails?limit=100" + (after ? "&after=" + encodeURIComponent(after) : "");
     const result = await resendGet(apiKey, url);
-    if (!result.ok) return { ok: false, status: result.status, emails: emails };
-    const body = result.body || {};
-    const data = Array.isArray(body.data) ? body.data : [];
+    if (!result.ok) {
+      const message = resendFailure(result.status, result.body);
+      if (!emails.length) return { ok: false, status: result.status, message: message, emails: emails };
+      return { ok: true, status: 200, emails: emails, warning: message, warningStatus: result.status };
+    }
+    const payload = listPayload(result.body);
+    const data = payload.data;
     let added = 0;
     for (let i = 0; i < data.length; i++) {
       const email = data[i];
@@ -378,25 +459,17 @@ async function listSentEmails(apiKey) {
       emails.push(email);
       added += 1;
     }
-    const next = typeof body.next === "string" ? body.next : "";
-    if (/^https:\/\/api\.resend\.com\//.test(next)) {
-      if (next === url) break;
-      url = next;
-      continue;
-    }
-    const fullPage = data.length >= 100;
-    const hasMore = body.has_more === true || (body.has_more == null && fullPage);
-    if (!hasMore) break;
-    const cursor = data.length ? data[data.length - 1].id : next;
+    const cursor = data.length ? String(data[data.length - 1].id || "") : "";
     if (!cursor || cursor === previousCursor || added === 0) break;
+    if (hasMoreFalse(payload.hasMore) && data.length < 20) break;
     previousCursor = cursor;
-    url = "https://api.resend.com/emails?limit=100&after=" + encodeURIComponent(cursor);
+    after = cursor;
   }
   return { ok: true, status: 200, emails: emails };
 }
 
 function isCandidate(email) {
-  if (!email || !email.id || !/^[A-Za-z0-9-]+$/.test(String(email.id))) return false;
+  if (!email || !email.id || !/^[A-Za-z0-9_-]+$/.test(String(email.id))) return false;
   const subject = cleanLine(email.subject, 160);
   if (!subject) return true;
   return enquirySubject(subject);
@@ -409,7 +482,11 @@ async function mapPool(items, limit, fn) {
     while (index < items.length) {
       const current = index;
       index += 1;
-      results[current] = await fn(items[current]);
+      try {
+        results[current] = await fn(items[current]);
+      } catch (error) {
+        results[current] = { failed: true };
+      }
     }
   }
   const workers = [];
@@ -444,6 +521,50 @@ async function loadExisting(supabase) {
   return { ok: true, rows: rows };
 }
 
+async function insertParsed(supabase, existing, row, counts) {
+  if (isDuplicate(existing, row)) {
+    counts.skippedDuplicates += 1;
+    return;
+  }
+  const insert = {
+    name: row.name,
+    phone: row.phone,
+    email: row.email,
+    vehicle: row.vehicle,
+    service: row.service,
+    source: "Website Form",
+    notes: String(row.notes || "").slice(0, 8000),
+    status: row.status
+  };
+  if (row.created_at) insert.created_at = row.created_at;
+  let result = await supabase.from("enquiries").insert(insert);
+  if (result.error && insert.created_at) {
+    const fallback = {
+      name: insert.name,
+      phone: insert.phone,
+      email: insert.email,
+      vehicle: insert.vehicle,
+      service: insert.service,
+      source: insert.source,
+      notes: insert.notes,
+      status: insert.status
+    };
+    const retry = await supabase.from("enquiries").insert(fallback);
+    if (!retry.error) {
+      existing.push(fallback);
+      counts.imported += 1;
+      return;
+    }
+  }
+  if (result.error) {
+    console.error("Supabase import insert failed");
+    counts.failed += 1;
+    return;
+  }
+  existing.push(insert);
+  counts.imported += 1;
+}
+
 exports.parseEnquiryEmail = parseEnquiryEmail;
 exports.isDuplicate = isDuplicate;
 exports.orderImports = orderImports;
@@ -465,20 +586,39 @@ exports.handler = async function (event) {
     const listed = await listSentEmails(apiKey);
     if (!listed.ok) {
       counts.resendStatus = listed.status;
-      counts.error = resendFailure(listed.status);
+      counts.error = listed.message || resendFailure(listed.status, null);
       return respond(listed.status || 502, counts);
     }
+    if (listed.warning) {
+      counts.error = listed.warning;
+      counts.resendStatus = listed.warningStatus || null;
+    }
     counts.listed = listed.emails.length;
-    const candidates = listed.emails.filter(isCandidate);
+    const candidates = listed.emails.filter(isCandidate).sort(function (a, b) {
+      return Date.parse(a.created_at || 0) - Date.parse(b.created_at || 0);
+    });
     counts.skippedNotEnquiry = counts.listed - candidates.length;
 
+    const existingResult = await loadExisting(supabase);
+    if (!existingResult.ok) return respond(500, Object.assign(counts, { error: "Inbox unavailable" }));
+    const existing = existingResult.rows;
+    const acknowledgements = [];
+    let insertChain = Promise.resolve();
     let blockedStatus = 0;
-    const details = await mapPool(candidates, 6, async function (item) {
-      if (blockedStatus) return null;
+
+    function queueInsert(row) {
+      insertChain = insertChain.then(function () {
+        return insertParsed(supabase, existing, row, counts);
+      });
+      return insertChain;
+    }
+
+    await mapPool(candidates, 4, async function (item) {
+      if (blockedStatus) return { blocked: true };
       const result = await resendGet(apiKey, "https://api.resend.com/emails/" + encodeURIComponent(item.id));
       if (result.status === 403) {
         blockedStatus = 403;
-        return null;
+        return { blocked: true };
       }
       if (!result.ok) return { failed: true, status: result.status };
       const detail = result.body || {};
@@ -488,65 +628,35 @@ exports.handler = async function (event) {
       if (!detail.reply_to) detail.reply_to = item.reply_to;
       const parsed = parseEnquiryEmail(detail);
       if (!parsed) return { skip: true };
-      return { row: parsed };
+      if (parsed.kind === "acknowledgement") {
+        acknowledgements.push(parsed);
+        return { held: true };
+      }
+      await queueInsert(parsed);
+      return { saved: true };
+    }).then(function (details) {
+      for (let i = 0; i < details.length; i++) {
+        const item = details[i];
+        if (!item || item.blocked || item.saved || item.held) continue;
+        if (item.failed) {
+          counts.failed += 1;
+          if (!counts.resendStatus) counts.resendStatus = item.status;
+          continue;
+        }
+        if (item.skip) counts.skippedNotEnquiry += 1;
+      }
     });
+
+    await insertChain;
+    const orderedAcks = orderImports(acknowledgements);
+    for (let i = 0; i < orderedAcks.length; i++) {
+      await insertParsed(supabase, existing, orderedAcks[i], counts);
+    }
 
     if (blockedStatus === 403) {
       counts.resendStatus = 403;
-      counts.error = resendFailure(403);
+      counts.error = resendFailure(403, null);
       return respond(403, counts);
-    }
-
-    const parsed = [];
-    for (let i = 0; i < details.length; i++) {
-      const item = details[i];
-      if (!item) {
-        counts.failed += 1;
-        continue;
-      }
-      if (item.failed) {
-        counts.failed += 1;
-        if (!counts.resendStatus) counts.resendStatus = item.status;
-        continue;
-      }
-      if (item.skip || !item.row) {
-        counts.skippedNotEnquiry += 1;
-        continue;
-      }
-      parsed.push(item.row);
-    }
-
-    const ordered = orderImports(parsed);
-
-    const existingResult = await loadExisting(supabase);
-    if (!existingResult.ok) return respond(500, Object.assign(counts, { error: "Inbox unavailable" }));
-    const existing = existingResult.rows;
-
-    for (let i = 0; i < ordered.length; i++) {
-      const row = ordered[i];
-      if (isDuplicate(existing, row)) {
-        counts.skippedDuplicates += 1;
-        continue;
-      }
-      const insert = {
-        name: row.name,
-        phone: row.phone,
-        email: row.email,
-        vehicle: row.vehicle,
-        service: row.service,
-        source: "Website Form",
-        notes: row.notes,
-        status: row.status,
-        created_at: row.created_at
-      };
-      const { error } = await supabase.from("enquiries").insert(insert);
-      if (error) {
-        console.error("Supabase import insert failed");
-        counts.failed += 1;
-        continue;
-      }
-      existing.push(insert);
-      counts.imported += 1;
     }
 
     return respond(200, counts);
