@@ -85,6 +85,11 @@
       color: #141414;
       border-color: #bdbdbd;
     }
+    .inbox-page main button#inbox-view-replied {
+      background: #4a4a4a;
+      color: #ffffff;
+      border-color: #4a4a4a;
+    }
     .inbox-page main button#inbox-view-quoted {
       background: #0c3d7a;
       color: #ffffff;
@@ -270,10 +275,12 @@
       letter-spacing: 0.04em;
     }
     .inbox-table tr.is-new td { background: #ffffff; color: #141414; }
+    .inbox-table tr.is-replied td { background: #4a4a4a; color: #ffffff; }
     .inbox-table tr.is-quoted td { background: #0c3d7a; color: #ffffff; }
     .inbox-table tr.is-booked td { background: #0e5c34; color: #ffffff; }
     .inbox-table tr.is-completed td { background: #111111; color: #ffffff; }
     .inbox-table tr.is-new a { color: #141414; }
+    .inbox-table tr.is-replied a,
     .inbox-table tr.is-quoted a,
     .inbox-table tr.is-booked a { color: #ffffff; }
     .inbox-table tr.is-completed a { color: #ffffff; }
@@ -283,6 +290,13 @@
       -webkit-text-fill-color: #141414;
       border-color: #8a8a8a;
       color-scheme: light;
+    }
+    .inbox-table tr.is-replied .inbox-status-select {
+      background: #4a4a4a;
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      border-color: #ffffff;
+      color-scheme: dark;
     }
     .inbox-table tr.is-quoted .inbox-status-select {
       background: #0c3d7a;
@@ -411,10 +425,17 @@
       border: 1px solid #bdbdbd;
     }
     .inbox-popup-panel.is-new { background: #ffffff; color: #141414; }
+    .inbox-popup-panel.is-replied { background: #4a4a4a; color: #ffffff; }
     .inbox-popup-panel.is-quoted { background: #0c3d7a; color: #ffffff; }
     .inbox-popup-panel.is-booked { background: #0e5c34; color: #ffffff; }
     .inbox-popup-panel.is-completed { background: #111111; color: #ffffff; }
     .inbox-popup-panel.is-not-interested { background: #e10600; color: #ffffff; }
+    .inbox-popup-panel.is-replied h2,
+    .inbox-popup-panel.is-replied p,
+    .inbox-popup-panel.is-replied dt,
+    .inbox-popup-panel.is-replied dd,
+    .inbox-popup-panel.is-replied label,
+    .inbox-popup-panel.is-replied a,
     .inbox-popup-panel.is-quoted h2,
     .inbox-popup-panel.is-quoted p,
     .inbox-popup-panel.is-quoted dt,
@@ -446,6 +467,13 @@
       border-color: #8a8a8a;
       color-scheme: light;
     }
+    .inbox-popup-panel.is-replied select {
+      background: #4a4a4a;
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      border-color: #ffffff;
+      color-scheme: dark;
+    }
     .inbox-popup-panel.is-quoted select {
       background: #0c3d7a;
       color: #ffffff;
@@ -476,6 +504,7 @@
     }
     .inbox-popup-panel.is-quoted .inbox-error,
     .inbox-popup-panel.is-booked .inbox-error { color: #ffd2d2; }
+    .inbox-popup-panel.is-replied .inbox-error,
     .inbox-popup-panel.is-completed .inbox-error { color: #ffffff; }
     .inbox-popup-panel.is-not-interested .inbox-error { color: #ffffff; }
     @media (max-width: 720px) {
@@ -589,6 +618,7 @@
       <div class="inbox-views" role="group" aria-label="Enquiry folders">
         <button type="button" class="inbox-view" id="inbox-view-main" data-view="main" aria-pressed="true"><span class="inbox-view-label">Inbox</span><span class="inbox-view-count">0</span></button>
         <button type="button" class="inbox-view" id="inbox-view-new" data-view="new" aria-pressed="false"><span class="inbox-view-label">New</span><span class="inbox-view-count">0</span></button>
+        <button type="button" class="inbox-view" id="inbox-view-replied" data-view="replied" aria-pressed="false"><span class="inbox-view-label">Replied</span><span class="inbox-view-count">0</span></button>
         <button type="button" class="inbox-view" id="inbox-view-quoted" data-view="quoted" aria-pressed="false"><span class="inbox-view-label">Quoted</span><span class="inbox-view-count">0</span></button>
         <button type="button" class="inbox-view" id="inbox-view-booked" data-view="booked" aria-pressed="false"><span class="inbox-view-label">Booked</span><span class="inbox-view-count">0</span></button>
         <button type="button" class="inbox-view" id="inbox-view-completed" data-view="completed" aria-pressed="false"><span class="inbox-view-label">Completed</span><span class="inbox-view-count">0</span></button>
@@ -718,7 +748,7 @@
       }
 
       var KEY = "fxEnquiriesPassword";
-      var STATUSES = ["New", "Quoted", "Booked", "Completed", "Not Interested"];
+      var STATUSES = ["New", "Replied", "Quoted", "Booked", "Completed", "Not Interested"];
 
       function statusName(value) {
         var text = value == null ? "" : String(value);
@@ -736,7 +766,7 @@
       }
 
       var inboxView = "main";
-      var INBOX_VIEWS = ["main", "new", "quoted", "booked", "completed", "not-interested"];
+      var INBOX_VIEWS = ["main", "new", "replied", "quoted", "booked", "completed", "not-interested"];
 
       function viewStatus(row) {
         var status = text(row && row.status);
@@ -746,8 +776,9 @@
       function rowInView(row, view) {
         if (!row || isDeletedStatus(row)) return false;
         var status = viewStatus(row);
-        if (view === "main") return status === "New" || status === "Quoted" || status === "Booked";
+        if (view === "main") return status === "New" || status === "Replied" || status === "Quoted" || status === "Booked";
         if (view === "new") return status === "New";
+        if (view === "replied") return status === "Replied";
         if (view === "quoted") return status === "Quoted";
         if (view === "booked") return status === "Booked";
         if (view === "completed") return status === "Completed";
@@ -850,6 +881,7 @@
 
       function emptyFolderMessage() {
         if (inboxView === "new") return "No New enquiries.";
+        if (inboxView === "replied") return "No Replied enquiries.";
         if (inboxView === "quoted") return "No Quoted enquiries.";
         if (inboxView === "booked") return "No Booked enquiries.";
         if (inboxView === "completed") return "No Completed enquiries.";
@@ -865,7 +897,7 @@
       function paintPopup(row) {
         var panel = document.querySelector(".inbox-popup-panel");
         if (!panel) return;
-        panel.classList.remove("is-new", "is-quoted", "is-booked", "is-completed", "is-not-interested");
+        panel.classList.remove("is-new", "is-replied", "is-quoted", "is-booked", "is-completed", "is-not-interested");
         if (row) panel.classList.add(statusClass(row.status));
       }
       var gate = document.getElementById("inbox-gate");

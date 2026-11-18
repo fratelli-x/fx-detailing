@@ -4,7 +4,7 @@
 
 const { createClient } = require("@supabase/supabase-js");
 
-const STATUSES = { New: true, Quoted: true, Booked: true, Completed: true, "Not Interested": true };
+const STATUSES = { New: true, Replied: true, Quoted: true, Booked: true, Completed: true, "Not Interested": true };
 
 function cleanText(value, max) {
   return String(value == null ? "" : value)
