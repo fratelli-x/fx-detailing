@@ -80,7 +80,36 @@
       text-align: center;
       white-space: nowrap;
     }
+    .inbox-page main button#inbox-view-new {
+      background: #ffffff;
+      color: #141414;
+      border-color: #bdbdbd;
+    }
+    .inbox-page main button#inbox-view-quoted {
+      background: #0c3d7a;
+      color: #ffffff;
+      border-color: #0c3d7a;
+    }
+    .inbox-page main button#inbox-view-booked {
+      background: #0e5c34;
+      color: #ffffff;
+      border-color: #0e5c34;
+    }
+    .inbox-page main button#inbox-view-completed {
+      background: #111111;
+      color: #ffffff;
+      border-color: #111111;
+    }
+    .inbox-page main button#inbox-view-parked {
+      background: #e10600;
+      color: #ffffff;
+      border-color: #e10600;
+    }
     .inbox-page main button.inbox-view[aria-pressed="true"] {
+      outline: 3px solid #141414;
+      outline-offset: 2px;
+    }
+    .inbox-page main button#inbox-view-main[aria-pressed="true"] {
       background: #141414;
       color: #ffffff;
       border-color: #141414;
@@ -95,18 +124,8 @@
       line-height: 1.15;
       color: #e10600;
     }
-    .inbox-page main button#inbox-view-parked[aria-pressed="true"] {
-      background: #e10600;
+    .inbox-page main button#inbox-view-parked .inbox-view-count {
       color: #ffffff;
-      border-color: #e10600;
-    }
-    .inbox-page main button#inbox-view-parked[aria-pressed="true"] .inbox-view-count {
-      color: #ffffff;
-    }
-    .inbox-page main button#inbox-view-completed[aria-pressed="true"] {
-      background: #111111;
-      color: #ffffff;
-      border-color: #ffffff;
     }
     .inbox-search { max-width: 420px; margin: 0; flex: 1 1 240px; color: #141414; }
     .inbox-sort,
