@@ -4,7 +4,7 @@
 
 const { createClient } = require("@supabase/supabase-js");
 
-const STATUSES = { New: true, Quoted: true, Booked: true, Completed: true };
+const STATUSES = { New: true, Quoted: true, Booked: true, Completed: true, "Not Interested": true };
 
 function cleanText(value, max) {
   return String(value == null ? "" : value)
@@ -82,6 +82,28 @@ function cleanId(value) {
   return id;
 }
 
+function cleanBookingDate(value) {
+  if (value == null) return null;
+  const text = cleanLine(value, 40);
+  if (!text) return null;
+  const match = text.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!match) return false;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const utc = new Date(Date.UTC(year, month - 1, day));
+  if (utc.getUTCFullYear() !== year || utc.getUTCMonth() !== month - 1 || utc.getUTCDate() !== day) return false;
+  return match[1] + "-" + match[2] + "-" + match[3];
+}
+
+function cleanCourtesy(value) {
+  if (value == null) return null;
+  const text = cleanLine(value, 8);
+  if (!text) return null;
+  if (text !== "Yes" && text !== "No") return false;
+  return text;
+}
+
 exports.handler = async function (event) {
   if (!authorized(event)) return respond(401, { error: "Unauthorized" });
 
@@ -96,7 +118,10 @@ exports.handler = async function (event) {
         .select("*")
         .order("created_at", { ascending: false });
       if (error) return respond(500, { error: "Inbox unavailable" });
-      return respond(200, data || []);
+      const visible = (data || []).filter(function (row) {
+        return row && String(row.status || "") !== "Deleted";
+      });
+      return respond(200, visible);
     }
 
     if (method === "POST") {
@@ -136,7 +161,9 @@ exports.handler = async function (event) {
       if (!id) return respond(400, { error: "Missing id" });
       const hasStatus = Object.prototype.hasOwnProperty.call(body, "status");
       const hasNotes = Object.prototype.hasOwnProperty.call(body, "notes");
-      if (!hasStatus && !hasNotes) return respond(400, { error: "Nothing to update" });
+      const hasBooking = Object.prototype.hasOwnProperty.call(body, "booking_date");
+      const hasCourtesy = Object.prototype.hasOwnProperty.call(body, "courtesy_car");
+      if (!hasStatus && !hasNotes && !hasBooking && !hasCourtesy) return respond(400, { error: "Nothing to update" });
       const patch = {};
       if (hasStatus) {
         const status = cleanLine(body.status, 40);
@@ -144,14 +171,29 @@ exports.handler = async function (event) {
         patch.status = status;
       }
       if (hasNotes) patch.notes = cleanText(body.notes, 4000);
-      const { data, error } = await supabase
-        .from("enquiries")
-        .update(patch)
-        .eq("id", id)
-        .select()
-        .single();
+      if (hasBooking) {
+        const booking = cleanBookingDate(body.booking_date);
+        if (booking === false) return respond(400, { error: "Invalid booking date" });
+        patch.booking_date = booking;
+      }
+      if (hasCourtesy) {
+        const courtesy = cleanCourtesy(body.courtesy_car);
+        if (courtesy === false) return respond(400, { error: "Invalid courtesy car" });
+        patch.courtesy_car = courtesy;
+      }
+      let request = supabase.from("enquiries").update(patch).eq("id", id);
+      if (hasStatus) request = request.or("status.is.null,status.neq.Deleted");
+      const { data, error } = await request.select().single();
       if (error) {
-        if (error.code === "PGRST116") return respond(404, { error: "Enquiry not found" });
+        if (error.code === "PGRST116") {
+          if (hasStatus) {
+            const lookup = await supabase.from("enquiries").select("status").eq("id", id).limit(1);
+            if (!lookup.error && lookup.data && lookup.data[0] && lookup.data[0].status === "Deleted") {
+              return respond(400, { error: "Invalid status" });
+            }
+          }
+          return respond(404, { error: "Enquiry not found" });
+        }
         return respond(500, { error: "Inbox unavailable" });
       }
       return respond(200, data);
@@ -174,14 +216,18 @@ exports.handler = async function (event) {
       if (Array.isArray(rawId)) return respond(400, { error: "Missing id" });
       const id = cleanId(rawId);
       if (!id) return respond(400, { error: "Missing id" });
-      const { data, error } = await supabase
+      const found = await supabase.from("enquiries").select("id,status").eq("id", id).limit(1);
+      if (found.error) return respond(500, { error: "Inbox unavailable" });
+      if (!found.data || found.data.length !== 1) return respond(404, { error: "Enquiry not found" });
+      if (found.data[0].status === "Deleted") return respond(200, { id: found.data[0].id });
+      const updated = await supabase
         .from("enquiries")
-        .delete()
+        .update({ status: "Deleted" })
         .eq("id", id)
         .select("id");
-      if (error) return respond(500, { error: "Inbox unavailable" });
-      if (!data || data.length !== 1) return respond(404, { error: "Enquiry not found" });
-      return respond(200, { id: data[0].id });
+      if (updated.error) return respond(500, { error: "Inbox unavailable" });
+      if (!updated.data || updated.data.length !== 1) return respond(404, { error: "Enquiry not found" });
+      return respond(200, { id: updated.data[0].id });
     }
 
     return respond(405, { error: "Method not allowed" });

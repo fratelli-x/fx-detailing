@@ -359,12 +359,17 @@ function orderImports(rows) {
 }
 
 function isDuplicate(existing, row) {
+  // Match only. Never updates a stored row, including Deleted and both folders.
+  // Skip when created_at matches, or the same email or phone has the same notes,
+  // or this Resend message was already seen. Email or phone alone is not enough.
+  const rowId = String(row && row.resend_id || "");
   const rowTime = Date.parse(row.created_at);
   const rowEmail = String(row.email || "").trim().toLowerCase();
   const rowPhone = phoneKey(row.phone);
   const rowNotes = String(row.notes || "").replace(/\r\n/g, "\n");
   for (let i = 0; i < existing.length; i++) {
     const item = existing[i] || {};
+    if (rowId && item.resend_id && rowId === String(item.resend_id)) return true;
     const itemTime = Date.parse(normalizeCreatedAt(item.created_at) || item.created_at);
     if (Number.isFinite(rowTime) && rowTime === itemTime) return true;
     const notes = String(item.notes || "").replace(/\r\n/g, "\n");
@@ -436,12 +441,21 @@ function hasMoreFalse(value) {
   return value === false || value === "false" || value === 0;
 }
 
-async function listSentEmails(apiKey) {
+function emailTime(value) {
+  const time = Date.parse(normalizeCreatedAt(value) || value || "");
+  return Number.isFinite(time) ? time : 0;
+}
+
+async function listSentEmails(apiKey, options) {
+  // Resend returns the list newest first. `after` then walks older pages.
+  const recent = !!(options && options.recent);
+  const knownTime = options && options.knownTime;
   const emails = [];
   const seen = {};
   let after = "";
   let previousCursor = "";
-  for (let page = 0; page < 200; page++) {
+  const pageLimit = recent ? 8 : 200;
+  for (let page = 0; page < pageLimit; page++) {
     const url = "https://api.resend.com/emails?limit=100" + (after ? "&after=" + encodeURIComponent(after) : "");
     const result = await resendGet(apiKey, url);
     if (!result.ok) {
@@ -452,15 +466,24 @@ async function listSentEmails(apiKey) {
     const payload = listPayload(result.body);
     const data = payload.data;
     let added = 0;
+    let candidateCount = 0;
+    let unknownCount = 0;
     for (let i = 0; i < data.length; i++) {
       const email = data[i];
       if (!email || !email.id || seen[email.id]) continue;
       seen[email.id] = true;
-      emails.push(email);
       added += 1;
+      if (recent && knownTime) {
+        if (!isCandidate(email)) continue;
+        candidateCount += 1;
+        if (knownTime(emailTime(email.created_at))) continue;
+        unknownCount += 1;
+      }
+      emails.push(email);
     }
     const cursor = data.length ? String(data[data.length - 1].id || "") : "";
     if (!cursor || cursor === previousCursor || added === 0) break;
+    if (recent && candidateCount > 0 && unknownCount === 0) break;
     if (hasMoreFalse(payload.hasMore) && data.length < 20) break;
     previousCursor = cursor;
     after = cursor;
@@ -506,6 +529,7 @@ function supabaseClient() {
 }
 
 async function loadExisting(supabase) {
+  // Every stored enquiry, including Deleted and both folders. Read only.
   const rows = [];
   const pageSize = 1000;
   for (let from = 0; from < 20000; from += pageSize) {
@@ -521,11 +545,19 @@ async function loadExisting(supabase) {
   return { ok: true, rows: rows };
 }
 
+function rememberImported(existing, stored, resendId) {
+  const remembered = Object.assign({}, stored);
+  if (resendId) remembered.resend_id = resendId;
+  existing.push(remembered);
+}
+
 async function insertParsed(supabase, existing, row, counts) {
   if (isDuplicate(existing, row)) {
     counts.skippedDuplicates += 1;
     return;
   }
+  // Insert only. Never update status, notes, booking_date, courtesy_car,
+  // name, phone, email, vehicle, service, source, or created_at.
   const insert = {
     name: row.name,
     phone: row.phone,
@@ -551,7 +583,7 @@ async function insertParsed(supabase, existing, row, counts) {
     };
     const retry = await supabase.from("enquiries").insert(fallback);
     if (!retry.error) {
-      existing.push(fallback);
+      rememberImported(existing, fallback, row.resend_id);
       counts.imported += 1;
       return;
     }
@@ -561,7 +593,7 @@ async function insertParsed(supabase, existing, row, counts) {
     counts.failed += 1;
     return;
   }
-  existing.push(insert);
+  rememberImported(existing, insert, row.resend_id);
   counts.imported += 1;
 }
 
@@ -582,8 +614,30 @@ exports.handler = async function (event) {
   const supabase = supabaseClient();
   if (!supabase) return respond(500, Object.assign(counts, { error: "Inbox unavailable" }));
 
+  let recent = false;
+  if (event && event.body) {
+    try {
+      const raw = event.isBase64Encoded ? Buffer.from(event.body, "base64").toString("utf8") : event.body;
+      const parsed = raw ? JSON.parse(raw) : {};
+      recent = !!(parsed && parsed.recent === true);
+    } catch (error) {
+      recent = false;
+    }
+  }
+
   try {
-    const listed = await listSentEmails(apiKey);
+    const existingResult = await loadExisting(supabase);
+    if (!existingResult.ok) return respond(500, Object.assign(counts, { error: "Inbox unavailable" }));
+    const existing = existingResult.rows;
+    const known = {};
+    for (let i = 0; i < existing.length; i++) {
+      const time = emailTime(existing[i] && existing[i].created_at);
+      if (time) known[time] = true;
+    }
+    const listed = await listSentEmails(apiKey, {
+      recent: recent,
+      knownTime: recent ? function (time) { return !!known[time]; } : null
+    });
     if (!listed.ok) {
       counts.resendStatus = listed.status;
       counts.error = listed.message || resendFailure(listed.status, null);
@@ -599,9 +653,6 @@ exports.handler = async function (event) {
     });
     counts.skippedNotEnquiry = counts.listed - candidates.length;
 
-    const existingResult = await loadExisting(supabase);
-    if (!existingResult.ok) return respond(500, Object.assign(counts, { error: "Inbox unavailable" }));
-    const existing = existingResult.rows;
     const acknowledgements = [];
     let insertChain = Promise.resolve();
     let blockedStatus = 0;
@@ -628,6 +679,7 @@ exports.handler = async function (event) {
       if (!detail.reply_to) detail.reply_to = item.reply_to;
       const parsed = parseEnquiryEmail(detail);
       if (!parsed) return { skip: true };
+      parsed.resend_id = String((detail && detail.id) || item.id || "");
       if (parsed.kind === "acknowledgement") {
         acknowledgements.push(parsed);
         return { held: true };

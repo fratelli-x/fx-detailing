@@ -56,6 +56,37 @@
       align-items: end;
       margin: 8px 0 18px;
     }
+    .inbox-views {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin: 0 0 14px;
+    }
+    .inbox-page main button.inbox-view {
+      text-transform: none;
+      letter-spacing: 0;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      background: #ffffff;
+      color: #141414;
+      border: 1px solid #bdbdbd;
+    }
+    .inbox-page main button.inbox-view[aria-pressed="true"] {
+      background: #141414;
+      color: #ffffff;
+      border-color: #141414;
+    }
+    .inbox-page main button#inbox-view-parked[aria-pressed="true"] {
+      background: #e10600;
+      color: #ffffff;
+      border-color: #e10600;
+    }
+    .inbox-page main button#inbox-view-completed[aria-pressed="true"] {
+      background: #111111;
+      color: #e10600;
+      border-color: #e10600;
+    }
     .inbox-search { max-width: 420px; margin: 0; flex: 1 1 240px; color: #141414; }
     .inbox-sort,
     .inbox-sort-dir { margin: 0; flex: 0 1 200px; min-width: 168px; color: #141414; }
@@ -84,7 +115,7 @@
       width: 100%;
       border-collapse: separate;
       border-spacing: 0;
-      min-width: 980px;
+      min-width: 1280px;
       background: #ffffff;
       color: #141414;
     }
@@ -121,8 +152,8 @@
       position: sticky;
       right: 0;
       z-index: 2;
-      width: 15rem;
-      min-width: 15rem;
+      width: 17rem;
+      min-width: 17rem;
       box-sizing: border-box;
       border-left: 2px solid #d0d0d0;
       box-shadow: -8px 0 10px rgba(20, 20, 20, 0.16);
@@ -182,7 +213,9 @@
       letter-spacing: 0;
       text-transform: none;
     }
-    .inbox-when { white-space: nowrap; }
+    .inbox-when,
+    .inbox-booking,
+    .inbox-courtesy { white-space: nowrap; }
     .inbox-page main button.inbox-delete {
       margin-top: 8px;
       background: #ffffff;
@@ -230,6 +263,15 @@
       border-color: #e10600;
       color-scheme: dark;
     }
+    .inbox-table tr.is-not-interested td { background: #e10600; color: #ffffff; }
+    .inbox-table tr.is-not-interested a { color: #ffffff; }
+    .inbox-table tr.is-not-interested .inbox-status-select {
+      background: #e10600;
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      border-color: #ffffff;
+      color-scheme: dark;
+    }
     .inbox-page [hidden] { display: none !important; }
     .inbox-popup {
       position: fixed;
@@ -269,8 +311,51 @@
     }
     .inbox-popup-panel dt { font-weight: 700; }
     .inbox-popup-panel dd { margin: 0; }
-    .inbox-popup-notes { white-space: pre-wrap; }
-    .inbox-popup-panel select { min-width: 11rem; height: 42px; font-weight: 700; }
+    .inbox-popup-notes-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      align-items: center;
+      margin: 0 0 16px;
+    }
+    .inbox-popup-panel textarea.inbox-popup-notes-input {
+      min-height: 140px;
+      width: 100%;
+      box-sizing: border-box;
+      background: #ffffff;
+      color: #141414;
+      -webkit-text-fill-color: #141414;
+      color-scheme: light;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.45;
+    }
+    .inbox-popup-panel input.inbox-popup-date {
+      width: 100%;
+      max-width: 16rem;
+      box-sizing: border-box;
+      background: #ffffff;
+      color: #141414;
+      -webkit-text-fill-color: #141414;
+      color-scheme: light;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    .inbox-popup-notes-saved { margin: 0; font-weight: 700; }
+    .inbox-page main button#inbox-popup-save-notes {
+      background: #ffffff;
+      color: #141414;
+      border: 1px solid #bdbdbd;
+      text-transform: none;
+      letter-spacing: 0;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      font-weight: 700;
+    }
+    .inbox-popup-panel select { min-width: 13rem; height: 42px; font-weight: 700; }
     .inbox-popup-panel select option {
       background: #ffffff;
       color: #141414;
@@ -285,6 +370,7 @@
     .inbox-popup-panel.is-quoted { background: #0c3d7a; color: #ffffff; }
     .inbox-popup-panel.is-booked { background: #0e5c34; color: #ffffff; }
     .inbox-popup-panel.is-completed { background: #111111; color: #e10600; }
+    .inbox-popup-panel.is-not-interested { background: #e10600; color: #ffffff; }
     .inbox-popup-panel.is-quoted h2,
     .inbox-popup-panel.is-quoted p,
     .inbox-popup-panel.is-quoted dt,
@@ -296,7 +382,13 @@
     .inbox-popup-panel.is-booked dt,
     .inbox-popup-panel.is-booked dd,
     .inbox-popup-panel.is-booked label,
-    .inbox-popup-panel.is-booked a { color: #ffffff; }
+    .inbox-popup-panel.is-booked a,
+    .inbox-popup-panel.is-not-interested h2,
+    .inbox-popup-panel.is-not-interested p,
+    .inbox-popup-panel.is-not-interested dt,
+    .inbox-popup-panel.is-not-interested dd,
+    .inbox-popup-panel.is-not-interested label,
+    .inbox-popup-panel.is-not-interested a { color: #ffffff; }
     .inbox-popup-panel.is-completed h2,
     .inbox-popup-panel.is-completed p,
     .inbox-popup-panel.is-completed dt,
@@ -331,9 +423,17 @@
       border-color: #e10600;
       color-scheme: dark;
     }
+    .inbox-popup-panel.is-not-interested select {
+      background: #e10600;
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      border-color: #ffffff;
+      color-scheme: dark;
+    }
     .inbox-popup-panel.is-quoted .inbox-error,
     .inbox-popup-panel.is-booked .inbox-error { color: #ffd2d2; }
     .inbox-popup-panel.is-completed .inbox-error { color: #ff9a9a; }
+    .inbox-popup-panel.is-not-interested .inbox-error { color: #ffffff; }
     @media (max-width: 720px) {
       .inbox-page main { margin: 0; max-width: none; }
       .inbox-page .inbox-add { grid-template-columns: 1fr; }
@@ -384,10 +484,9 @@
     </section>
     <section id="inbox" hidden>
       <div class="inbox-actions">
-        <button type="button" id="inbox-import">Import historic emails from Resend</button>
         <button type="button" id="inbox-download">Download CSV</button>
       </div>
-      <p id="inbox-import-result" class="inbox-note" hidden></p>
+      <p id="inbox-new-mail" class="inbox-note" hidden></p>
       <h2>Add an enquiry</h2>
       <form id="inbox-add" class="inbox-add">
         <label>Name<input name="name" autocomplete="name" required></label>
@@ -419,6 +518,8 @@
             <option value="name">Name</option>
             <option value="vehicle">Vehicle</option>
             <option value="service">Service</option>
+            <option value="booking_date">Booking Date</option>
+            <option value="courtesy_car">Courtesy Car</option>
             <option value="status">Status</option>
           </select>
         </label>
@@ -428,6 +529,11 @@
             <option value="asc">Oldest first</option>
           </select>
         </label>
+      </div>
+      <div class="inbox-views" role="group" aria-label="Enquiry folders">
+        <button type="button" class="inbox-view" id="inbox-view-main" aria-pressed="true">Inbox</button>
+        <button type="button" class="inbox-view" id="inbox-view-parked" aria-pressed="false">Not Interested</button>
+        <button type="button" class="inbox-view" id="inbox-view-completed" aria-pressed="false">Completed</button>
       </div>
       <p id="inbox-status-error" class="inbox-error" hidden>The status was not saved.</p>
       <p id="inbox-delete-error" class="inbox-error" hidden>That enquiry was not deleted.</p>
@@ -443,6 +549,8 @@
               <th scope="col">Vehicle</th>
               <th scope="col">Service</th>
               <th scope="col">Notes</th>
+              <th scope="col">Booking Date</th>
+              <th scope="col">Courtesy Car</th>
               <th scope="col" class="inbox-status-col">Status</th>
             </tr>
           </thead>
@@ -455,6 +563,24 @@
           <button type="button" id="inbox-popup-close">Close</button>
           <h2 id="inbox-popup-title">Enquiry</h2>
           <dl id="inbox-popup-fields"></dl>
+          <label>Notes
+            <textarea id="inbox-popup-notes" class="inbox-popup-notes-input" rows="6"></textarea>
+          </label>
+          <label>Booking date
+            <input id="inbox-popup-booking" class="inbox-popup-date" type="date">
+          </label>
+          <label>Courtesy car
+            <select id="inbox-popup-courtesy" aria-label="Courtesy car">
+              <option value=""></option>
+              <option value="Yes">YES</option>
+              <option value="No">NO</option>
+            </select>
+          </label>
+          <div class="inbox-popup-notes-actions">
+            <button type="button" id="inbox-popup-save-notes">Save</button>
+            <p id="inbox-popup-notes-saved" class="inbox-popup-notes-saved" hidden>Saved</p>
+            <p id="inbox-popup-notes-error" class="inbox-error" hidden>The changes were not saved.</p>
+          </div>
           <label>Status
             <select id="inbox-popup-status" aria-label="Change enquiry status"></select>
           </label>
@@ -517,7 +643,7 @@
       }
 
       var KEY = "fxEnquiriesPassword";
-      var STATUSES = ["New", "Quoted", "Booked", "Completed"];
+      var STATUSES = ["New", "Quoted", "Booked", "Completed", "Not Interested"];
 
       function statusName(value) {
         var text = value == null ? "" : String(value);
@@ -527,7 +653,58 @@
       function statusClass(value) {
         var text = value == null ? "" : String(value);
         if (STATUSES.indexOf(text) === -1) return "is-new";
-        return "is-" + text.toLowerCase();
+        return "is-" + text.toLowerCase().replace(/\s+/g, "-");
+      }
+
+      function isDeletedStatus(row) {
+        return text(row && row.status) === "Deleted";
+      }
+
+      var inboxView = "main";
+
+      function folderForStatus(status) {
+        if (status === "Not Interested") return "not-interested";
+        if (status === "Completed") return "completed";
+        return "main";
+      }
+
+      function inCurrentView(row) {
+        if (!row || isDeletedStatus(row)) return false;
+        return folderForStatus(text(row.status)) === inboxView;
+      }
+
+      function bookingInputValue(value) {
+        var match = text(value).match(/^(\d{4}-\d{2}-\d{2})/);
+        return match ? match[1] : "";
+      }
+
+      function formatBookingDate(value) {
+        var iso = bookingInputValue(value);
+        if (!iso) return "";
+        var parts = iso.split("-");
+        var date = new Date(Date.UTC(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2])));
+        return new Intl.DateTimeFormat("en-GB", {
+          timeZone: "UTC",
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        }).format(date);
+      }
+
+      function courtesyValue(value) {
+        var word = text(value);
+        return word === "Yes" || word === "No" ? word : "";
+      }
+
+      function setInboxView(next) {
+        inboxView = next === "not-interested" || next === "completed" ? next : "main";
+        var mainBtn = document.getElementById("inbox-view-main");
+        var parkedBtn = document.getElementById("inbox-view-parked");
+        var completedBtn = document.getElementById("inbox-view-completed");
+        if (mainBtn) mainBtn.setAttribute("aria-pressed", inboxView === "main" ? "true" : "false");
+        if (parkedBtn) parkedBtn.setAttribute("aria-pressed", inboxView === "not-interested" ? "true" : "false");
+        if (completedBtn) completedBtn.setAttribute("aria-pressed", inboxView === "completed" ? "true" : "false");
+        render();
       }
 
       function paintStatus(tr, status) {
@@ -538,7 +715,7 @@
       function paintPopup(row) {
         var panel = document.querySelector(".inbox-popup-panel");
         if (!panel) return;
-        panel.classList.remove("is-new", "is-quoted", "is-booked", "is-completed");
+        panel.classList.remove("is-new", "is-quoted", "is-booked", "is-completed", "is-not-interested");
         if (row) panel.classList.add(statusClass(row.status));
       }
       var gate = document.getElementById("inbox-gate");
@@ -546,6 +723,8 @@
       var error = document.getElementById("inbox-password-error");
       var rows = [];
       var password = "";
+      var mailTimer = 0;
+      var checkingMail = false;
 
       function authHeaders(extra) {
         var headers = { "x-admin-password": password };
@@ -578,7 +757,7 @@
 
       function matches(row, query) {
         if (!query) return true;
-        var hay = [row.source, row.name, row.phone, row.email, row.vehicle, row.service, row.notes, row.status, formatWhen(row.created_at)].join(" ").toLowerCase();
+        var hay = [row.source, row.name, row.phone, row.email, row.vehicle, row.service, row.notes, row.status, formatWhen(row.created_at), formatBookingDate(row.booking_date), bookingInputValue(row.booking_date), courtesyValue(row.courtesy_car)].join(" ").toLowerCase();
         return hay.indexOf(query) !== -1;
       }
 
@@ -600,13 +779,18 @@
       function compareRows(a, b) {
         var field = sortField();
         var dir = sortDirection() === "asc" ? 1 : -1;
-        if (field === "date") {
+        if (field === "booking_date") {
+          var ad = bookingInputValue(a.booking_date);
+          var bd = bookingInputValue(b.booking_date);
+          if (!ad !== !bd) return ad ? -1 : 1;
+          if (ad && bd && ad !== bd) return ad < bd ? -dir : dir;
+        } else if (field === "date") {
           var at = rowTime(a);
           var bt = rowTime(b);
           if (at !== bt) return at < bt ? -dir : dir;
         } else {
-          var av = field === "status" ? statusName(a.status) : text(a[field]);
-          var bv = field === "status" ? statusName(b.status) : text(b[field]);
+          var av = field === "status" ? statusName(a.status) : field === "courtesy_car" ? courtesyValue(a.courtesy_car) : text(a[field]);
+          var bv = field === "status" ? statusName(b.status) : field === "courtesy_car" ? courtesyValue(b.courtesy_car) : text(b[field]);
           var cmp = av.localeCompare(bv, "en-GB", { sensitivity: "base", numeric: true });
           if (cmp !== 0) return cmp * dir;
           var newer = rowTime(a) - rowTime(b);
@@ -620,7 +804,9 @@
         var field = sortField();
         var choices = field === "date"
           ? [["desc", "Newest first"], ["asc", "Oldest first"]]
-          : [["asc", "A to Z"], ["desc", "Z to A"]];
+          : field === "booking_date"
+            ? [["asc", "Earliest first"], ["desc", "Latest first"]]
+            : [["asc", "A to Z"], ["desc", "Z to A"]];
         var next = prefer || (field === "date" ? "desc" : "asc");
         dir.textContent = "";
         choices.forEach(function (choice) {
@@ -638,6 +824,11 @@
       }
 
       function showGate(message) {
+        if (mailTimer) {
+          clearInterval(mailTimer);
+          mailTimer = 0;
+        }
+        checkingMail = false;
         try { sessionStorage.removeItem(KEY); } catch (err) {}
         password = "";
         inbox.hidden = true;
@@ -693,14 +884,7 @@
           }
           if (!response.ok) throw new Error("patch");
           row.status = next;
-          if (sortField() === "status") {
-            render();
-          } else {
-            var current = rowElement(row);
-            paintStatus(current, next);
-            var currentSelect = current ? current.querySelector("select.inbox-status-select") : null;
-            if (currentSelect) currentSelect.value = next;
-          }
+          render();
           if (openRow === row) {
             popupStatus.value = next;
             var savedWord = popup.querySelector(".inbox-popup-status-word");
@@ -709,13 +893,9 @@
           }
         }).catch(function () {
           row.status = STATUSES.indexOf(previous) === -1 ? "New" : previous;
-          var current = rowElement(row);
-          var currentSelect = current ? current.querySelector("select.inbox-status-select") : null;
-          var known = STATUSES.indexOf(row.status) === -1 ? "New" : row.status;
-          if (currentSelect) currentSelect.value = known;
-          paintStatus(current, row.status);
+          render();
           if (openRow === row) {
-            popupStatus.value = known;
+            popupStatus.value = STATUSES.indexOf(row.status) === -1 ? "New" : row.status;
             var failedWord = popup.querySelector(".inbox-popup-status-word");
             if (failedWord) failedWord.textContent = statusName(row.status);
             paintPopup(row);
@@ -742,9 +922,19 @@
         popupFields.appendChild(node);
       }
 
+      var popupNotes = document.getElementById("inbox-popup-notes");
+      var popupBooking = document.getElementById("inbox-popup-booking");
+      var popupCourtesy = document.getElementById("inbox-popup-courtesy");
+      var popupNotesSaved = document.getElementById("inbox-popup-notes-saved");
+      var popupNotesError = document.getElementById("inbox-popup-notes-error");
+      var popupSaveNotes = document.getElementById("inbox-popup-save-notes");
+      var savingNotes = false;
+
       function fillPopup(row) {
         var popupDeleteError = document.getElementById("inbox-popup-delete-error");
         if (popupDeleteError) popupDeleteError.hidden = true;
+        if (popupNotesSaved) popupNotesSaved.hidden = true;
+        if (popupNotesError) popupNotesError.hidden = true;
         popupTitle.textContent = text(row.name) || "Enquiry";
         popupFields.textContent = "";
         addPopupRow("Date", popupValue(formatWhen(row.created_at)));
@@ -777,10 +967,9 @@
         addPopupRow("Email", emailValue);
         addPopupRow("Vehicle", popupValue(row.vehicle));
         addPopupRow("Service", popupValue(row.service));
-        var notes = document.createElement("dd");
-        notes.className = "inbox-popup-notes";
-        notes.textContent = text(row.notes);
-        addPopupRow("Notes", notes);
+        if (popupNotes) popupNotes.value = text(row.notes);
+        if (popupBooking) popupBooking.value = bookingInputValue(row.booking_date);
+        if (popupCourtesy) popupCourtesy.value = courtesyValue(row.courtesy_car);
         var statusValue = popupValue(statusName(row.status));
         statusValue.className = "inbox-popup-status-word";
         addPopupRow("Status", statusValue);
@@ -806,6 +995,54 @@
         return notes.length > 80;
       }
 
+      function bindNotesToggle(notesCell, toggle) {
+        toggle.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          var open = notesCell.classList.toggle("is-open");
+          toggle.textContent = open ? "▴" : "▾";
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.setAttribute("aria-label", open ? "Hide full notes" : "Show full notes");
+        });
+      }
+
+      function makeNotesToggle(notesCell) {
+        var toggle = document.createElement("button");
+        toggle.type = "button";
+        toggle.className = "inbox-notes-toggle";
+        toggle.textContent = "▾";
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Show full notes");
+        bindNotesToggle(notesCell, toggle);
+        return toggle;
+      }
+
+      function syncNotesPreview(row) {
+        var tr = rowElement(row);
+        if (!tr) return;
+        var notesCell = tr.querySelector("td.inbox-notes");
+        if (!notesCell) return;
+        var notesText = notesCell.querySelector(".inbox-notes-text");
+        if (notesText) notesText.textContent = text(row.notes);
+        var need = notesNeedToggle(row.notes);
+        var toggle = notesCell.querySelector(".inbox-notes-toggle");
+        if (!need) {
+          notesCell.classList.remove("is-open");
+          if (toggle) toggle.remove();
+          return;
+        }
+        if (!toggle) notesCell.appendChild(makeNotesToggle(notesCell));
+      }
+
+      function syncDetailPreview(row) {
+        var tr = rowElement(row);
+        if (!tr) return;
+        var booking = tr.querySelector("td.inbox-booking");
+        if (booking) booking.textContent = formatBookingDate(row.booking_date);
+        var courtesy = tr.querySelector("td.inbox-courtesy");
+        if (courtesy) courtesy.textContent = courtesyValue(row.courtesy_car);
+      }
+
       function cell(value, className) {
         var td = document.createElement("td");
         if (className) td.className = className;
@@ -817,14 +1054,22 @@
         var search = document.getElementById("inbox-search");
         var query = search.value.trim().toLowerCase();
         var body = document.getElementById("inbox-rows");
-        var visible = rows.filter(function (row) { return matches(row, query); });
+        var visible = rows.filter(function (row) {
+          return inCurrentView(row) && matches(row, query);
+        });
         visible.sort(compareRows);
         body.textContent = "";
         if (!visible.length) {
           var empty = document.createElement("tr");
           var emptyCell = document.createElement("td");
-          emptyCell.colSpan = 9;
-          emptyCell.textContent = rows.length ? "No enquiries match that search." : "No enquiries yet.";
+          emptyCell.colSpan = 11;
+          emptyCell.textContent = query
+            ? "No enquiries match that search."
+            : inboxView === "not-interested"
+              ? "No Not Interested enquiries."
+              : inboxView === "completed"
+                ? "No Completed enquiries."
+                : "No enquiries yet.";
           empty.appendChild(emptyCell);
           body.appendChild(empty);
           return;
@@ -874,24 +1119,10 @@
           notesText.className = "inbox-notes-text";
           notesText.textContent = text(row.notes);
           notesCell.appendChild(notesText);
-          if (notesNeedToggle(row.notes)) {
-            var toggle = document.createElement("button");
-            toggle.type = "button";
-            toggle.className = "inbox-notes-toggle";
-            toggle.textContent = "▾";
-            toggle.setAttribute("aria-expanded", "false");
-            toggle.setAttribute("aria-label", "Show full notes");
-            toggle.addEventListener("click", function (event) {
-              event.preventDefault();
-              event.stopPropagation();
-              var open = notesCell.classList.toggle("is-open");
-              toggle.textContent = open ? "▴" : "▾";
-              toggle.setAttribute("aria-expanded", open ? "true" : "false");
-              toggle.setAttribute("aria-label", open ? "Hide full notes" : "Show full notes");
-            });
-            notesCell.appendChild(toggle);
-          }
+          if (notesNeedToggle(row.notes)) notesCell.appendChild(makeNotesToggle(notesCell));
           tr.appendChild(notesCell);
+          tr.appendChild(cell(formatBookingDate(row.booking_date), "inbox-booking"));
+          tr.appendChild(cell(courtesyValue(row.courtesy_car), "inbox-courtesy"));
 
           var statusCell = document.createElement("td");
           statusCell.className = "inbox-status-col";
@@ -931,7 +1162,9 @@
       }
 
       function applyRows(data) {
-        rows = Array.isArray(data) ? data : [];
+        rows = (Array.isArray(data) ? data : []).filter(function (row) {
+          return !isDeletedStatus(row);
+        });
         try { sessionStorage.setItem(KEY, password); } catch (err) {}
         showInbox();
         render();
@@ -957,12 +1190,17 @@
         event.preventDefault();
         error.hidden = true;
         password = document.getElementById("inbox-password").value;
-        loadRows().catch(function () {
+        loadRows().then(function () {
+          if (!inbox.hidden) startMailCheck();
+        }).catch(function () {
           error.hidden = false;
           error.textContent = "The inbox could not be opened.";
         });
       });
 
+      document.getElementById("inbox-view-main").addEventListener("click", function () { setInboxView("main"); });
+      document.getElementById("inbox-view-parked").addEventListener("click", function () { setInboxView("not-interested"); });
+      document.getElementById("inbox-view-completed").addEventListener("click", function () { setInboxView("completed"); });
       document.getElementById("inbox-search").addEventListener("input", render);
       document.getElementById("inbox-sort").addEventListener("change", function () {
         setDirectionOptions(sortField() === "date" ? "desc" : "asc");
@@ -1018,6 +1256,100 @@
         });
       }
 
+      function savePopupNotes() {
+        var row = openRow;
+        if (!row || row.id == null || savingNotes) return;
+        var nextNotes = popupNotes ? popupNotes.value : "";
+        var nextBooking = popupBooking ? popupBooking.value : "";
+        var nextCourtesy = popupCourtesy ? courtesyValue(popupCourtesy.value) : "";
+        savingNotes = true;
+        if (popupSaveNotes) popupSaveNotes.disabled = true;
+        if (popupNotes) popupNotes.disabled = true;
+        if (popupBooking) popupBooking.disabled = true;
+        if (popupCourtesy) popupCourtesy.disabled = true;
+        if (popupNotesSaved) popupNotesSaved.hidden = true;
+        if (popupNotesError) popupNotesError.hidden = true;
+        fetch("/.netlify/functions/enquiries", {
+          method: "PATCH",
+          headers: authHeaders({ "Content-Type": "application/json" }),
+          body: JSON.stringify({
+            id: row.id,
+            notes: nextNotes,
+            booking_date: nextBooking,
+            courtesy_car: nextCourtesy
+          })
+        }).then(function (response) {
+          if (response.status === 401) {
+            showGate("That password was not accepted.");
+            return null;
+          }
+          return response.json().catch(function () { return null; }).then(function (data) {
+            if (!response.ok) throw new Error("patch");
+            var savedNotes = data && typeof data.notes === "string" ? data.notes : nextNotes;
+            var savedBooking = data && Object.prototype.hasOwnProperty.call(data, "booking_date") ? data.booking_date : (nextBooking || null);
+            var savedCourtesy = data && Object.prototype.hasOwnProperty.call(data, "courtesy_car") ? data.courtesy_car : (nextCourtesy || null);
+            row.notes = savedNotes;
+            row.booking_date = savedBooking;
+            row.courtesy_car = savedCourtesy;
+            if (openRow === row) {
+              if (popupNotes) popupNotes.value = text(savedNotes);
+              if (popupBooking) popupBooking.value = bookingInputValue(savedBooking);
+              if (popupCourtesy) popupCourtesy.value = courtesyValue(savedCourtesy);
+              if (popupNotesSaved) popupNotesSaved.hidden = false;
+            }
+            syncNotesPreview(row);
+            syncDetailPreview(row);
+            if (sortField() === "booking_date" || sortField() === "courtesy_car") render();
+            return null;
+          });
+        }).catch(function () {
+          if (openRow === row && popupNotesError) popupNotesError.hidden = false;
+        }).then(function () {
+          savingNotes = false;
+          if (popupSaveNotes) popupSaveNotes.disabled = false;
+          if (popupNotes) popupNotes.disabled = false;
+          if (popupBooking) popupBooking.disabled = false;
+          if (popupCourtesy) popupCourtesy.disabled = false;
+        });
+      }
+
+      function keepPopupOpen(event) {
+        event.stopPropagation();
+      }
+
+      if (popupNotes) {
+        popupNotes.addEventListener("click", keepPopupOpen);
+        popupNotes.addEventListener("mousedown", keepPopupOpen);
+        popupNotes.addEventListener("input", function () {
+          if (popupNotesSaved) popupNotesSaved.hidden = true;
+          if (popupNotesError) popupNotesError.hidden = true;
+        });
+      }
+      if (popupBooking) {
+        popupBooking.addEventListener("click", keepPopupOpen);
+        popupBooking.addEventListener("mousedown", keepPopupOpen);
+        popupBooking.addEventListener("input", function () {
+          if (popupNotesSaved) popupNotesSaved.hidden = true;
+          if (popupNotesError) popupNotesError.hidden = true;
+        });
+      }
+      if (popupCourtesy) {
+        popupCourtesy.addEventListener("click", keepPopupOpen);
+        popupCourtesy.addEventListener("mousedown", keepPopupOpen);
+        popupCourtesy.addEventListener("change", function () {
+          if (popupNotesSaved) popupNotesSaved.hidden = true;
+          if (popupNotesError) popupNotesError.hidden = true;
+        });
+      }
+      if (popupSaveNotes) {
+        popupSaveNotes.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          savePopupNotes();
+        });
+        popupSaveNotes.addEventListener("mousedown", keepPopupOpen);
+      }
+
       document.getElementById("inbox-popup-close").addEventListener("click", closePopup);
       document.getElementById("inbox-popup-delete").addEventListener("click", function (event) {
         event.preventDefault();
@@ -1041,9 +1373,10 @@
       }
 
       document.getElementById("inbox-download").addEventListener("click", function () {
-        var header = ["Date", "Source", "Name", "Phone", "Email", "Vehicle", "Service", "Notes", "Status"];
+        var header = ["Date", "Source", "Name", "Phone", "Email", "Vehicle", "Service", "Notes", "Booking Date", "Courtesy Car", "Status"];
         var lines = [header.join(",")];
         rows.forEach(function (row) {
+          if (!inCurrentView(row)) return;
           lines.push([
             formatWhen(row.created_at),
             row.source,
@@ -1053,6 +1386,8 @@
             row.vehicle,
             row.service,
             row.notes,
+            formatBookingDate(row.booking_date),
+            courtesyValue(row.courtesy_car),
             row.status
           ].map(csvCell).join(","));
         });
@@ -1067,44 +1402,46 @@
         setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
       });
 
-      document.getElementById("inbox-import").addEventListener("click", function () {
-        var button = document.getElementById("inbox-import");
-        var result = document.getElementById("inbox-import-result");
-        button.disabled = true;
-        result.hidden = true;
-        fetch("/.netlify/functions/import-resend", {
+      function showNewMailNote(count) {
+        var result = document.getElementById("inbox-new-mail");
+        if (!result || !count) return;
+        result.className = "inbox-note";
+        result.textContent = count === 1 ? "1 new enquiry added" : (count + " new enquiries added");
+        result.hidden = false;
+      }
+
+      function checkNewMail() {
+        if (!password || inbox.hidden || checkingMail) return Promise.resolve();
+        checkingMail = true;
+        return fetch("/.netlify/functions/import-resend", {
           method: "POST",
           headers: authHeaders({ "Content-Type": "application/json" }),
-          body: "{}"
+          body: JSON.stringify({ recent: true })
         }).then(function (response) {
           return response.json().catch(function () { return null; }).then(function (data) {
             if (response.status === 401) {
               showGate("That password was not accepted.");
               return null;
             }
-            var counts = data || {};
-            var parts = [];
-            if (counts.error) parts.push(String(counts.error));
-            parts.push("Listed " + (counts.listed || 0) + ".");
-            parts.push("Imported " + (counts.imported || 0) + ".");
-            parts.push("Skipped duplicates " + (counts.skippedDuplicates || 0) + ".");
-            parts.push("Skipped not an enquiry " + (counts.skippedNotEnquiry || 0) + ".");
-            if (counts.failed) parts.push("Failed " + counts.failed + ".");
-            if (counts.resendStatus) parts.push("Resend status " + counts.resendStatus + ".");
-            if (!response.ok && !counts.error) parts.push("The import did not finish. Run it again to continue. Already imported enquiries are skipped.");
-            result.textContent = parts.join(" ");
-            result.className = (!response.ok || counts.error) ? "inbox-error" : "inbox-note";
-            result.hidden = false;
-            if (counts.imported) return loadRows().catch(function () { return null; });
+            var imported = data && data.imported ? data.imported : 0;
+            if (response.ok && imported) {
+              showNewMailNote(imported);
+              return loadRows().catch(function () { return null; });
+            }
             return null;
           });
         }).catch(function () {
-          result.hidden = false;
-          result.textContent = "The import did not finish. Run it again to continue. Already imported enquiries are skipped.";
+          return null;
         }).then(function () {
-          button.disabled = false;
+          checkingMail = false;
         });
-      });
+      }
+
+      function startMailCheck() {
+        if (mailTimer || !password || inbox.hidden) return;
+        checkNewMail();
+        mailTimer = setInterval(checkNewMail, 120000);
+      }
 
       document.getElementById("inbox-add").addEventListener("submit", function (event) {
         event.preventDefault();
@@ -1143,7 +1480,9 @@
 
       try { password = sessionStorage.getItem(KEY) || ""; } catch (err) { password = ""; }
       if (password) {
-        loadRows().catch(function () {
+        loadRows().then(function () {
+          if (!inbox.hidden) startMailCheck();
+        }).catch(function () {
           showGate("The inbox could not be opened.");
         });
       }
