@@ -356,8 +356,38 @@ function parseEnquiryEmail(email) {
   };
 }
 
+const DUPLICATE_WINDOW_MS = 15 * 60 * 1000;
+
 function phoneKey(value) {
   return String(value || "").replace(/\D/g, "");
+}
+
+function sameVehicle(left, right) {
+  const normalize = function (value) {
+    return String(value || "").replace(/\s+/g, " ").trim().toLowerCase();
+  };
+  return normalize(left) === normalize(right);
+}
+
+function sameNotes(left, right) {
+  const normalize = function (value) {
+    return String(value || "").replace(/\r\n/g, "\n").trim();
+  };
+  return normalize(left) === normalize(right);
+}
+
+function sameContact(leftEmail, leftPhone, rightEmail, rightPhone) {
+  const email = String(leftEmail || "").trim().toLowerCase();
+  const otherEmail = String(rightEmail || "").trim().toLowerCase();
+  if (email && otherEmail && email === otherEmail) return true;
+  const phone = phoneKey(leftPhone);
+  const otherPhone = phoneKey(rightPhone);
+  return Boolean(phone && otherPhone && phone === otherPhone);
+}
+
+function createdAtMs(value) {
+  const time = Date.parse(normalizeCreatedAt(value) || value || "");
+  return Number.isFinite(time) ? time : NaN;
 }
 
 function orderImports(rows) {
@@ -368,24 +398,24 @@ function orderImports(rows) {
 }
 
 function isDuplicate(existing, row) {
-  // Match only. Never updates a stored row, including Deleted and both folders.
-  // Skip when created_at matches, or the same email or phone has the same notes,
-  // or this Resend message was already seen. Email or phone alone is not enough.
+  // Match only. Never updates a stored row, including Deleted rows and every folder.
+  // The same person may enquire again later: email or phone alone is not enough.
+  // Same enquiry when the Resend message id was already imported, created_at matches,
+  // the same email or phone has the same notes, or the same email or phone has the
+  // same vehicle and created_at is within 15 minutes.
   const rowId = String(row && row.resend_id || "");
-  const rowTime = Date.parse(row.created_at);
-  const rowEmail = String(row.email || "").trim().toLowerCase();
-  const rowPhone = phoneKey(row.phone);
-  const rowNotes = String(row.notes || "").replace(/\r\n/g, "\n");
+  const rowTime = createdAtMs(row && row.created_at);
   for (let i = 0; i < existing.length; i++) {
     const item = existing[i] || {};
-    if (rowId && item.resend_id && rowId === String(item.resend_id)) return true;
-    const itemTime = Date.parse(normalizeCreatedAt(item.created_at) || item.created_at);
+    const itemId = String(item.resend_id || "");
+    if (rowId && itemId && rowId === itemId) return true;
+    const itemTime = createdAtMs(item.created_at);
     if (Number.isFinite(rowTime) && rowTime === itemTime) return true;
-    const notes = String(item.notes || "").replace(/\r\n/g, "\n");
-    if (notes !== rowNotes) continue;
-    const itemEmail = String(item.email || "").trim().toLowerCase();
-    const itemPhone = phoneKey(item.phone);
-    if ((rowEmail && itemEmail && rowEmail === itemEmail) || (rowPhone && itemPhone && rowPhone === itemPhone)) return true;
+    if (!sameContact(row && row.email, row && row.phone, item.email, item.phone)) continue;
+    if (sameNotes(row && row.notes, item.notes)) return true;
+    if (sameVehicle(row && row.vehicle, item.vehicle) && Number.isFinite(rowTime) && Number.isFinite(itemTime) && Math.abs(rowTime - itemTime) <= DUPLICATE_WINDOW_MS) {
+      return true;
+    }
   }
   return false;
 }
@@ -538,13 +568,13 @@ function supabaseClient() {
 }
 
 async function loadExisting(supabase) {
-  // Every stored enquiry, including Deleted and both folders. Read only.
+  // Every stored enquiry, including Deleted and every folder. Read only.
   const rows = [];
   const pageSize = 1000;
   for (let from = 0; from < 20000; from += pageSize) {
     const { data, error } = await supabase
       .from("enquiries")
-      .select("created_at,email,phone,notes")
+      .select("created_at,email,phone,notes,vehicle")
       .range(from, from + pageSize - 1);
     if (error) return { ok: false, rows: rows };
     const batch = data || [];
@@ -554,15 +584,23 @@ async function loadExisting(supabase) {
   return { ok: true, rows: rows };
 }
 
-function rememberImported(existing, stored, resendId) {
-  const remembered = Object.assign({}, stored);
-  if (resendId) remembered.resend_id = resendId;
+function rememberImported(existing, stored, resendId, source) {
+  // In-memory only. created_at and vehicle stay available for the duplicate check
+  // even when the insert had to omit created_at.
+  const from = source || {};
+  const remembered = Object.assign({}, from, stored);
+  const messageId = resendId || from.resend_id || remembered.resend_id;
+  if (messageId) remembered.resend_id = messageId;
+  delete remembered.kind;
   existing.push(remembered);
 }
 
 async function insertParsed(supabase, existing, row, counts) {
   if (isDuplicate(existing, row)) {
     counts.skippedDuplicates += 1;
+    // Keep the seen message in this run so the paired acknowledgement is not inserted.
+    // This does not write to the stored row.
+    rememberImported(existing, row, row && row.resend_id, row);
     return;
   }
   // Insert only. Never update status, notes, our_notes, registration, newsletter,
@@ -586,7 +624,7 @@ async function insertParsed(supabase, existing, row, counts) {
     counts.failed += 1;
     return;
   }
-  rememberImported(existing, stored, row.resend_id);
+  rememberImported(existing, stored, row.resend_id, row);
   counts.imported += 1;
 }
 

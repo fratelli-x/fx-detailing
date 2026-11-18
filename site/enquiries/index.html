@@ -906,7 +906,7 @@
       var rows = [];
       var password = "";
       var mailTimer = 0;
-      var checkingMail = false;
+      var mailRun = null;
 
       function authHeaders(extra) {
         var headers = { "x-admin-password": password };
@@ -1007,10 +1007,9 @@
 
       function showGate(message) {
         if (mailTimer) {
-          clearInterval(mailTimer);
+          clearTimeout(mailTimer);
           mailTimer = 0;
         }
-        checkingMail = false;
         try { sessionStorage.removeItem(KEY); } catch (err) {}
         password = "";
         inbox.hidden = true;
@@ -1659,10 +1658,18 @@
         result.hidden = false;
       }
 
+      function scheduleMailCheck() {
+        if (mailTimer || mailRun || !password || inbox.hidden) return;
+        mailTimer = setTimeout(function () {
+          mailTimer = 0;
+          checkNewMail();
+        }, 120000);
+      }
+
       function checkNewMail() {
-        if (!password || inbox.hidden || checkingMail) return Promise.resolve();
-        checkingMail = true;
-        return fetch("/.netlify/functions/import-resend", {
+        if (!password || inbox.hidden) return Promise.resolve();
+        if (mailRun) return mailRun;
+        mailRun = fetch("/.netlify/functions/import-resend", {
           method: "POST",
           headers: authHeaders({ "Content-Type": "application/json" }),
           body: JSON.stringify({ recent: true })
@@ -1682,14 +1689,15 @@
         }).catch(function () {
           return null;
         }).then(function () {
-          checkingMail = false;
+          mailRun = null;
+          scheduleMailCheck();
         });
+        return mailRun;
       }
 
       function startMailCheck() {
-        if (mailTimer || !password || inbox.hidden) return;
+        if (!password || inbox.hidden || mailRun || mailTimer) return;
         checkNewMail();
-        mailTimer = setInterval(checkNewMail, 120000);
       }
 
       document.getElementById("inbox-add").addEventListener("submit", function (event) {
