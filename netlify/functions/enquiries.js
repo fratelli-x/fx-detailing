@@ -104,6 +104,35 @@ function cleanCourtesy(value) {
   return text;
 }
 
+function cleanRegistration(value) {
+  if (value == null) return null;
+  const text = cleanLine(value, 40);
+  return text || null;
+}
+
+function cleanNewsletter(value) {
+  if (value == null) return null;
+  const text = cleanLine(value, 8);
+  if (!text) return null;
+  if (text.toLowerCase() === "yes") return "Yes";
+  if (text.toLowerCase() === "no") return "No";
+  return false;
+}
+
+function cleanEnquiryCreatedAt(value) {
+  if (value == null) return null;
+  const text = cleanLine(value, 40);
+  if (!text) return null;
+  const match = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return false;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const utc = new Date(Date.UTC(year, month - 1, day));
+  if (utc.getUTCFullYear() !== year || utc.getUTCMonth() !== month - 1 || utc.getUTCDate() !== day) return false;
+  return match[1] + "-" + match[2] + "-" + match[3] + "T12:00:00.000Z";
+}
+
 exports.handler = async function (event) {
   if (!authorized(event)) return respond(401, { error: "Unauthorized" });
 
@@ -135,6 +164,10 @@ exports.handler = async function (event) {
       if (!name) return respond(400, { error: "Name is required" });
       const email = cleanLine(body.email, 254);
       if (email && !isSingleEmail(email)) return respond(400, { error: "Invalid email" });
+      const createdAt = cleanEnquiryCreatedAt(body.enquiry_date);
+      if (createdAt === false) return respond(400, { error: "Invalid enquiry date" });
+      const newsletter = cleanNewsletter(body.newsletter);
+      if (newsletter === false) return respond(400, { error: "Invalid newsletter" });
       const row = {
         name: name,
         phone: cleanLine(body.phone, 40),
@@ -143,8 +176,12 @@ exports.handler = async function (event) {
         service: cleanLine(body.service, 80),
         source: cleanLine(body.source, 80),
         notes: cleanText(body.notes, 4000),
+        registration: cleanRegistration(body.registration),
+        our_notes: cleanText(body.our_notes, 4000) || null,
+        newsletter: newsletter,
         status: "New"
       };
+      if (createdAt) row.created_at = createdAt;
       const { data, error } = await supabase.from("enquiries").insert(row).select().single();
       if (error) return respond(500, { error: "Inbox unavailable" });
       return respond(201, data);
@@ -163,7 +200,12 @@ exports.handler = async function (event) {
       const hasNotes = Object.prototype.hasOwnProperty.call(body, "notes");
       const hasBooking = Object.prototype.hasOwnProperty.call(body, "booking_date");
       const hasCourtesy = Object.prototype.hasOwnProperty.call(body, "courtesy_car");
-      if (!hasStatus && !hasNotes && !hasBooking && !hasCourtesy) return respond(400, { error: "Nothing to update" });
+      const hasRegistration = Object.prototype.hasOwnProperty.call(body, "registration");
+      const hasOurNotes = Object.prototype.hasOwnProperty.call(body, "our_notes");
+      const hasNewsletter = Object.prototype.hasOwnProperty.call(body, "newsletter");
+      if (!hasStatus && !hasNotes && !hasBooking && !hasCourtesy && !hasRegistration && !hasOurNotes && !hasNewsletter) {
+        return respond(400, { error: "Nothing to update" });
+      }
       const patch = {};
       if (hasStatus) {
         const status = cleanLine(body.status, 40);
@@ -180,6 +222,13 @@ exports.handler = async function (event) {
         const courtesy = cleanCourtesy(body.courtesy_car);
         if (courtesy === false) return respond(400, { error: "Invalid courtesy car" });
         patch.courtesy_car = courtesy;
+      }
+      if (hasRegistration) patch.registration = cleanRegistration(body.registration);
+      if (hasOurNotes) patch.our_notes = cleanText(body.our_notes, 4000) || null;
+      if (hasNewsletter) {
+        const newsletter = cleanNewsletter(body.newsletter);
+        if (newsletter === false) return respond(400, { error: "Invalid newsletter" });
+        patch.newsletter = newsletter;
       }
       let request = supabase.from("enquiries").update(patch).eq("id", id);
       if (hasStatus) request = request.or("status.is.null,status.neq.Deleted");

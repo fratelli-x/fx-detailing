@@ -77,6 +77,9 @@
       color: #ffffff;
       border-color: #141414;
     }
+    .inbox-page main button.inbox-view .inbox-view-count {
+      font-weight: 700;
+    }
     .inbox-page main button#inbox-view-parked[aria-pressed="true"] {
       background: #e10600;
       color: #ffffff;
@@ -115,7 +118,7 @@
       width: 100%;
       border-collapse: separate;
       border-spacing: 0;
-      min-width: 1280px;
+      min-width: 1680px;
       background: #ffffff;
       color: #141414;
     }
@@ -186,7 +189,8 @@
       -webkit-text-fill-color: #141414;
       font-weight: 600;
     }
-    .inbox-notes { white-space: pre-wrap; max-width: 280px; }
+    .inbox-notes,
+    .inbox-our-notes { white-space: pre-wrap; max-width: 280px; }
     .inbox-notes-text {
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -194,7 +198,8 @@
       overflow: hidden;
       white-space: pre-wrap;
     }
-    .inbox-notes.is-open .inbox-notes-text {
+    .inbox-notes.is-open .inbox-notes-text,
+    .inbox-our-notes.is-open .inbox-notes-text {
       display: block;
       -webkit-line-clamp: unset;
       overflow: visible;
@@ -333,7 +338,9 @@
       text-transform: none;
       line-height: 1.45;
     }
-    .inbox-popup-panel input.inbox-popup-date {
+    .inbox-popup-panel input.inbox-popup-date,
+    .inbox-popup-panel input.inbox-popup-text,
+    .inbox-popup-panel select.inbox-popup-choice {
       width: 100%;
       max-width: 16rem;
       box-sizing: border-box;
@@ -493,6 +500,7 @@
         <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
         <label>Email<input name="email" type="email" autocomplete="email"></label>
         <label>Vehicle<input name="vehicle" autocomplete="off"></label>
+        <label>Registration<input name="registration" autocomplete="off"></label>
         <label>Service<input name="service" autocomplete="off"></label>
         <label>Source
           <select name="source">
@@ -503,7 +511,18 @@
             <option>Other</option>
           </select>
         </label>
-        <label class="is-wide">Notes<textarea name="notes"></textarea></label>
+        <label>Enquiry date
+          <input name="enquiry_date" type="date">
+        </label>
+        <label>Monthly Newsletter Subscription
+          <select name="newsletter" required>
+            <option value="" selected disabled hidden></option>
+            <option value="Yes">YES</option>
+            <option value="No">NO</option>
+          </select>
+        </label>
+        <label class="is-wide">Customer notes<textarea name="notes"></textarea></label>
+        <label class="is-wide">Our Notes<textarea name="our_notes"></textarea></label>
         <button class="is-wide" type="submit">Add enquiry</button>
         <p id="inbox-add-note" class="inbox-error is-wide" hidden>That enquiry was not saved.</p>
       </form>
@@ -531,12 +550,12 @@
         </label>
       </div>
       <div class="inbox-views" role="group" aria-label="Enquiry folders">
-        <button type="button" class="inbox-view" id="inbox-view-main" data-view="main" aria-pressed="true">Inbox</button>
-        <button type="button" class="inbox-view" id="inbox-view-new" data-view="new" aria-pressed="false">New</button>
-        <button type="button" class="inbox-view" id="inbox-view-quoted" data-view="quoted" aria-pressed="false">Quoted</button>
-        <button type="button" class="inbox-view" id="inbox-view-booked" data-view="booked" aria-pressed="false">Booked</button>
-        <button type="button" class="inbox-view" id="inbox-view-completed" data-view="completed" aria-pressed="false">Completed</button>
-        <button type="button" class="inbox-view" id="inbox-view-parked" data-view="not-interested" aria-pressed="false">Not Interested</button>
+        <button type="button" class="inbox-view" id="inbox-view-main" data-view="main" aria-pressed="true">Inbox <span class="inbox-view-count">0</span></button>
+        <button type="button" class="inbox-view" id="inbox-view-new" data-view="new" aria-pressed="false">New <span class="inbox-view-count">0</span></button>
+        <button type="button" class="inbox-view" id="inbox-view-quoted" data-view="quoted" aria-pressed="false">Quoted <span class="inbox-view-count">0</span></button>
+        <button type="button" class="inbox-view" id="inbox-view-booked" data-view="booked" aria-pressed="false">Booked <span class="inbox-view-count">0</span></button>
+        <button type="button" class="inbox-view" id="inbox-view-completed" data-view="completed" aria-pressed="false">Completed <span class="inbox-view-count">0</span></button>
+        <button type="button" class="inbox-view" id="inbox-view-parked" data-view="not-interested" aria-pressed="false">Not Interested <span class="inbox-view-count">0</span></button>
       </div>
       <p id="inbox-status-error" class="inbox-error" hidden>The status was not saved.</p>
       <p id="inbox-delete-error" class="inbox-error" hidden>That enquiry was not deleted.</p>
@@ -550,8 +569,11 @@
               <th scope="col">Phone</th>
               <th scope="col">Email</th>
               <th scope="col">Vehicle</th>
+              <th scope="col">Registration</th>
               <th scope="col">Service</th>
-              <th scope="col">Notes</th>
+              <th scope="col">Customer notes</th>
+              <th scope="col">Our Notes</th>
+              <th scope="col">Monthly Newsletter</th>
               <th scope="col">Booking Date</th>
               <th scope="col">Courtesy Car</th>
               <th scope="col" class="inbox-status-col">Status</th>
@@ -566,8 +588,21 @@
           <button type="button" id="inbox-popup-close">Close</button>
           <h2 id="inbox-popup-title">Enquiry</h2>
           <dl id="inbox-popup-fields"></dl>
-          <label>Notes
+          <label>Customer notes
             <textarea id="inbox-popup-notes" class="inbox-popup-notes-input" rows="6"></textarea>
+          </label>
+          <label>Our Notes
+            <textarea id="inbox-popup-our-notes" class="inbox-popup-notes-input" rows="6"></textarea>
+          </label>
+          <label>Registration
+            <input id="inbox-popup-registration" class="inbox-popup-text" autocomplete="off">
+          </label>
+          <label>Monthly Newsletter Subscription
+            <select id="inbox-popup-newsletter" class="inbox-popup-choice">
+              <option value=""></option>
+              <option value="Yes">YES</option>
+              <option value="No">NO</option>
+            </select>
           </label>
           <label>Booking date
             <input id="inbox-popup-booking" class="inbox-popup-date" type="date">
@@ -671,16 +706,35 @@
         return STATUSES.indexOf(status) === -1 ? "New" : status;
       }
 
-      function inCurrentView(row) {
+      function rowInView(row, view) {
         if (!row || isDeletedStatus(row)) return false;
         var status = viewStatus(row);
-        if (inboxView === "main") return status === "New" || status === "Quoted" || status === "Booked";
-        if (inboxView === "new") return status === "New";
-        if (inboxView === "quoted") return status === "Quoted";
-        if (inboxView === "booked") return status === "Booked";
-        if (inboxView === "completed") return status === "Completed";
-        if (inboxView === "not-interested") return status === "Not Interested";
+        if (view === "main") return status === "New" || status === "Quoted" || status === "Booked";
+        if (view === "new") return status === "New";
+        if (view === "quoted") return status === "Quoted";
+        if (view === "booked") return status === "Booked";
+        if (view === "completed") return status === "Completed";
+        if (view === "not-interested") return status === "Not Interested";
         return false;
+      }
+
+      function inCurrentView(row) {
+        return rowInView(row, inboxView);
+      }
+
+      function updateFolderCounts() {
+        var counts = {};
+        INBOX_VIEWS.forEach(function (view) { counts[view] = 0; });
+        rows.forEach(function (row) {
+          INBOX_VIEWS.forEach(function (view) {
+            if (rowInView(row, view)) counts[view] += 1;
+          });
+        });
+        Array.prototype.forEach.call(document.querySelectorAll(".inbox-views .inbox-view"), function (button) {
+          var view = button.getAttribute("data-view");
+          var count = button.querySelector(".inbox-view-count");
+          if (count) count.textContent = String(counts[view] || 0);
+        });
       }
 
       function bookingInputValue(value) {
@@ -704,6 +758,49 @@
       function courtesyValue(value) {
         var word = text(value);
         return word === "Yes" || word === "No" ? word : "";
+      }
+
+      function newsletterValue(value) {
+        var word = text(value).trim().toLowerCase();
+        if (word === "yes") return "Yes";
+        if (word === "no") return "No";
+        return "";
+      }
+
+      function registrationLineValue(notes) {
+        var lines = text(notes).split(/\n/);
+        for (var i = 0; i < lines.length; i++) {
+          var match = lines[i].match(/^\s*Registration:\s*(.+?)\s*$/i);
+          if (match && match[1]) return match[1];
+        }
+        return "";
+      }
+
+      function notesWithoutRegistrationLine(notes) {
+        var lines = text(notes).split(/\n/);
+        var removed = false;
+        var kept = [];
+        for (var i = 0; i < lines.length; i++) {
+          if (!removed && /^\s*Registration:\s*\S/.test(lines[i])) {
+            removed = true;
+            continue;
+          }
+          kept.push(lines[i]);
+        }
+        return kept.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+      }
+
+      function shownRegistration(row) {
+        var stored = text(row && row.registration).trim();
+        if (stored) return stored;
+        return registrationLineValue(row && row.notes);
+      }
+
+      function shownCustomerNotes(row) {
+        var notes = text(row && row.notes);
+        if (text(row && row.registration).trim()) return notes;
+        if (!registrationLineValue(notes)) return notes;
+        return notesWithoutRegistrationLine(notes);
       }
 
       function setInboxView(next) {
@@ -773,7 +870,7 @@
 
       function matches(row, query) {
         if (!query) return true;
-        var hay = [row.source, row.name, row.phone, row.email, row.vehicle, row.service, row.notes, row.status, formatWhen(row.created_at), formatBookingDate(row.booking_date), bookingInputValue(row.booking_date), courtesyValue(row.courtesy_car)].join(" ").toLowerCase();
+        var hay = [row.source, row.name, row.phone, row.email, row.vehicle, shownRegistration(row), row.service, shownCustomerNotes(row), row.our_notes, newsletterValue(row.newsletter), row.status, formatWhen(row.created_at), formatBookingDate(row.booking_date), bookingInputValue(row.booking_date), courtesyValue(row.courtesy_car)].join(" ").toLowerCase();
         return hay.indexOf(query) !== -1;
       }
 
@@ -939,6 +1036,9 @@
       }
 
       var popupNotes = document.getElementById("inbox-popup-notes");
+      var popupOurNotes = document.getElementById("inbox-popup-our-notes");
+      var popupRegistration = document.getElementById("inbox-popup-registration");
+      var popupNewsletter = document.getElementById("inbox-popup-newsletter");
       var popupBooking = document.getElementById("inbox-popup-booking");
       var popupCourtesy = document.getElementById("inbox-popup-courtesy");
       var popupNotesSaved = document.getElementById("inbox-popup-notes-saved");
@@ -983,7 +1083,10 @@
         addPopupRow("Email", emailValue);
         addPopupRow("Vehicle", popupValue(row.vehicle));
         addPopupRow("Service", popupValue(row.service));
-        if (popupNotes) popupNotes.value = text(row.notes);
+        if (popupNotes) popupNotes.value = shownCustomerNotes(row);
+        if (popupOurNotes) popupOurNotes.value = text(row.our_notes);
+        if (popupRegistration) popupRegistration.value = shownRegistration(row);
+        if (popupNewsletter) popupNewsletter.value = newsletterValue(row.newsletter);
         if (popupBooking) popupBooking.value = bookingInputValue(row.booking_date);
         if (popupCourtesy) popupCourtesy.value = courtesyValue(row.courtesy_car);
         var statusValue = popupValue(statusName(row.status));
@@ -1033,14 +1136,14 @@
         return toggle;
       }
 
-      function syncNotesPreview(row) {
+      function syncLongText(row, selector, value) {
         var tr = rowElement(row);
         if (!tr) return;
-        var notesCell = tr.querySelector("td.inbox-notes");
+        var notesCell = tr.querySelector(selector);
         if (!notesCell) return;
         var notesText = notesCell.querySelector(".inbox-notes-text");
-        if (notesText) notesText.textContent = text(row.notes);
-        var need = notesNeedToggle(row.notes);
+        if (notesText) notesText.textContent = text(value);
+        var need = notesNeedToggle(value);
         var toggle = notesCell.querySelector(".inbox-notes-toggle");
         if (!need) {
           notesCell.classList.remove("is-open");
@@ -1050,6 +1153,11 @@
         if (!toggle) notesCell.appendChild(makeNotesToggle(notesCell));
       }
 
+      function syncNotesPreview(row) {
+        syncLongText(row, "td.inbox-notes", shownCustomerNotes(row));
+        syncLongText(row, "td.inbox-our-notes", row.our_notes);
+      }
+
       function syncDetailPreview(row) {
         var tr = rowElement(row);
         if (!tr) return;
@@ -1057,6 +1165,10 @@
         if (booking) booking.textContent = formatBookingDate(row.booking_date);
         var courtesy = tr.querySelector("td.inbox-courtesy");
         if (courtesy) courtesy.textContent = courtesyValue(row.courtesy_car);
+        var registration = tr.querySelector("td.inbox-registration");
+        if (registration) registration.textContent = shownRegistration(row);
+        var newsletter = tr.querySelector("td.inbox-newsletter");
+        if (newsletter) newsletter.textContent = newsletterValue(row.newsletter);
       }
 
       function cell(value, className) {
@@ -1066,7 +1178,19 @@
         return td;
       }
 
+      function longTextCell(value, className) {
+        var notesCell = document.createElement("td");
+        notesCell.className = className;
+        var notesText = document.createElement("div");
+        notesText.className = "inbox-notes-text";
+        notesText.textContent = text(value);
+        notesCell.appendChild(notesText);
+        if (notesNeedToggle(value)) notesCell.appendChild(makeNotesToggle(notesCell));
+        return notesCell;
+      }
+
       function render() {
+        updateFolderCounts();
         var search = document.getElementById("inbox-search");
         var query = search.value.trim().toLowerCase();
         var body = document.getElementById("inbox-rows");
@@ -1078,7 +1202,7 @@
         if (!visible.length) {
           var empty = document.createElement("tr");
           var emptyCell = document.createElement("td");
-          emptyCell.colSpan = 11;
+          emptyCell.colSpan = 14;
           emptyCell.textContent = query
             ? "No enquiries match that search."
             : emptyFolderMessage();
@@ -1123,16 +1247,11 @@
           tr.appendChild(emailCell);
 
           tr.appendChild(cell(row.vehicle));
+          tr.appendChild(cell(shownRegistration(row), "inbox-registration"));
           tr.appendChild(cell(row.service));
-
-          var notesCell = document.createElement("td");
-          notesCell.className = "inbox-notes";
-          var notesText = document.createElement("div");
-          notesText.className = "inbox-notes-text";
-          notesText.textContent = text(row.notes);
-          notesCell.appendChild(notesText);
-          if (notesNeedToggle(row.notes)) notesCell.appendChild(makeNotesToggle(notesCell));
-          tr.appendChild(notesCell);
+          tr.appendChild(longTextCell(shownCustomerNotes(row), "inbox-notes"));
+          tr.appendChild(longTextCell(row.our_notes, "inbox-our-notes"));
+          tr.appendChild(cell(newsletterValue(row.newsletter), "inbox-newsletter"));
           tr.appendChild(cell(formatBookingDate(row.booking_date), "inbox-booking"));
           tr.appendChild(cell(courtesyValue(row.courtesy_car), "inbox-courtesy"));
 
@@ -1272,11 +1391,18 @@
         var row = openRow;
         if (!row || row.id == null || savingNotes) return;
         var nextNotes = popupNotes ? popupNotes.value : "";
+        if (!text(row.registration).trim()) nextNotes = notesWithoutRegistrationLine(nextNotes);
+        var nextOurNotes = popupOurNotes ? popupOurNotes.value : "";
+        var nextRegistration = popupRegistration ? popupRegistration.value : "";
+        var nextNewsletter = popupNewsletter ? popupNewsletter.value : "";
         var nextBooking = popupBooking ? popupBooking.value : "";
         var nextCourtesy = popupCourtesy ? courtesyValue(popupCourtesy.value) : "";
         savingNotes = true;
         if (popupSaveNotes) popupSaveNotes.disabled = true;
         if (popupNotes) popupNotes.disabled = true;
+        if (popupOurNotes) popupOurNotes.disabled = true;
+        if (popupRegistration) popupRegistration.disabled = true;
+        if (popupNewsletter) popupNewsletter.disabled = true;
         if (popupBooking) popupBooking.disabled = true;
         if (popupCourtesy) popupCourtesy.disabled = true;
         if (popupNotesSaved) popupNotesSaved.hidden = true;
@@ -1287,6 +1413,9 @@
           body: JSON.stringify({
             id: row.id,
             notes: nextNotes,
+            our_notes: nextOurNotes,
+            registration: nextRegistration,
+            newsletter: nextNewsletter,
             booking_date: nextBooking,
             courtesy_car: nextCourtesy
           })
@@ -1298,13 +1427,22 @@
           return response.json().catch(function () { return null; }).then(function (data) {
             if (!response.ok) throw new Error("patch");
             var savedNotes = data && typeof data.notes === "string" ? data.notes : nextNotes;
+            var savedOurNotes = data && Object.prototype.hasOwnProperty.call(data, "our_notes") ? data.our_notes : nextOurNotes;
+            var savedRegistration = data && Object.prototype.hasOwnProperty.call(data, "registration") ? data.registration : (nextRegistration || null);
+            var savedNewsletter = data && Object.prototype.hasOwnProperty.call(data, "newsletter") ? data.newsletter : (nextNewsletter || null);
             var savedBooking = data && Object.prototype.hasOwnProperty.call(data, "booking_date") ? data.booking_date : (nextBooking || null);
             var savedCourtesy = data && Object.prototype.hasOwnProperty.call(data, "courtesy_car") ? data.courtesy_car : (nextCourtesy || null);
             row.notes = savedNotes;
+            row.our_notes = savedOurNotes;
+            row.registration = savedRegistration;
+            row.newsletter = savedNewsletter;
             row.booking_date = savedBooking;
             row.courtesy_car = savedCourtesy;
             if (openRow === row) {
-              if (popupNotes) popupNotes.value = text(savedNotes);
+              if (popupNotes) popupNotes.value = shownCustomerNotes(row);
+              if (popupOurNotes) popupOurNotes.value = text(savedOurNotes);
+              if (popupRegistration) popupRegistration.value = shownRegistration(row);
+              if (popupNewsletter) popupNewsletter.value = newsletterValue(savedNewsletter);
               if (popupBooking) popupBooking.value = bookingInputValue(savedBooking);
               if (popupCourtesy) popupCourtesy.value = courtesyValue(savedCourtesy);
               if (popupNotesSaved) popupNotesSaved.hidden = false;
@@ -1320,6 +1458,9 @@
           savingNotes = false;
           if (popupSaveNotes) popupSaveNotes.disabled = false;
           if (popupNotes) popupNotes.disabled = false;
+          if (popupOurNotes) popupOurNotes.disabled = false;
+          if (popupRegistration) popupRegistration.disabled = false;
+          if (popupNewsletter) popupNewsletter.disabled = false;
           if (popupBooking) popupBooking.disabled = false;
           if (popupCourtesy) popupCourtesy.disabled = false;
         });
@@ -1333,6 +1474,30 @@
         popupNotes.addEventListener("click", keepPopupOpen);
         popupNotes.addEventListener("mousedown", keepPopupOpen);
         popupNotes.addEventListener("input", function () {
+          if (popupNotesSaved) popupNotesSaved.hidden = true;
+          if (popupNotesError) popupNotesError.hidden = true;
+        });
+      }
+      if (popupOurNotes) {
+        popupOurNotes.addEventListener("click", keepPopupOpen);
+        popupOurNotes.addEventListener("mousedown", keepPopupOpen);
+        popupOurNotes.addEventListener("input", function () {
+          if (popupNotesSaved) popupNotesSaved.hidden = true;
+          if (popupNotesError) popupNotesError.hidden = true;
+        });
+      }
+      if (popupRegistration) {
+        popupRegistration.addEventListener("click", keepPopupOpen);
+        popupRegistration.addEventListener("mousedown", keepPopupOpen);
+        popupRegistration.addEventListener("input", function () {
+          if (popupNotesSaved) popupNotesSaved.hidden = true;
+          if (popupNotesError) popupNotesError.hidden = true;
+        });
+      }
+      if (popupNewsletter) {
+        popupNewsletter.addEventListener("click", keepPopupOpen);
+        popupNewsletter.addEventListener("mousedown", keepPopupOpen);
+        popupNewsletter.addEventListener("change", function () {
           if (popupNotesSaved) popupNotesSaved.hidden = true;
           if (popupNotesError) popupNotesError.hidden = true;
         });
@@ -1385,7 +1550,7 @@
       }
 
       document.getElementById("inbox-download").addEventListener("click", function () {
-        var header = ["Date", "Source", "Name", "Phone", "Email", "Vehicle", "Service", "Notes", "Booking Date", "Courtesy Car", "Status"];
+        var header = ["Date", "Source", "Name", "Phone", "Email", "Vehicle", "Registration", "Service", "Customer notes", "Our Notes", "Monthly Newsletter", "Booking Date", "Courtesy Car", "Status"];
         var lines = [header.join(",")];
         rows.forEach(function (row) {
           if (!inCurrentView(row)) return;
@@ -1396,8 +1561,11 @@
             row.phone,
             row.email,
             row.vehicle,
+            shownRegistration(row),
             row.service,
-            row.notes,
+            shownCustomerNotes(row),
+            row.our_notes,
+            newsletterValue(row.newsletter),
             formatBookingDate(row.booking_date),
             courtesyValue(row.courtesy_car),
             row.status
@@ -1471,9 +1639,13 @@
             phone: data.get("phone"),
             email: data.get("email"),
             vehicle: data.get("vehicle"),
+            registration: data.get("registration"),
             service: data.get("service"),
             source: data.get("source"),
-            notes: data.get("notes")
+            enquiry_date: data.get("enquiry_date"),
+            newsletter: data.get("newsletter"),
+            notes: data.get("notes"),
+            our_notes: data.get("our_notes")
           })
         }).then(function (response) {
           if (response.status === 401) {

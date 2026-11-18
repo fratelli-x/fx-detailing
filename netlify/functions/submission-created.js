@@ -55,6 +55,13 @@ function kitSourcedAnswer(value) {
   return "";
 }
 
+function newsletterAnswer(value) {
+  const answer = cleanLine(value, 8).toLowerCase();
+  if (answer === "yes") return "Yes";
+  if (answer === "no") return "No";
+  return "";
+}
+
 function fieldValue(data, key) {
   if (!data || data[key] == null) return "";
   const value = data[key];
@@ -113,6 +120,7 @@ function prepareSend(event) {
     kitSourced: kitSourcedAnswer(fieldValue(data, "kit-sourced")),
     phone: cleanLine(fieldValue(data, "phone"), 40),
     contactMethod: cleanLine(fieldValue(data, "contact-method"), 40),
+    newsletter: newsletterAnswer(fieldValue(data, "newsletter")),
     message: cleanMessage(fieldValue(data, "message"), 4000)
   };
 
@@ -120,22 +128,24 @@ function prepareSend(event) {
   const thanks = pageThanks(page);
   const notes = [];
   if (enquiry.message) notes.push(enquiry.message);
-  if (enquiry.registration) notes.push("Registration: " + enquiry.registration);
   if (enquiry.contactMethod) notes.push("Contact method: " + enquiry.contactMethod);
+  const record = {
+    name: [enquiry.firstName, enquiry.lastName].filter(Boolean).join(" "),
+    phone: enquiry.phone,
+    email: email,
+    vehicle: enquiry.vehicle,
+    service: page,
+    source: "Website Form",
+    notes: notes.join("\n\n"),
+    status: "New"
+  };
+  if (enquiry.registration) record.registration = enquiry.registration;
+  if (enquiry.newsletter) record.newsletter = enquiry.newsletter;
 
   return {
     action: "send",
     email,
-    record: {
-      name: [enquiry.firstName, enquiry.lastName].filter(Boolean).join(" "),
-      phone: enquiry.phone,
-      email: email,
-      vehicle: enquiry.vehicle,
-      service: page,
-      source: "Website Form",
-      notes: notes.join("\n\n"),
-      status: "New"
-    },
+    record: record,
     mail: buildAcknowledgement(enquiry, thanks),
     notification: buildNotification(enquiry, email, formName, page, thanks)
   };
@@ -180,6 +190,7 @@ function buildAcknowledgement(enquiry, thanks) {
   if (enquiry.registration) lines.push("Registration: " + enquiry.registration);
   if (enquiry.kitSourced) lines.push("Kit already sourced: " + enquiry.kitSourced);
   if (enquiry.contactMethod) lines.push("How you would like to be contacted: " + enquiry.contactMethod);
+  if (enquiry.newsletter) lines.push("Monthly newsletter: " + enquiry.newsletter);
 
   lines.push("", "You wrote:", enquiry.message || "", "", signatureText());
 
@@ -191,6 +202,7 @@ function buildAcknowledgement(enquiry, thanks) {
   if (enquiry.registration) details.push("Registration: " + escapeHtml(enquiry.registration));
   if (enquiry.kitSourced) details.push("Kit already sourced: " + escapeHtml(enquiry.kitSourced));
   if (enquiry.contactMethod) details.push("How you would like to be contacted: " + escapeHtml(enquiry.contactMethod));
+  if (enquiry.newsletter) details.push("Monthly newsletter: " + escapeHtml(enquiry.newsletter));
 
   const messageHtml = escapeHtml(enquiry.message || "").replace(/\n/g, "<br>");
   const html = [
@@ -221,6 +233,7 @@ function buildNotification(enquiry, email, formName, page, thanks) {
   if (enquiry.registration) lines.push("Registration: " + enquiry.registration);
   if (enquiry.kitSourced) lines.push("Kit already sourced: " + enquiry.kitSourced);
   if (enquiry.contactMethod) lines.push("How they would like to be contacted: " + enquiry.contactMethod);
+  if (enquiry.newsletter) lines.push("Monthly newsletter: " + enquiry.newsletter);
   lines.push("", "Message:", enquiry.message || "", "", signatureText());
 
   const text = lines.join("\n");
@@ -232,6 +245,7 @@ function buildNotification(enquiry, email, formName, page, thanks) {
   if (enquiry.registration) details.push("Registration: " + escapeHtml(enquiry.registration));
   if (enquiry.kitSourced) details.push("Kit already sourced: " + escapeHtml(enquiry.kitSourced));
   if (enquiry.contactMethod) details.push("How they would like to be contacted: " + escapeHtml(enquiry.contactMethod));
+  if (enquiry.newsletter) details.push("Monthly newsletter: " + escapeHtml(enquiry.newsletter));
 
   const messageHtml = escapeHtml(enquiry.message || "").replace(/\n/g, "<br>");
   const html = [
@@ -333,8 +347,15 @@ async function insertEnquiry(row) {
     const supabase = createClient(url, key, {
       auth: { persistSession: false, autoRefreshToken: false }
     });
-    const { error } = await supabase.from("enquiries").insert(row);
-    if (error) console.error("Supabase insert failed");
+    let result = await supabase.from("enquiries").insert(row);
+    if (result.error && row && (Object.prototype.hasOwnProperty.call(row, "registration") || Object.prototype.hasOwnProperty.call(row, "newsletter"))) {
+      const fallback = Object.assign({}, row);
+      delete fallback.registration;
+      delete fallback.newsletter;
+      delete fallback.our_notes;
+      result = await supabase.from("enquiries").insert(fallback);
+    }
+    if (result.error) console.error("Supabase insert failed");
   } catch (error) {
     console.error("Supabase insert failed");
   }

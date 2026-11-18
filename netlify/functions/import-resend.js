@@ -191,7 +191,7 @@ function field(preamble, label) {
   const match = source.match(new RegExp("(?:^|\\s)" + escaped + "\\s*:\\s*([^\\n]+)", "i"));
   if (!match) return "";
   return match[1]
-    .split(/\s+(?=(?:Name|Full name|Customer name|Customer|Email|E-mail|Phone|Telephone|Mobile|Contact number|Vehicle|Car|Vehicle details|Registration|Vehicle registration|Number plate|Reg|Page|Form|Message|You wrote|Your message|Enquiry|Notes|How they would like to be contacted|How you would like to be contacted|Contact method|Preferred contact|Contact preference|Kit already sourced)\s*:)/i)[0]
+    .split(/\s+(?=(?:Name|Full name|Customer name|Customer|Email|E-mail|Phone|Telephone|Mobile|Contact number|Vehicle|Car|Vehicle details|Registration|Vehicle registration|Number plate|Reg|Page|Form|Message|You wrote|Your message|Enquiry|Notes|How they would like to be contacted|How you would like to be contacted|Contact method|Preferred contact|Contact preference|Kit already sourced|Monthly newsletter)\s*:)/i)[0]
     .trim();
 }
 
@@ -272,13 +272,19 @@ function serviceFrom(preamble, subject) {
   return SUBJECT_SERVICE[subject] || SUBJECT_SERVICE[bareSubject(subject)] || "";
 }
 
-function buildNotes(message, registration, contactMethod) {
+function buildNotes(message, contactMethod) {
   const notes = [];
   const body = tidyMessage(message);
   if (body) notes.push(body);
-  if (registration) notes.push("Registration: " + registration);
   if (contactMethod) notes.push("Contact method: " + contactMethod);
   return notes.join("\n\n");
+}
+
+function newsletterAnswer(value) {
+  const text = cleanLine(value, 8).toLowerCase();
+  if (text === "yes") return "Yes";
+  if (text === "no") return "No";
+  return "";
 }
 
 function classify(text, subject) {
@@ -320,7 +326,8 @@ function parseEnquiryEmail(email) {
     ? ["You wrote:", "Your message:", "Message:", "Enquiry:", "Notes:"]
     : ["Message:", "Your message:", "You wrote:", "Enquiry:", "Notes:"];
   const parts = takeParts(text, labels);
-  const registration = fieldAny(parts.preamble, ["Registration", "Vehicle registration", "Number plate", "Reg"]);
+  const registration = cleanLine(fieldAny(parts.preamble, ["Registration", "Vehicle registration", "Number plate", "Reg"]), 40);
+  const newsletter = newsletterAnswer(fieldAny(parts.preamble, ["Monthly newsletter"]));
   const contactMethod = fieldAny(parts.preamble, [
     "How they would like to be contacted",
     "How you would like to be contacted",
@@ -341,7 +348,9 @@ function parseEnquiryEmail(email) {
     vehicle: cleanLine(fieldAny(parts.preamble, ["Vehicle", "Car", "Vehicle details"]), 160),
     service: serviceFrom(parts.preamble, subject),
     source: "Website Form",
-    notes: buildNotes(tidyMessage(parts.message), registration, contactMethod),
+    notes: buildNotes(tidyMessage(parts.message), contactMethod),
+    registration: registration,
+    newsletter: newsletter,
     status: statusFor(createdAt),
     created_at: createdAt
   };
@@ -556,8 +565,8 @@ async function insertParsed(supabase, existing, row, counts) {
     counts.skippedDuplicates += 1;
     return;
   }
-  // Insert only. Never update status, notes, booking_date, courtesy_car,
-  // name, phone, email, vehicle, service, source, or created_at.
+  // Insert only. Never update status, notes, our_notes, registration, newsletter,
+  // booking_date, courtesy_car, name, phone, email, vehicle, service, source, or created_at.
   const insert = {
     name: row.name,
     phone: row.phone,
@@ -568,33 +577,40 @@ async function insertParsed(supabase, existing, row, counts) {
     notes: String(row.notes || "").slice(0, 8000),
     status: row.status
   };
+  if (row.registration) insert.registration = row.registration;
+  if (row.newsletter) insert.newsletter = row.newsletter;
   if (row.created_at) insert.created_at = row.created_at;
-  let result = await supabase.from("enquiries").insert(insert);
-  if (result.error && insert.created_at) {
-    const fallback = {
-      name: insert.name,
-      phone: insert.phone,
-      email: insert.email,
-      vehicle: insert.vehicle,
-      service: insert.service,
-      source: insert.source,
-      notes: insert.notes,
-      status: insert.status
-    };
-    const retry = await supabase.from("enquiries").insert(fallback);
-    if (!retry.error) {
-      rememberImported(existing, fallback, row.resend_id);
-      counts.imported += 1;
-      return;
-    }
-  }
-  if (result.error) {
+  const stored = await storeNewEnquiry(supabase, insert);
+  if (!stored) {
     console.error("Supabase import insert failed");
     counts.failed += 1;
     return;
   }
-  rememberImported(existing, insert, row.resend_id);
+  rememberImported(existing, stored, row.resend_id);
   counts.imported += 1;
+}
+
+function withoutColumns(row, keys) {
+  const copy = Object.assign({}, row);
+  for (let i = 0; i < keys.length; i++) delete copy[keys[i]];
+  return copy;
+}
+
+async function storeNewEnquiry(supabase, insert) {
+  // New row only. Drop created_at only when that insert is rejected, then drop
+  // registration and newsletter only when those columns are rejected.
+  const attempts = [insert];
+  if (insert.created_at) attempts.push(withoutColumns(insert, ["created_at"]));
+  if (insert.registration || insert.newsletter) {
+    const dropFields = withoutColumns(insert, ["registration", "newsletter"]);
+    attempts.push(dropFields);
+    if (dropFields.created_at) attempts.push(withoutColumns(dropFields, ["created_at"]));
+  }
+  for (let i = 0; i < attempts.length; i++) {
+    const result = await supabase.from("enquiries").insert(attempts[i]);
+    if (!result.error) return attempts[i];
+  }
+  return null;
 }
 
 exports.parseEnquiryEmail = parseEnquiryEmail;
