@@ -420,6 +420,281 @@ function isDuplicate(existing, row) {
   return false;
 }
 
+function filledValue(value) {
+  return String(value == null ? "" : value).trim() !== "";
+}
+
+function contactKeys(row) {
+  const keys = [];
+  const email = String(row && row.email || "").trim().toLowerCase();
+  if (email) keys.push("e:" + email);
+  const phone = phoneKey(row && row.phone);
+  if (phone) keys.push("p:" + phone);
+  return keys;
+}
+
+function vehiclesCompatible(left, right) {
+  const normalize = function (value) {
+    return String(value || "").replace(/\s+/g, " ").trim().toLowerCase();
+  };
+  const a = normalize(left && left.vehicle);
+  const b = normalize(right && right.vehicle);
+  if (!a || !b) return true;
+  return a === b;
+}
+
+function londonDay(ms) {
+  try {
+    return new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Europe/London",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).format(new Date(ms));
+  } catch (error) {
+    return new Date(ms).toISOString().slice(0, 10);
+  }
+}
+
+function duplicateTimes(left, right) {
+  const leftTime = createdAtMs(left && left.created_at);
+  const rightTime = createdAtMs(right && right.created_at);
+  return {
+    leftTime: leftTime,
+    rightTime: rightTime,
+    both: Number.isFinite(leftTime) && Number.isFinite(rightTime),
+    gap: Number.isFinite(leftTime) && Number.isFinite(rightTime) ? Math.abs(leftTime - rightTime) : NaN
+  };
+}
+
+// Same enquiry only. A later enquiry from the same person stays: different day,
+// different vehicle, or different notes, unless the rows are the same created_at
+// or the same vehicle within 15 minutes.
+function duplicateCopy(left, right) {
+  if (!left || !right || !sameContact(left.email, left.phone, right.email, right.phone)) return false;
+  const times = duplicateTimes(left, right);
+  const sameVehicleFilled = sameVehicle(left.vehicle, right.vehicle) && filledValue(left.vehicle);
+  const sameTime = times.both && times.leftTime === times.rightTime;
+  if (sameVehicleFilled && times.both && times.gap <= DUPLICATE_WINDOW_MS) return true;
+  if (sameTime && vehiclesCompatible(left, right)) return true;
+  if (sameNotes(left.notes, right.notes) && filledValue(left.notes) && vehiclesCompatible(left, right)) {
+    if (!times.both || times.gap <= DUPLICATE_WINDOW_MS) return true;
+    return londonDay(times.leftTime) === londonDay(times.rightTime);
+  }
+  return false;
+}
+
+function tightCopy(left, right) {
+  if (!left || !right || !sameContact(left.email, left.phone, right.email, right.phone)) return false;
+  const times = duplicateTimes(left, right);
+  if (!times.both) return false;
+  if (sameVehicle(left.vehicle, right.vehicle) && filledValue(left.vehicle) && times.gap <= DUPLICATE_WINDOW_MS) return true;
+  return times.leftTime === times.rightTime && vehiclesCompatible(left, right);
+}
+
+function studioEdited(row) {
+  // Import writes New or Completed, plus the customer's own notes, registration,
+  // and newsletter. A studio edit is a different folder, or a field only the
+  // inbox fills in. Registration alone is handled by the keeper choice so two
+  // imported copies that both have a plate still collapse.
+  if (!row || String(row.status || "") === "Deleted") return false;
+  if (filledValue(row.our_notes) || filledValue(row.booking_date) || filledValue(row.courtesy_car)) return true;
+  const status = String(row.status || "");
+  if (!status) return true;
+  return status !== statusFor(row.created_at);
+}
+
+function earlierRow(left, right) {
+  const leftTime = createdAtMs(left && left.created_at);
+  const rightTime = createdAtMs(right && right.created_at);
+  const leftOk = Number.isFinite(leftTime);
+  const rightOk = Number.isFinite(rightTime);
+  if (leftOk && rightOk && leftTime !== rightTime) return leftTime < rightTime ? left : right;
+  if (leftOk !== rightOk) return leftOk ? left : right;
+  return String(left && left.id) <= String(right && right.id) ? left : right;
+}
+
+function earliestRow(rows) {
+  let keeper = rows[0];
+  for (let i = 1; i < rows.length; i++) keeper = earlierRow(keeper, rows[i]);
+  return keeper;
+}
+
+function clusterBy(rows, linked) {
+  const parent = rows.map(function (_, index) { return index; });
+  function find(index) {
+    while (parent[index] !== index) {
+      parent[index] = parent[parent[index]];
+      index = parent[index];
+    }
+    return index;
+  }
+  const buckets = {};
+  for (let i = 0; i < rows.length; i++) {
+    const keys = contactKeys(rows[i]);
+    for (let k = 0; k < keys.length; k++) {
+      if (!buckets[keys[k]]) buckets[keys[k]] = [];
+      buckets[keys[k]].push(i);
+    }
+  }
+  const bucketKeys = Object.keys(buckets);
+  for (let b = 0; b < bucketKeys.length; b++) {
+    const indexes = buckets[bucketKeys[b]];
+    for (let i = 0; i < indexes.length; i++) {
+      for (let j = i + 1; j < indexes.length; j++) {
+        if (!linked(rows[indexes[i]], rows[indexes[j]])) continue;
+        const left = find(indexes[i]);
+        const right = find(indexes[j]);
+        if (left !== right) parent[right] = left;
+      }
+    }
+  }
+  const groups = {};
+  for (let i = 0; i < rows.length; i++) {
+    const root = String(find(i));
+    if (!groups[root]) groups[root] = [];
+    groups[root].push(rows[i]);
+  }
+  const result = [];
+  const roots = Object.keys(groups);
+  for (let i = 0; i < roots.length; i++) {
+    if (groups[roots[i]].length > 1) result.push(groups[roots[i]]);
+  }
+  return result;
+}
+
+function groupIsOneEnquiry(rows) {
+  const times = [];
+  for (let i = 0; i < rows.length; i++) {
+    const time = createdAtMs(rows[i].created_at);
+    if (Number.isFinite(time)) times.push(time);
+  }
+  if (!times.length) return false;
+  let min = times[0];
+  let max = times[0];
+  for (let i = 1; i < times.length; i++) {
+    if (times[i] < min) min = times[i];
+    if (times[i] > max) max = times[i];
+  }
+  if (max - min <= DUPLICATE_WINDOW_MS) return true;
+  if (!filledValue(rows[0].notes)) return false;
+  for (let i = 1; i < rows.length; i++) {
+    if (!sameNotes(rows[i].notes, rows[0].notes)) return false;
+  }
+  const day = londonDay(min);
+  for (let i = 0; i < times.length; i++) {
+    if (londonDay(times[i]) !== day) return false;
+  }
+  for (let i = 1; i < rows.length; i++) {
+    if (!vehiclesCompatible(rows[i], rows[0])) return false;
+  }
+  return true;
+}
+
+function hideIdsForGroup(group) {
+  if (!group || group.length < 2) return [];
+  const studio = [];
+  for (let i = 0; i < group.length; i++) {
+    if (studioEdited(group[i])) studio.push(group[i]);
+  }
+  let keeper = null;
+  if (studio.length === 1) {
+    keeper = studio[0];
+  } else if (studio.length === 0) {
+    const withReg = [];
+    for (let i = 0; i < group.length; i++) {
+      if (filledValue(group[i].registration)) withReg.push(group[i]);
+    }
+    if (withReg.length === 1) {
+      keeper = withReg[0];
+    } else {
+      const withNews = [];
+      for (let i = 0; i < group.length; i++) {
+        if (filledValue(group[i].newsletter)) withNews.push(group[i]);
+      }
+      keeper = withNews.length === 1 ? withNews[0] : earliestRow(group);
+    }
+  }
+  const hide = [];
+  for (let i = 0; i < group.length; i++) {
+    const row = group[i];
+    if (keeper && row === keeper) continue;
+    if (studioEdited(row)) continue;
+    if (row.id == null || row.id === "") continue;
+    hide.push(row.id);
+  }
+  return hide;
+}
+
+function planDuplicateHides(rows) {
+  // Read every folder, including Deleted. Deleted rows are not candidates and
+  // are never written back, so a later import cannot resurrect them.
+  if (!Array.isArray(rows) || !rows.length) return [];
+  const live = [];
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+    if (!row || row.id == null || row.id === "") continue;
+    if (String(row.status || "") === "Deleted") continue;
+    live.push(row);
+  }
+  const groups = clusterBy(live, duplicateCopy);
+  const hide = [];
+  const seen = {};
+  for (let g = 0; g < groups.length; g++) {
+    const parts = groupIsOneEnquiry(groups[g]) ? [groups[g]] : clusterBy(groups[g], tightCopy);
+    for (let p = 0; p < parts.length; p++) {
+      const ids = hideIdsForGroup(parts[p]);
+      for (let k = 0; k < ids.length; k++) {
+        const id = String(ids[k]);
+        if (seen[id]) continue;
+        seen[id] = true;
+        hide.push(ids[k]);
+      }
+    }
+  }
+  return hide;
+}
+
+async function loadCleanupRows(supabase) {
+  const rows = [];
+  const pageSize = 1000;
+  for (let from = 0; from < 20000; from += pageSize) {
+    const result = await supabase
+      .from("enquiries")
+      .select("id,created_at,email,phone,notes,vehicle,status,our_notes,booking_date,courtesy_car,registration,newsletter")
+      .range(from, from + pageSize - 1);
+    if (result.error) return null;
+    const batch = result.data || [];
+    for (let i = 0; i < batch.length; i++) rows.push(batch[i]);
+    if (batch.length < pageSize) break;
+  }
+  return rows;
+}
+
+async function hideExtraCopies(supabase) {
+  // Status only, and only on the extra copy. Safe to repeat: once that copy is
+  // Deleted it is no longer a live row, so the next import hides nothing new.
+  try {
+    const rows = await loadCleanupRows(supabase);
+    if (!rows) {
+      console.error("Duplicate cleanup failed");
+      return;
+    }
+    const ids = planDuplicateHides(rows);
+    for (let from = 0; from < ids.length; from += 50) {
+      const chunk = ids.slice(from, from + 50);
+      const updated = await supabase
+        .from("enquiries")
+        .update({ status: "Deleted" })
+        .in("id", chunk)
+        .in("status", ["New", "Completed"]);
+      if (updated.error) console.error("Duplicate cleanup failed");
+    }
+  } catch (error) {
+    console.error("Duplicate cleanup failed");
+  }
+}
+
 function resendFailure(status, body) {
   const message = body && typeof body.message === "string" ? body.message : "";
   const lowered = message.toLowerCase();
@@ -653,6 +928,7 @@ async function storeNewEnquiry(supabase, insert) {
 
 exports.parseEnquiryEmail = parseEnquiryEmail;
 exports.isDuplicate = isDuplicate;
+exports.planDuplicateHides = planDuplicateHides;
 exports.orderImports = orderImports;
 exports.normalizeCreatedAt = normalizeCreatedAt;
 exports.statusFor = statusFor;
@@ -680,6 +956,7 @@ exports.handler = async function (event) {
   }
 
   try {
+    await hideExtraCopies(supabase);
     const existingResult = await loadExisting(supabase);
     if (!existingResult.ok) return respond(500, Object.assign(counts, { error: "Inbox unavailable" }));
     const existing = existingResult.rows;
