@@ -175,14 +175,12 @@
     }
     .inbox-table col.col-date { width: 6.5%; }
     .inbox-table col.col-source { width: 5.5%; }
-    .inbox-table col.col-name { width: 7.5%; }
+    .inbox-table col.col-name { width: 12.5%; }
     .inbox-table col.col-phone { width: 6%; }
-    .inbox-table col.col-email { width: 8%; }
-    .inbox-table col.col-vehicle { width: 8%; }
+    .inbox-table col.col-email { width: 13%; }
+    .inbox-table col.col-vehicle { width: 13.5%; }
     .inbox-table col.col-registration { width: 7%; }
     .inbox-table col.col-service { width: 5.5%; }
-    .inbox-table col.col-notes { width: 7.5%; }
-    .inbox-table col.col-our-notes { width: 8%; }
     .inbox-table col.col-newsletter { width: 6.2%; }
     .inbox-table col.col-booking { width: 7.3%; }
     .inbox-table col.col-courtesy { width: 5%; }
@@ -950,8 +948,6 @@
             <col class="col-vehicle">
             <col class="col-registration">
             <col class="col-service">
-            <col class="col-notes">
-            <col class="col-our-notes">
             <col class="col-newsletter">
             <col class="col-booking">
             <col class="col-courtesy">
@@ -967,8 +963,6 @@
               <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="vehicle" aria-label="Sort by Vehicle"><span class="inbox-sort-label">Vehicle</span><span class="inbox-sort-arrow" hidden></span></button></th>
               <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="registration" aria-label="Sort by Registration"><span class="inbox-sort-label">Registration</span><span class="inbox-sort-arrow" hidden></span></button></th>
               <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="service" aria-label="Sort by Service"><span class="inbox-sort-label">Service</span><span class="inbox-sort-arrow" hidden></span></button></th>
-              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="notes" aria-label="Sort by Customer notes"><span class="inbox-sort-label">Customer notes</span><span class="inbox-sort-arrow" hidden></span></button></th>
-              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="our_notes" aria-label="Sort by Our Notes"><span class="inbox-sort-label">Our Notes</span><span class="inbox-sort-arrow" hidden></span></button></th>
               <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="newsletter" aria-label="Sort by Monthly Newsletter"><span class="inbox-sort-label">Monthly Newsletter</span><span class="inbox-sort-arrow" hidden></span></button></th>
               <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="booking_date" aria-label="Sort by Booking Date"><span class="inbox-sort-label">Booking Date</span><span class="inbox-sort-arrow" hidden></span></button></th>
               <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="courtesy_car" aria-label="Sort by Courtesy Car"><span class="inbox-sort-label">Courtesy Car</span><span class="inbox-sort-arrow" hidden></span></button></th>
@@ -1859,7 +1853,7 @@
         if (!visible.length) {
           var empty = document.createElement("tr");
           var emptyCell = document.createElement("td");
-          emptyCell.colSpan = 14;
+          emptyCell.colSpan = 12;
           emptyCell.textContent = query
             ? "No enquiries match that search."
             : emptyFolderMessage();
@@ -1889,8 +1883,6 @@
           tr.appendChild(cell(row.vehicle, "inbox-vehicle", "Vehicle"));
           tr.appendChild(cell(shownRegistration(row), "inbox-registration", "Registration"));
           tr.appendChild(cell(row.service, "inbox-service", "Service"));
-          tr.appendChild(longTextCell(shownCustomerNotes(row), "inbox-notes", "Customer notes"));
-          tr.appendChild(longTextCell(row.our_notes, "inbox-our-notes", "Our Notes"));
           tr.appendChild(cell(newsletterValue(row.newsletter), "inbox-newsletter", "Monthly Newsletter"));
           tr.appendChild(cell(formatBookingDate(row.booking_date), "inbox-booking", "Booking Date"));
           tr.appendChild(cell(courtesyValue(row.courtesy_car), "inbox-courtesy", "Courtesy Car"));
