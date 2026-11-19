@@ -465,6 +465,10 @@
       padding: 4px 8px;
       font-size: 0.84rem;
     }
+    #inbox-popup .inbox-popup-panel dd .inbox-popup-text {
+      width: 100%;
+      max-width: none;
+    }
     #inbox-popup .inbox-popup-panel select {
       height: 32px;
       min-height: 0;
@@ -473,13 +477,90 @@
       gap: 6px 10px;
       margin: 0 0 8px;
     }
-    .inbox-page main button#inbox-popup-close {
-      display: block;
+    #inbox-popup .inbox-popup-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+    }
+    .inbox-page main .inbox-popup-toolbar button#inbox-popup-close,
+    .inbox-page main button#inbox-popup-print {
+      display: inline-block;
       width: fit-content;
-      margin-left: auto;
-      margin-right: 0;
+      margin: 0;
       padding: 6px 12px;
       font-size: 0.78rem;
+    }
+    .inbox-print-sheet { display: none; }
+    @media print {
+      html:has(body.inbox-printing),
+      body.inbox-printing {
+        background: #fff !important;
+        color: #000 !important;
+      }
+      body.inbox-printing main {
+        max-width: none;
+        width: auto;
+        margin: 0;
+        padding: 0;
+        background: #fff !important;
+        color: #000 !important;
+      }
+      body.inbox-printing > *:not(main) { display: none !important; }
+      body.inbox-printing main > :not(#inbox) { display: none !important; }
+      body.inbox-printing #inbox > :not(#inbox-popup) { display: none !important; }
+      body.inbox-printing #inbox-popup {
+        position: static;
+        display: block !important;
+        height: auto;
+        padding: 0;
+        background: #fff;
+        overflow: visible;
+      }
+      body.inbox-printing #inbox-popup .inbox-popup-backdrop { display: none !important; }
+      body.inbox-printing #inbox-popup .inbox-popup-panel {
+        position: static;
+        width: auto;
+        max-height: none;
+        overflow: visible;
+        box-shadow: none;
+        border-radius: 0;
+        background: #fff !important;
+        color: #000 !important;
+        padding: 0;
+      }
+      body.inbox-printing #inbox-popup .inbox-popup-panel > :not(.inbox-print-sheet) { display: none !important; }
+      body.inbox-printing .inbox-print-sheet {
+        display: block !important;
+        background: #fff;
+        color: #000;
+      }
+      body.inbox-printing .inbox-print-sheet h2,
+      body.inbox-printing .inbox-print-sheet dt,
+      body.inbox-printing .inbox-print-sheet dd {
+        color: #000 !important;
+        background: transparent !important;
+      }
+      body.inbox-printing .inbox-print-sheet h2 {
+        font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+        font-size: 18pt;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: none;
+        margin: 0 0 12pt;
+      }
+      body.inbox-printing .inbox-print-sheet dl {
+        display: grid;
+        grid-template-columns: 11rem 1fr;
+        gap: 6pt 12pt;
+        margin: 0;
+      }
+      body.inbox-printing .inbox-print-sheet dt { font-weight: 700; }
+      body.inbox-printing .inbox-print-sheet dd {
+        margin: 0;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
     }
     .inbox-page main button#inbox-popup-delete {
       display: block;
@@ -548,6 +629,7 @@
       -webkit-text-fill-color: #141414;
     }
     .inbox-page main button#inbox-popup-close,
+    .inbox-page main button#inbox-popup-print,
     .inbox-page main button#inbox-add-close {
       background: #ffffff;
       color: #141414;
@@ -795,7 +877,11 @@
       <div id="inbox-popup" class="inbox-popup" hidden>
         <div class="inbox-popup-backdrop" id="inbox-popup-backdrop"></div>
         <div class="inbox-popup-panel" role="dialog" aria-modal="true" aria-labelledby="inbox-popup-title">
-          <button type="button" id="inbox-popup-close">Close</button>
+          <div class="inbox-popup-toolbar">
+            <button type="button" id="inbox-popup-print">Print</button>
+            <button type="button" id="inbox-popup-close">Close</button>
+          </div>
+          <div id="inbox-popup-sheet" class="inbox-print-sheet" aria-hidden="true"></div>
           <h2 id="inbox-popup-title">Enquiry</h2>
           <dl id="inbox-popup-fields"></dl>
           <label>Customer notes
@@ -1349,6 +1435,30 @@
       var popupSaveNotes = document.getElementById("inbox-popup-save-notes");
       var savingNotes = false;
 
+      function makePopupInput(id, type, autocomplete) {
+        var input = document.createElement("input");
+        input.id = id;
+        input.className = "inbox-popup-text";
+        input.type = type || "text";
+        if (autocomplete) input.setAttribute("autocomplete", autocomplete);
+        return input;
+      }
+
+      var popupSource = makePopupInput("inbox-popup-source", "text", "off");
+      var popupName = makePopupInput("inbox-popup-name", "text", "name");
+      var popupPhone = makePopupInput("inbox-popup-phone", "tel", "tel");
+      var popupEmail = makePopupInput("inbox-popup-email", "email", "email");
+      var popupVehicle = makePopupInput("inbox-popup-vehicle", "text", "off");
+      var popupService = makePopupInput("inbox-popup-service", "text", "off");
+      var popupCustomerInputs = [popupSource, popupName, popupPhone, popupEmail, popupVehicle, popupService];
+
+      function addPopupInput(term, input, value) {
+        input.value = text(value);
+        var dd = document.createElement("dd");
+        dd.appendChild(input);
+        addPopupRow(term, dd);
+      }
+
       function fillPopup(row) {
         var popupDeleteError = document.getElementById("inbox-popup-delete-error");
         if (popupDeleteError) popupDeleteError.hidden = true;
@@ -1357,35 +1467,12 @@
         popupTitle.textContent = text(row.name) || "Enquiry";
         popupFields.textContent = "";
         addPopupRow("Date", popupValue(formatWhen(row.created_at)));
-        addPopupRow("Source", popupValue(row.source));
-        addPopupRow("Name", popupValue(row.name));
-        var phone = text(row.phone);
-        var phoneValue = document.createElement("dd");
-        if (phone) {
-          var digits = phone.replace(/[^\d+]/g, "");
-          if (digits) {
-            var tel = document.createElement("a");
-            tel.href = "tel:" + digits;
-            tel.textContent = phone;
-            phoneValue.appendChild(tel);
-          } else {
-            phoneValue.textContent = phone;
-          }
-        }
-        addPopupRow("Phone", phoneValue);
-        var email = text(row.email);
-        var emailValue = document.createElement("dd");
-        if (isEmail(email)) {
-          var mail = document.createElement("a");
-          mail.href = "mailto:" + email;
-          mail.textContent = email;
-          emailValue.appendChild(mail);
-        } else {
-          emailValue.textContent = email;
-        }
-        addPopupRow("Email", emailValue);
-        addPopupRow("Vehicle", popupValue(row.vehicle));
-        addPopupRow("Service", popupValue(row.service));
+        addPopupInput("Source", popupSource, row.source);
+        addPopupInput("Name", popupName, row.name);
+        addPopupInput("Phone", popupPhone, row.phone);
+        addPopupInput("Email", popupEmail, row.email);
+        addPopupInput("Vehicle", popupVehicle, row.vehicle);
+        addPopupInput("Service", popupService, row.service);
         if (popupNotes) popupNotes.value = shownCustomerNotes(row);
         if (popupOurNotes) popupOurNotes.value = text(row.our_notes);
         if (popupRegistration) popupRegistration.value = shownRegistration(row);
@@ -1403,6 +1490,74 @@
         openRow = null;
         popup.hidden = true;
       }
+
+      function selectedText(select) {
+        if (!select || select.selectedIndex < 0) return "";
+        return text(select.options[select.selectedIndex].textContent).trim();
+      }
+
+      function detailValue(label) {
+        if (!popupFields) return "";
+        var terms = popupFields.querySelectorAll("dt");
+        for (var i = 0; i < terms.length; i++) {
+          if (terms[i].textContent.trim() === label && terms[i].nextElementSibling) {
+            return terms[i].nextElementSibling.textContent.trim();
+          }
+        }
+        return "";
+      }
+
+      function printBookingDate() {
+        var iso = popupBooking ? popupBooking.value : "";
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return text(iso);
+        var parts = iso.split("-");
+        return parts[2] + "/" + parts[1] + "/" + parts[0];
+      }
+
+      function fillPrintSheet() {
+        var sheet = document.getElementById("inbox-popup-sheet");
+        if (!sheet) return;
+        var name = popupName ? text(popupName.value).trim() : "";
+        var lines = [
+          ["Date", detailValue("Date")],
+          ["Source", popupSource ? popupSource.value : ""],
+          ["Name", popupName ? popupName.value : ""],
+          ["Phone", popupPhone ? popupPhone.value : ""],
+          ["Email", popupEmail ? popupEmail.value : ""],
+          ["Vehicle", popupVehicle ? popupVehicle.value : ""],
+          ["Service", popupService ? popupService.value : ""],
+          ["Status", selectedText(popupStatus) || detailValue("Status")],
+          ["Customer notes", popupNotes ? popupNotes.value : ""],
+          ["Our Notes", popupOurNotes ? popupOurNotes.value : ""],
+          ["Registration", popupRegistration ? popupRegistration.value : ""],
+          ["Monthly Newsletter", selectedText(popupNewsletter)],
+          ["Booking date", printBookingDate()],
+          ["Courtesy car", selectedText(popupCourtesy)]
+        ];
+        sheet.textContent = "";
+        var heading = document.createElement("h2");
+        heading.textContent = name || "Enquiry";
+        sheet.appendChild(heading);
+        var list = document.createElement("dl");
+        lines.forEach(function (pair) {
+          var term = document.createElement("dt");
+          term.textContent = pair[0];
+          var value = document.createElement("dd");
+          value.textContent = text(pair[1]);
+          list.appendChild(term);
+          list.appendChild(value);
+        });
+        sheet.appendChild(list);
+      }
+
+      window.addEventListener("beforeprint", function () {
+        if (!popup || popup.hidden) return;
+        fillPrintSheet();
+        document.body.classList.add("inbox-printing");
+      });
+      window.addEventListener("afterprint", function () {
+        document.body.classList.remove("inbox-printing");
+      });
 
       function openPopup(row) {
         openRow = row;
@@ -1474,6 +1629,56 @@
         if (newsletter) newsletter.textContent = newsletterValue(row.newsletter);
       }
 
+      function fillContactCell(cell, value, kind) {
+        cell.textContent = "";
+        var raw = text(value);
+        if (!raw) return;
+        if (kind === "tel") {
+          var digits = raw.replace(/[^\d+]/g, "");
+          if (!digits) {
+            cell.textContent = raw;
+            return;
+          }
+          var tel = document.createElement("a");
+          tel.href = "tel:" + digits;
+          tel.textContent = raw;
+          tel.addEventListener("click", function (event) { event.stopPropagation(); });
+          cell.appendChild(tel);
+          return;
+        }
+        if (isEmail(raw)) {
+          var mail = document.createElement("a");
+          mail.href = "mailto:" + raw;
+          mail.textContent = raw;
+          mail.addEventListener("click", function (event) { event.stopPropagation(); });
+          cell.appendChild(mail);
+          return;
+        }
+        cell.textContent = raw;
+      }
+
+      function syncCustomerPreview(row) {
+        var tr = rowElement(row);
+        if (!tr) return;
+        var source = tr.querySelector("td.inbox-source");
+        if (source) source.textContent = text(row.source);
+        var nameCell = tr.querySelector("td.inbox-name");
+        if (nameCell) nameCell.textContent = text(row.name);
+        var phoneCell = tr.querySelector("td.inbox-phone");
+        if (phoneCell) fillContactCell(phoneCell, row.phone, "tel");
+        var emailCell = tr.querySelector("td.inbox-email");
+        if (emailCell) fillContactCell(emailCell, row.email, "mail");
+        var vehicle = tr.querySelector("td.inbox-vehicle");
+        if (vehicle) vehicle.textContent = text(row.vehicle);
+        var service = tr.querySelector("td.inbox-service");
+        if (service) service.textContent = text(row.service);
+        var who = text(row.name) || "enquiry";
+        var select = tr.querySelector("select.inbox-status-select");
+        if (select) select.setAttribute("aria-label", "Change status for " + who);
+        var remove = tr.querySelector("button.inbox-delete");
+        if (remove) remove.setAttribute("aria-label", "Delete enquiry for " + who);
+      }
+
       function cell(value, className) {
         var td = document.createElement("td");
         if (className) td.className = className;
@@ -1518,37 +1723,17 @@
           var tr = document.createElement("tr");
           if (row.id != null) tr.dataset.id = String(row.id);
           tr.appendChild(cell(formatWhen(row.created_at), "inbox-when"));
-          tr.appendChild(cell(row.source));
+          tr.appendChild(cell(row.source, "inbox-source"));
           tr.appendChild(cell(row.name, "inbox-name"));
 
           var phoneCell = document.createElement("td");
-          var phone = text(row.phone);
-          if (phone) {
-            var digits = phone.replace(/[^\d+]/g, "");
-            if (digits) {
-              var tel = document.createElement("a");
-              tel.href = "tel:" + digits;
-              tel.textContent = phone;
-              tel.addEventListener("click", function (event) { event.stopPropagation(); });
-              phoneCell.appendChild(tel);
-            } else {
-              phoneCell.textContent = phone;
-            }
-          }
+          phoneCell.className = "inbox-phone";
+          fillContactCell(phoneCell, row.phone, "tel");
           tr.appendChild(phoneCell);
 
           var emailCell = document.createElement("td");
           emailCell.className = "inbox-email";
-          var email = text(row.email);
-          if (isEmail(email)) {
-            var mail = document.createElement("a");
-            mail.href = "mailto:" + email;
-            mail.textContent = email;
-            mail.addEventListener("click", function (event) { event.stopPropagation(); });
-            emailCell.appendChild(mail);
-          } else {
-            emailCell.textContent = email;
-          }
+          fillContactCell(emailCell, row.email, "mail");
           tr.appendChild(emailCell);
 
           tr.appendChild(cell(row.vehicle, "inbox-vehicle"));
@@ -1700,6 +1885,24 @@
         });
       }
 
+      function setPopupFieldsDisabled(disabled) {
+        if (popupSaveNotes) popupSaveNotes.disabled = disabled;
+        if (popupNotes) popupNotes.disabled = disabled;
+        if (popupOurNotes) popupOurNotes.disabled = disabled;
+        if (popupRegistration) popupRegistration.disabled = disabled;
+        if (popupNewsletter) popupNewsletter.disabled = disabled;
+        if (popupBooking) popupBooking.disabled = disabled;
+        if (popupCourtesy) popupCourtesy.disabled = disabled;
+        popupCustomerInputs.forEach(function (input) {
+          if (input) input.disabled = disabled;
+        });
+      }
+
+      function savedField(data, key, fallback) {
+        if (data && Object.prototype.hasOwnProperty.call(data, key)) return data[key] == null ? "" : data[key];
+        return fallback;
+      }
+
       function savePopupNotes() {
         var row = openRow;
         if (!row || row.id == null || savingNotes) return;
@@ -1710,14 +1913,14 @@
         var nextNewsletter = popupNewsletter ? popupNewsletter.value : "";
         var nextBooking = popupBooking ? popupBooking.value : "";
         var nextCourtesy = popupCourtesy ? courtesyValue(popupCourtesy.value) : "";
+        var nextName = popupName ? popupName.value : "";
+        var nextPhone = popupPhone ? popupPhone.value : "";
+        var nextEmail = popupEmail ? popupEmail.value : "";
+        var nextVehicle = popupVehicle ? popupVehicle.value : "";
+        var nextService = popupService ? popupService.value : "";
+        var nextSource = popupSource ? popupSource.value : "";
         savingNotes = true;
-        if (popupSaveNotes) popupSaveNotes.disabled = true;
-        if (popupNotes) popupNotes.disabled = true;
-        if (popupOurNotes) popupOurNotes.disabled = true;
-        if (popupRegistration) popupRegistration.disabled = true;
-        if (popupNewsletter) popupNewsletter.disabled = true;
-        if (popupBooking) popupBooking.disabled = true;
-        if (popupCourtesy) popupCourtesy.disabled = true;
+        setPopupFieldsDisabled(true);
         if (popupNotesSaved) popupNotesSaved.hidden = true;
         if (popupNotesError) popupNotesError.hidden = true;
         fetch("/.netlify/functions/enquiries", {
@@ -1725,6 +1928,12 @@
           headers: authHeaders({ "Content-Type": "application/json" }),
           body: JSON.stringify({
             id: row.id,
+            name: nextName,
+            phone: nextPhone,
+            email: nextEmail,
+            vehicle: nextVehicle,
+            service: nextService,
+            source: nextSource,
             notes: nextNotes,
             our_notes: nextOurNotes,
             registration: nextRegistration,
@@ -1740,18 +1949,37 @@
           return response.json().catch(function () { return null; }).then(function (data) {
             if (!response.ok) throw new Error("patch");
             var savedNotes = data && typeof data.notes === "string" ? data.notes : nextNotes;
-            var savedOurNotes = data && Object.prototype.hasOwnProperty.call(data, "our_notes") ? data.our_notes : nextOurNotes;
-            var savedRegistration = data && Object.prototype.hasOwnProperty.call(data, "registration") ? data.registration : (nextRegistration || null);
-            var savedNewsletter = data && Object.prototype.hasOwnProperty.call(data, "newsletter") ? data.newsletter : (nextNewsletter || null);
-            var savedBooking = data && Object.prototype.hasOwnProperty.call(data, "booking_date") ? data.booking_date : (nextBooking || null);
-            var savedCourtesy = data && Object.prototype.hasOwnProperty.call(data, "courtesy_car") ? data.courtesy_car : (nextCourtesy || null);
+            var savedOurNotes = savedField(data, "our_notes", nextOurNotes);
+            var savedRegistration = savedField(data, "registration", nextRegistration || null);
+            var savedNewsletter = savedField(data, "newsletter", nextNewsletter || null);
+            var savedBooking = savedField(data, "booking_date", nextBooking || null);
+            var savedCourtesy = savedField(data, "courtesy_car", nextCourtesy || null);
+            var savedName = savedField(data, "name", nextName);
+            var savedPhone = savedField(data, "phone", nextPhone);
+            var savedEmail = savedField(data, "email", nextEmail);
+            var savedVehicle = savedField(data, "vehicle", nextVehicle);
+            var savedService = savedField(data, "service", nextService);
+            var savedSource = savedField(data, "source", nextSource);
             row.notes = savedNotes;
             row.our_notes = savedOurNotes;
             row.registration = savedRegistration;
             row.newsletter = savedNewsletter;
             row.booking_date = savedBooking;
             row.courtesy_car = savedCourtesy;
+            row.name = savedName;
+            row.phone = savedPhone;
+            row.email = savedEmail;
+            row.vehicle = savedVehicle;
+            row.service = savedService;
+            row.source = savedSource;
             if (openRow === row) {
+              popupTitle.textContent = text(row.name) || "Enquiry";
+              if (popupName) popupName.value = text(savedName);
+              if (popupPhone) popupPhone.value = text(savedPhone);
+              if (popupEmail) popupEmail.value = text(savedEmail);
+              if (popupVehicle) popupVehicle.value = text(savedVehicle);
+              if (popupService) popupService.value = text(savedService);
+              if (popupSource) popupSource.value = text(savedSource);
               if (popupNotes) popupNotes.value = shownCustomerNotes(row);
               if (popupOurNotes) popupOurNotes.value = text(savedOurNotes);
               if (popupRegistration) popupRegistration.value = shownRegistration(row);
@@ -1760,28 +1988,40 @@
               if (popupCourtesy) popupCourtesy.value = courtesyValue(savedCourtesy);
               if (popupNotesSaved) popupNotesSaved.hidden = false;
             }
-            syncNotesPreview(row);
-            syncDetailPreview(row);
-            if (sortField() === "booking_date" || sortField() === "courtesy_car") render();
+            var searchBox = document.getElementById("inbox-search");
+            var searching = searchBox && searchBox.value.trim();
+            var field = sortField();
+            var detailSort = field === "name" || field === "phone" || field === "email" || field === "vehicle" || field === "service" || field === "source" || field === "notes" || field === "our_notes" || field === "registration" || field === "newsletter" || field === "booking_date" || field === "courtesy_car";
+            if (searching || detailSort) render();
+            else {
+              syncNotesPreview(row);
+              syncDetailPreview(row);
+              syncCustomerPreview(row);
+            }
             return null;
           });
         }).catch(function () {
           if (openRow === row && popupNotesError) popupNotesError.hidden = false;
         }).then(function () {
           savingNotes = false;
-          if (popupSaveNotes) popupSaveNotes.disabled = false;
-          if (popupNotes) popupNotes.disabled = false;
-          if (popupOurNotes) popupOurNotes.disabled = false;
-          if (popupRegistration) popupRegistration.disabled = false;
-          if (popupNewsletter) popupNewsletter.disabled = false;
-          if (popupBooking) popupBooking.disabled = false;
-          if (popupCourtesy) popupCourtesy.disabled = false;
+          setPopupFieldsDisabled(false);
         });
       }
 
       function keepPopupOpen(event) {
         event.stopPropagation();
       }
+
+      function clearPopupFeedback() {
+        if (popupNotesSaved) popupNotesSaved.hidden = true;
+        if (popupNotesError) popupNotesError.hidden = true;
+      }
+
+      popupCustomerInputs.forEach(function (input) {
+        input.addEventListener("click", keepPopupOpen);
+        input.addEventListener("mousedown", keepPopupOpen);
+        input.addEventListener("input", clearPopupFeedback);
+      });
 
       if (popupNotes) {
         popupNotes.addEventListener("click", keepPopupOpen);
@@ -1840,6 +2080,14 @@
         popupSaveNotes.addEventListener("mousedown", keepPopupOpen);
       }
 
+      document.getElementById("inbox-popup-print").addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!popup || popup.hidden) return;
+        fillPrintSheet();
+        document.body.classList.add("inbox-printing");
+        window.print();
+      });
       document.getElementById("inbox-popup-close").addEventListener("click", closePopup);
       document.getElementById("inbox-popup-delete").addEventListener("click", function (event) {
         event.preventDefault();

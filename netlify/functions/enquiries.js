@@ -203,15 +203,31 @@ exports.handler = async function (event) {
       const hasRegistration = Object.prototype.hasOwnProperty.call(body, "registration");
       const hasOurNotes = Object.prototype.hasOwnProperty.call(body, "our_notes");
       const hasNewsletter = Object.prototype.hasOwnProperty.call(body, "newsletter");
-      if (!hasStatus && !hasNotes && !hasBooking && !hasCourtesy && !hasRegistration && !hasOurNotes && !hasNewsletter) {
+      const hasName = Object.prototype.hasOwnProperty.call(body, "name");
+      const hasPhone = Object.prototype.hasOwnProperty.call(body, "phone");
+      const hasEmail = Object.prototype.hasOwnProperty.call(body, "email");
+      const hasVehicle = Object.prototype.hasOwnProperty.call(body, "vehicle");
+      const hasService = Object.prototype.hasOwnProperty.call(body, "service");
+      const hasSource = Object.prototype.hasOwnProperty.call(body, "source");
+      if (!hasStatus && !hasNotes && !hasBooking && !hasCourtesy && !hasRegistration && !hasOurNotes && !hasNewsletter && !hasName && !hasPhone && !hasEmail && !hasVehicle && !hasService && !hasSource) {
         return respond(400, { error: "Nothing to update" });
       }
       const patch = {};
       if (hasStatus) {
         const status = cleanLine(body.status, 40);
-        if (!STATUSES[status]) return respond(400, { error: "Invalid status" });
+        if (status === "Deleted" || !STATUSES[status]) return respond(400, { error: "Invalid status" });
         patch.status = status;
       }
+      if (hasName) patch.name = cleanLine(body.name, 160);
+      if (hasPhone) patch.phone = cleanLine(body.phone, 40);
+      if (hasEmail) {
+        const email = cleanLine(body.email, 254);
+        if (email && !isSingleEmail(email)) return respond(400, { error: "Invalid email" });
+        patch.email = email;
+      }
+      if (hasVehicle) patch.vehicle = cleanLine(body.vehicle, 160);
+      if (hasService) patch.service = cleanLine(body.service, 80);
+      if (hasSource) patch.source = cleanLine(body.source, 80);
       if (hasNotes) patch.notes = cleanText(body.notes, 4000);
       if (hasBooking) {
         const booking = cleanBookingDate(body.booking_date);
@@ -230,16 +246,13 @@ exports.handler = async function (event) {
         if (newsletter === false) return respond(400, { error: "Invalid newsletter" });
         patch.newsletter = newsletter;
       }
-      let request = supabase.from("enquiries").update(patch).eq("id", id);
-      if (hasStatus) request = request.or("status.is.null,status.neq.Deleted");
+      const request = supabase.from("enquiries").update(patch).eq("id", id).or("status.is.null,status.neq.Deleted");
       const { data, error } = await request.select().single();
       if (error) {
         if (error.code === "PGRST116") {
-          if (hasStatus) {
-            const lookup = await supabase.from("enquiries").select("status").eq("id", id).limit(1);
-            if (!lookup.error && lookup.data && lookup.data[0] && lookup.data[0].status === "Deleted") {
-              return respond(400, { error: "Invalid status" });
-            }
+          const lookup = await supabase.from("enquiries").select("status").eq("id", id).limit(1);
+          if (!lookup.error && lookup.data && lookup.data[0] && lookup.data[0].status === "Deleted") {
+            return respond(400, { error: hasStatus ? "Invalid status" : "Enquiry not found" });
           }
           return respond(404, { error: "Enquiry not found" });
         }
