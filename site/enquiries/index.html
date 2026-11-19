@@ -1008,6 +1008,9 @@
               <option value="No">NO</option>
             </select>
           </label>
+          <label>Address
+            <textarea id="inbox-popup-address" class="inbox-popup-notes-input" rows="3" autocomplete="street-address"></textarea>
+          </label>
           <div class="inbox-popup-notes-actions">
             <button type="button" id="inbox-popup-save-notes">Save</button>
             <p id="inbox-popup-notes-saved" class="inbox-popup-notes-saved" hidden>Saved</p>
@@ -1055,6 +1058,7 @@
             </label>
             <label class="is-wide">Customer notes<textarea name="notes"></textarea></label>
             <label class="is-wide">Our Notes<textarea name="our_notes"></textarea></label>
+            <label class="is-wide">Address<textarea name="address" autocomplete="street-address"></textarea></label>
             <button class="is-wide" type="submit">Add enquiry</button>
             <p id="inbox-add-note" class="inbox-error is-wide" hidden>That enquiry was not saved.</p>
           </form>
@@ -1306,7 +1310,7 @@
 
       function matches(row, query) {
         if (!query) return true;
-        var hay = [row.source, row.name, row.phone, row.email, row.vehicle, shownRegistration(row), row.service, shownCustomerNotes(row), row.our_notes, newsletterValue(row.newsletter), row.status, formatWhen(row.created_at), formatBookingDate(row.booking_date), bookingInputValue(row.booking_date), courtesyValue(row.courtesy_car)].join(" ").toLowerCase();
+        var hay = [row.source, row.name, row.phone, row.email, row.vehicle, row.address, shownRegistration(row), row.service, shownCustomerNotes(row), row.our_notes, newsletterValue(row.newsletter), row.status, formatWhen(row.created_at), formatBookingDate(row.booking_date), bookingInputValue(row.booking_date), courtesyValue(row.courtesy_car)].join(" ").toLowerCase();
         return hay.indexOf(query) !== -1;
       }
 
@@ -1530,6 +1534,7 @@
       var popupNewsletter = document.getElementById("inbox-popup-newsletter");
       var popupBooking = document.getElementById("inbox-popup-booking");
       var popupCourtesy = document.getElementById("inbox-popup-courtesy");
+      var popupAddress = document.getElementById("inbox-popup-address");
       var popupNotesSaved = document.getElementById("inbox-popup-notes-saved");
       var popupNotesError = document.getElementById("inbox-popup-notes-error");
       var popupSaveNotes = document.getElementById("inbox-popup-save-notes");
@@ -1607,6 +1612,7 @@
         if (popupNewsletter) popupNewsletter.value = newsletterValue(row.newsletter);
         if (popupBooking) popupBooking.value = bookingInputValue(row.booking_date);
         if (popupCourtesy) popupCourtesy.value = courtesyValue(row.courtesy_car);
+        if (popupAddress) popupAddress.value = text(row.address);
         var statusValue = popupValue(statusName(row.status));
         statusValue.className = "inbox-popup-status-word";
         addPopupRow("Status", statusValue);
@@ -1660,7 +1666,8 @@
           ["Registration", popupRegistration ? popupRegistration.value : ""],
           ["Monthly Newsletter", selectedText(popupNewsletter)],
           ["Booking date", printBookingDate()],
-          ["Courtesy car", selectedText(popupCourtesy)]
+          ["Courtesy car", selectedText(popupCourtesy)],
+          ["Address", popupAddress ? popupAddress.value : ""]
         ];
         sheet.textContent = "";
         var heading = document.createElement("h2");
@@ -2040,6 +2047,7 @@
         if (popupNewsletter) popupNewsletter.disabled = disabled;
         if (popupBooking) popupBooking.disabled = disabled;
         if (popupCourtesy) popupCourtesy.disabled = disabled;
+        if (popupAddress) popupAddress.disabled = disabled;
         popupCustomerInputs.forEach(function (input) {
           if (input) input.disabled = disabled;
         });
@@ -2060,6 +2068,7 @@
         var nextNewsletter = popupNewsletter ? popupNewsletter.value : "";
         var nextBooking = popupBooking ? popupBooking.value : "";
         var nextCourtesy = popupCourtesy ? courtesyValue(popupCourtesy.value) : "";
+        var nextAddress = popupAddress ? popupAddress.value : "";
         var nextName = popupName ? popupName.value : "";
         var nextPhone = popupPhone ? popupPhone.value : "";
         var nextEmail = popupEmail ? popupEmail.value : "";
@@ -2086,7 +2095,8 @@
             registration: nextRegistration,
             newsletter: nextNewsletter,
             booking_date: nextBooking,
-            courtesy_car: nextCourtesy
+            courtesy_car: nextCourtesy,
+            address: nextAddress
           })
         }).then(function (response) {
           if (response.status === 401) {
@@ -2101,6 +2111,7 @@
             var savedNewsletter = savedField(data, "newsletter", nextNewsletter || null);
             var savedBooking = savedField(data, "booking_date", nextBooking || null);
             var savedCourtesy = savedField(data, "courtesy_car", nextCourtesy || null);
+            var savedAddress = savedField(data, "address", nextAddress);
             var savedName = savedField(data, "name", nextName);
             var savedPhone = savedField(data, "phone", nextPhone);
             var savedEmail = savedField(data, "email", nextEmail);
@@ -2113,6 +2124,7 @@
             row.newsletter = savedNewsletter;
             row.booking_date = savedBooking;
             row.courtesy_car = savedCourtesy;
+            row.address = savedAddress;
             row.name = savedName;
             row.phone = savedPhone;
             row.email = savedEmail;
@@ -2133,6 +2145,7 @@
               if (popupNewsletter) popupNewsletter.value = newsletterValue(savedNewsletter);
               if (popupBooking) popupBooking.value = bookingInputValue(savedBooking);
               if (popupCourtesy) popupCourtesy.value = courtesyValue(savedCourtesy);
+              if (popupAddress) popupAddress.value = text(savedAddress);
               if (popupNotesSaved) popupNotesSaved.hidden = false;
             }
             var searchBox = document.getElementById("inbox-search");
@@ -2219,6 +2232,14 @@
           if (popupNotesError) popupNotesError.hidden = true;
         });
       }
+      if (popupAddress) {
+        popupAddress.addEventListener("click", keepPopupOpen);
+        popupAddress.addEventListener("mousedown", keepPopupOpen);
+        popupAddress.addEventListener("input", function () {
+          if (popupNotesSaved) popupNotesSaved.hidden = true;
+          if (popupNotesError) popupNotesError.hidden = true;
+        });
+      }
       if (popupSaveNotes) {
         popupSaveNotes.addEventListener("click", function (event) {
           event.preventDefault();
@@ -2287,7 +2308,7 @@
       }
 
       document.getElementById("inbox-download").addEventListener("click", function () {
-        var header = ["Date", "Source", "Name", "Phone", "Email", "Vehicle", "Registration", "Service", "Customer notes", "Our Notes", "Monthly Newsletter", "Booking Date", "Courtesy Car", "Status"];
+        var header = ["Date", "Source", "Name", "Phone", "Email", "Vehicle", "Registration", "Service", "Customer notes", "Our Notes", "Monthly Newsletter", "Booking Date", "Courtesy Car", "Address", "Status"];
         var lines = [header.join(",")];
         rows.forEach(function (row) {
           if (!inCurrentView(row)) return;
@@ -2305,6 +2326,7 @@
             newsletterValue(row.newsletter),
             formatBookingDate(row.booking_date),
             courtesyValue(row.courtesy_car),
+            row.address,
             row.status
           ].map(csvCell).join(","));
         });
@@ -2391,7 +2413,8 @@
             enquiry_date: data.get("enquiry_date"),
             newsletter: data.get("newsletter"),
             notes: data.get("notes"),
-            our_notes: data.get("our_notes")
+            our_notes: data.get("our_notes"),
+            address: data.get("address")
           })
         }).then(function (response) {
           if (response.status === 401) {

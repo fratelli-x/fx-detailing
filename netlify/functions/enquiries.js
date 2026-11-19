@@ -178,6 +178,7 @@ exports.handler = async function (event) {
         notes: cleanText(body.notes, 4000),
         registration: cleanRegistration(body.registration),
         our_notes: cleanText(body.our_notes, 4000) || null,
+        address: cleanText(body.address, 2000) || null,
         newsletter: newsletter,
         status: "New"
       };
@@ -209,7 +210,8 @@ exports.handler = async function (event) {
       const hasVehicle = Object.prototype.hasOwnProperty.call(body, "vehicle");
       const hasService = Object.prototype.hasOwnProperty.call(body, "service");
       const hasSource = Object.prototype.hasOwnProperty.call(body, "source");
-      if (!hasStatus && !hasNotes && !hasBooking && !hasCourtesy && !hasRegistration && !hasOurNotes && !hasNewsletter && !hasName && !hasPhone && !hasEmail && !hasVehicle && !hasService && !hasSource) {
+      const hasAddress = Object.prototype.hasOwnProperty.call(body, "address");
+      if (!hasStatus && !hasNotes && !hasBooking && !hasCourtesy && !hasRegistration && !hasOurNotes && !hasNewsletter && !hasName && !hasPhone && !hasEmail && !hasVehicle && !hasService && !hasSource && !hasAddress) {
         return respond(400, { error: "Nothing to update" });
       }
       const patch = {};
@@ -241,6 +243,7 @@ exports.handler = async function (event) {
       }
       if (hasRegistration) patch.registration = cleanRegistration(body.registration);
       if (hasOurNotes) patch.our_notes = cleanText(body.our_notes, 4000) || null;
+      if (hasAddress) patch.address = cleanText(body.address, 2000) || null;
       if (hasNewsletter) {
         const newsletter = cleanNewsletter(body.newsletter);
         if (newsletter === false) return respond(400, { error: "Invalid newsletter" });
