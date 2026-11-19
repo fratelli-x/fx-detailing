@@ -465,7 +465,8 @@
       padding: 4px 8px;
       font-size: 0.84rem;
     }
-    #inbox-popup .inbox-popup-panel dd .inbox-popup-text {
+    #inbox-popup .inbox-popup-panel dd .inbox-popup-text,
+    #inbox-popup .inbox-popup-panel dd .inbox-popup-choice {
       width: 100%;
       max-width: none;
     }
@@ -941,6 +942,8 @@
                 <option>Walk-in</option>
                 <option>Instagram/Social</option>
                 <option>Other</option>
+                <option>Website Form</option>
+                <option>EMAIL</option>
               </select>
             </label>
             <label>Enquiry date
@@ -1444,7 +1447,34 @@
         return input;
       }
 
-      var popupSource = makePopupInput("inbox-popup-source", "text", "off");
+      var SOURCE_CHOICES = ["WhatsApp", "Phone Call", "Walk-in", "Instagram/Social", "Other", "Website Form", "EMAIL"];
+
+      function makePopupSelect(id) {
+        var select = document.createElement("select");
+        select.id = id;
+        select.className = "inbox-popup-choice";
+        return select;
+      }
+
+      function fillSourceOptions(select, current) {
+        var value = text(current).trim();
+        var choices = SOURCE_CHOICES.slice();
+        if (value && choices.indexOf(value) === -1) choices.push(value);
+        select.textContent = "";
+        var blank = document.createElement("option");
+        blank.value = "";
+        blank.textContent = "";
+        select.appendChild(blank);
+        choices.forEach(function (choice) {
+          var option = document.createElement("option");
+          option.value = choice;
+          option.textContent = choice;
+          select.appendChild(option);
+        });
+        select.value = choices.indexOf(value) === -1 && !value ? "" : value;
+      }
+
+      var popupSource = makePopupSelect("inbox-popup-source");
       var popupName = makePopupInput("inbox-popup-name", "text", "name");
       var popupPhone = makePopupInput("inbox-popup-phone", "tel", "tel");
       var popupEmail = makePopupInput("inbox-popup-email", "email", "email");
@@ -1453,7 +1483,7 @@
       var popupCustomerInputs = [popupSource, popupName, popupPhone, popupEmail, popupVehicle, popupService];
 
       function addPopupInput(term, input, value) {
-        input.value = text(value);
+        if (!input || input.tagName !== "SELECT") input.value = text(value);
         var dd = document.createElement("dd");
         dd.appendChild(input);
         addPopupRow(term, dd);
@@ -1467,6 +1497,7 @@
         popupTitle.textContent = text(row.name) || "Enquiry";
         popupFields.textContent = "";
         addPopupRow("Date", popupValue(formatWhen(row.created_at)));
+        fillSourceOptions(popupSource, row.source);
         addPopupInput("Source", popupSource, row.source);
         addPopupInput("Name", popupName, row.name);
         addPopupInput("Phone", popupPhone, row.phone);
@@ -1979,7 +2010,7 @@
               if (popupEmail) popupEmail.value = text(savedEmail);
               if (popupVehicle) popupVehicle.value = text(savedVehicle);
               if (popupService) popupService.value = text(savedService);
-              if (popupSource) popupSource.value = text(savedSource);
+              if (popupSource) fillSourceOptions(popupSource, savedSource);
               if (popupNotes) popupNotes.value = shownCustomerNotes(row);
               if (popupOurNotes) popupOurNotes.value = text(savedOurNotes);
               if (popupRegistration) popupRegistration.value = shownRegistration(row);
@@ -2021,6 +2052,7 @@
         input.addEventListener("click", keepPopupOpen);
         input.addEventListener("mousedown", keepPopupOpen);
         input.addEventListener("input", clearPopupFeedback);
+        input.addEventListener("change", clearPopupFeedback);
       });
 
       if (popupNotes) {
