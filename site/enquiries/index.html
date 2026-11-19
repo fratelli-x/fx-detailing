@@ -520,7 +520,9 @@
       body.inbox-printing #inbox-popup .inbox-popup-backdrop { display: none !important; }
       body.inbox-printing #inbox-popup .inbox-popup-panel {
         position: static;
+        box-sizing: border-box;
         width: auto;
+        max-width: 100%;
         max-height: none;
         overflow: visible;
         box-shadow: none;
@@ -532,6 +534,11 @@
       body.inbox-printing #inbox-popup .inbox-popup-panel > :not(.inbox-print-sheet) { display: none !important; }
       body.inbox-printing .inbox-print-sheet {
         display: block !important;
+        box-sizing: border-box;
+        width: auto;
+        max-width: 100%;
+        margin: 0;
+        padding: 20mm;
         background: #fff;
         color: #000;
       }
@@ -553,6 +560,7 @@
       }
       body.inbox-printing .inbox-print-table {
         width: 100%;
+        max-width: 100%;
         border-collapse: collapse;
         table-layout: fixed;
         font-family: "Segoe UI", Helvetica, Arial, sans-serif;
@@ -581,7 +589,7 @@
         white-space: pre-wrap;
       }
     }
-    @page { margin: 18mm; }
+    @page { margin: 12mm; }
     .inbox-page main button#inbox-popup-delete {
       display: block;
       width: fit-content;
