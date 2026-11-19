@@ -175,17 +175,17 @@
     }
     .inbox-table col.col-date { width: 6.5%; }
     .inbox-table col.col-source { width: 5.5%; }
-    .inbox-table col.col-name { width: 6.5%; }
+    .inbox-table col.col-name { width: 7.5%; }
     .inbox-table col.col-phone { width: 6%; }
-    .inbox-table col.col-email { width: 7.5%; }
-    .inbox-table col.col-vehicle { width: 7%; }
-    .inbox-table col.col-registration { width: 8%; }
-    .inbox-table col.col-service { width: 6%; }
-    .inbox-table col.col-notes { width: 7%; }
-    .inbox-table col.col-our-notes { width: 6.5%; }
-    .inbox-table col.col-newsletter { width: 8%; }
-    .inbox-table col.col-booking { width: 6.5%; }
-    .inbox-table col.col-courtesy { width: 7%; }
+    .inbox-table col.col-email { width: 8%; }
+    .inbox-table col.col-vehicle { width: 8%; }
+    .inbox-table col.col-registration { width: 7%; }
+    .inbox-table col.col-service { width: 5.5%; }
+    .inbox-table col.col-notes { width: 7.5%; }
+    .inbox-table col.col-our-notes { width: 8%; }
+    .inbox-table col.col-newsletter { width: 6.2%; }
+    .inbox-table col.col-booking { width: 7.3%; }
+    .inbox-table col.col-courtesy { width: 5%; }
     .inbox-table col.col-status { width: 12%; }
     .inbox-table th,
     .inbox-table td {
@@ -328,9 +328,10 @@
       letter-spacing: 0;
       text-transform: none;
     }
-    .inbox-when,
+    .inbox-summary-status { display: none; }
+    .inbox-newsletter,
     .inbox-booking,
-    .inbox-courtesy { white-space: normal; }
+    .inbox-courtesy { white-space: nowrap; }
     .inbox-page main button.inbox-delete {
       margin-top: 8px;
       background: #ffffff;
@@ -537,32 +538,52 @@
         color: #000;
       }
       body.inbox-printing .inbox-print-sheet h2,
-      body.inbox-printing .inbox-print-sheet dt,
-      body.inbox-printing .inbox-print-sheet dd {
+      body.inbox-printing .inbox-print-table,
+      body.inbox-printing .inbox-print-table th,
+      body.inbox-printing .inbox-print-table td {
         color: #000 !important;
-        background: transparent !important;
+        background: #fff !important;
       }
       body.inbox-printing .inbox-print-sheet h2 {
         font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-        font-size: 18pt;
+        font-size: 16pt;
         font-weight: 700;
         letter-spacing: 0;
         text-transform: none;
-        margin: 0 0 12pt;
+        line-height: 1.2;
+        margin: 0 0 5mm;
       }
-      body.inbox-printing .inbox-print-sheet dl {
-        display: grid;
-        grid-template-columns: 11rem 1fr;
-        gap: 6pt 12pt;
-        margin: 0;
+      body.inbox-printing .inbox-print-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+        font-size: 11pt;
+        line-height: 1.35;
       }
-      body.inbox-printing .inbox-print-sheet dt { font-weight: 700; }
-      body.inbox-printing .inbox-print-sheet dd {
-        margin: 0;
-        white-space: pre-wrap;
+      body.inbox-printing .inbox-print-table col.inbox-print-label { width: 48mm; }
+      body.inbox-printing .inbox-print-table th,
+      body.inbox-printing .inbox-print-table td {
+        font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+        font-size: 11pt;
+        font-weight: 400;
+        line-height: 1.35;
+        text-align: left;
+        vertical-align: top;
+        padding: 1.4mm 0;
         overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+      body.inbox-printing .inbox-print-table th {
+        width: 48mm;
+        font-weight: 700;
+        padding-right: 5mm;
+      }
+      body.inbox-printing .inbox-print-table td {
+        white-space: pre-wrap;
       }
     }
+    @page { margin: 14mm; }
     .inbox-page main button#inbox-popup-delete {
       display: block;
       width: fit-content;
@@ -722,28 +743,110 @@
     .inbox-popup-panel.is-completed .inbox-error { color: #ffffff; }
     .inbox-popup-panel.is-not-interested .inbox-error { color: #ffffff; }
     @media (max-width: 720px) {
-      .inbox-page main { margin: 0; max-width: none; }
+      body.inbox-page { overflow-x: hidden; }
+      .inbox-page main { margin: 0; max-width: none; padding: 16px 12px 32px; }
       .inbox-page .inbox-add { grid-template-columns: 1fr; }
-      .inbox-table { font-size: 0.68rem; }
-      .inbox-table th { font-size: 0.56rem; letter-spacing: 0; }
-      .inbox-table col.col-date { width: 6%; }
-      .inbox-table col.col-source { width: 5%; }
-      .inbox-table col.col-name { width: 6%; }
-      .inbox-table col.col-phone { width: 5%; }
-      .inbox-table col.col-email { width: 7%; }
-      .inbox-table col.col-vehicle { width: 6%; }
-      .inbox-table col.col-registration { width: 5%; }
-      .inbox-table col.col-service { width: 6%; }
-      .inbox-table col.col-notes { width: 6%; }
-      .inbox-table col.col-our-notes { width: 6%; }
-      .inbox-table col.col-newsletter { width: 4%; }
-      .inbox-table col.col-booking { width: 4%; }
-      .inbox-table col.col-courtesy { width: 4%; }
-      .inbox-table col.col-status { width: 30%; }
-      .inbox-table .inbox-status-col { width: 30%; }
-      .inbox-table .inbox-status-select {
-        font-size: 0.62rem;
-        padding: 2px 2px;
+      .inbox-actions,
+      .inbox-views,
+      .inbox-toolbar { max-width: 100%; }
+      .inbox-search,
+      .inbox-sort,
+      .inbox-sort-dir {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+      }
+      .inbox-page main button.inbox-view {
+        padding: 8px 10px;
+        min-height: 44px;
+      }
+      .inbox-table-wrap {
+        overflow: visible;
+        max-height: none;
+      }
+      .inbox-table { font-size: 0.92rem; }
+      .inbox-table colgroup,
+      .inbox-table thead { display: none; }
+      .inbox-table,
+      .inbox-table tbody,
+      .inbox-table tr,
+      .inbox-table td {
+        display: block;
+        width: auto;
+        max-width: 100%;
+      }
+      .inbox-table tr {
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 12px;
+        border: 1px solid #c8c8c8;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .inbox-table td.inbox-name { order: 1; }
+      .inbox-table td.inbox-when { order: 2; }
+      .inbox-table td.inbox-phone { order: 3; }
+      .inbox-table td.inbox-vehicle { order: 4; }
+      .inbox-table td.inbox-status-col { order: 5; }
+      .inbox-table td {
+        display: grid;
+        grid-template-columns: 4.6rem minmax(0, 1fr);
+        gap: 2px 8px;
+        align-items: start;
+        width: auto;
+        max-width: 100%;
+        padding: 7px 10px;
+        border-bottom: 1px solid rgba(20, 20, 20, 0.12);
+        white-space: normal;
+      }
+      .inbox-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+      }
+      .inbox-table td:not([data-label]) {
+        display: block;
+      }
+      .inbox-table td:not([data-label])::before { content: none; }
+      .inbox-table td.inbox-source,
+      .inbox-table td.inbox-email,
+      .inbox-table td.inbox-service,
+      .inbox-table td.inbox-registration,
+      .inbox-table td.inbox-notes,
+      .inbox-table td.inbox-our-notes,
+      .inbox-table td.inbox-newsletter,
+      .inbox-table td.inbox-booking,
+      .inbox-table td.inbox-courtesy { display: none; }
+      .inbox-table .inbox-status-col {
+        position: static;
+        width: auto;
+        box-shadow: none;
+        border-left: 0;
+      }
+      .inbox-table .inbox-status-select,
+      .inbox-page main tr button.inbox-delete { display: none; }
+      .inbox-summary-status { display: inline; font-weight: 700; }
+      .inbox-popup {
+        padding: 8px;
+        align-items: stretch;
+      }
+      #inbox-popup .inbox-popup-panel,
+      #inbox-add-popup .inbox-popup-panel {
+        width: 100%;
+        max-width: 100%;
+        max-height: calc(100dvh - 16px);
+        overflow: auto;
+        box-sizing: border-box;
+      }
+      #inbox-popup .inbox-popup-panel dl {
+        grid-template-columns: 5.6rem minmax(0, 1fr);
+      }
+      #inbox-popup .inbox-popup-panel input,
+      #inbox-popup .inbox-popup-panel select,
+      #inbox-popup .inbox-popup-panel textarea {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
       }
     }
   </style>
@@ -1569,16 +1672,28 @@
         var heading = document.createElement("h2");
         heading.textContent = name || "Enquiry";
         sheet.appendChild(heading);
-        var list = document.createElement("dl");
+        var table = document.createElement("table");
+        table.className = "inbox-print-table";
+        var columns = document.createElement("colgroup");
+        var labelColumn = document.createElement("col");
+        labelColumn.className = "inbox-print-label";
+        columns.appendChild(labelColumn);
+        columns.appendChild(document.createElement("col"));
+        table.appendChild(columns);
+        var body = document.createElement("tbody");
         lines.forEach(function (pair) {
-          var term = document.createElement("dt");
+          var row = document.createElement("tr");
+          var term = document.createElement("th");
+          term.scope = "row";
           term.textContent = pair[0];
-          var value = document.createElement("dd");
+          var value = document.createElement("td");
           value.textContent = text(pair[1]);
-          list.appendChild(term);
-          list.appendChild(value);
+          row.appendChild(term);
+          row.appendChild(value);
+          body.appendChild(row);
         });
-        sheet.appendChild(list);
+        table.appendChild(body);
+        sheet.appendChild(table);
       }
 
       window.addEventListener("beforeprint", function () {
@@ -1710,16 +1825,18 @@
         if (remove) remove.setAttribute("aria-label", "Delete enquiry for " + who);
       }
 
-      function cell(value, className) {
+      function cell(value, className, label) {
         var td = document.createElement("td");
         if (className) td.className = className;
+        if (label) td.dataset.label = label;
         td.textContent = text(value);
         return td;
       }
 
-      function longTextCell(value, className) {
+      function longTextCell(value, className, label) {
         var notesCell = document.createElement("td");
         notesCell.className = className;
+        if (label) notesCell.dataset.label = label;
         var notesText = document.createElement("div");
         notesText.className = "inbox-notes-text";
         notesText.textContent = text(value);
@@ -1753,31 +1870,34 @@
         visible.forEach(function (row) {
           var tr = document.createElement("tr");
           if (row.id != null) tr.dataset.id = String(row.id);
-          tr.appendChild(cell(formatWhen(row.created_at), "inbox-when"));
-          tr.appendChild(cell(row.source, "inbox-source"));
-          tr.appendChild(cell(row.name, "inbox-name"));
+          tr.appendChild(cell(formatWhen(row.created_at), "inbox-when", "Date"));
+          tr.appendChild(cell(row.source, "inbox-source", "Source"));
+          tr.appendChild(cell(row.name, "inbox-name", "Name"));
 
           var phoneCell = document.createElement("td");
           phoneCell.className = "inbox-phone";
+          phoneCell.dataset.label = "Phone";
           fillContactCell(phoneCell, row.phone, "tel");
           tr.appendChild(phoneCell);
 
           var emailCell = document.createElement("td");
           emailCell.className = "inbox-email";
+          emailCell.dataset.label = "Email";
           fillContactCell(emailCell, row.email, "mail");
           tr.appendChild(emailCell);
 
-          tr.appendChild(cell(row.vehicle, "inbox-vehicle"));
-          tr.appendChild(cell(shownRegistration(row), "inbox-registration"));
-          tr.appendChild(cell(row.service, "inbox-service"));
-          tr.appendChild(longTextCell(shownCustomerNotes(row), "inbox-notes"));
-          tr.appendChild(longTextCell(row.our_notes, "inbox-our-notes"));
-          tr.appendChild(cell(newsletterValue(row.newsletter), "inbox-newsletter"));
-          tr.appendChild(cell(formatBookingDate(row.booking_date), "inbox-booking"));
-          tr.appendChild(cell(courtesyValue(row.courtesy_car), "inbox-courtesy"));
+          tr.appendChild(cell(row.vehicle, "inbox-vehicle", "Vehicle"));
+          tr.appendChild(cell(shownRegistration(row), "inbox-registration", "Registration"));
+          tr.appendChild(cell(row.service, "inbox-service", "Service"));
+          tr.appendChild(longTextCell(shownCustomerNotes(row), "inbox-notes", "Customer notes"));
+          tr.appendChild(longTextCell(row.our_notes, "inbox-our-notes", "Our Notes"));
+          tr.appendChild(cell(newsletterValue(row.newsletter), "inbox-newsletter", "Monthly Newsletter"));
+          tr.appendChild(cell(formatBookingDate(row.booking_date), "inbox-booking", "Booking Date"));
+          tr.appendChild(cell(courtesyValue(row.courtesy_car), "inbox-courtesy", "Courtesy Car"));
 
           var statusCell = document.createElement("td");
           statusCell.className = "inbox-status-col";
+          statusCell.dataset.label = "Status";
           var select = document.createElement("select");
           select.className = "inbox-status-select";
           select.setAttribute("aria-label", "Change status for " + (text(row.name) || "enquiry"));
@@ -1788,6 +1908,9 @@
             select.appendChild(option);
           });
           select.value = STATUSES.indexOf(row.status) === -1 ? "New" : row.status;
+          var summaryStatus = document.createElement("span");
+          summaryStatus.className = "inbox-summary-status";
+          summaryStatus.textContent = statusName(row.status);
           paintStatus(tr, row.status);
           select.addEventListener("click", function (event) { event.stopPropagation(); });
           select.addEventListener("mousedown", function (event) { event.stopPropagation(); });
@@ -1805,6 +1928,7 @@
             deleteEnquiry(row);
           });
           remove.addEventListener("mousedown", function (event) { event.stopPropagation(); });
+          statusCell.appendChild(summaryStatus);
           statusCell.appendChild(select);
           statusCell.appendChild(remove);
           tr.appendChild(statusCell);
