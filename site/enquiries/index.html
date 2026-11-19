@@ -152,7 +152,8 @@
       -webkit-text-fill-color: #5c5c5c;
     }
     .inbox-table-wrap {
-      overflow: auto;
+      overflow-x: hidden;
+      overflow-y: auto;
       max-height: min(70vh, calc(100dvh - 96px));
       background: #ffffff;
     }
@@ -160,45 +161,71 @@
       width: 100%;
       border-collapse: separate;
       border-spacing: 0;
-      min-width: 1680px;
+      table-layout: fixed;
       background: #ffffff;
       color: #141414;
+      font-size: 0.75rem;
+      line-height: 1.35;
     }
+    .inbox-table col.col-date { width: 7%; }
+    .inbox-table col.col-source { width: 5.5%; }
+    .inbox-table col.col-name { width: 7%; }
+    .inbox-table col.col-phone { width: 6.5%; }
+    .inbox-table col.col-email { width: 8%; }
+    .inbox-table col.col-vehicle { width: 7.5%; }
+    .inbox-table col.col-registration { width: 5.5%; }
+    .inbox-table col.col-service { width: 6.5%; }
+    .inbox-table col.col-notes { width: 7.5%; }
+    .inbox-table col.col-our-notes { width: 7.5%; }
+    .inbox-table col.col-newsletter { width: 5.5%; }
+    .inbox-table col.col-booking { width: 5.5%; }
+    .inbox-table col.col-courtesy { width: 4.5%; }
+    .inbox-table col.col-status { width: 16%; }
     .inbox-table th,
     .inbox-table td {
       border-bottom: 1px solid #c8c8c8;
-      padding: 14px 12px;
+      padding: 8px 4px;
       text-align: left;
       vertical-align: top;
       color: #141414;
       background: #ffffff;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
     .inbox-table th {
       position: sticky;
       top: 0;
       z-index: 3;
       font-family: Oswald, "Arial Narrow", sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.04em;
+      font-size: 0.66rem;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
       text-transform: uppercase;
       background: #f7f7f7;
     }
     .inbox-table tbody tr { cursor: pointer; }
-    .inbox-table a { color: #141414; text-decoration: underline; }
+    .inbox-table a { color: #141414; text-decoration: underline; overflow-wrap: anywhere; word-break: break-word; }
+    .inbox-name,
+    .inbox-email,
+    .inbox-vehicle,
+    .inbox-service { overflow-wrap: anywhere; word-break: break-word; white-space: normal; }
     .inbox-table select {
-      height: 42px;
-      min-height: 42px;
-      min-width: 9.5rem;
+      height: 34px;
+      min-height: 34px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
       color: #141414;
       background: #ffffff;
-      font-size: 1rem;
+      font-size: 0.75rem;
     }
     .inbox-table .inbox-status-col {
       position: sticky;
       right: 0;
       z-index: 2;
-      width: 17rem;
-      min-width: 17rem;
+      width: 16%;
+      min-width: 0;
       box-sizing: border-box;
       border-left: 2px solid #d0d0d0;
       box-shadow: -8px 0 10px rgba(20, 20, 20, 0.16);
@@ -212,14 +239,14 @@
     .inbox-table .inbox-status-select {
       display: block;
       width: 100%;
-      min-width: 12.25rem;
+      min-width: 0;
       max-width: 100%;
-      height: 42px;
-      min-height: 42px;
+      height: 34px;
+      min-height: 34px;
       box-sizing: border-box;
-      padding: 6px 34px 6px 10px;
+      padding: 4px 16px 4px 4px;
       font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-      font-size: 1rem;
+      font-size: 0.72rem;
       font-weight: 700;
       line-height: 1.2;
       letter-spacing: 0;
@@ -232,7 +259,7 @@
       font-weight: 600;
     }
     .inbox-notes,
-    .inbox-our-notes { white-space: pre-wrap; max-width: 280px; }
+    .inbox-our-notes { white-space: pre-wrap; max-width: none; }
     .inbox-notes-text {
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -262,17 +289,19 @@
     }
     .inbox-when,
     .inbox-booking,
-    .inbox-courtesy { white-space: nowrap; }
+    .inbox-courtesy { white-space: normal; }
     .inbox-page main button.inbox-delete {
       margin-top: 8px;
       background: #ffffff;
       color: #8f1d1d;
       border: 1px solid #8f1d1d;
       border-radius: 6px;
-      min-height: 32px;
-      padding: 6px 10px;
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
+      min-height: 28px;
+      padding: 4px 6px;
+      font-size: 0.68rem;
+      letter-spacing: 0.03em;
+      max-width: 100%;
+      white-space: normal;
     }
     .inbox-table tr.is-new td { background: #ffffff; color: #141414; }
     .inbox-table tr.is-replied td { background: #4a4a4a; color: #ffffff; }
@@ -419,11 +448,14 @@
       color: #141414;
       -webkit-text-fill-color: #141414;
     }
-    .inbox-page main button#inbox-popup-close {
+    .inbox-page main button#inbox-popup-close,
+    .inbox-page main button#inbox-add-close {
       background: #ffffff;
       color: #141414;
       border: 1px solid #bdbdbd;
     }
+    #inbox-add-popup .inbox-popup-panel { width: min(880px, 100%); }
+    #inbox-add-popup .inbox-add { width: 100%; max-width: none; }
     .inbox-popup-panel.is-new { background: #ffffff; color: #141414; }
     .inbox-popup-panel.is-replied { background: #4a4a4a; color: #ffffff; }
     .inbox-popup-panel.is-quoted { background: #0c3d7a; color: #ffffff; }
@@ -510,6 +542,26 @@
     @media (max-width: 720px) {
       .inbox-page main { margin: 0; max-width: none; }
       .inbox-page .inbox-add { grid-template-columns: 1fr; }
+      .inbox-table { font-size: 0.68rem; }
+      .inbox-table col.col-date { width: 6%; }
+      .inbox-table col.col-source { width: 5%; }
+      .inbox-table col.col-name { width: 6%; }
+      .inbox-table col.col-phone { width: 5%; }
+      .inbox-table col.col-email { width: 7%; }
+      .inbox-table col.col-vehicle { width: 6%; }
+      .inbox-table col.col-registration { width: 5%; }
+      .inbox-table col.col-service { width: 6%; }
+      .inbox-table col.col-notes { width: 6%; }
+      .inbox-table col.col-our-notes { width: 6%; }
+      .inbox-table col.col-newsletter { width: 4%; }
+      .inbox-table col.col-booking { width: 4%; }
+      .inbox-table col.col-courtesy { width: 4%; }
+      .inbox-table col.col-status { width: 30%; }
+      .inbox-table .inbox-status-col { width: 30%; }
+      .inbox-table .inbox-status-select {
+        font-size: 0.62rem;
+        padding: 2px 2px;
+      }
     }
   </style>
 </head>
@@ -558,40 +610,9 @@
     <section id="inbox" hidden>
       <div class="inbox-actions">
         <button type="button" id="inbox-download">Download CSV</button>
+        <button type="button" id="inbox-add-open" aria-haspopup="dialog" aria-controls="inbox-add-popup">ADD ENQUIRY</button>
       </div>
       <p id="inbox-new-mail" class="inbox-note" hidden></p>
-      <h2>Add an enquiry</h2>
-      <form id="inbox-add" class="inbox-add">
-        <label>Name<input name="name" autocomplete="name" required></label>
-        <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
-        <label>Email<input name="email" type="email" autocomplete="email"></label>
-        <label>Vehicle<input name="vehicle" autocomplete="off"></label>
-        <label>Registration<input name="registration" autocomplete="off"></label>
-        <label>Service<input name="service" autocomplete="off"></label>
-        <label>Source
-          <select name="source">
-            <option>WhatsApp</option>
-            <option>Phone Call</option>
-            <option>Walk-in</option>
-            <option>Instagram/Social</option>
-            <option>Other</option>
-          </select>
-        </label>
-        <label>Enquiry date
-          <input name="enquiry_date" type="date">
-        </label>
-        <label>Monthly Newsletter Subscription
-          <select name="newsletter" required>
-            <option value="" selected disabled hidden></option>
-            <option value="Yes">YES</option>
-            <option value="No">NO</option>
-          </select>
-        </label>
-        <label class="is-wide">Customer notes<textarea name="notes"></textarea></label>
-        <label class="is-wide">Our Notes<textarea name="our_notes"></textarea></label>
-        <button class="is-wide" type="submit">Add enquiry</button>
-        <p id="inbox-add-note" class="inbox-error is-wide" hidden>That enquiry was not saved.</p>
-      </form>
       <div class="inbox-toolbar">
         <label class="inbox-search">Search
           <input id="inbox-search" type="search" autocomplete="off" placeholder="Filter loaded enquiries">
@@ -628,6 +649,22 @@
       <p id="inbox-delete-error" class="inbox-error" hidden>That enquiry was not deleted.</p>
       <div class="inbox-table-wrap">
         <table class="inbox-table">
+          <colgroup>
+            <col class="col-date">
+            <col class="col-source">
+            <col class="col-name">
+            <col class="col-phone">
+            <col class="col-email">
+            <col class="col-vehicle">
+            <col class="col-registration">
+            <col class="col-service">
+            <col class="col-notes">
+            <col class="col-our-notes">
+            <col class="col-newsletter">
+            <col class="col-booking">
+            <col class="col-courtesy">
+            <col class="col-status">
+          </colgroup>
           <thead>
             <tr>
               <th scope="col">Date</th>
@@ -691,6 +728,44 @@
           </label>
           <p id="inbox-popup-delete-error" class="inbox-error" hidden>That enquiry was not deleted.</p>
           <button type="button" id="inbox-popup-delete" class="inbox-delete">Delete</button>
+        </div>
+      </div>
+      <div id="inbox-add-popup" class="inbox-popup" hidden>
+        <div class="inbox-popup-backdrop" id="inbox-add-backdrop"></div>
+        <div class="inbox-popup-panel" role="dialog" aria-modal="true" aria-labelledby="inbox-add-title">
+          <button type="button" id="inbox-add-close">Close</button>
+          <h2 id="inbox-add-title">Add an enquiry</h2>
+          <form id="inbox-add" class="inbox-add">
+            <label>Name<input name="name" autocomplete="name" required></label>
+            <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+            <label>Email<input name="email" type="email" autocomplete="email"></label>
+            <label>Vehicle<input name="vehicle" autocomplete="off"></label>
+            <label>Registration<input name="registration" autocomplete="off"></label>
+            <label>Service<input name="service" autocomplete="off"></label>
+            <label>Source
+              <select name="source">
+                <option>WhatsApp</option>
+                <option>Phone Call</option>
+                <option>Walk-in</option>
+                <option>Instagram/Social</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>Enquiry date
+              <input name="enquiry_date" type="date">
+            </label>
+            <label>Monthly Newsletter Subscription
+              <select name="newsletter" required>
+                <option value="" selected disabled hidden></option>
+                <option value="Yes">YES</option>
+                <option value="No">NO</option>
+              </select>
+            </label>
+            <label class="is-wide">Customer notes<textarea name="notes"></textarea></label>
+            <label class="is-wide">Our Notes<textarea name="our_notes"></textarea></label>
+            <button class="is-wide" type="submit">Add enquiry</button>
+            <p id="inbox-add-note" class="inbox-error is-wide" hidden>That enquiry was not saved.</p>
+          </form>
         </div>
       </div>
     </section>
@@ -895,7 +970,7 @@
       }
 
       function paintPopup(row) {
-        var panel = document.querySelector(".inbox-popup-panel");
+        var panel = document.querySelector("#inbox-popup .inbox-popup-panel");
         if (!panel) return;
         panel.classList.remove("is-new", "is-replied", "is-quoted", "is-booked", "is-completed", "is-not-interested");
         if (row) panel.classList.add(statusClass(row.status));
@@ -1283,7 +1358,7 @@
           if (row.id != null) tr.dataset.id = String(row.id);
           tr.appendChild(cell(formatWhen(row.created_at), "inbox-when"));
           tr.appendChild(cell(row.source));
-          tr.appendChild(cell(row.name));
+          tr.appendChild(cell(row.name, "inbox-name"));
 
           var phoneCell = document.createElement("td");
           var phone = text(row.phone);
@@ -1302,6 +1377,7 @@
           tr.appendChild(phoneCell);
 
           var emailCell = document.createElement("td");
+          emailCell.className = "inbox-email";
           var email = text(row.email);
           if (isEmail(email)) {
             var mail = document.createElement("a");
@@ -1314,9 +1390,9 @@
           }
           tr.appendChild(emailCell);
 
-          tr.appendChild(cell(row.vehicle));
+          tr.appendChild(cell(row.vehicle, "inbox-vehicle"));
           tr.appendChild(cell(shownRegistration(row), "inbox-registration"));
-          tr.appendChild(cell(row.service));
+          tr.appendChild(cell(row.service, "inbox-service"));
           tr.appendChild(longTextCell(shownCustomerNotes(row), "inbox-notes"));
           tr.appendChild(longTextCell(row.our_notes, "inbox-our-notes"));
           tr.appendChild(cell(newsletterValue(row.newsletter), "inbox-newsletter"));
@@ -1607,8 +1683,36 @@
         if (!openRow) return;
         saveStatus(openRow, popupStatus.value);
       });
+
+      var addPopup = document.getElementById("inbox-add-popup");
+      var addOpen = document.getElementById("inbox-add-open");
+
+      function openAddPopup() {
+        if (!addPopup) return;
+        addPopup.hidden = false;
+        var nameInput = document.querySelector("#inbox-add input[name='name']");
+        if (nameInput) nameInput.focus();
+      }
+
+      function closeAddPopup() {
+        if (!addPopup) return;
+        addPopup.hidden = true;
+        if (addOpen) addOpen.focus();
+      }
+
+      if (addOpen) addOpen.addEventListener("click", openAddPopup);
+      var addClose = document.getElementById("inbox-add-close");
+      if (addClose) addClose.addEventListener("click", closeAddPopup);
+      var addBackdrop = document.getElementById("inbox-add-backdrop");
+      if (addBackdrop) addBackdrop.addEventListener("click", closeAddPopup);
+
       document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape" && !popup.hidden) closePopup();
+        if (event.key !== "Escape") return;
+        if (addPopup && !addPopup.hidden) {
+          closeAddPopup();
+          return;
+        }
+        if (!popup.hidden) closePopup();
       });
 
       function csvCell(value) {
@@ -1731,7 +1835,9 @@
           }
           if (!response.ok) throw new Error("add");
           form.reset();
-          return loadRows();
+          return loadRows().then(function () {
+            if (!inbox.hidden) closeAddPopup();
+          });
         }).catch(function () {
           note.hidden = false;
         }).then(function () {
