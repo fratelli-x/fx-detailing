@@ -167,20 +167,20 @@
       font-size: 0.75rem;
       line-height: 1.35;
     }
-    .inbox-table col.col-date { width: 7%; }
+    .inbox-table col.col-date { width: 6.5%; }
     .inbox-table col.col-source { width: 5.5%; }
-    .inbox-table col.col-name { width: 7%; }
-    .inbox-table col.col-phone { width: 6.5%; }
-    .inbox-table col.col-email { width: 8%; }
-    .inbox-table col.col-vehicle { width: 7.5%; }
-    .inbox-table col.col-registration { width: 5.5%; }
-    .inbox-table col.col-service { width: 6.5%; }
-    .inbox-table col.col-notes { width: 7.5%; }
-    .inbox-table col.col-our-notes { width: 7.5%; }
-    .inbox-table col.col-newsletter { width: 5.5%; }
-    .inbox-table col.col-booking { width: 5.5%; }
-    .inbox-table col.col-courtesy { width: 4.5%; }
-    .inbox-table col.col-status { width: 16%; }
+    .inbox-table col.col-name { width: 6.5%; }
+    .inbox-table col.col-phone { width: 6%; }
+    .inbox-table col.col-email { width: 7.5%; }
+    .inbox-table col.col-vehicle { width: 7%; }
+    .inbox-table col.col-registration { width: 8%; }
+    .inbox-table col.col-service { width: 6%; }
+    .inbox-table col.col-notes { width: 7%; }
+    .inbox-table col.col-our-notes { width: 6.5%; }
+    .inbox-table col.col-newsletter { width: 8%; }
+    .inbox-table col.col-booking { width: 6.5%; }
+    .inbox-table col.col-courtesy { width: 7%; }
+    .inbox-table col.col-status { width: 12%; }
     .inbox-table th,
     .inbox-table td {
       border-bottom: 1px solid #c8c8c8;
@@ -190,6 +190,8 @@
       color: #141414;
       background: #ffffff;
       white-space: normal;
+    }
+    .inbox-table td {
       overflow-wrap: anywhere;
       word-break: break-word;
     }
@@ -197,12 +199,45 @@
       position: sticky;
       top: 0;
       z-index: 3;
+      overflow-wrap: normal;
+      word-break: normal;
       font-family: Oswald, "Arial Narrow", sans-serif;
-      font-size: 0.66rem;
-      letter-spacing: 0.02em;
-      line-height: 1.2;
+      font-size: 0.64rem;
+      letter-spacing: 0.01em;
+      line-height: 1.15;
       text-transform: uppercase;
       background: #f7f7f7;
+    }
+    .inbox-page main button.inbox-sort-heading {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0 0.25em;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      letter-spacing: inherit;
+      line-height: inherit;
+      text-align: left;
+      text-transform: inherit;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+      cursor: pointer;
+    }
+    .inbox-sort-label {
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+    .inbox-sort-arrow {
+      font-size: 0.7em;
+      line-height: 1;
     }
     .inbox-table tbody tr { cursor: pointer; }
     .inbox-table a { color: #141414; text-decoration: underline; overflow-wrap: anywhere; word-break: break-word; }
@@ -224,7 +259,7 @@
       position: sticky;
       right: 0;
       z-index: 2;
-      width: 16%;
+      width: 12%;
       min-width: 0;
       box-sizing: border-box;
       border-left: 2px solid #d0d0d0;
@@ -388,6 +423,54 @@
     .inbox-popup-panel dd,
     .inbox-popup-panel label,
     .inbox-popup-panel a { color: #141414; }
+    #inbox-popup .inbox-popup-panel {
+      padding: 12px 16px 14px;
+      font-size: 0.84rem;
+      line-height: 1.3;
+    }
+    #inbox-popup .inbox-popup-panel h2 {
+      font-size: 1.1rem;
+      line-height: 1.1;
+      margin: 0 0 0.2em;
+    }
+    #inbox-popup .inbox-popup-panel dl {
+      gap: 2px 10px;
+      margin: 6px 0 8px;
+    }
+    #inbox-popup .inbox-popup-panel dt,
+    #inbox-popup .inbox-popup-panel dd {
+      font-size: 0.82rem;
+      line-height: 1.25;
+    }
+    #inbox-popup .inbox-popup-panel label {
+      gap: 2px;
+      font-size: 0.78rem;
+      margin: 0 0 4px;
+    }
+    #inbox-popup textarea.inbox-popup-notes-input {
+      min-height: 3.5rem;
+      height: 3.5rem;
+      padding: 6px 8px;
+      font-size: 0.84rem;
+      line-height: 1.3;
+    }
+    #inbox-popup .inbox-popup-panel input,
+    #inbox-popup .inbox-popup-panel select {
+      padding: 4px 8px;
+      font-size: 0.84rem;
+    }
+    #inbox-popup .inbox-popup-panel select {
+      height: 32px;
+      min-height: 0;
+    }
+    #inbox-popup .inbox-popup-notes-actions {
+      gap: 6px 10px;
+      margin: 0 0 8px;
+    }
+    .inbox-page main button#inbox-popup-close {
+      padding: 6px 12px;
+      font-size: 0.78rem;
+    }
     .inbox-popup-panel dl {
       display: grid;
       grid-template-columns: 8rem 1fr;
@@ -543,6 +626,7 @@
       .inbox-page main { margin: 0; max-width: none; }
       .inbox-page .inbox-add { grid-template-columns: 1fr; }
       .inbox-table { font-size: 0.68rem; }
+      .inbox-table th { font-size: 0.56rem; letter-spacing: 0; }
       .inbox-table col.col-date { width: 6%; }
       .inbox-table col.col-source { width: 5%; }
       .inbox-table col.col-name { width: 6%; }
@@ -622,8 +706,14 @@
             <option value="date" selected>Date</option>
             <option value="source">Source</option>
             <option value="name">Name</option>
+            <option value="phone">Phone</option>
+            <option value="email">Email</option>
             <option value="vehicle">Vehicle</option>
+            <option value="registration">Registration</option>
             <option value="service">Service</option>
+            <option value="notes">Customer notes</option>
+            <option value="our_notes">Our Notes</option>
+            <option value="newsletter">Monthly Newsletter</option>
             <option value="booking_date">Booking Date</option>
             <option value="courtesy_car">Courtesy Car</option>
             <option value="status">Status</option>
@@ -667,20 +757,20 @@
           </colgroup>
           <thead>
             <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Source</th>
-              <th scope="col">Name</th>
-              <th scope="col">Phone</th>
-              <th scope="col">Email</th>
-              <th scope="col">Vehicle</th>
-              <th scope="col">Registration</th>
-              <th scope="col">Service</th>
-              <th scope="col">Customer notes</th>
-              <th scope="col">Our Notes</th>
-              <th scope="col">Monthly Newsletter</th>
-              <th scope="col">Booking Date</th>
-              <th scope="col">Courtesy Car</th>
-              <th scope="col" class="inbox-status-col">Status</th>
+              <th scope="col" aria-sort="descending"><button type="button" class="inbox-sort-heading" data-sort="date" aria-label="Sort by Date"><span class="inbox-sort-label">Date</span><span class="inbox-sort-arrow" aria-hidden="true">▼</span></button></th>
+              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="source" aria-label="Sort by Source"><span class="inbox-sort-label">Source</span><span class="inbox-sort-arrow" hidden></span></button></th>
+              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="name" aria-label="Sort by Name"><span class="inbox-sort-label">Name</span><span class="inbox-sort-arrow" hidden></span></button></th>
+              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="phone" aria-label="Sort by Phone"><span class="inbox-sort-label">Phone</span><span class="inbox-sort-arrow" hidden></span></button></th>
+              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="email" aria-label="Sort by Email"><span class="inbox-sort-label">Email</span><span class="inbox-sort-arrow" hidden></span></button></th>
+              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="vehicle" aria-label="Sort by Vehicle"><span class="inbox-sort-label">Vehicle</span><span class="inbox-sort-arrow" hidden></span></button></th>
+              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="registration" aria-label="Sort by Registration"><span class="inbox-sort-label">Registration</span><span class="inbox-sort-arrow" hidden></span></button></th>
+              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="service" aria-label="Sort by Service"><span class="inbox-sort-label">Service</span><span class="inbox-sort-arrow" hidden></span></button></th>
+              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="notes" aria-label="Sort by Customer notes"><span class="inbox-sort-label">Customer notes</span><span class="inbox-sort-arrow" hidden></span></button></th>
+              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="our_notes" aria-label="Sort by Our Notes"><span class="inbox-sort-label">Our Notes</span><span class="inbox-sort-arrow" hidden></span></button></th>
+              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="newsletter" aria-label="Sort by Monthly Newsletter"><span class="inbox-sort-label">Monthly Newsletter</span><span class="inbox-sort-arrow" hidden></span></button></th>
+              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="booking_date" aria-label="Sort by Booking Date"><span class="inbox-sort-label">Booking Date</span><span class="inbox-sort-arrow" hidden></span></button></th>
+              <th scope="col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="courtesy_car" aria-label="Sort by Courtesy Car"><span class="inbox-sort-label">Courtesy Car</span><span class="inbox-sort-arrow" hidden></span></button></th>
+              <th scope="col" class="inbox-status-col" aria-sort="none"><button type="button" class="inbox-sort-heading" data-sort="status" aria-label="Sort by Status"><span class="inbox-sort-label">Status</span><span class="inbox-sort-arrow" hidden></span></button></th>
             </tr>
           </thead>
           <tbody id="inbox-rows"></tbody>
@@ -693,10 +783,10 @@
           <h2 id="inbox-popup-title">Enquiry</h2>
           <dl id="inbox-popup-fields"></dl>
           <label>Customer notes
-            <textarea id="inbox-popup-notes" class="inbox-popup-notes-input" rows="6"></textarea>
+            <textarea id="inbox-popup-notes" class="inbox-popup-notes-input" rows="3"></textarea>
           </label>
           <label>Our Notes
-            <textarea id="inbox-popup-our-notes" class="inbox-popup-notes-input" rows="6"></textarea>
+            <textarea id="inbox-popup-our-notes" class="inbox-popup-notes-input" rows="3"></textarea>
           </label>
           <label>Registration
             <input id="inbox-popup-registration" class="inbox-popup-text" autocomplete="off">
@@ -1033,6 +1123,20 @@
         return isNaN(time) ? 0 : time;
       }
 
+      function statusRank(value) {
+        var index = STATUSES.indexOf(statusName(value));
+        return index === -1 ? STATUSES.length : index;
+      }
+
+      function sortText(row, field) {
+        if (field === "registration") return shownRegistration(row);
+        if (field === "notes") return shownCustomerNotes(row);
+        if (field === "newsletter") return newsletterValue(row.newsletter);
+        if (field === "courtesy_car") return courtesyValue(row.courtesy_car);
+        if (field === "our_notes") return text(row.our_notes);
+        return text(row[field]);
+      }
+
       function compareRows(a, b) {
         var field = sortField();
         var dir = sortDirection() === "asc" ? 1 : -1;
@@ -1045,9 +1149,16 @@
           var at = rowTime(a);
           var bt = rowTime(b);
           if (at !== bt) return at < bt ? -dir : dir;
+        } else if (field === "status") {
+          var ai = statusRank(a.status);
+          var bi = statusRank(b.status);
+          if (ai !== bi) return ai < bi ? -dir : dir;
+          var statusNewer = rowTime(a) - rowTime(b);
+          if (statusNewer !== 0) return statusNewer > 0 ? -1 : 1;
         } else {
-          var av = field === "status" ? statusName(a.status) : field === "courtesy_car" ? courtesyValue(a.courtesy_car) : text(a[field]);
-          var bv = field === "status" ? statusName(b.status) : field === "courtesy_car" ? courtesyValue(b.courtesy_car) : text(b[field]);
+          var av = sortText(a, field).trim();
+          var bv = sortText(b, field).trim();
+          if (!av !== !bv) return av ? -1 : 1;
           var cmp = av.localeCompare(bv, "en-GB", { sensitivity: "base", numeric: true });
           if (cmp !== 0) return cmp * dir;
           var newer = rowTime(a) - rowTime(b);
@@ -1063,7 +1174,9 @@
           ? [["desc", "Newest first"], ["asc", "Oldest first"]]
           : field === "booking_date"
             ? [["asc", "Earliest first"], ["desc", "Latest first"]]
-            : [["asc", "A to Z"], ["desc", "Z to A"]];
+            : field === "status"
+              ? [["asc", "New first"], ["desc", "Not Interested first"]]
+              : [["asc", "A to Z"], ["desc", "Z to A"]];
         var next = prefer || (field === "date" ? "desc" : "asc");
         dir.textContent = "";
         choices.forEach(function (choice) {
@@ -1073,6 +1186,37 @@
           dir.appendChild(option);
         });
         dir.value = next;
+      }
+
+      function updateSortHeadings() {
+        var field = sortField();
+        var dir = sortDirection();
+        Array.prototype.forEach.call(document.querySelectorAll(".inbox-sort-heading"), function (button) {
+          var active = button.getAttribute("data-sort") === field;
+          var th = button.closest("th");
+          var arrow = button.querySelector(".inbox-sort-arrow");
+          if (th) th.setAttribute("aria-sort", active ? (dir === "asc" ? "ascending" : "descending") : "none");
+          if (arrow) {
+            arrow.hidden = !active;
+            arrow.textContent = dir === "asc" ? "\u25B2" : "\u25BC";
+          }
+        });
+      }
+
+      function applySort(field, direction) {
+        var sort = document.getElementById("inbox-sort");
+        var changed = sort.value !== field;
+        sort.value = field;
+        if (changed) setDirectionOptions(direction);
+        else document.getElementById("inbox-sort-dir").value = direction;
+        render();
+      }
+
+      function sortByHeading(field) {
+        var next = sortField() === field
+          ? (sortDirection() === "asc" ? "desc" : "asc")
+          : (field === "date" || field === "booking_date" ? "desc" : "asc");
+        applySort(field, next);
       }
 
       function showInbox() {
@@ -1333,6 +1477,7 @@
       }
 
       function render() {
+        updateSortHeadings();
         updateFolderCounts();
         var search = document.getElementById("inbox-search");
         var query = search.value.trim().toLowerCase();
@@ -1482,6 +1627,14 @@
         render();
       });
       document.getElementById("inbox-sort-dir").addEventListener("change", render);
+      Array.prototype.forEach.call(document.querySelectorAll(".inbox-sort-heading"), function (button) {
+        button.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          sortByHeading(button.getAttribute("data-sort"));
+        });
+      });
+      updateSortHeadings();
 
       var deleting = false;
 
